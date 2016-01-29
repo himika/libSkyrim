@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Skyrim\Skyrim.vcxproj">
+      <Project>{ad95f75e-fd79-4f2f-bc36-828d592a790a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\DebugLog.cpp" />
+    <ClCompile Include="src\GameEvents.cpp" />
+    <ClCompile Include="src\GameEvents_Misc.cpp" />
+    <ClCompile Include="src\GameEvents_Resource.cpp" />
+    <ClCompile Include="src\GameEvents_Script.cpp" />
+    <ClCompile Include="src\GameEvents_SKSE.cpp" />
+    <ClCompile Include="src\GameEvents_Story.cpp" />
+    <ClCompile Include="src\PapyrusEvents.cpp" />
+    <ClCompile Include="src\PapyrusFunctions.cpp" />
+    <ClCompile Include="src\PapyrusInvoke.cpp" />
+    <ClCompile Include="src\PluginAPI.cpp" />
+    <ClCompile Include="src\GameRTTI.cpp" />
+    <ClCompile Include="src\SafeWrite.cpp" />
+    <ClCompile Include="src\Scaleform.cpp" />
+    <ClCompile Include="src\Serialization.cpp" />
+    <ClCompile Include="src\test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\SKSE.h" />
+    <ClInclude Include="include\SKSE\DebugLog.h" />
+    <ClInclude Include="include\SKSE\GameEvents.h" />
+    <ClInclude Include="include\SKSE\GameCamera.h" />
+    <ClInclude Include="include\SKSE\GameData.h" />
+    <ClInclude Include="include\SKSE\GameExtraData.h" />
+    <ClInclude Include="include\SKSE\GameFormComponents.h" />
+    <ClInclude Include="include\SKSE\GameForms.h" />
+    <ClInclude Include="include\SKSE\GameInput.h" />
+    <ClInclude Include="include\SKSE\GameMenus.h" />
+    <ClInclude Include="include\SKSE\GameObjects.h" />
+    <ClInclude Include="include\SKSE\GameReferences.h" />
+    <ClInclude Include="include\SKSE\GameResource.h" />
+    <ClInclude Include="include\SKSE\GameSettings.h" />
+    <ClInclude Include="include\SKSE\GameStreams.h" />
+    <ClInclude Include="include\SKSE\GameTypes.h" />
+    <ClInclude Include="include\SKSE\HookUtil.h" />
+    <ClInclude Include="include\SKSE\NiControllers.h" />
+    <ClInclude Include="include\SKSE\NiNodes.h" />
+    <ClInclude Include="include\SKSE\NiObjects.h" />
+    <ClInclude Include="include\SKSE\PapyrusEvents.h" />
+    <ClInclude Include="include\SKSE\PapyrusFunctions.h" />
+    <ClInclude Include="include\SKSE\PapyrusInvoke.h" />
+    <ClInclude Include="include\SKSE\PluginAPI.h" />
+    <ClInclude Include="include\SKSE\GameRTTI.h" />
+    <ClInclude Include="include\SKSE\SafeWrite.h" />
+    <ClInclude Include="include\SKSE\Scaleform.h" />
+    <ClInclude Include="include\SKSE\Serialization.h" />
+    <ClInclude Include="include\SKSE\SKSEEvents.h" />
+    <ClInclude Include="include\SKSE\Version.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E2BB26EC-2013-42CD-BCA5-C9C566BA0379}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SKSE</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>$(ProjectName)_d</TargetName>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)Skyrim\include;$(ProjectDir)include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)install_lib.bat "$(ProjectDir)include" "$(TargetPath)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)Skyrim\include;$(ProjectDir)include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)install_lib.bat "$(ProjectDir)include" "$(TargetPath)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

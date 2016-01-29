@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{98061f55-a235-4681-b135-ffd6f5885a4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SKSE">
+      <UniqueIdentifier>{567ca200-6fa3-4c6f-a8f6-5d96c783bdbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{940f29aa-bf1f-4791-bdf3-44e8b81b8fc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\test">
+      <UniqueIdentifier>{7f8582ff-a0c3-437d-8018-9fb11a671519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SKSE\api">
+      <UniqueIdentifier>{8c6359f7-2601-4342-8434-7c690fec672d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SKSE\internals">
+      <UniqueIdentifier>{e5e9bba6-8c80-411b-86b2-bb3e93831314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SKSE\netimmerse">
+      <UniqueIdentifier>{d7563cc0-ebc3-45f1-b13e-8feeca413899}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\DebugLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PapyrusFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PapyrusInvoke.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PluginAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SafeWrite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Serialization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PapyrusEvents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameRTTI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEvents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEvents_Resource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEvents_Script.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEvents_Story.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scaleform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEvents_SKSE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEvents_Misc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\SKSE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\Version.h">
+      <Filter>Header Files\SKSE</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\PapyrusEvents.h">
+      <Filter>Header Files\SKSE</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\PapyrusFunctions.h">
+      <Filter>Header Files\SKSE</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\PapyrusInvoke.h">
+      <Filter>Header Files\SKSE</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\Serialization.h">
+      <Filter>Header Files\SKSE</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\Scaleform.h">
+      <Filter>Header Files\SKSE</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameExtraData.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameCamera.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameFormComponents.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameForms.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameInput.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameMenus.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameObjects.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameReferences.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameTypes.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\HookUtil.h">
+      <Filter>Header Files\SKSE\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\SafeWrite.h">
+      <Filter>Header Files\SKSE\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\DebugLog.h">
+      <Filter>Header Files\SKSE\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameRTTI.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameData.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\NiObjects.h">
+      <Filter>Header Files\SKSE\netimmerse</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\NiControllers.h">
+      <Filter>Header Files\SKSE\netimmerse</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\PluginAPI.h">
+      <Filter>Header Files\SKSE\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameEvents.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameStreams.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameResource.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\SKSEEvents.h">
+      <Filter>Header Files\SKSE</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\GameSettings.h">
+      <Filter>Header Files\SKSE\api</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\NiNodes.h">
+      <Filter>Header Files\SKSE\netimmerse</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

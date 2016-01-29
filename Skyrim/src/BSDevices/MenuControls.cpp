@@ -1,0 +1,3 @@
+#include "Skyrim/BSDevices/MenuControls.h"
+
+DECLARE_BSTSINGLETONSDM_STATIC_INSTANCE(MenuControls, 0x01B10D5C, 0x01B33020);

@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Animation\AnimationClipDataSingleton.cpp" />
+    <ClCompile Include="src\Animation\AnimationHandlers.cpp" />
+    <ClCompile Include="src\BSCore\BSFixedString.cpp" />
+    <ClCompile Include="src\BSCore\BSSpinLock.cpp" />
+    <ClCompile Include="src\BSCore\BSString.cpp" />
+    <ClCompile Include="src\BSCore\BSTArray.cpp" />
+    <ClCompile Include="src\BSDevices\InputManager.cpp" />
+    <ClCompile Include="src\BSDevices\MenuControls.cpp" />
+    <ClCompile Include="src\BSDevices\MenuEventHandler.cpp" />
+    <ClCompile Include="src\BSDevices\PlayerControls.cpp" />
+    <ClCompile Include="src\BSDevices\PlayerInputHandler.cpp" />
+    <ClCompile Include="src\BSMain\BSHandleRefObject.cpp" />
+    <ClCompile Include="src\BSMain\BSThreadManager.cpp" />
+    <ClCompile Include="src\BSMain\Main.cpp" />
+    <ClCompile Include="src\BSMain\Setting.cpp" />
+    <ClCompile Include="src\BSPathFinding\BSNavmeshInfo.cpp" />
+    <ClCompile Include="src\BSResource\BSResource.cpp" />
+    <ClCompile Include="src\BSResource\BSResourceArchive.cpp" />
+    <ClCompile Include="src\BSResource\BSResourceNiBinaryStream.cpp" />
+    <ClCompile Include="src\BSResource\BSResourceEntry.cpp" />
+    <ClCompile Include="src\BSResource\BSResourceStreamBase.cpp" />
+    <ClCompile Include="src\BSScript\BSScriptArray.cpp" />
+    <ClCompile Include="src\BSScript\BSScriptClass.cpp" />
+    <ClCompile Include="src\BSScript\BSScriptIFunction.cpp" />
+    <ClCompile Include="src\BSScript\BSScriptIFunctionArguments.cpp" />
+    <ClCompile Include="src\BSScript\BSScriptNativeFunctions.cpp" />
+    <ClCompile Include="src\BSScript\BSScriptObject.cpp" />
+    <ClCompile Include="src\BSScript\BSScriptPackUnpack.cpp" />
+    <ClCompile Include="src\BSScript\BSScriptVariable.cpp" />
+    <ClCompile Include="src\BSSystem\BSTCreateFactory.cpp" />
+    <ClCompile Include="src\BSSystem\BSTSmartPointer.cpp" />
+    <ClCompile Include="src\Camera\LocalMapCamera.cpp" />
+    <ClCompile Include="src\Camera\PlayerCamera.cpp" />
+    <ClCompile Include="src\Camera\TESCamera.cpp" />
+    <ClCompile Include="src\Events\BGSStoryEvent.cpp" />
+    <ClCompile Include="src\Events\DefaultObjectReadyEvent.cpp" />
+    <ClCompile Include="src\Events\UserEventManager.cpp" />
+    <ClCompile Include="src\Events\ScriptEvent.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraAliasInstanceArray.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraCannotWear.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraCharge.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraContainerChanges.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraCount.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraEnableStateParent.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraEnchantment.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraForcedTarget.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraHealth.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraHotkey.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraLinkedRef.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraLinkedRefChildren.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraOwnership.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraReferenceHandle.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraSoul.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraTextDisplayData.cpp" />
+    <ClCompile Include="src\ExtraData\ExtraTimeLeft.cpp" />
+    <ClCompile Include="src\ExtraData\NonActorMagicTarget.cpp" />
+    <ClCompile Include="src\FileIO\BGSSaveLoadGame.cpp" />
+    <ClCompile Include="src\FileIO\BGSSaveLoadManager.cpp" />
+    <ClCompile Include="src\FileIO\TES.cpp" />
+    <ClCompile Include="src\FileIO\TESDataHandler.cpp" />
+    <ClCompile Include="src\FileIO\TESFile.cpp" />
+    <ClCompile Include="src\FormComponents\BaseExtraList.cpp" />
+    <ClCompile Include="src\FormComponents\BGSAttackDataForm.cpp" />
+    <ClCompile Include="src\FormComponents\BGSBipedObjectForm.cpp" />
+    <ClCompile Include="src\FormComponents\BGSKeywordForm.cpp" />
+    <ClCompile Include="src\FormComponents\BGSPerkRankArray.cpp" />
+    <ClCompile Include="src\FormComponents\TESContainer.cpp" />
+    <ClCompile Include="src\FormComponents\TESSpellList.cpp" />
+    <ClCompile Include="src\FormComponents\TintMask.cpp" />
+    <ClCompile Include="src\Forms\Actor.cpp" />
+    <ClCompile Include="src\Forms\BGSDefaultObjectManager.cpp" />
+    <ClCompile Include="src\Forms\BGSEquipSlot.cpp" />
+    <ClCompile Include="src\Forms\BGSListForm.cpp" />
+    <ClCompile Include="src\Forms\BGSLocAlias.cpp" />
+    <ClCompile Include="src\Forms\BGSLocation.cpp" />
+    <ClCompile Include="src\Forms\BGSOutfit.cpp" />
+    <ClCompile Include="src\Forms\BGSPerk.cpp" />
+    <ClCompile Include="src\Forms\BGSRefAlias.cpp" />
+    <ClCompile Include="src\Forms\BGSScene.cpp" />
+    <ClCompile Include="src\Forms\BGSTextureSet.cpp" />
+    <ClCompile Include="src\Forms\PlayerCharacter.cpp" />
+    <ClCompile Include="src\Forms\TESForm.cpp" />
+    <ClCompile Include="src\Forms\TESObjectCELL.cpp" />
+    <ClCompile Include="src\Forms\TESObjectREFR.cpp" />
+    <ClCompile Include="src\Forms\TESPackage.cpp" />
+    <ClCompile Include="src\Forms\TESQuest.cpp" />
+    <ClCompile Include="src\Forms\TESRace.cpp" />
+    <ClCompile Include="src\Memory.cpp" />
+    <ClCompile Include="src\Menus\Console.cpp" />
+    <ClCompile Include="src\Menus\HUDMenu.cpp" />
+    <ClCompile Include="src\Menus\IMenu.cpp" />
+    <ClCompile Include="src\Menus\MenuManager.cpp" />
+    <ClCompile Include="src\Menus\RaceSexMenu.cpp" />
+    <ClCompile Include="src\Menus\UIMessage.cpp" />
+    <ClCompile Include="src\Misc\BGSFootstepManager.cpp" />
+    <ClCompile Include="src\Misc\BGSImpactManager.cpp" />
+    <ClCompile Include="src\Misc\InventoryChanges.cpp" />
+    <ClCompile Include="src\Misc\MagicFavorites.cpp" />
+    <ClCompile Include="src\Misc\MiscStat.cpp" />
+    <ClCompile Include="src\NetImmerse\NiBinaryStream.cpp" />
+    <ClCompile Include="src\NetImmerse\NiCamera.cpp" />
+    <ClCompile Include="src\NetImmerse\NiCriticalSection.cpp" />
+    <ClCompile Include="src\NetImmerse\NiExtraData.cpp" />
+    <ClCompile Include="src\NetImmerse\BSFadeNode.cpp" />
+    <ClCompile Include="src\NetImmerse\NiGeometry.cpp" />
+    <ClCompile Include="src\NetImmerse\NiInterpolators.cpp" />
+    <ClCompile Include="src\NetImmerse\NiLight.cpp" />
+    <ClCompile Include="src\NetImmerse\NiMaterial.cpp" />
+    <ClCompile Include="src\NetImmerse\NiMatrix3.cpp" />
+    <ClCompile Include="src\NetImmerse\NiMemory.cpp" />
+    <ClCompile Include="src\NetImmerse\NiNode.cpp" />
+    <ClCompile Include="src\NetImmerse\NiNodes.cpp" />
+    <ClCompile Include="src\NetImmerse\NiObject.cpp" />
+    <ClCompile Include="src\NetImmerse\NiObjectNET.cpp" />
+    <ClCompile Include="src\NetImmerse\NiPoint3.cpp" />
+    <ClCompile Include="src\NetImmerse\NiProperties.cpp" />
+    <ClCompile Include="src\NetImmerse\NiRefObject.cpp" />
+    <ClCompile Include="src\NetImmerse\NiRenderer.cpp" />
+    <ClCompile Include="src\NetImmerse\NiRTTI.cpp" />
+    <ClCompile Include="src\NetImmerse\NiSerialization.cpp" />
+    <ClCompile Include="src\NetImmerse\NiTextures.cpp" />
+    <ClCompile Include="src\NetImmerse\NiTypes.cpp" />
+    <ClCompile Include="src\RTTI.cpp" />
+    <ClCompile Include="src\Scaleform\GMemory.cpp" />
+    <ClCompile Include="src\Scaleform\GRefCount.cpp" />
+    <ClCompile Include="src\Scaleform\GString.cpp" />
+    <ClCompile Include="src\SkyrimScript.cpp" />
+    <ClCompile Include="src\SkyrimVM.cpp" />
+    <ClCompile Include="src\Sky\Sky.cpp" />
+    <ClCompile Include="src\VMArray.cpp" />
+    <ClCompile Include="src\VMState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Skyrim.h" />
+    <ClInclude Include="include\Skyrim\AI\ActorValue.h" />
+    <ClInclude Include="include\Skyrim\AI\BGSNamedPackageData.h" />
+    <ClInclude Include="include\Skyrim\AI\BGSProcedure.h" />
+    <ClInclude Include="include\Skyrim\AI\BGSProcedureTree.h" />
+    <ClInclude Include="include\Skyrim\AI\IPackageData.h" />
+    <ClInclude Include="include\Skyrim\Animation\AnimationClipDataSingleton.h" />
+    <ClInclude Include="include\Skyrim\Animation\AnimationHandlers.h" />
+    <ClInclude Include="include\Skyrim\Animation\AnimationSetDataSingleton.h" />
+    <ClInclude Include="include\Skyrim\Animation\BGSGamebryoSequenceGeneratorHolderSingleton.h" />
+    <ClInclude Include="include\Skyrim\Animation\BSAnimationGraphChannel.h" />
+    <ClInclude Include="include\Skyrim\Animation\BSAnimationGraphManager.h" />
+    <ClInclude Include="include\Skyrim\Animation\BSResponse.h" />
+    <ClInclude Include="include\Skyrim\Animation\BSTAnimationGraphDataChannel.h" />
+    <ClInclude Include="include\Skyrim\Animation\IAnimationGraphManagerHolder.h" />
+    <ClInclude Include="include\Skyrim\Animation\IPostAnimationChannelUpdateFunctor.h" />
+    <ClInclude Include="include\Skyrim\Animation\SimpleAnimationGraphManagerHolde.h" />
+    <ClInclude Include="include\Skyrim\BSAudio\BSAudioManager.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSCoreTypes.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSFixedString.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSNonReentrantSpinLock.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSSpinLock.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSString.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSTArray.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSTBTree.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSTEvent.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSTHashMap.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSTList.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSTObjectArena.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSTScatterTable.h" />
+    <ClInclude Include="include\Skyrim\BSCore\BSTSingleton.h" />
+    <ClInclude Include="include\Skyrim\BSCore\CompactingStoreCommon.h" />
+    <ClInclude Include="include\Skyrim\BSCore\CRC.h" />
+    <ClInclude Include="include\Skyrim\BSCore\HeapBlocks.h" />
+    <ClInclude Include="include\Skyrim\BSDevices\InputDevice.h" />
+    <ClInclude Include="include\Skyrim\BSDevices\InputManager.h" />
+    <ClInclude Include="include\Skyrim\BSDevices\MenuControls.h" />
+    <ClInclude Include="include\Skyrim\BSDevices\MenuEventHandler.h" />
+    <ClInclude Include="include\Skyrim\BSDevices\PlayerControls.h" />
+    <ClInclude Include="include\Skyrim\BSDevices\PlayerInputHandler.h" />
+    <ClInclude Include="include\Skyrim\BSDiag\StackTraceCapture.h" />
+    <ClInclude Include="include\Skyrim\BSDiag\StackTraceRecorder.h" />
+    <ClInclude Include="include\Skyrim\BSDiag\Win32\PCPolicy.h" />
+    <ClInclude Include="include\Skyrim\BSHavok\bhkExtraData.h" />
+    <ClInclude Include="include\Skyrim\BSHavok\bhkPhantomOverlapListener.h" />
+    <ClInclude Include="include\Skyrim\BSHavok\bhkStream.h" />
+    <ClInclude Include="include\Skyrim\BSMain\BSBitStream.h" />
+    <ClInclude Include="include\Skyrim\BSMain\BSCurrent.h" />
+    <ClInclude Include="include\Skyrim\BSMain\BSHandleRefObject.h" />
+    <ClInclude Include="include\Skyrim\BSMain\BSHarfEdgeMesh\BSHEAttribute.h" />
+    <ClInclude Include="include\Skyrim\BSMain\BSHarfEdgeMesh\BSHEMeshScrapAllocator.h" />
+    <ClInclude Include="include\Skyrim\BSMain\BSLODMultiIndexTriShape.h" />
+    <ClInclude Include="include\Skyrim\BSMain\BSTask.h" />
+    <ClInclude Include="include\Skyrim\BSMain\BSTaskManager.h" />
+    <ClInclude Include="include\Skyrim\BSMain\BSThreadManager.h" />
+    <ClInclude Include="include\Skyrim\BSMain\Main.h" />
+    <ClInclude Include="include\Skyrim\BSMain\Setting.h" />
+    <ClInclude Include="include\Skyrim\BSMain\ThreadSafeStructures.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\AStarSearch.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSNavmesh.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSNavmeshFlagFilters.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSNavmeshInfo.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSNavmeshRayCast.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSNavmeshTriangle.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingNode.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingSpline.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingStart.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSPathSmootherRayCast.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSTPathingFactory.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\MovementArbitrationAverage.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\MovementArbitrationMaxWeight.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\MovementParameters.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\MovementTypes.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResource.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceArchive.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceCacheDrive.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceEntry.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceEntryCache.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceEntryDB.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceEntryQueue.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceFreeList.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceNiBinaryStream.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceStream.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceStreamBase.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceStreamParser.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceUtil.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceLocation.h" />
+    <ClInclude Include="include\Skyrim\BSResource\BSResourceLooseFileLocation.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScript.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptArray.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptBoundScript.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptClass.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptIForEachScriptObjectFunctor.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptIFunction.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptIFunctionArguments.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptInternalVDescTable.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptIObjectHandlePolicy.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptMemoryPagePolicy.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptNativeFunctions.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptObject.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptObjectBindPolicy.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptObjectTypeInfo.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptPackUnpack.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptPropertyTypeInfo.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptStack.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptTypeTraits.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptUnlinkedTypes.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptVariable.h" />
+    <ClInclude Include="include\Skyrim\BSShader\BSShaderProperty.h" />
+    <ClInclude Include="include\Skyrim\BSSystem\BSStorage.h" />
+    <ClInclude Include="include\Skyrim\BSSystem\BSStreamParser.h" />
+    <ClInclude Include="include\Skyrim\BSSystem\BSTBTreeFile.h" />
+    <ClInclude Include="include\Skyrim\BSSystem\BSTCreateFactory.h" />
+    <ClInclude Include="include\Skyrim\BSSystem\BSTFactory.h" />
+    <ClInclude Include="include\Skyrim\BSSystem\BSTPointerAndFlags.h" />
+    <ClInclude Include="include\Skyrim\BSSystem\BSTSmartPointer.h" />
+    <ClInclude Include="include\Skyrim\BSSystem\IHandlerFunctor.h" />
+    <ClInclude Include="include\Skyrim\Camera\AutoVanityState.h" />
+    <ClInclude Include="include\Skyrim\Camera\BleedoutCameraState.h" />
+    <ClInclude Include="include\Skyrim\Camera\DragonCameraState.h" />
+    <ClInclude Include="include\Skyrim\Camera\FirstPersonState.h" />
+    <ClInclude Include="include\Skyrim\Camera\FreeCameraState.h" />
+    <ClInclude Include="include\Skyrim\Camera\FurnitureCameraState.h" />
+    <ClInclude Include="include\Skyrim\Camera\HorseCameraState.h" />
+    <ClInclude Include="include\Skyrim\Camera\IronSightsState.h" />
+    <ClInclude Include="include\Skyrim\Camera\LocalMapCamera.h" />
+    <ClInclude Include="include\Skyrim\Camera\MapCamera.h" />
+    <ClInclude Include="include\Skyrim\Camera\PlayerCamera.h" />
+    <ClInclude Include="include\Skyrim\Camera\PlayerCameraTransitionState.h" />
+    <ClInclude Include="include\Skyrim\Camera\RaceSexCamera.h" />
+    <ClInclude Include="include\Skyrim\Camera\TESCamera.h" />
+    <ClInclude Include="include\Skyrim\Camera\TESCameraState.h" />
+    <ClInclude Include="include\Skyrim\Camera\ThirdPersonState.h" />
+    <ClInclude Include="include\Skyrim\Camera\TweenMenuCameraState.h" />
+    <ClInclude Include="include\Skyrim\Camera\VATSCameraState.h" />
+    <ClInclude Include="include\Skyrim\Events.h" />
+    <ClInclude Include="include\Skyrim\Events\ActorEvent.h" />
+    <ClInclude Include="include\Skyrim\Events\BGSStoryEvent.h" />
+    <ClInclude Include="include\Skyrim\Events\BGSStoryEventAutoRegister.h" />
+    <ClInclude Include="include\Skyrim\Events\BGSStoryEventManager.h" />
+    <ClInclude Include="include\Skyrim\Events\BGSStoryEventMember.h" />
+    <ClInclude Include="include\Skyrim\Events\DefaultObjectsReadyEvent.h" />
+    <ClInclude Include="include\Skyrim\Events\InputEvent.h" />
+    <ClInclude Include="include\Skyrim\Events\MenuEvent.h" />
+    <ClInclude Include="include\Skyrim\Events\PositionPlayerEvent.h" />
+    <ClInclude Include="include\Skyrim\Events\ScriptEvent.h" />
+    <ClInclude Include="include\Skyrim\Events\UserEventManager.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\BSExtraData.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraActivateRefChildren.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraAliasInstanceArray.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraAshPileRef.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraCannotWear.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraCell3D.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraCellWaterType.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraCharge.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraCollisionData.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraContainerChanges.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraCount.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraDataTypes.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraDroppedItemList.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraEditorID.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraEnableStateParent.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraEnchantment.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraEncounterZone.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraFactionChanges.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraFlags.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraFollower.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraFollowerSwimBreadcrumbs.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraForcedTarget.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraHavok.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraHealth.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraHotkey.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraInteraction.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraItemDropper.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraLeveledItem.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraLightData.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraLinkedRef.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraLinkedRefChildren.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraLocation.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraLocationRefType.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraLock.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraMagicCaster.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraMapMarker.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraOutfitItem.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraOwnership.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraPersistentCell.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraPoison.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraPrimitive.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraPromotedRef.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraReferenceHandle.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraRegionList.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraSayTopicInfo.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraScale.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraSeenData.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraSoul.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraStartingPosition.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraTextDisplayData.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraTimeLeft.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraWorn.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraWornLeft.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\NonActorMagicCaster.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\NonActorMagicTarget.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\TValueArray.h" />
+    <ClInclude Include="include\Skyrim\FaceGen\BSFaceGenAnimationData.h" />
+    <ClInclude Include="include\Skyrim\FaceGen\BSFaceGenBinaryFile.h" />
+    <ClInclude Include="include\Skyrim\FaceGen\BSFaceGenDB.h" />
+    <ClInclude Include="include\Skyrim\FaceGen\BSFaceGenKeyframe.h" />
+    <ClInclude Include="include\Skyrim\FaceGen\BSFaceGenManager.h" />
+    <ClInclude Include="include\Skyrim\FaceGen\BSFaceGenModel.h" />
+    <ClInclude Include="include\Skyrim\FaceGen\BSFaceGenMorphData.h" />
+    <ClInclude Include="include\Skyrim\FaceGen\BSFaceGenNiNode.h" />
+    <ClInclude Include="include\Skyrim\FileIO\BGSSaveLoadGame.h" />
+    <ClInclude Include="include\Skyrim\FileIO\BGSSaveLoadManager.h" />
+    <ClInclude Include="include\Skyrim\FileIO\BSFile.h" />
+    <ClInclude Include="include\Skyrim\FileIO\ModelLoader.h" />
+    <ClInclude Include="include\Skyrim\FileIO\QueuedFile.h" />
+    <ClInclude Include="include\Skyrim\FileIO\TES.h" />
+    <ClInclude Include="include\Skyrim\FileIO\TESDataHandler.h" />
+    <ClInclude Include="include\Skyrim\FileIO\TESFile.h" />
+    <ClInclude Include="include\Skyrim\FileIO\TESModelDB.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\ActorValueOwner.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BaseExtraList.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BaseFormComponent.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSAttackDataForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSBehaviorGraphModel.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSBipedObjectForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSBlockBashData.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSDestructibleObjectForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSEquipType.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSIdleCollection.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSKeywordForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSMenuDisplayObject.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSMessageIcon.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSOpenCloseForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSOverridePackCollection.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSPerkRankArray.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSPickupPutdownSounds.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSPreloadable.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSSkillPerkTreeNode.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSSkinForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSSoundDescriptor.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSStandardSoundDef.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BGSTextureModel.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BSIMusicTrack.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BSIMusicType.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BSIPlaybackCharacteristics.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BSIReverbType.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BSISoundCategory.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BSISoundDescriptor.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BSISoundOutputModel.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\BSMaterialObject.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\Condition.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\MagicCaster.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\MagicTarget.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\SoundPlaybackCharacteristics.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESActorBaseData.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESAIForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESAttackDamageForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESBipedModelForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESChildCell.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESContainer.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESDescription.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESEnchantableForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESFullName.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESIcon.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESImageSpaceModifiableForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESLeveledList.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESMagicCasterForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESMagicTargetForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESModel.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESModelPSA.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESModelRDT.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESModelTextureSwap.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESModelTri.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESProduceForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESQualityForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRaceForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESReactionForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionData.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionDataGrass.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionDataLandscape.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionDataMap.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionDataSound.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionDataWeather.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionGrassObject.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionGrassObjectList.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionList.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESRegionObjectBase.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESSpellList.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESTexture.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESTexture1024.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESValueForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TESWeightForm.h" />
+    <ClInclude Include="include\Skyrim\FormComponents\TintMask.h" />
+    <ClInclude Include="include\Skyrim\Forms\ActiveEffect.h" />
+    <ClInclude Include="include\Skyrim\Forms\Actor.h" />
+    <ClInclude Include="include\Skyrim\Forms\ActorValueInfo.h" />
+    <ClInclude Include="include\Skyrim\Forms\AlchemyItem.h" />
+    <ClInclude Include="include\Skyrim\Forms\ArrowProjectile.h" />
+    <ClInclude Include="include\Skyrim\Forms\BarrierProjectile.h" />
+    <ClInclude Include="include\Skyrim\Forms\BeamProjectile.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSAcousticSpace.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSAction.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSAddonNode.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSApparatus.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSArtObject.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSAssociationType.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSBaseAlias.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSBodyPartData.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSCameraPath.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSCameraShot.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSCollisionLayer.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSColorForm.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSConstructibleObject.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSDebris.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSDefaultObjectManager.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSDialogueBranch.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSDualCastData.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSEncounterZone.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSEquipSlot.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSExplosion.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSFootstep.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSFootstepSet.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSHazard.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSHeadPart.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSIdleMarker.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSImpactData.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSImpactDataSet.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSKeyword.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSLightingTemplate.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSListForm.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSLocAlias.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSLocation.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSLocationRefType.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSMaterialObject.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSMaterialType.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSMenuIcon.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSMessage.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSMovableStatic.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSMovementType.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSMusicTrackFormWrapper.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSMusicType.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSNote.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSOutfit.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSPerk.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSProjectile.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSRagdoll.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSRefAlias.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSReferenceEffect.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSRelationship.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSReverbParameters.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSScene.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSShaderParticleGeometryData.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSSoundCategory.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSSoundDescriptorForm.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSSoundOutput.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSStaticCollection.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSStoryManagerBranchNode.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSStoryManagerEventNode.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSStoryManagerNodeBase.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSStoryManagerQuestNode.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSStoryManagerTreeForm.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSTalkingActivator.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSTextureSet.h" />
+    <ClInclude Include="include\Skyrim\Forms\BGSVoiceType.h" />
+    <ClInclude Include="include\Skyrim\Forms\ChainExplosion.h" />
+    <ClInclude Include="include\Skyrim\Forms\Character.h" />
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\ActorKnowledge.h" />
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\ActorProcessManager.h" />
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\DetectionState.h" />
+    <ClInclude Include="include\Skyrim\Forms\ConeProjectile.h" />
+    <ClInclude Include="include\Skyrim\Forms\EffectSetting.h" />
+    <ClInclude Include="include\Skyrim\Forms\EnchantmentItem.h" />
+    <ClInclude Include="include\Skyrim\Forms\Explosion.h" />
+    <ClInclude Include="include\Skyrim\Forms\FlameProjectile.h" />
+    <ClInclude Include="include\Skyrim\Forms\FormTypes.h" />
+    <ClInclude Include="include\Skyrim\Forms\GrenadeProjectile.h" />
+    <ClInclude Include="include\Skyrim\Forms\Hazard.h" />
+    <ClInclude Include="include\Skyrim\Forms\IngredientItem.h" />
+    <ClInclude Include="include\Skyrim\Forms\MagicItem.h" />
+    <ClInclude Include="include\Skyrim\Forms\MissileProjectile.h" />
+    <ClInclude Include="include\Skyrim\Forms\NavMesh.h" />
+    <ClInclude Include="include\Skyrim\Forms\NavMeshInfoMap.h" />
+    <ClInclude Include="include\Skyrim\Forms\PlayerCharacter.h" />
+    <ClInclude Include="include\Skyrim\Forms\Projectile.h" />
+    <ClInclude Include="include\Skyrim\Forms\Script.h" />
+    <ClInclude Include="include\Skyrim\Forms\ScrollItem.h" />
+    <ClInclude Include="include\Skyrim\Forms\SpellItem.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESActorBase.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESAmmo.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESBoundAnimObject.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESBoundObject.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESClass.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESClimate.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESCombatStyle.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESEffectShader.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESEyes.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESFaction.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESFlora.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESForm.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESFurniture.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESGlobal.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESGrass.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESIdleForm.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESImageSpace.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESImageSpaceModifier.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESKey.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESLandTexture.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESLevCharacter.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESLevItem.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESLevSpell.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESLoadScreen.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESNPC.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObject.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectACTI.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectANIO.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectARMA.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectARMO.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectBOOK.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectCELL.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectCONT.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectDOOR.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectLAND.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectLIGH.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectMISC.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectREFR.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectSTAT.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectTREE.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESObjectWEAP.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESPackage.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESQuest.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESRace.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESRegion.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESShout.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESSoulGem.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESSound.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESTopic.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESTopicInfo.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESWaterForm.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESWeather.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESWordOfPower.h" />
+    <ClInclude Include="include\Skyrim\Forms\TESWorldSpace.h" />
+    <ClInclude Include="include\Skyrim\Macros.h" />
+    <ClInclude Include="include\Skyrim\Memory.h" />
+    <ClInclude Include="include\Skyrim\Menus\BarterMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\BSScaleformLoader.h" />
+    <ClInclude Include="include\Skyrim\Menus\Console.h" />
+    <ClInclude Include="include\Skyrim\Menus\ContainerMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\CraftingSubMenus.h" />
+    <ClInclude Include="include\Skyrim\Menus\DialogueMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\HUDMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\IMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\Inventory3DManager.h" />
+    <ClInclude Include="include\Skyrim\Menus\InventoryMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\MagicMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\MainMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\MapMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\MenuManager.h" />
+    <ClInclude Include="include\Skyrim\Menus\RaceSexMenu.h" />
+    <ClInclude Include="include\Skyrim\Menus\UIManager.h" />
+    <ClInclude Include="include\Skyrim\Menus\UIMessage.h" />
+    <ClInclude Include="include\Skyrim\Menus\UIStringHolder.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSAttachTechniques.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSCollisionSoundManager.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSCombatImpactManager.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSDecalManager.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSDynamicPersistenceManager.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSGrassManager.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSImpactManager.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSJSONUtil.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSLocalizedString.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSPrimitive.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSSceneInfo.h" />
+    <ClInclude Include="include\Skyrim\Misc\BipedAnim.h" />
+    <ClInclude Include="include\Skyrim\Misc\BGSFootstepManager.h" />
+    <ClInclude Include="include\Skyrim\Misc\GarbageCollector.h" />
+    <ClInclude Include="include\Skyrim\Misc\InventoryChanges.h" />
+    <ClInclude Include="include\Skyrim\Misc\LipSynchAnim.h" />
+    <ClInclude Include="include\Skyrim\Misc\MagicFavorites.h" />
+    <ClInclude Include="include\Skyrim\Misc\MiscStats.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\BSRenderTargetGroup.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\BSTextureSet.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiAccumulator.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiAlphaAccumulator.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiAVObject.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiBackToFrontAccumulator.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiBinaryStream.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiCamera.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiControllerManager.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiControllerSequence.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiCriticalSection.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiCullingProcess.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiExtraData.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\BSFadeNode.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiFloatInterpController.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiGeometry.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiInterpController.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiInterpolators.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiLight.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiMaterial.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiMatrix3.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiMemory.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiNode.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiNodes.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiObject.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiObjectNET.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiPoint2.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiPoint3.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiProperties.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiRefObject.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiRenderer.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiRTTI.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiSerialization.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiSingleInterpController.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiSmartPointer.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiSwitchNode.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTArray.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTDefaultAllocator.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTextures.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTimeController.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTMap.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTMapBase.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTPointerAllocator.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTPointerMap.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTypes.h" />
+    <ClInclude Include="include\Skyrim\RTTI.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\FxGameDelegate.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GFxEvent.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GFxLoader.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GFxPlayer.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GFxResource.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GList.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GMemory.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GRefCount.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GRenderer.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GStats.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GString.h" />
+    <ClInclude Include="include\Skyrim\Scaleform\GTypes.h" />
+    <ClInclude Include="include\Skyrim\SkyrimScript.h" />
+    <ClInclude Include="include\Skyrim\SkyrimVM.h" />
+    <ClInclude Include="include\Skyrim\Sky\Atmosphere.h" />
+    <ClInclude Include="include\Skyrim\Sky\Clouds.h" />
+    <ClInclude Include="include\Skyrim\Sky\Moon.h" />
+    <ClInclude Include="include\Skyrim\Sky\Precipitation.h" />
+    <ClInclude Include="include\Skyrim\Sky\Sky.h" />
+    <ClInclude Include="include\Skyrim\Sky\SkyObject.h" />
+    <ClInclude Include="include\Skyrim\Sky\Stars.h" />
+    <ClInclude Include="include\Skyrim\Sky\Sun.h" />
+    <ClInclude Include="include\Skyrim\VMArray.h" />
+    <ClInclude Include="include\Skyrim\VMState.h" />
+    <ClInclude Include="include\Skyrim\Water\BGSAutoWater.h" />
+    <ClInclude Include="include\Skyrim\Water\BGSWaterAudio.h" />
+    <ClInclude Include="include\Skyrim\Water\BGSWaterCollisionManager.h" />
+    <ClInclude Include="include\Skyrim\Water\TESWater.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CK_Strings.txt" />
+    <Text Include="dump_functions_TESV_1_09_32.txt" />
+    <Text Include="dump_rtti_TESV_1_09_32.txt" />
+    <Text Include="include\Skyrim\Forms\Character\filelist.txt" />
+    <Text Include="include\Skyrim\Forms\Gameplay\filelist.txt" />
+    <Text Include="include\Skyrim\Forms\Objects\filelist.txt" />
+    <Text Include="include\Skyrim\Forms\World\filelist.txt" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AD95F75E-FD79-4F2F-BC36-828D592A790A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Skyrim</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>$(ProjectDir)include;</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>Skyrim.h</ForcedIncludeFiles>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)install_lib.bat "$(ProjectDir)include" "$(TargetPath)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>$(ProjectDir)include;</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>Skyrim.h</ForcedIncludeFiles>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)install_lib.bat "$(ProjectDir)include" "$(TargetPath)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

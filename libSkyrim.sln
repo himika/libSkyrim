@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 12.0
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SKSE", "SKSE\SKSE.vcxproj", "{E2BB26EC-2013-42CD-BCA5-C9C566BA0379}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Skyrim", "Skyrim\Skyrim.vcxproj", "{AD95F75E-FD79-4F2F-BC36-828D592A790A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{B97F6877-F78C-4BE1-A8A1-4F4C0ECB59C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExampleDlls", "ExampleDlls", "{0629E4D3-CF6F-4EFD-A1A7-11C25AC2F62C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin_example", "plugin_example\plugin_example.vcxproj", "{9FD62F8C-56AD-4EAA-9963-9D05449A78F6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dump_rtti", "dump_rtti\dump_rtti.vcxproj", "{0084B685-C778-4BB9-A671-2FEE90D14B66}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dump_functions", "dump_functions\dump_functions.vcxproj", "{F316DFBF-2F36-4C15-BE58-236C5EDEFBDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2BB26EC-2013-42CD-BCA5-C9C566BA0379}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E2BB26EC-2013-42CD-BCA5-C9C566BA0379}.Debug|Win32.Build.0 = Debug|Win32
+		{E2BB26EC-2013-42CD-BCA5-C9C566BA0379}.Release|Win32.ActiveCfg = Release|Win32
+		{E2BB26EC-2013-42CD-BCA5-C9C566BA0379}.Release|Win32.Build.0 = Release|Win32
+		{AD95F75E-FD79-4F2F-BC36-828D592A790A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AD95F75E-FD79-4F2F-BC36-828D592A790A}.Debug|Win32.Build.0 = Debug|Win32
+		{AD95F75E-FD79-4F2F-BC36-828D592A790A}.Release|Win32.ActiveCfg = Release|Win32
+		{AD95F75E-FD79-4F2F-BC36-828D592A790A}.Release|Win32.Build.0 = Release|Win32
+		{9FD62F8C-56AD-4EAA-9963-9D05449A78F6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9FD62F8C-56AD-4EAA-9963-9D05449A78F6}.Debug|Win32.Build.0 = Debug|Win32
+		{9FD62F8C-56AD-4EAA-9963-9D05449A78F6}.Release|Win32.ActiveCfg = Release|Win32
+		{9FD62F8C-56AD-4EAA-9963-9D05449A78F6}.Release|Win32.Build.0 = Release|Win32
+		{0084B685-C778-4BB9-A671-2FEE90D14B66}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0084B685-C778-4BB9-A671-2FEE90D14B66}.Debug|Win32.Build.0 = Debug|Win32
+		{0084B685-C778-4BB9-A671-2FEE90D14B66}.Release|Win32.ActiveCfg = Release|Win32
+		{0084B685-C778-4BB9-A671-2FEE90D14B66}.Release|Win32.Build.0 = Release|Win32
+		{F316DFBF-2F36-4C15-BE58-236C5EDEFBDC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F316DFBF-2F36-4C15-BE58-236C5EDEFBDC}.Debug|Win32.Build.0 = Debug|Win32
+		{F316DFBF-2F36-4C15-BE58-236C5EDEFBDC}.Release|Win32.ActiveCfg = Release|Win32
+		{F316DFBF-2F36-4C15-BE58-236C5EDEFBDC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E2BB26EC-2013-42CD-BCA5-C9C566BA0379} = {B97F6877-F78C-4BE1-A8A1-4F4C0ECB59C5}
+		{AD95F75E-FD79-4F2F-BC36-828D592A790A} = {B97F6877-F78C-4BE1-A8A1-4F4C0ECB59C5}
+		{9FD62F8C-56AD-4EAA-9963-9D05449A78F6} = {0629E4D3-CF6F-4EFD-A1A7-11C25AC2F62C}
+		{0084B685-C778-4BB9-A671-2FEE90D14B66} = {0629E4D3-CF6F-4EFD-A1A7-11C25AC2F62C}
+		{F316DFBF-2F36-4C15-BE58-236C5EDEFBDC} = {0629E4D3-CF6F-4EFD-A1A7-11C25AC2F62C}
+	EndGlobalSection
+EndGlobal

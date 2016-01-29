@@ -1,0 +1,1025 @@
+..\..\AbstractHeap.cpp
+..\..\Archive.cpp
+..\..\BSAdditionalTriList.cpp
+..\..\BSAnimNote.cpp
+..\..\BSAnimationGraphManager.cpp
+..\..\BSAnimationGraphVisitation.cpp
+..\..\BSAudioDebugData.cpp
+..\..\BSAudioManager.cpp
+..\..\BSBatchRenderer.cpp
+..\..\BSBlendTreadTransfInterpolator.cpp
+..\..\BSCompoundFrustum.cpp
+..\..\BSCoreMemory.cpp
+..\..\BSCullingProcess.cpp
+..\..\BSCurrent.cpp
+..\..\BSDismemberSkinInstance.cpp
+..\..\BSEffectShaderPropertyColorController.cpp
+..\..\BSEffectShaderPropertyFloatController.cpp
+..\..\BSFXSimpleParser.cpp
+..\..\BSFadeNode.cpp
+..\..\BSFile.cpp
+..\..\BSFixedString.cpp
+..\..\BSFlattenedBoneTree.cpp
+..\..\BSFrustumFOVController.cpp
+..\..\BSGameSound.cpp
+..\..\BSGeometryListCullingProcess.cpp
+..\..\BSGrabIKNote.cpp
+..\..\BSHalfEdgeMesh\BSHEMesh.cpp
+..\..\BSHalfEdgeMesh\BSHEMeshBooleanCommon.cpp
+..\..\BSHalfEdgeMesh\BSHEMeshDecimate.cpp
+..\..\BSHalfEdgeMesh\BSHEMeshExport.cpp
+..\..\BSHalfEdgeMesh\BSHEMeshImport.cpp
+..\..\BSHalfEdgeMesh\BSHEMeshIntersections.cpp
+..\..\BSHalfEdgeMesh\BSHEMeshTerrainSkirtBuilder.cpp
+..\..\BSHalfEdgeMesh\BSHEMeshUtils.cpp
+..\..\BSHalfEdgeMesh\BSHEProfile.cpp
+..\..\BSLODMultiIndexTriShape.cpp
+..\..\BSLODTriShape.cpp
+..\..\BSLagBoneController.cpp
+..\..\BSLight.cpp
+..\..\BSLightingShaderPropertyColorController.cpp
+..\..\BSLightingShaderPropertyFloatController.cpp
+..\..\BSLightingShaderPropertyUShortController.cpp
+..\..\BSLookIKNote.cpp
+..\..\BSMasterParticleSystem.cpp
+..\..\BSMath.cpp
+..\..\BSModelDB.cpp
+..\..\BSMultiBoundCapsule.cpp
+..\..\BSMultiBoundNode.cpp
+..\..\BSMultiBoundRoom.cpp
+..\..\BSMultiIndexTriShape.cpp
+..\..\BSMultiIndexTriShapeData.cpp
+..\..\BSMultiIndexTriShapeUtils.cpp
+..\..\BSMultiStreamInstanceTriShape.cpp
+..\..\BSMultiTargetTreadTransfController.cpp
+..\..\BSNavmesh.cpp
+..\..\BSNavmeshBounds.cpp
+..\..\BSNavmeshGrid.cpp
+..\..\BSNavmeshInfo.cpp
+..\..\BSNavmeshInfoMap.cpp
+..\..\BSNavmeshInfoSearch.cpp
+..\..\BSNavmeshMath.cpp
+..\..\BSNavmeshObstacleCutter.cpp
+..\..\BSNavmeshRender.cpp
+..\..\BSNavmeshSearch.cpp
+..\..\BSNiAllocator.cpp
+..\..\BSNiAlphaPropertyTestRefController.cpp
+..\..\BSNiLinesConstructor.cpp
+..\..\BSNiTriShapeConstructor.cpp
+..\..\BSNodeVisualization.cpp
+..\..\BSNullImplAudio.cpp
+..\..\BSOcclusionBox.cpp
+..\..\BSOcclusionQuery.cpp
+..\..\BSOrderedNode.cpp
+..\..\BSPSysHavokUpdateModifier.cpp
+..\..\BSPSysInheritVelocityModifier.cpp
+..\..\BSPSysLODModifier.cpp
+..\..\BSPSysMultiTargetEmitterCtlr.cpp
+..\..\BSPSysRecycleBoundModifier.cpp
+..\..\BSPSysScaleModifier.cpp
+..\..\BSPSysSimpleColorModifier.cpp
+..\..\BSPSysStripUpdateModifier.cpp
+..\..\BSPSysSubTexModifier.cpp
+..\..\BSParabolicCullingProcess.cpp
+..\..\BSParticleSystemManager.cpp
+..\..\BSPathBuilder.cpp
+..\..\BSPathManager.cpp
+..\..\BSPathSmootherPOV.cpp
+..\..\BSPathfind.cpp
+..\..\BSPathingGeometryConstructors.cpp
+..\..\BSPathingLocation.cpp
+..\..\BSPathingRequest.cpp
+..\..\BSPathingSolution.cpp
+..\..\BSPortalGraph.cpp
+..\..\BSPrecomputedNavmeshInfoPath.cpp
+..\..\BSProceduralGeometry.cpp
+..\..\BSProceduralLightningController.cpp
+..\..\BSReadWriteLock.cpp
+..\..\BSReference.cpp
+..\..\BSRenderPass.cpp
+..\..\BSRenderTargetGroup.cpp
+..\..\BSResource.cpp
+..\..\BSResourceArchive.cpp
+..\..\BSResourceBTree.cpp
+..\..\BSResourceLooseFiles.cpp
+..\..\BSResourceNiBinaryStream.cpp
+..\..\BSResourceReadBuffer.cpp
+..\..\BSRotAccumTransfInterpolator.cpp
+..\..\BSScriptArray.cpp
+..\..\BSScriptBoundScript.cpp
+..\..\BSScriptByteCode.cpp
+..\..\BSScriptCompiledScriptLoader.cpp
+..\..\BSScriptErrorLogger.cpp
+..\..\BSScriptIVirtualMachine.cpp
+..\..\BSScriptInternalCodeTasklet.cpp
+..\..\BSScriptInternalIFuncCallQuery.cpp
+..\..\BSScriptInternalScriptFunction.cpp
+..\..\BSScriptInternalVDescTable.cpp
+..\..\BSScriptInternalVirtualMachine.cpp
+..\..\BSScriptLinkerProcessor.cpp
+..\..\BSScriptMemoryPagePolicy.cpp
+..\..\BSScriptObject.cpp
+..\..\BSScriptObjectBindPolicy.cpp
+..\..\BSScriptObjectTypeInfo.cpp
+..\..\BSScriptPropertyTypeInfo.cpp
+..\..\BSScriptStack.cpp
+..\..\BSScriptUnlinkedTypes.cpp
+..\..\BSScriptUtilities.cpp
+..\..\BSScriptVariable.cpp
+..\..\BSSegmentedTriShape.cpp
+..\..\BSShader.cpp
+..\..\BSShaderAccumulator.cpp
+..\..\BSShaderData.cpp
+..\..\BSShaderManager.cpp
+..\..\BSShaderMaterial.cpp
+..\..\BSShaderPackageManager.cpp
+..\..\BSShaderProperty.cpp
+..\..\BSShaderPropertyLightData.cpp
+..\..\BSShaderSDM.cpp
+..\..\BSShaderTextureSet.cpp
+..\..\BSShaderUtil.cpp
+..\..\BSShadowDirectionalLight.cpp
+..\..\BSShadowFrustumLight.cpp
+..\..\BSShadowLight.cpp
+..\..\BSShadowParabolicLight.cpp
+..\..\BSSoundCategoryHandle.cpp
+..\..\BSStream.cpp
+..\..\BSStringUtilities.cpp
+..\..\BSStripPSysData.cpp
+..\..\BSStripParticleSystem.cpp
+..\..\BSTArray.cpp
+..\..\BSTSmallArray.cpp
+..\..\BSTaskManager.cpp
+..\..\BSTaskletManager.cpp
+..\..\BSTextureDB.cpp
+..\..\BSTextureData.cpp
+..\..\BSTextureManager.cpp
+..\..\BSTreadTransfInterpolator.cpp
+..\..\BShkNonTransformController.cpp
+..\..\BShkbAnimationGraph.cpp
+..\..\BShkbGraphInspection.cpp
+..\..\BShkbHkxDB.cpp
+..\..\BShkbSaveLoadUtils.cpp
+..\..\BShkbUtils.cpp
+..\..\CompactingStore.cpp
+..\..\D3D\BSPixelShader_D3D.cpp
+..\..\D3D\BSVertexShader_D3D.cpp
+..\..\DebugTextureViewer.cpp
+..\..\DecalCaster.cpp
+..\..\FileFinder.cpp
+..\..\FilePathUtilities.cpp
+..\..\HeapBlocks.cpp
+..\..\IMovementState.cpp
+..\..\IOManager.cpp
+..\..\ImageSpaceData.cpp
+..\..\ImageSpaceEffect.cpp
+..\..\ImageSpaceEffectBlur.cpp
+..\..\ImageSpaceManager.cpp
+..\..\ImageSpaceShaderParam.cpp
+..\..\ImageSpaceTexture.cpp
+..\..\MTRenderingSystem.cpp
+..\..\MemoryContextTracker.cpp
+..\..\MemoryHeap.cpp
+..\..\MemoryManager.cpp
+..\..\MemoryPoolStore.cpp
+..\..\MemoryTraceWriteThread.cpp
+..\..\MemoryUsageTracker.cpp
+..\..\MessageHandler.cpp
+..\..\MovementAgent.cpp
+..\..\MovementAgentActorAvoider.cpp
+..\..\MovementAgentActorState.cpp
+..\..\MovementAgentPathFollowerStandard.cpp
+..\..\MovementArbiter.cpp
+..\..\MovementHandlerArbiter.cpp
+..\..\MovementPathManagerArbiter.cpp
+..\..\MovementPlannerArbiter.cpp
+..\..\MovementSelectIdleUtils.cpp
+..\..\MovementUtils.cpp
+..\..\NVTextureAtlas\AtlasContainer.cpp
+..\..\NVTextureAtlas\Packer.cpp
+..\..\NVTextureAtlas\TextureObject.cpp
+..\..\NiAdditionalGeometryData.cpp
+..\..\NiAlphaAccumulator.cpp
+..\..\NiAlphaProperty.cpp
+..\..\NiAmbientLight.cpp
+..\..\NiBSPNode.cpp
+..\..\NiBSplineBasisData.cpp
+..\..\NiBSplineColorInterpolator.cpp
+..\..\NiBSplineCompColorInterpolator.cpp
+..\..\NiBSplineCompFloatInterpolator.cpp
+..\..\NiBSplineCompPoint3Interpolator.cpp
+..\..\NiBSplineCompTransformInterpolator.cpp
+..\..\NiBSplineData.cpp
+..\..\NiBSplineFloatInterpolator.cpp
+..\..\NiBSplineInterpolator.cpp
+..\..\NiBSplinePoint3Interpolator.cpp
+..\..\NiBSplineTransformInterpolator.cpp
+..\..\NiBackToFrontAccumulator.cpp
+..\..\NiBillboardNode.cpp
+..\..\NiBinaryExtraData.cpp
+..\..\NiBinaryStream.cpp
+..\..\NiBlendAccumTransformInterpolator.cpp
+..\..\NiBlendBoolInterpolator.cpp
+..\..\NiBlendColorInterpolator.cpp
+..\..\NiBlendFloatInterpolator.cpp
+..\..\NiBlendPoint3Interpolator.cpp
+..\..\NiBlendQuaternionInterpolator.cpp
+..\..\NiBlendTransformInterpolator.cpp
+..\..\NiBoneLODController.cpp
+..\..\NiBoolData.cpp
+..\..\NiBoolInterpolator.cpp
+..\..\NiBoolTimelineInterpolator.cpp
+..\..\NiBooleanExtraData.cpp
+..\..\NiCamera.cpp
+..\..\NiCollisionData.cpp
+..\..\NiColorData.cpp
+..\..\NiColorExtraData.cpp
+..\..\NiColorExtraDataController.cpp
+..\..\NiColorInterpolator.cpp
+..\..\NiControllerManager.cpp
+..\..\NiControllerSequence.cpp
+..\..\NiDX9PersistentSrcTextureRendererData.cpp
+..\..\NiDX9Renderer.cpp
+..\..\NiDX9ShaderDeclaration.cpp
+..\..\NiDefaultAVObjectPalette.cpp
+..\..\NiDirectionalLight.cpp
+..\..\NiExtraData.cpp
+..\..\NiFloatData.cpp
+..\..\NiFloatExtraData.cpp
+..\..\NiFloatExtraDataController.cpp
+..\..\NiFloatInterpolator.cpp
+..\..\NiFloatsExtraData.cpp
+..\..\NiFloatsExtraDataController.cpp
+..\..\NiFloatsExtraDataPoint3Controller.cpp
+..\..\NiFogProperty.cpp
+..\..\NiGeomMorpherController.cpp
+..\..\NiGeometry.cpp
+..\..\NiGeometryData.cpp
+..\..\NiIntegerExtraData.cpp
+..\..\NiIntegersExtraData.cpp
+..\..\NiInterpolator.cpp
+..\..\NiKeyframeManager.cpp
+..\..\NiLightColorController.cpp
+..\..\NiLightDimmerController.cpp
+..\..\NiLines.cpp
+..\..\NiLinesData.cpp
+..\..\NiLookAtController.cpp
+..\..\NiLookAtInterpolator.cpp
+..\..\NiMeshPSysData.cpp
+..\..\NiMeshParticleSystem.cpp
+..\..\NiMorphData.cpp
+..\..\NiMultiTargetTransformController.cpp
+..\..\NiNode.cpp
+..\..\NiObjectNET.cpp
+..\..\NiPSysAgeDeathModifier.cpp
+..\..\NiPSysAirFieldAirFrictionCtlr.cpp
+..\..\NiPSysAirFieldInheritVelocityCtlr.cpp
+..\..\NiPSysAirFieldModifier.cpp
+..\..\NiPSysAirFieldSpreadCtlr.cpp
+..\..\NiPSysBombModifier.cpp
+..\..\NiPSysBoundUpdateModifier.cpp
+..\..\NiPSysBoxEmitter.cpp
+..\..\NiPSysColliderManager.cpp
+..\..\NiPSysColorModifier.cpp
+..\..\NiPSysCylinderEmitter.cpp
+..\..\NiPSysData.cpp
+..\..\NiPSysDragFieldModifier.cpp
+..\..\NiPSysDragModifier.cpp
+..\..\NiPSysEmitterCtlr.cpp
+..\..\NiPSysEmitterCtlrData.cpp
+..\..\NiPSysEmitterDeclinationCtlr.cpp
+..\..\NiPSysEmitterDeclinationVarCtlr.cpp
+..\..\NiPSysEmitterInitialRadiusCtlr.cpp
+..\..\NiPSysEmitterLifeSpanCtlr.cpp
+..\..\NiPSysEmitterPlanarAngleCtlr.cpp
+..\..\NiPSysEmitterPlanarAngleVarCtlr.cpp
+..\..\NiPSysEmitterSpeedCtlr.cpp
+..\..\NiPSysFieldAttenuationCtlr.cpp
+..\..\NiPSysFieldMagnitudeCtlr.cpp
+..\..\NiPSysFieldMaxDistanceCtlr.cpp
+..\..\NiPSysGravityFieldModifier.cpp
+..\..\NiPSysGravityModifier.cpp
+..\..\NiPSysGravityStrengthCtlr.cpp
+..\..\NiPSysGrowFadeModifier.cpp
+..\..\NiPSysInitialRotAngleCtlr.cpp
+..\..\NiPSysInitialRotAngleVarCtlr.cpp
+..\..\NiPSysInitialRotSpeedCtlr.cpp
+..\..\NiPSysInitialRotSpeedVarCtlr.cpp
+..\..\NiPSysMeshEmitter.cpp
+..\..\NiPSysMeshUpdateModifier.cpp
+..\..\NiPSysModifierActiveCtlr.cpp
+..\..\NiPSysPlanarCollider.cpp
+..\..\NiPSysPositionModifier.cpp
+..\..\NiPSysRadialFieldModifier.cpp
+..\..\NiPSysResetOnLoopCtlr.cpp
+..\..\NiPSysRotationModifier.cpp
+..\..\NiPSysSpawnModifier.cpp
+..\..\NiPSysSphereEmitter.cpp
+..\..\NiPSysSphericalCollider.cpp
+..\..\NiPSysTurbulenceFieldModifier.cpp
+..\..\NiPSysUpdateCtlr.cpp
+..\..\NiPSysVortexFieldModifier.cpp
+..\..\NiPalette.cpp
+..\..\NiParticleMeshes.cpp
+..\..\NiParticleSystem.cpp
+..\..\NiParticles.cpp
+..\..\NiParticlesData.cpp
+..\..\NiPathController.cpp
+..\..\NiPathInterpolator.cpp
+..\..\NiPersistentSrcTextureRendererData.cpp
+..\..\NiPixelData.cpp
+..\..\NiPoint3Interpolator.cpp
+..\..\NiPointLight.cpp
+..\..\NiPosData.cpp
+..\..\NiQuaternionInterpolator.cpp
+..\..\NiRollController.cpp
+..\..\NiRotData.cpp
+..\..\NiScreenElements.cpp
+..\..\NiScreenElementsData.cpp
+..\..\NiSequence.cpp
+..\..\NiSequenceStreamHelper.cpp
+..\..\NiShadeProperty.cpp
+..\..\NiSkinData.cpp
+..\..\NiSkinInstance.cpp
+..\..\NiSkinPartition.cpp
+..\..\NiSmallObjectAllocator.cpp
+..\..\NiSourceCubeMap.cpp
+..\..\NiSourceTexture.cpp
+..\..\NiSpotLight.cpp
+..\..\NiStaticDataManager.cpp
+..\..\NiStringExtraData.cpp
+..\..\NiStringPalette.cpp
+..\..\NiStringsExtraData.cpp
+..\..\NiSwitchNode.cpp
+..\..\NiSwitchStringExtraData.cpp
+..\..\NiTextKeyExtraData.cpp
+..\..\NiTransformController.cpp
+..\..\NiTransformData.cpp
+..\..\NiTransformInterpolator.cpp
+..\..\NiTriShape.cpp
+..\..\NiTriShapeData.cpp
+..\..\NiTriShapeDynamicData.cpp
+..\..\NiTriStrips.cpp
+..\..\NiTriStripsData.cpp
+..\..\NiUVController.cpp
+..\..\NiUVData.cpp
+..\..\NiVectorExtraData.cpp
+..\..\NiVertWeightsExtraData.cpp
+..\..\NiVisController.cpp
+..\..\PathFollowerStateFollowToParameter.cpp
+..\..\PathFollowerStatePlayIdle.cpp
+..\..\PathFollowerStateTurnToAngle.cpp
+..\..\QueuedFiles.cpp
+..\..\ScrapHeap.cpp
+..\..\Setting.cpp
+..\..\Shaders\BSBloodSplatterShader.cpp
+..\..\Shaders\BSDistantTreeShader.cpp
+..\..\Shaders\BSEffectShader.cpp
+..\..\Shaders\BSEffectShaderProperty.cpp
+..\..\Shaders\BSGrassShader.cpp
+..\..\Shaders\BSGrassShaderProperty.cpp
+..\..\Shaders\BSLightingShader.cpp
+..\..\Shaders\BSLightingShaderMaterial.cpp
+..\..\Shaders\BSLightingShaderProperty.cpp
+..\..\Shaders\BSParticleShader.cpp
+..\..\Shaders\BSParticleShaderProperty.cpp
+..\..\Shaders\BSSkyShader.cpp
+..\..\Shaders\BSSkyShaderProperty.cpp
+..\..\Shaders\BSUtilityShader.cpp
+..\..\Shaders\BSWaterShader.cpp
+..\..\Shaders\BSWaterShaderProperty.cpp
+..\..\ShadowSceneNode.cpp
+..\..\VelocityObstacle.cpp
+..\..\XAudio2\BSXAudio2Audio.cpp
+..\..\XAudio2\BSXAudio2DataSrc.cpp
+..\..\XAudio2\BSXAudio2GameSound.cpp
+..\..\ZeroOverheadHeap.cpp
+..\..\bhkAabbPhantom.cpp
+..\..\bhkAction.cpp
+..\..\bhkAngularDashpotAction.cpp
+..\..\bhkAttachmentCollisionObject.cpp
+..\..\bhkBallAndSocketConstraint.cpp
+..\..\bhkBallSocketConstraintChain.cpp
+..\..\bhkBinaryAction.cpp
+..\..\bhkBlendCollisionObject.cpp
+..\..\bhkBlendController.cpp
+..\..\bhkBoxShape.cpp
+..\..\bhkBreakableConstraint.cpp
+..\..\bhkBvTreeShape.cpp
+..\..\bhkCachingShapePhantom.cpp
+..\..\bhkCapsuleShape.cpp
+..\..\bhkCharacterController.cpp
+..\..\bhkCollisionFilter.cpp
+..\..\bhkCollisionObject.cpp
+..\..\bhkCompressedMeshShape.cpp
+..\..\bhkConstraint.cpp
+..\..\bhkConstraintChain.cpp
+..\..\bhkConstraintManager.cpp
+..\..\bhkConvexShape.cpp
+..\..\bhkConvexSweepShape.cpp
+..\..\bhkConvexTransformShape.cpp
+..\..\bhkConvexTranslateShape.cpp
+..\..\bhkConvexVerticesShape.cpp
+..\..\bhkCylinderShape.cpp
+..\..\bhkDashpotAction.cpp
+..\..\bhkEntity.cpp
+..\..\bhkEntityListener.cpp
+..\..\bhkExtraData.cpp
+..\..\bhkFixedConstraint.cpp
+..\..\bhkGenericConstraint.cpp
+..\..\bhkGroupConstraint.cpp
+..\..\bhkHeightFieldShape.cpp
+..\..\bhkHingeConstraint.cpp
+..\..\bhkHingeLimitsConstraint.cpp
+..\..\bhkLimitedHingeConstraint.cpp
+..\..\bhkLiquidAction.cpp
+..\..\bhkListShape.cpp
+..\..\bhkMalleableConstraint.cpp
+..\..\bhkMoppBvTreeShape.cpp
+..\..\bhkMotorAction.cpp
+..\..\bhkMouseSpringAction.cpp
+..\..\bhkMultiSphereShape.cpp
+..\..\bhkMultithreadedSystem.cpp
+..\..\bhkNiCollisionObject.cpp
+..\..\bhkNiTriStripsShape.cpp
+..\..\bhkOrientHingedBodyAction.cpp
+..\..\bhkPCollisionObject.cpp
+..\..\bhkPackedNiTriStripsShape.cpp
+..\..\bhkPhantom.cpp
+..\..\bhkPlaneShape.cpp
+..\..\bhkPointToPathConstraint.cpp
+..\..\bhkPoseArray.cpp
+..\..\bhkPositionConstraintMotor.cpp
+..\..\bhkPrismaticConstraint.cpp
+..\..\bhkRagdollConstraint.cpp
+..\..\bhkRagdollController.cpp
+..\..\bhkRagdollLimitsConstraint.cpp
+..\..\bhkRagdollTemplate.cpp
+..\..\bhkRefObject.cpp
+..\..\bhkRigidBody.cpp
+..\..\bhkRigidBodyT.cpp
+..\..\bhkSPCollisionObject.cpp
+..\..\bhkSerializable.cpp
+..\..\bhkShape.cpp
+..\..\bhkShapeCollection.cpp
+..\..\bhkShapePhantom.cpp
+..\..\bhkSimpleShapePhantom.cpp
+..\..\bhkSphereRepShape.cpp
+..\..\bhkSphereShape.cpp
+..\..\bhkSpringAction.cpp
+..\..\bhkSpringDamperConstraintMotor.cpp
+..\..\bhkStiffSpringConstraint.cpp
+..\..\bhkStream.cpp
+..\..\bhkTransformShape.cpp
+..\..\bhkTriSampledHeightFieldBvTreeShape.cpp
+..\..\bhkTriangleShape.cpp
+..\..\bhkUnaryAction.cpp
+..\..\bhkUtilFunctions.cpp
+..\..\bhkVelocityConstraintMotor.cpp
+..\..\bhkVisualDebugger.cpp
+..\..\bhkWheelConstraint.cpp
+..\..\bhkWorld.cpp
+..\..\bhkWorldM.cpp
+..\..\bhkWorldObject.cpp
+..\..\binaryFile.cpp
+..\..\hkLiquidAction.cpp
+..\..\hkOrientHingedBodyAction.cpp
+..\..\hkPackedNiTriStripsShape.cpp
+..\..\hkScaledMoppBvTreeShape.cpp
+..\..\lastError.cpp
+..\BSMultiIndexTriShapeUtils_Win32.cpp
+..\BSResourceLooseFiles_Win32.cpp
+..\BSSystemFile_Win32.cpp
+..\BSWin32FileUtils.cpp
+..\BSWin32TaskletManager.cpp
+..\Source
+..\Source\DDSTextures
+..\Source\DDSTextures\Terrain
+..\Source\DDSTextures\Terrain\%s
+..\Source\DDSTextures\Terrain\%s\%s.%i.%i.%i.DDS
+..\Source\DDSTextures\Terrain\%s\%s.%i.%i.%i_n.DDS
+..\Source\DDSTextures\Terrain\%s\Land
+..\Source\DDSTextures\Terrain\%s\Objects
+..\Source\DDSTextures\Terrain\%s\Objects\%s.Objects.DDS
+..\Source\DDSTextures\Terrain\%s\Objects\%s.Objects_n.DDS
+..\Source\TGATextures\
+..\TES Shared\AI\ActorValue.cpp
+..\TES Shared\AI\BGSAIWorldLocationRef.cpp
+..\TES Shared\AI\BGSAttackData.cpp
+..\TES Shared\AI\BGSNamedPackageData.cpp
+..\TES Shared\AI\BGSPackageData.cpp
+..\TES Shared\AI\BGSPackageDataObjectList.cpp
+..\TES Shared\AI\BGSPackageDataRef.cpp
+..\TES Shared\AI\BGSProcedure.cpp
+..\TES Shared\AI\BGSProcedurePatrol.cpp
+..\TES Shared\AI\BGSProcedureTree.cpp
+..\TES Shared\AI\Package.cpp
+..\TES Shared\AI\PackageDataCustom.cpp
+..\TES Shared\AI\PackageLocation.cpp
+..\TES Shared\AI\PackageTarget.cpp
+..\TES Shared\AI\TESCondition.cpp
+..\TES Shared\AI\TESParameters.cpp
+..\TES Shared\Animation\AnimationClipDataSingleton.cpp
+..\TES Shared\Animation\AnimationSetDataSingleton.cpp
+..\TES Shared\Animation\AnimationSystemFileLoadUtils.cpp
+..\TES Shared\Animation\AnimationSystemUtils.cpp
+..\TES Shared\Animation\BGSGamebryoSequenceGeneratorHolderSingleton.cpp
+..\TES Shared\Animation\IAnimationGraphManagerHolder.cpp
+..\TES Shared\Audio\BGSAudio.cpp
+..\TES Shared\DistantTerrain\BGSDistantObjectBlock.cpp
+..\TES Shared\DistantTerrain\BGSDistantTreeBlock.cpp
+..\TES Shared\DistantTerrain\BGSTerrainChunk.cpp
+..\TES Shared\DistantTerrain\BGSTerrainManager.cpp
+..\TES Shared\DistantTerrain\BGSTerrainNode.cpp
+..\TES Shared\DistantTerrain\BGSTerrainObjectBlockBuilder.cpp
+..\TES Shared\DistantTerrain\BGSTerrainObjectTextureAtlasBuilder.cpp
+..\TES Shared\DistantTerrain\BGSTerrainUtils.cpp
+..\TES Shared\DistantTerrain\BGSTerrainVisibilityData.cpp
+..\TES Shared\DistantTerrain\BGSTerrainVisibilityFinder.cpp
+..\TES Shared\DistantTerrain\BGSTerrainWaterMeshBuilder.cpp
+..\TES Shared\Events\BGSStoryEvent.cpp
+..\TES Shared\Events\BGSStoryEventManager.cpp
+..\TES Shared\ExtraData\ContainerItemExtra.cpp
+..\TES Shared\ExtraData\ExtraDataList.cpp
+..\TES Shared\ExtraData\ExtraDataObjects.cpp
+..\TES Shared\ExtraData\MultiBoundMarkerData.cpp
+..\TES Shared\FaceGen\BSFaceGenAnimationData.cpp
+..\TES Shared\FaceGen\BSFaceGenBinaryFile.cpp
+..\TES Shared\FaceGen\BSFaceGenDB.cpp
+..\TES Shared\FaceGen\BSFaceGenKeyframe.cpp
+..\TES Shared\FaceGen\BSFaceGenManager.cpp
+..\TES Shared\FaceGen\BSFaceGenModel.cpp
+..\TES Shared\FaceGen\BSFaceGenMorph.cpp
+..\TES Shared\FaceGen\BSFaceGenMorphData.cpp
+..\TES Shared\FaceGen\BSFaceGenNiNode.cpp
+..\TES Shared\FileIO\ModelLoader.cpp
+..\TES Shared\FileIO\TES.cpp
+..\TES Shared\FileIO\TESDataHandler.cpp
+..\TES Shared\FileIO\TESFile.cpp
+..\TES Shared\FileIO\TESModelDB.cpp
+..\TES Shared\FormComponents\BGSBehaviorGraphModel.cpp
+..\TES Shared\FormComponents\BGSDestructibleObjectForm.cpp
+..\TES Shared\FormComponents\BGSIdleCollection.cpp
+..\TES Shared\FormComponents\BGSKeywordForm.cpp
+..\TES Shared\FormComponents\BGSKeywordForm_Editor.cpp
+..\TES Shared\FormComponents\BGSMenuDisplayObject.cpp
+..\TES Shared\FormComponents\BGSOpenCloseForm.cpp
+..\TES Shared\FormComponents\BGSOverridePackCollection.cpp
+..\TES Shared\FormComponents\BGSPerkRankArray.cpp
+..\TES Shared\FormComponents\BGSPerkRankArray_Editor.cpp
+..\TES Shared\FormComponents\BGSTextureModel.cpp
+..\TES Shared\FormComponents\TESActorBaseData.cpp
+..\TES Shared\FormComponents\TESContainer.cpp
+..\TES Shared\FormComponents\TESDescription.cpp
+..\TES Shared\FormComponents\TESForm.cpp
+..\TES Shared\FormComponents\TESFullName.cpp
+..\TES Shared\FormComponents\TESLeveledList.cpp
+..\TES Shared\FormComponents\TESLeveledList_Editor.cpp
+..\TES Shared\FormComponents\TESModel.cpp
+..\TES Shared\FormComponents\TESModelTextureSwap.cpp
+..\TES Shared\FormComponents\TESModelTri.cpp
+..\TES Shared\FormComponents\TESReactionForm.cpp
+..\TES Shared\FormComponents\TESTexture.cpp
+..\TES Shared\Havok\CellMopp.cpp
+..\TES Shared\Havok\HavokStream.cpp
+..\TES Shared\Havok\TESTrapListener.cpp
+..\TES Shared\LOS\BGSLOSGenGridConstructor.cpp
+..\TES Shared\LOS\BGSLOSGenHavok.cpp
+..\TES Shared\LOS\BGSLOSGenLOSArray.cpp
+..\TES Shared\LOS\BGSLOSGenOcclusionArray.cpp
+..\TES Shared\LOS\BGSLOSGenQuadGrid.cpp
+..\TES Shared\LOS\BGSLOSQuad.cpp
+..\TES Shared\Magic\BGSDualCastData.cpp
+..\TES Shared\Magic\EffectItem.cpp
+..\TES Shared\Magic\EffectSetting.cpp
+..\TES Shared\Magic\MagicItem.cpp
+..\TES Shared\Misc\BGSAttachTechniques.cpp
+..\TES Shared\Misc\BGSDecalManager.cpp
+..\TES Shared\Misc\BGSDynamicPersistenceManager.cpp
+..\TES Shared\Misc\BGSGrassManager.cpp
+..\TES Shared\Misc\BGSPrimitive.cpp
+..\TES Shared\Misc\BGSSceneInfo.cpp
+..\TES Shared\Misc\BipedAnim.cpp
+..\TES Shared\Misc\InventoryChanges.cpp
+..\TES Shared\Misc\LipSynchAnim.cpp
+..\TES Shared\Misc\MiscStats.cpp
+..\TES Shared\Pathfinding\Builders\PathBuilderClosePoint.cpp
+..\TES Shared\Pathfinding\Builders\PathBuilderCommonRequests.cpp
+..\TES Shared\Pathfinding\Builders\PathBuilderFlee.cpp
+..\TES Shared\Pathfinding\Builders\PathBuilderFlight.cpp
+..\TES Shared\Pathfinding\Builders\PathBuilderHide.cpp
+..\TES Shared\Pathfinding\Builders\PathBuilderLOS.cpp
+..\TES Shared\Pathfinding\Builders\PathBuilderOptimalLocation.cpp
+..\TES Shared\Pathfinding\Builders\PathBuilderSafeStraightLine.cpp
+..\TES Shared\Pathfinding\NavMeshInfo\NavMeshInfo.cpp
+..\TES Shared\Pathfinding\NavMeshInfo\NavMeshInfoMap.cpp
+..\TES Shared\Pathfinding\NavMeshInfo\PrecomputedNavmeshInfoPath.cpp
+..\TES Shared\Pathfinding\NavMesh\NavMesh.cpp
+..\TES Shared\Pathfinding\NavMesh\NavMeshRender.cpp
+..\TES Shared\Pathfinding\NavMesh\NavMesh_LoadSave.cpp
+..\TES Shared\Pathfinding\Obstacle\NavMeshObstacleManager.cpp
+..\TES Shared\Pathfinding\Obstacle\NavMeshObstacleTask.cpp
+..\TES Shared\Pathfinding\Pathing\Pathfind.cpp
+..\TES Shared\Pathfinding\Pathing\PathingSpace.cpp
+..\TES Shared\Pathfinding\Pathing\PathingStreamMasterFile.cpp
+..\TES Shared\Pathfinding\Searches\NavMeshSearchClosePoint.cpp
+..\TES Shared\Pathfinding\Searches\NavMeshSearchFitSphere.cpp
+..\TES Shared\Pathfinding\Searches\PathingRequestClosestGoal.cpp
+..\TES Shared\Radiant Story\BGSStoryManagerNodeBase.cpp
+..\TES Shared\Regions\TESRegion.cpp
+..\TES Shared\Regions\TESRegionDataManager.cpp
+..\TES Shared\Regions\TESRegionDataSound.cpp
+..\TES Shared\Sky\Moon.cpp
+..\TES Shared\Sky\Sky.cpp
+..\TES Shared\Sky\SkyObject.cpp
+..\TES Shared\Sky\Sun.cpp
+..\TES Shared\SpeedTree\BSTreeManager.cpp
+..\TES Shared\TESForms\Character\BGSAssociationType.cpp
+..\TES Shared\TESForms\Character\BGSBodyPartData.cpp
+..\TES Shared\TESForms\Character\BGSDialogueBranch.cpp
+..\TES Shared\TESForms\Character\BGSDialogueView.cpp
+..\TES Shared\TESForms\Character\BGSEntryPointFunction.cpp
+..\TES Shared\TESForms\Character\BGSEquipSlot.cpp
+..\TES Shared\TESForms\Character\BGSHeadPart.cpp
+..\TES Shared\TESForms\Character\BGSIdleMarker.cpp
+..\TES Shared\TESForms\Character\BGSKeyword.cpp
+..\TES Shared\TESForms\Character\BGSMovementType.cpp
+..\TES Shared\TESForms\Character\BGSNote.cpp
+..\TES Shared\TESForms\Character\BGSPerk.cpp
+..\TES Shared\TESForms\Character\BGSRagdoll.cpp
+..\TES Shared\TESForms\Character\BGSRefAlias.cpp
+..\TES Shared\TESForms\Character\BGSRelationship.cpp
+..\TES Shared\TESForms\Character\BGSScene.cpp
+..\TES Shared\TESForms\Character\BGSSceneAction.cpp
+..\TES Shared\TESForms\Character\BGSSceneActionTimer.cpp
+..\TES Shared\TESForms\Character\BGSScenePhase.cpp
+..\TES Shared\TESForms\Character\BGSVoiceType.cpp
+..\TES Shared\TESForms\Character\TESClass.cpp
+..\TES Shared\TESForms\Character\TESEyes.cpp
+..\TES Shared\TESForms\Character\TESFaction.cpp
+..\TES Shared\TESForms\Character\TESIdleForm.cpp
+..\TES Shared\TESForms\Character\TESNPC.cpp
+..\TES Shared\TESForms\Character\TESQuest.cpp
+..\TES Shared\TESForms\Character\TESRace.cpp
+..\TES Shared\TESForms\Character\TESTopic.cpp
+..\TES Shared\TESForms\Character\TESTopicInfo.cpp
+..\TES Shared\TESForms\Gameplay\BGSAcousticSpace.cpp
+..\TES Shared\TESForms\Gameplay\BGSCameraPath.cpp
+..\TES Shared\TESForms\Gameplay\BGSCameraShot.cpp
+..\TES Shared\TESForms\Gameplay\BGSCollisionLayer.cpp
+..\TES Shared\TESForms\Gameplay\BGSColorForm.cpp
+..\TES Shared\TESForms\Gameplay\BGSDefaultObjectManager.cpp
+..\TES Shared\TESForms\Gameplay\BGSFootstep.cpp
+..\TES Shared\TESForms\Gameplay\BGSFootstepSet.cpp
+..\TES Shared\TESForms\Gameplay\BGSImpactData.cpp
+..\TES Shared\TESForms\Gameplay\BGSImpactDataSet.cpp
+..\TES Shared\TESForms\Gameplay\BGSListForm.cpp
+..\TES Shared\TESForms\Gameplay\BGSMaterialObject.cpp
+..\TES Shared\TESForms\Gameplay\BGSMaterialType.cpp
+..\TES Shared\TESForms\Gameplay\BGSMenuIcon.cpp
+..\TES Shared\TESForms\Gameplay\BGSMessage.cpp
+..\TES Shared\TESForms\Gameplay\BGSMusicTrackFormWrapper.cpp
+..\TES Shared\TESForms\Gameplay\BGSMusicType.cpp
+..\TES Shared\TESForms\Gameplay\BGSReverbParameters.cpp
+..\TES Shared\TESForms\Gameplay\BGSSoundCategory.cpp
+..\TES Shared\TESForms\Gameplay\BGSSoundDescriptorForm.cpp
+..\TES Shared\TESForms\Gameplay\BGSSoundOutput.cpp
+..\TES Shared\TESForms\Gameplay\BGSStandardSoundDef.cpp
+..\TES Shared\TESForms\Gameplay\BGSTextureSet.cpp
+..\TES Shared\TESForms\Gameplay\TESGameSettings.cpp
+..\TES Shared\TESForms\Gameplay\TESGlobal.cpp
+..\TES Shared\TESForms\Gameplay\TESLoadScreen.cpp
+..\TES Shared\TESForms\Gameplay\TESScript.cpp
+..\TES Shared\TESForms\Gameplay\TESShout.cpp
+..\TES Shared\TESForms\Gameplay\TESSound.cpp
+..\TES Shared\TESForms\Gameplay\TESWordOfPower.cpp
+..\TES Shared\TESForms\Objects\BGSAddonNode.cpp
+..\TES Shared\TESForms\Objects\BGSApparatus.cpp
+..\TES Shared\TESForms\Objects\BGSArtObject.cpp
+..\TES Shared\TESForms\Objects\BGSConstructibleObject.cpp
+..\TES Shared\TESForms\Objects\BGSDebris.cpp
+..\TES Shared\TESForms\Objects\BGSExplosion.cpp
+..\TES Shared\TESForms\Objects\BGSHazard.cpp
+..\TES Shared\TESForms\Objects\BGSMovableStatic.cpp
+..\TES Shared\TESForms\Objects\BGSOutfit.cpp
+..\TES Shared\TESForms\Objects\BGSProjectile.cpp
+..\TES Shared\TESForms\Objects\BGSStaticCollection.cpp
+..\TES Shared\TESForms\Objects\TESAmmo.cpp
+..\TES Shared\TESForms\Objects\TESCombatStyle.cpp
+..\TES Shared\TESForms\Objects\TESEffectShader.cpp
+..\TES Shared\TESForms\Objects\TESFurniture.cpp
+..\TES Shared\TESForms\Objects\TESGrass.cpp
+..\TES Shared\TESForms\Objects\TESLevCharacter.cpp
+..\TES Shared\TESForms\Objects\TESLevItem.cpp
+..\TES Shared\TESForms\Objects\TESLevSpell.cpp
+..\TES Shared\TESForms\Objects\TESLight.cpp
+..\TES Shared\TESForms\Objects\TESObject.cpp
+..\TES Shared\TESForms\Objects\TESObjectACTI.cpp
+..\TES Shared\TESForms\Objects\TESObjectANIO.cpp
+..\TES Shared\TESForms\Objects\TESObjectARMA.cpp
+..\TES Shared\TESForms\Objects\TESObjectARMO.cpp
+..\TES Shared\TESForms\Objects\TESObjectBOOK.cpp
+..\TES Shared\TESForms\Objects\TESObjectCONT.cpp
+..\TES Shared\TESForms\Objects\TESObjectDOOR.cpp
+..\TES Shared\TESForms\Objects\TESObjectMISC.cpp
+..\TES Shared\TESForms\Objects\TESObjectSTAT.cpp
+..\TES Shared\TESForms\Objects\TESObjectTREE.cpp
+..\TES Shared\TESForms\Objects\TESObjectWEAP.cpp
+..\TES Shared\TESForms\World\BGSEncounterZone.cpp
+..\TES Shared\TESForms\World\BGSLargeRefData.cpp
+..\TES Shared\TESForms\World\BGSLightingTemplate.cpp
+..\TES Shared\TESForms\World\BGSLoadedReferenceCollection.cpp
+..\TES Shared\TESForms\World\BGSLocation.cpp
+..\TES Shared\TESForms\World\BGSLocation_Editor.cpp
+..\TES Shared\TESForms\World\BGSReferenceEffect.cpp
+..\TES Shared\TESForms\World\BGSShaderParticleGeometryData.cpp
+..\TES Shared\TESForms\World\TESClimate.cpp
+..\TES Shared\TESForms\World\TESImageSpace.cpp
+..\TES Shared\TESForms\World\TESImageSpaceModifier.cpp
+..\TES Shared\TESForms\World\TESLand.cpp
+..\TES Shared\TESForms\World\TESLandTexture.cpp
+..\TES Shared\TESForms\World\TESObjectCELL.cpp
+..\TES Shared\TESForms\World\TESObjectCELL_Reference.cpp
+..\TES Shared\TESForms\World\TESObjectREFR.cpp
+..\TES Shared\TESForms\World\TESObjectREFR_Animation.cpp
+..\TES Shared\TESForms\World\TESObjectREFR_ExtraData.cpp
+..\TES Shared\TESForms\World\TESWaterForm.cpp
+..\TES Shared\TESForms\World\TESWeather.cpp
+..\TES Shared\TESForms\World\TESWorldSpace.cpp
+..\TES Shared\TempEffects\BSTempEffectGeometryDecal.cpp
+..\TES Shared\TempEffects\BSTempEffectSimpleDecal.cpp
+..\TES Shared\TempEffects\BSTempEffectWeaponBlood.cpp
+..\TES Shared\Water\BGSAutoWater.cpp
+..\TES Shared\Water\BGSWaterAudio.cpp
+..\TES Shared\Water\BGSWaterCollisionManager.cpp
+..\TES Shared\Water\TESWater.cpp
+..\TES Shared\misc\BGSLocalizedString.cpp
+..\tes shared\TESForms\World\TESObjectREFR_Events.cpp
+.\Actions\EaseConstraints\hkpEaseConstraintsAction.cpp
+.\Animation\Quantized\hkaQuantizedAnimationCtor.cpp
+.\Animation\SplineCompressed\hkaSplineCompressedAnimation.cpp
+.\Animation\SplineCompressed\hkaSplineCompressedAnimationCtor.cpp
+.\Attributes\hkxAttributeGroup.cpp
+.\Collide\Mopp\Builder\Splitter\hkpMoppDefaultSplitter.cpp
+.\Collide\ShapeUtils\CollapseTransform\hkpTransformCollapseUtil.cpp
+.\Collide\ShapeUtils\ShapeShrinker\hkpShapeShrinker.cpp
+.\Constraint\Bilateral\hkpConstraintUtils.cpp
+.\Constraint\Chain\hkpConstraintChainUtil.cpp
+.\Constraint\Chain\hkpPoweredChainMapper.cpp
+.\Copier\hkObjectCopier.cpp
+.\Data\Dict\hkDataObjectDict.cpp
+.\Data\HeightField\%s%s
+.\Data\Native\hkDataObjectNative.cpp
+.\Data\Textures\
+.\Data\Textures\LandscapeLOD\Generated\
+.\Data\Textures\LandscapeLOD\Generated\%i.*.%i.dds
+.\Data\Textures\Maps\
+.\Deprecated\Compat\updates\hkCompat_hk201010r1_Current.cpp
+.\Deprecated\Compat\updates\hkCompat_hk700r1_hk710r1.cpp
+.\Deprecated\Compat\updates\hkCompat_hk710r1_hk201010r1.cpp
+.\Deprecated\Packfile\Binary\hkBinaryPackfileReader.cpp
+.\Deprecated\Packfile\Xml\hkXmlPackfileReader.cpp
+.\Deprecated\Packfile\hkPackfileReader.cpp
+.\Dispatch\hkpCollisionDispatcher.cpp
+.\Environment\hkxEnvironment.cpp
+.\Generator\BSCyclicBlendTransition\BSCyclicBlendTransitionGenerator.cpp
+.\Generator\BSOffsetAnimation\BSOffsetAnimationGenerator.cpp
+.\Generator\Clip\hkbClipGenerator.cpp
+.\GeometryProcessing\ConvexHull\hkgpConvexHull.cpp
+.\GeometryProcessing\Mesh\hkgpMesh.cpp
+.\HeightmapEditor\OverviewWindow.cpp
+.\KdTree\Build\hkKdTreeBuilder.cpp
+.\Mapper\hkaSkeletonMapper.cpp
+.\Mapper\hkaSkeletonMapperUtils.cpp
+.\Memory\System\FreeList\hkFreeListMemorySystem.cpp
+.\Mesh\Utils\VertexBufferUtil\hkMeshVertexBufferUtil.cpp
+.\Mesh\hkxMeshSection.cpp
+.\Misc\LipSynchManager.cpp
+.\Misc\TESClassDF.cpp
+.\Misc\TESDialog.cpp
+.\Misc\TESVersionControl.cpp
+.\Misc\hkGeometryUtils.cpp
+.\Modifier\BSLookAt\BSLookAtModifierUtils.cpp
+.\Motion\Default\hkaDefaultAnimatedReferenceFrame.cpp
+.\Packfile\hkPackfileWriter.cpp
+.\Pathfinding\EditorNavMesh.cpp
+.\Pathfinding\NavMeshGeneration.cpp
+.\Pathfinding\NavMeshGeneration_Util.cpp
+.\RTF\
+.\RTF\%s
+.\ResourceDatabase\hkResourceHandle.cpp
+.\Rig\hkaSkeletonUtils.cpp
+.\Script\BGSCSModifiableBoundScript.cpp
+.\Script\BGSCSScriptObjectBindPolicy.cpp
+.\Serialize\Xml\hkXmlObjectReader.cpp
+.\Serialize\Xml\hkXmlObjectWriter.cpp
+.\Serialize\hkObjectSerialize.cpp
+.\Shape\Compound\Collection\CompressedMesh\hkpCompressedMeshShapeBuilder.cpp
+.\Shape\Convex\ConvexVertices\hkpConvexVerticesShapeConstructor.cpp
+.\StateMachine\hkbStateMachine.cpp
+.\System\Error\hkError.cpp
+.\System\Io\Socket\Bsd\hkBsdSocket.cpp
+.\TESForms\BGSAssociationType_Editor.cpp
+.\TESForms\BGSEquipSlot_Editor.cpp
+.\TESForms\BGSImpactDataSet_Editor.cpp
+.\TESForms\BGSImpactData_Editor.cpp
+.\TESForms\BGSKeyword_Editor.cpp
+.\TESForms\BGSListForm_Editor.cpp
+.\TESForms\BGSMaterialObject_Editor.cpp
+.\TESForms\BGSMaterialType_Editor.cpp
+.\TESForms\BGSMovementType_Editor.cpp
+.\TESForms\BGSMusicPaletteTrack_Editor.cpp
+.\TESForms\BGSMusicSilenceTrack_Editor.cpp
+.\TESForms\BGSMusicSingleTrack_Editor.cpp
+.\TESForms\BGSMusicTrackFormWrapper_Editor.cpp
+.\TESForms\BGSMusicType_Editor.cpp
+.\TESForms\BGSNote_Editor.cpp
+.\TESForms\BGSOutfit_Editor.cpp
+.\TESForms\BGSRelationship_Editor.cpp
+.\TESForms\BGSScene_Editor.cpp
+.\TESForms\BGSSoundDescriptorForm_Editor.cpp
+.\TESForms\BGSSoundDescriptor_Editor.cpp
+.\TESForms\BGSSoundOutput_Editor.cpp
+.\TESForms\BGSStandardSoundDef_Editor.cpp
+.\TESForms\BGSStaticCollection_Editor.cpp
+.\TESForms\BGSTextureSet_Editor.cpp
+.\TESForms\TESFurniture_Editor.cpp
+.\TESForms\TESImageSpaceModifier_Editor.cpp
+.\TESForms\TESLandTexture_Editor.cpp
+.\TESForms\TESLand_Editor.cpp
+.\TESForms\TESNPC_Editor.cpp
+.\TESForms\TESObjectCell_Editor.cpp
+.\TESForms\TESObjectREFR_Editor.cpp
+.\TESForms\TESTopicInfo_Editor.cpp
+.\TESForms\TESWorldSpace_Editor.cpp
+.\Tagfile\Binary\hkBinaryTagfileReader.cpp
+.\Tagfile\Xml\hkXmlTagfileReader.cpp
+.\TransitionEffect\Generator\hkbGeneratorTransitionEffect.cpp
+.\Util\Welding\hkpMeshWeldingUtility.cpp
+.\Util\hkObjectInspector.cpp
+.\Util\hkSerializeUtil.cpp
+.\Util\hkStructureLayout.cpp
+.\Utils\hkaRagdollUtils.cpp
+.\Utils\hkbCompiledExpressionSet.cpp
+.\Version\hkVersionPatchManager.cpp
+.\VisualDebugger\Client\hkbBehaviorClient.cpp
+.\VisualDebugger\Viewer\Dynamics\hkpPhantomDisplayViewer.cpp
+.\VisualDebugger\Viewer\Dynamics\hkpSweptTransformDisplayViewer.cpp
+.\World\Simulation\Continuous\hkpContinuousSimulation.cpp
+.\World\Simulation\Multithreaded\hkpMultithreadedSimulation.cpp
+.\World\hkpWorld.cpp
+.\data\HeightField\
+.\hkDebugDisplayHandler.cpp
+.\hkServerDebugDisplayHandler.cpp
+.\hkVisualDebugger.cpp
+.\misc\AppResourceLoaders.cpp
+.\misc\BGSMeshDebuggerDialog.cpp
+.\misc\BGSRenderWindow.cpp
+.\misc\BGSRenderWindowGizmo.cpp
+.\misc\BGSRenderWindowNavmeshEditModule.cpp
+.\misc\BGSWorldLODSettingsDialog.cpp
+.\misc\Export\BSOBJExporter.cpp
+.\screens\
+c:\program files (x86)\steam\steamapps\common\skyrim
+c:\program files (x86)\steam\steamapps\common\skyrim\CreationKit.exe
+c:\projects\sbailey_buildfarm09\TESV\current\BSCore/BSNonReentrantSpinLock.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSCore/BSString.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSCore/BSTEvent.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSCore/BSTObjectArena.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSCore/BSTScatterTable.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSCore/BSTSingleton.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSCore/BSTSmallSharedArray.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSMain/BSBitStream.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSResource/BSResourceEntryDB.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSResource/BSResourceStream.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSShader/BSShaderProperty.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSSystem/BSStorage.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSSystem/BSTBTreeFile.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSSystem/BSTCreateFactory.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSSystem/BSTFactory.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSSystem/BSTPointerAndFlags.h
+c:\projects\sbailey_buildfarm09\TESV\current\BSSystem/BSTSmartPointer.h
+c:\projects\sbailey_buildfarm09\TESV\current\Gamebryo\CoreLibs\NiMain\BSLODTriShape.h
+c:\projects\sbailey_buildfarm09\TESV\current\Gamebryo\CoreLibs\NiMain\NiTexture.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsaudio\BSAudioManager.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSCoreTypes.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSNonReentrantSpinLock.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSSpinLock.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSTArray.inl
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSTArrayAlg.inl
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSTBTree.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSTEvent.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSTList.inl
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSTObjectArena.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSTScatterTable.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\BSTSingleton.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\CompactingStoreCommon.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\HeapBlocks.h
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\HeapBlocks.inl
+c:\projects\sbailey_buildfarm09\tesv\current\bscore\Win32\BSSemaphore_Win32.inl
+c:\projects\sbailey_buildfarm09\tesv\current\bsdevices\BSRumble_XInput.cpp
+c:\projects\sbailey_buildfarm09\tesv\current\bsdiag\StackTraceCapture.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsdiag\StackTraceRecorder.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsdiag\win32\PCPolicy.h
+c:\projects\sbailey_buildfarm09\tesv\current\bshavok\bhkExtraData.h
+c:\projects\sbailey_buildfarm09\tesv\current\bshavok\bhkPhantomOverlapListener.h
+c:\projects\sbailey_buildfarm09\tesv\current\bshavok\bhkStream.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsmain\BSCurrent.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsmain\BSHandleRefObject.inl
+c:\projects\sbailey_buildfarm09\tesv\current\bsmain\BSLODMultiIndexTriShape.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsmain\Setting.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsmain\ThreadSafeStructures.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsmain\ThreadSafeStructures.inl
+c:\projects\sbailey_buildfarm09\tesv\current\bsmain\bshalfedgemesh\BSHEAttribute.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsmain\bshalfedgemesh\BSHEMeshScrapAllocator.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsmain\win32\../BSLODMultiIndexTriShape.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\AStarSearch.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSNavmesh.inl
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSNavmeshFlagFilters.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSNavmeshInfo.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSNavmeshRayCast.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSNavmeshRaycast.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSNavmeshTriangle.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSPathSmootherRayCast.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSPathingNode.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSPathingSpline.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSPathingStart.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\BSTPathingFactory.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\MovementArbitrationAverage.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\MovementArbitrationMaxWeight.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\MovementParameters.h
+c:\projects\sbailey_buildfarm09\tesv\current\bspathfinding\MovementTypes.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsresource\BSResourceEntry.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsresource\BSResourceEntryCache.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsresource\BSResourceEntryQueue.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsresource\BSResourceFreeList.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsresource\BSResourceStream.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsresource\BSResourceStreamBase.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsresource\BSResourceUtil.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsscript\BSScriptArray.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsscript\BSScriptBoundScript.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsscript\BSScriptInternalVDescTable.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsscript\BSScriptMemoryPagePolicy.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsscript\BSScriptObject.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsscript\BSScriptObjectTypeInfo.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsscript\BSScriptPropertyTypeInfo.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsscript\BSScriptStack.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsscript\BSScriptUnlinkedTypes.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsshader\BSLight.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsshader\BSPixelShader.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsshader\BSShaderPropertyLightData.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsshader\BSVertexShader.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsshader\ImageSpaceEffectBlur.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsshader\ImageSpaceShaderParam.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsshader\Shaders/BSLightingShaderProperty.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsshader\shaders\../BSShaderProperty.h
+c:\projects\sbailey_buildfarm09\tesv\current\bsshader\shaders\BSBloodSplatterShaderProperty.h
+c:\projects\sbailey_buildfarm09\tesv\current\bssystem\BSStreamParser.inl
+c:\projects\sbailey_buildfarm09\tesv\current\bssystem\BSTFactory.h
+c:\projects\sbailey_buildfarm09\tesv\current\bssystem\BSTSmartPointer.h
+c:\projects\sbailey_buildfarm09\tesv\current\facegen\matrixVT.hpp
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\nianimation\NiBlendInterpolator.inl
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\nidx9renderer\NiD3DShaderDeclaration.inl
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\nimain\BSFlattenedBoneTree.inl
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\nimain\NiAdditionalGeometryData.inl
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\nimain\NiGeometry.h
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\nimain\NiGeometryData.h
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\nimain\NiObject.h
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\nimain\NiRTTI.h
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\nimain\NiTexture.h
+c:\projects\sbailey_buildfarm09\tesv\current\gamebryo\corelibs\niparticle\NiMeshPSysData.inl
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\ai\../FormComponents/TESFullName.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\ai\BGSNamedPackageData.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\ai\BGSProcedure.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\ai\BGSProcedureTree.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\distantterrain\BGSTerrainNode.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\distantterrain\BGSTerrainNode.inl
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\events\BGSStoryEventAutoRegister.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\events\BGSStoryEventMember.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\extradata\../FormComponents/TESFullName.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\extradata\../FormComponents/TESTexture.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\extradata\TValueArray.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\fileio\../FormComponents/TESForm.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\formcomponents\TESForm.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\formcomponents\TESFullName.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\formcomponents\TESTexture.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\los\BGSLOSGenPagedStack.inl
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\los\BGSLOSGenParallelTaskManager.inl
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\magic\../AI/ActorValue.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\pathfinding\navmesh\../../FormComponents/TESForm.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\regions\../FormComponents/TESTexture.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\sky\../TESForms/World/TESWeather.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\speedtree\BSTreeManager_Win32.cxx
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\character\TESTopicInfo.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\gameplay\../../FormComponents/TESTexture.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\gameplay\BGSMusicTrackFormWrapper.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\gameplay\BGSSoundOutput.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\objects\../../misc/BGSJSONUtil.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\objects\TESObjectWEAP.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\world\../../FormComponents/TESForm.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\world\../../FormComponents/TESFullName.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\world\../../FormComponents/TESTexture.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\world\../World/TESObjectREFR_Events.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\world\BGSShaderParticleGeometryData.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\world\BGSWorldLocation.h
+c:\projects\sbailey_buildfarm09\tesv\current\tes shared\tesforms\world\TESWeather.h
