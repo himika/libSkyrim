@@ -30,7 +30,7 @@ public:
 
 	void operator()(EventT * evn)				{ SendEvent_Internal(evn); }
 
-private:
+protected:
 	DEFINE_MEMBER_FN(ctor, BSTEventSource*, 0x0073E790);
 	DEFINE_MEMBER_FN(dtor, BSTEventSource*, 0x00695990);
 	DEFINE_MEMBER_FN(AddEventSink_Internal, void, 0x006E3E30, SinkT * eventSink);

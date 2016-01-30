@@ -2,26 +2,26 @@
 
 // 9F0
 struct ScriptEventSourceHolder :
-	public BSTEventSource<BGSEventProcessedEvent>,
-	public BSTEventSource<TESActivateEvent>,
-	public BSTEventSource<TESActiveEffectApplyRemoveEvent>,
-	public BSTEventSource<TESActorLocationChangeEvent>,
-	public BSTEventSource<TESBookReadEvent>,
-	public BSTEventSource<TESCellAttachDetachEvent>,
-	public BSTEventSource<TESCellFullyLoadedEvent>,
-	public BSTEventSource<TESCellReadyToApplyDecalsEvent>,
-	public BSTEventSource<TESCombatEvent>,
-	public BSTEventSource<TESContainerChangedEvent>,
-	public BSTEventSource<TESDeathEvent>,
-	public BSTEventSource<TESDestructionStageChangedEvent>,
-	public BSTEventSource<TESEnterBleedoutEvent>,
-	public BSTEventSource<TESEquipEvent>,
-	public BSTEventSource<TESFormDeleteEvent>,
-	public BSTEventSource<TESFurnitureEvent>,
-	public BSTEventSource<TESGrabReleaseEvent>,
-	public BSTEventSource<TESHitEvent>,
-	public BSTEventSource<TESInitScriptEvent>,
-	public BSTEventSource<TESLoadGameEvent>,
+	public BSTEventSource<BGSEventProcessedEvent>,				// 000
+	public BSTEventSource<TESActivateEvent>,					// 030
+	public BSTEventSource<TESActiveEffectApplyRemoveEvent>,		// 060
+	public BSTEventSource<TESActorLocationChangeEvent>,			// 090
+	public BSTEventSource<TESBookReadEvent>,					// 0C0
+	public BSTEventSource<TESCellAttachDetachEvent>,			// 0F0
+	public BSTEventSource<TESCellFullyLoadedEvent>,				// 120
+	public BSTEventSource<TESCellReadyToApplyDecalsEvent>,		// 
+	public BSTEventSource<TESCombatEvent>,						// 
+	public BSTEventSource<TESContainerChangedEvent>,			// 
+	public BSTEventSource<TESDeathEvent>,						// 
+	public BSTEventSource<TESDestructionStageChangedEvent>,		// 
+	public BSTEventSource<TESEnterBleedoutEvent>,				// 
+	public BSTEventSource<TESEquipEvent>,						// 
+	public BSTEventSource<TESFormDeleteEvent>,					// 
+	public BSTEventSource<TESFurnitureEvent>,					// 
+	public BSTEventSource<TESGrabReleaseEvent>,					// 
+	public BSTEventSource<TESHitEvent>,							// 
+	public BSTEventSource<TESInitScriptEvent>,					// 
+	public BSTEventSource<TESLoadGameEvent>,					//
 	public BSTEventSource<TESLockChangedEvent>,
 	public BSTEventSource<TESMagicEffectApplyEvent>,
 	public BSTEventSource<TESMagicWardHitEvent>,
@@ -45,16 +45,16 @@ struct ScriptEventSourceHolder :
 	public BSTEventSource<TESSleepStopEvent>,
 	public BSTEventSource<TESSpellCastEvent>,
 	public BSTEventSource<TESPlayerBowShotEvent>,
-	public BSTEventSource<TESTopicInfoEvent>,
-	public BSTEventSource<TESTrackedStatsEvent>,
-	public BSTEventSource<TESTrapHitEvent>,
-	public BSTEventSource<TESTriggerEvent>,
-	public BSTEventSource<TESTriggerEnterEvent>,
-	public BSTEventSource<TESTriggerLeaveEvent>,
-	public BSTEventSource<TESUniqueIDChangeEvent>,
-	public BSTEventSource<TESWaitStartEvent>,
-	public BSTEventSource<TESWaitStopEvent>,
-	public BSTEventSource<TESSwitchRaceCompleteEvent>
+	public BSTEventSource<TESTopicInfoEvent>,						// 810
+	public BSTEventSource<TESTrackedStatsEvent>,					// 840
+	public BSTEventSource<TESTrapHitEvent>,							// 870
+	public BSTEventSource<TESTriggerEvent>,							// 8A0
+	public BSTEventSource<TESTriggerEnterEvent>,					// 8D0
+	public BSTEventSource<TESTriggerLeaveEvent>,					// 900
+	public BSTEventSource<TESUniqueIDChangeEvent>,					// 930
+	public BSTEventSource<TESWaitStartEvent>,						// 960
+	public BSTEventSource<TESWaitStopEvent>,						// 990
+	public BSTEventSource<TESSwitchRaceCompleteEvent>				// 9C0
 {
 	static inline ScriptEventSourceHolder* GetInstance(void) {
 		return (ScriptEventSourceHolder*)0x012E4C30;

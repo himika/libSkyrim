@@ -99,9 +99,9 @@ namespace SKSEScript
 	class FunctionArguments : public FunctionArgumentsBase
 	{
 	public:
-		FunctionArguments(Args... args)
+		FunctionArguments(Args... args) : m_args(args...)
 		{
-			m_args = std::make_tuple(args...);
+			//m_args = std::make_tuple(args...);
 		}
 
 		virtual ~FunctionArguments()

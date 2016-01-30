@@ -270,6 +270,13 @@ struct TESTopicInfoEvent
 	UInt32  unk04;
 	FormID  topicInfoID;
 	UInt32  flag;
+
+	inline bool IsStarting() {
+		return (flag & 1) == 0;
+	}
+	inline bool IsStopping() {
+		return (flag & 1) == 1;
+	}
 };
 
 struct TESTriggerEvent

@@ -294,7 +294,8 @@ public:
 														// 01B0             | BSFixedString("Logs/Script")
 														// 01B8 010EBA1C  SkyrimScript::HandlePolicy
 														// 0204 010EBAD4  SkyrimScript::ObjectBindPolicy
-														// 0294 010EA3C8  ?
+														// 0294           BSTHashMap<????>  traits=012B64D4
+														// 0294+48          BSSpinLock
 														// 0360 010EA744  SkyrimScript::Profiler
 														// 0400 010EA79C  SkyrimScript::SavePatcher
 														// 0430           ?
