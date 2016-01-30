@@ -12,22 +12,28 @@ struct TYPE_INFO_NODE
 };
 
 
+bool TYPE_INFO::IsSkyrimType(void) const
+{
+	return (*(const UInt32*)this == 0x0118E204);
+}
+
+
 const char* TYPE_INFO::name(void) const
 {
 	const char *result;
 
-	if (*(const UInt32*)this != 0x0118E204)
-	{
-		std::type_info const *pThis = reinterpret_cast<std::type_info const *>(this);
-		result = pThis->name();
-	}
-	else
+	if (IsSkyrimType())
 	{
 		typedef const char* (*_RTTI_Name_base)(const TYPE_INFO* pThis, TYPE_INFO_NODE* pNode);
 		_RTTI_Name_base RTTI_Name_base = (_RTTI_Name_base)0x00F5D278;
 		TYPE_INFO_NODE* type_info_root_node = (TYPE_INFO_NODE*)0x01BBEB60;
 
 		result = RTTI_Name_base(this, type_info_root_node);
+	}
+	else
+	{
+		std::type_info const *pThis = reinterpret_cast<std::type_info const *>(this);
+		result = pThis->name();
 	}
 
 	return result;

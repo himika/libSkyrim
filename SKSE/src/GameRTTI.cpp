@@ -41,8 +41,7 @@ const TYPE_INFO* GetObjectTypeInfo(const void * objBase)
 		RTTILocator	** vtbl = (RTTILocator **)obj[0];
 		RTTILocator	* rtti = vtbl[-1];
 
-		if (*(UInt32 *)rtti->type == 0x0118E204)	// type_info vtable
-			result = rtti->type;
+		result = rtti->type;
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{

@@ -8,6 +8,7 @@ public:
 	virtual ~TYPE_INFO() throw ();
 	const char* name(void) const;
 	const char* raw_name(void) const;
+	bool IsSkyrimType() const;
 private:
 	void *_M_data;
 	char _M_d_name[1];
