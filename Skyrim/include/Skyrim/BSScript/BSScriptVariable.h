@@ -131,6 +131,14 @@ namespace BSScript
 			return type - kType_ArraysStart <= kNumLiteralArrays;
 		}
 
+		bool IsInt() const {
+			return type == kType_Int;
+		}
+
+		bool IsFloat() const {
+			return type == kType_Float;
+		}
+
 		bool IsString() const {
 			return type == kType_String;
 		}
