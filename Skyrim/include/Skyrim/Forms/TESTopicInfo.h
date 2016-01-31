@@ -4,6 +4,8 @@
 #include "../FormComponents/Condition.h"
 
 class TESTopic;
+class TESNPC;
+class BGSSoundOutput;
 
 /*==============================================================================
 class TESTopicInfo +0000 (_vtbl=010A6CCC)
@@ -37,27 +39,34 @@ public:
 	virtual void	Unk_04(void) override;									// 04 0057E4E0
 	virtual void	Unk_05(void) override;									// 05 0057E580
 	virtual bool	LoadForm(TESFile *mod) override;						// 06 0057E8F0
-	virtual void	LoadBuffer(BGSLoadFormBuffer *buf) override;			// 0F 0057D4D0
-	virtual void	Unk_12(BGSLoadFormBuffer *buf) override;				// 12 0057D4F0
+	virtual void	LoadBuffer(BGSLoadFormBuffer *buf) override;			// 0F 0057D4D0 set unk22 1
+	virtual void	Unk_12(BGSLoadFormBuffer *buf) override;				// 12 0057D4F0 set unk22 0
 	virtual void	InitItem(void) override;								// 13 0057E5D0
 	virtual void	GetFormDesc(char * buf, UInt32 bufLen) override;		// 16 004D43E0 { return; }
 	virtual void	SetFlag00000002(bool set) override;						// 24 0057D430
-	virtual bool	Unk_30(UInt32 arg0, UInt32 arg1, UInt32 arg2) override;	// 30 0057D320
-	virtual bool	Unk_31(void * dst, UInt32 unk) override;				// 31 0057D470
+	virtual bool	Unk_30(void * arg0, UInt32 arg1, UInt32 arg2) override;	// 30 0057D320
+	virtual bool	Unk_31(void * dst, void * unk) override;				// 31 0057D470
 
+	const char *		GetPrompt() const;
+	TESNPC *			GetSpeaker() const;
+	TESTopic *			GetWalkAwayTopic() const;
+	BGSSoundOutput *	GetSoundOutputOverride() const;
 
 	// @members
 	TESTopic	* topic;			// 14
-	UInt32		unk18;				// 18 - show response data from info?
-	Condition	* conditions;		// 1C - linked list
+	UInt32		unk18;				// 18 - DNAM - show response data from info?
+	Condition	* conditions;		// 1C - CTDA
 	UInt16		unk20;				// 20 - init'd to FFFF
 	UInt8		unk22;				// 22
-	UInt8		favorLevel;			// 23
-	UInt16		dialogFlags;		// 24
+	UInt8		favorLevel;			// 23 - CNAM
+	UInt16		dialogFlags;		// 24 - ENAM - Response flags
 	UInt16		hoursUntilReset;	// 26
 	UInt32		unk28;				// 28
+
 private:
 	DEFINE_MEMBER_FN(ctor, TESTopicInfo *, 0x0057ECC0);
 	DEFINE_MEMBER_FN(dtor, void, 0x0057ECF0);
+
+	DEFINE_MEMBER_FN(SendEvent, void, 0x0057E1F0, UInt32 flag, RefHandle speakerRefHandle, bool arg3);
 };
 STATIC_ASSERT(sizeof(TESTopicInfo) == 0x2C);

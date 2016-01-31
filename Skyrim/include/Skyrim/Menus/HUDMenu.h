@@ -16,14 +16,40 @@ class HUDData +0000 (_vtbl=010E8D4C)
 class HUDData : public IUIMessageData
 {
 public:
-	UInt32		type;
-	BSString	crosshairText;
-	void		* unk14;
-	UInt32		unk18;
-	UInt32		unk1C;
-	bool		unk20;
+	enum MessageType
+	{
+		kType_ShowMessage				= 1,
+		kType_SetLoadDoorInfo			= 4,
+		kType_ShowSubtitle				= 5,
+		kType_HideSubtitle				= 6,
+		kType_ShowArrowCount			= 7,
+		kType_HideArrowCount			= 8,
+		kType_SetSubtitlesEnabled		= 9,
+		kType_DragonSoulAbsorbed		= 0x16,
+		kType_ShowElements				= 0x17,
+		kType_Discoverd					= 0x1A,
+		kType_Favor						= 0x1B,
+		kType_ValidateCrosshair			= 0x1C,
+		kType_SetLocationName			= 0x1D,
+		kType_ShowTutrialHintText		= 0x1E,
+		kType_SetCrosshairEnabled		= 0x1F,
+		kType_Unk20						= 0x20,
+		kType_RefreshActivateButtonArt	= 0x21,
+		kType_Unk22						= 0x22		// ResetAll ?
+	};
+
+
+	// @members
+	UInt32		type;			// 08
+	BSString	text;			// 0C
+	void		* unk14;		// 14
+	UInt32		unk18;			// 18
+	UInt32		unk1C;			// 1C
+	bool		unk20;			// 20
+	UInt8		pad21[3];
+	UInt32		unk24;			// 24
 };
-STATIC_ASSERT(offsetof(HUDData, crosshairText) == 0x0C);
+STATIC_ASSERT(offsetof(HUDData, text) == 0x0C);
 
 
 /*==============================================================================
@@ -267,6 +293,21 @@ public:
 
 	static IMenu * Create();
 
+	static void SendHUDMessage(HUDData::MessageType type, bool arg2, const char *text, UInt32 arg4)
+	{
+		typedef void(*Fn)(HUDData::MessageType, bool, const char *, UInt32);
+		const Fn fn = (Fn)0x00897430;
+		fn(type, arg2, text, arg4);
+	}
+
+	static void SendHUDMessage(HUDData::MessageType type, const char *text)
+	{
+		typedef void(*Fn)(HUDData::MessageType, const char *);
+		const Fn fn = (Fn)0x00897480;
+		fn(type, text);
+	}
+
+	// @members
 	BSTArray<HUDObject*>	hudComponents;	// 20
 	UInt32	unk2C;
 	UInt32	unk30;

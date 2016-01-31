@@ -19,8 +19,6 @@ namespace BSScript
 	template <class _Ty, class>	void		PackValue(BSScriptVariable & dst, _Ty & src, VMState * state);
 	template <class _Ty, class>	_Ty			UnpackValue(const BSScriptVariable& src);
 
-	BSSmartPointer(BSScriptVariable);
-
 	// the same type as VMValue in skse
 	class BSScriptVariable
 	{
@@ -197,6 +195,7 @@ namespace BSScript
 		// @members
 		VMTypeID	type;	// 00
 		Data		data;	// 04
+
 	private:
 		DEFINE_MEMBER_FN(Assign, void, 0x00C329E0, const BSScriptVariable & src);
 		DEFINE_MEMBER_FN(Destroy, void, 0x00C328E0);

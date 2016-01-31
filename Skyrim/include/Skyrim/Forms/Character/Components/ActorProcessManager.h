@@ -173,6 +173,7 @@ public:
 
 	DEFINE_MEMBER_FN_const(GetEquippedRightHand, TESForm *, 0x00494EA0);	// { return equippedObject[kEquippedHand_Right]; }
 	DEFINE_MEMBER_FN_const(GetEquippedLeftHand, TESForm *, 0x006572F0);		// { return equippedObject[kEquippedHand_Left]; }
+	DEFINE_MEMBER_FN_const(GetSubtitleText,	const char *, 0x006FB910);		// { return (unk04) ? unk04->unk198 : nullptr; }
 
 	DEFINE_MEMBER_FN(SetDataFlag,				void, 0x006FD1A0, UInt32 flag); // Sets a number on the 0x08 object
 	DEFINE_MEMBER_FN(UpdateEquipment,			void, 0x007031A0, Actor *actor);
@@ -184,6 +185,7 @@ public:
 	DEFINE_MEMBER_FN(GetAnimationResponse,		bool, 0x00721E70, BSAnimationResponsePtr &ptr);
 
 	DEFINE_MEMBER_FN(GetActorKnowledge, ActorKnowledge *, 0x00709A20, Actor *actor, Actor *target);
+
 
 	// @members
 	UInt32			unk00;								// 00

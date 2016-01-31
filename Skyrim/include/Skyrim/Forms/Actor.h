@@ -13,6 +13,7 @@
 class ActorState;
 class ActorMagicCaster;
 class Actor;
+NiSmartPointer(Actor);
 
 // External Classes
 class ActiveEffect;

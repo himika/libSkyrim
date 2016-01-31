@@ -133,19 +133,7 @@ namespace BSScript
 		// void **	_vtbl				// 00 - 010EAD58
 	};
 
-	/*==============================================================================
-	class BSScript::IStackCallbackFunctor +0000 (_vtbl=010EAE50)
-	0000: class BSScript::IStackCallbackFunctor
-	0004: |   struct BSIntrusiveRefCounted
-	==============================================================================*/
-	class IStackCallbackFunctor : public BSIntrusiveRefCounted
-	{
-	public:
-		virtual ~IStackCallbackFunctor();	// 008C5AA0
-		virtual void Unk_01(void) = 0;		// (pure)
-		virtual void Unk_02(void);			// 00C3A5E0
-		virtual void Unk_03(void) = 0;		// (pure)
-	};
+	class IStackCallbackFunctor;	// ==> BScriptStack.h
 
 	/*==============================================================================
 	class BSScript::IFreezeQuery +0000 (_vtbl=010EAE70)

@@ -43,6 +43,7 @@ class ProbablyCallStackManager;
 namespace BSScript
 {
 	BSSmartPointer(BSScriptStack);
+	BSSmartPointer(IStackCallbackFunctor);
 
 	// 20
 	// the same type as VMState in skse
@@ -73,8 +74,6 @@ namespace BSScript
 	// BSScriptStack?
 	class BSScriptStack : public BSIntrusiveRefCounted
 	{
-		CLASS_SIZE_ASSERT(0x48);
-
 	public:
 		typedef BSTSmartPointer<BSScriptStack> SmartPtr;
 
@@ -119,4 +118,21 @@ namespace BSScript
 		DEFINE_MEMBER_FN(Get, BSScript::BSScriptVariable *, 0x00C3AC40, StackFrame * frame, UInt32 idx, UInt32 offset);
 	};
 	STATIC_ASSERT(offsetof(BSScriptStack, unk2C) == 0x2C);
+	STATIC_ASSERT(sizeof(BSScriptStack) == 0x48);
+
+
+	/*==============================================================================
+	class BSScript::IStackCallbackFunctor +0000 (_vtbl=010EAE50)
+	0000: class BSScript::IStackCallbackFunctor
+	0004: |   struct BSIntrusiveRefCounted
+	==============================================================================*/
+	class IStackCallbackFunctor : public BSIntrusiveRefCounted
+	{
+	public:
+		virtual ~IStackCallbackFunctor();			// 008C5AA0
+
+		virtual void	Unk_01(UInt32 arg1, UInt32 arg2) = 0;	// 00F51EE8 (pure)
+		virtual bool	Unk_02(void);							// 00C3A5E0 { return false; }
+		virtual void	Unk_03(UInt32 arg1) = 0;				// 00F51EE8 (pure)
+	};
 }

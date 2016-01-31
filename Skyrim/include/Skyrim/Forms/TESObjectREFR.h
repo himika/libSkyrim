@@ -107,8 +107,8 @@ public:
 	virtual bool			Unk_2A(void) override;									// 004D5020
 	virtual TESForm *		Unk_2B(void) override;									// 00C707B0 { return this; }
 	virtual TESObjectREFR *	GetReference(void) override;							// 00C707B0 { return this; }
-	virtual bool			Unk_30(UInt32 arg0, UInt32 arg1, UInt32 arg2) override;	// 004D7220
-	virtual bool			Unk_31(void * dst, UInt32 unk) override;				// 004D72D0
+	virtual bool			Unk_30(void * arg0, UInt32 arg1, UInt32 arg2) override;	// 004D7220
+	virtual bool			Unk_31(void * dst, void * unk) override;				// 004D72D0
 	virtual const char *	GetName(void) override;									// 004D94A0
 
 	// @override class BSTEventSink<struct BSAnimationGraphEvent> : (vtbl=0108940C)

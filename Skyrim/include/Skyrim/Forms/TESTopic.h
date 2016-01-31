@@ -29,16 +29,16 @@ public:
 	virtual bool			Unk_36(FormType arg) override;	// 0057BD60 { return arg1 == 0x4C; }
 
 	// @members
-	//void				** _vtbl;	// 00 - 010A6B1C
-	UInt8				unk1C;		// 1C - init'd 0
-	UInt8				unk1D;		// 1D - init'd arg1
-	UInt8				pad1E[2];	// 1E - init'd 0
-	UInt32				unk20;		// 20 - init'd 0x32000000
-	UInt32				unk24;		// 24 - init'd 0
-	UInt32				unk28;		// 28 - init'd 0
-	UInt32				unk2C;		// 2C - init'd 0
-	void				** unk30;	// 30- - buf[unk30]
-	UInt32				unk34;		// 34 - len
-	BSFixedString		unk38;		// 38 - init'd 0
+	//void				** _vtbl;		// 00 - 010A6B1C
+	UInt8				unk1C;			// 1C - init'd 0
+	UInt8				unk1D;			// 1D - init'd arg1
+	UInt8				pad1E[2];		// 1E - init'd 0
+	UInt32				unk20;			// 20 - init'd 0x32000000
+	UInt32				unk24;			// 24 - init'd 0
+	TESQuest			* questOwner;	// 28 - init'd 0
+	UInt32				unk2C;			// 2C - init'd 0
+	void				** unk30;		// 30- - buf[unk30]
+	UInt32				unk34;			// 34 - len
+	BSFixedString		unk38;			// 38 - init'd 0
 };
 STATIC_ASSERT(sizeof(TESTopic) == 0x3C);

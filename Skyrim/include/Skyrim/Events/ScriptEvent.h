@@ -266,16 +266,16 @@ struct TESTrapHitEvent
 
 struct TESTopicInfoEvent
 {
-	Actor	* speaker;
-	UInt32  unk04;
-	FormID  topicInfoID;
-	UInt32  flag;
+	Actor	* speaker;		// 00 - NiTPointer<Actor>
+	void	* unk04;		// 04 - BSTSmartPointer<REFREventCallbacks::IEventCallback>
+	FormID  topicInfoID;	// 08
+	bool	flag;			// 0C
 
 	inline bool IsStarting() {
-		return (flag & 1) == 0;
+		return !flag;
 	}
 	inline bool IsStopping() {
-		return (flag & 1) == 1;
+		return flag;
 	}
 };
 

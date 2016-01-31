@@ -66,7 +66,7 @@ public:
 	virtual void			SetFlag00000020(bool set);					// 00450DE0
 	virtual void			SetFlag00000002(bool set);					// 00450ED0
 	virtual void			Unk_25(void);								// 006C50E0 { return; }
-	virtual void			Unk_26(UInt32 arg);							// 00588F30 { return; }
+	virtual void			Unk_26(TESFile *mod);						// 00588F30 { return; }
 	virtual bool			Has3D(void);								// 0092D110 { return false; }
 	virtual bool			Unk_28(void);								// 0092D110 { return false; } TESObject={ return true; }
 	virtual bool			Unk_29(void);								// 0092D110 { return false; } MagicItem=true
@@ -76,8 +76,8 @@ public:
 	virtual void *			Unk_2D(void);								// 005EADD0 { return nullptr; }
 	virtual const char *	GetAliasName(const BSFixedString &alias);	// 00450A50 - alias: "Pronoun" "PronounObj" "PronounPos" "PronounPosObj" "PronounRef" "PronounInt" "Race" "Gender" "ShortName". see http://www.creationkit.com/Text_Replacement
 	virtual void			CopyFrom(TESForm * srcForm);				// 00588F30 { return; }
-	virtual bool			Unk_30(UInt32 arg0, UInt32 arg1, UInt32 arg2);	// 00451210
-	virtual bool			Unk_31(void * dst, UInt32 unk);				// 00451250
+	virtual bool			Unk_30(void * arg0, UInt32 arg1, UInt32 arg2);	// 00451210 - arg0 => TESFile::FormInfo
+	virtual bool			Unk_31(void * dst, void * unk);				// 00451250 - dst => TESFile::FormInfo
 	virtual const char *	GetName(void);								// 00401AA0 { return ""; }
 	virtual bool			SetName(const char * str);					// 00C8CCA0 { return true; }
 	virtual bool			Unk_34(void);								// 0092D110 { return false; } TESTopic,TESObjectCELL,TESWorldSpace=true
@@ -130,7 +130,7 @@ protected:
 public:
 	// @members
 	//void		** _vtbl;	// 00 - 0107CBE4
-	void		* unk04;	// 04
+	void		* unk04;	// 04 - TESFile **
 	struct Flags{
 		bool	visible : 1;
 		bool	unk01 : 1;

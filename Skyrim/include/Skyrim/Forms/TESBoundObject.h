@@ -24,7 +24,7 @@ public:
 	};
 
 	// @override TESObject
-	virtual void	Unk_26(UInt32 arg) override;				// 0049EB60
+	virtual void	Unk_26(TESFile *arg) override;				// 0049EB60
 	virtual bool	Has3D(void) override;						// 009B86F0 { return true; }
 	virtual bool	ActivateReference(TESObjectREFR* targetRef, TESObjectREFR* activatorRef, UInt32 arg2, UInt32 arg3, UInt32 arg4) override;	// 0049E460
 	virtual UInt32	Unk_40(UInt32 arg0, UInt32 arg1) override;	// 0049EC90

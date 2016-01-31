@@ -2,6 +2,8 @@
 
 #include "Actor.h"
 
+NiSmartPointer(Character);
+
 /*==============================================================================
 class Character +0000 (_vtbl=010D16D4)
 0000: class Character

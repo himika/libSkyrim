@@ -67,6 +67,7 @@ struct ScriptEventSourceHolder :
 
 private:
 	DEFINE_MEMBER_FN(ctor, ScriptEventSourceHolder*, 0x00436B90);
+	//DEFINE_MEMBER_FN(SendTopicInfoEvent, void, 0x0057DDD0, FormID topicInfoID, ActorPtr &speaker, UInt32 flag, BSTSmartPointer<REFREventCallbacks::IEventCallback> &arg4);
 };
 STATIC_ASSERT(sizeof(ScriptEventSourceHolder) == 0x9F0);
 

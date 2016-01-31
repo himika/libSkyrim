@@ -8,7 +8,14 @@ class BSFixedString;
 class BSString
 {
 public:
-	BSString() :m_data(nullptr), m_dataLen(0), m_bufLen(0) { }
+	BSString() : m_data(nullptr), m_dataLen(0), m_bufLen(0)
+	{
+	}
+	BSString(const char *str)
+	{
+		ctor_cstr(str);
+	}
+
 	~BSString();	// 00402BE0
 
 	operator const char*() const;
@@ -35,4 +42,6 @@ protected:
 	UInt16	m_dataLen;	// 04
 	UInt16	m_bufLen;	// 06
 
+private:
+	DEFINE_MEMBER_FN(ctor_cstr, BSString *, 0x0063D880, const char*);
 };
