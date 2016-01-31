@@ -18,6 +18,7 @@
     <ClCompile Include="src\BSCore\BSString.cpp" />
     <ClCompile Include="src\BSCore\BSTArray.cpp" />
     <ClCompile Include="src\BSDevices\InputManager.cpp" />
+    <ClCompile Include="src\BSDevices\InputMappingManager.cpp" />
     <ClCompile Include="src\BSDevices\MenuControls.cpp" />
     <ClCompile Include="src\BSDevices\MenuEventHandler.cpp" />
     <ClCompile Include="src\BSDevices\PlayerControls.cpp" />
@@ -47,7 +48,6 @@
     <ClCompile Include="src\Camera\TESCamera.cpp" />
     <ClCompile Include="src\Events\BGSStoryEvent.cpp" />
     <ClCompile Include="src\Events\DefaultObjectReadyEvent.cpp" />
-    <ClCompile Include="src\Events\UserEventManager.cpp" />
     <ClCompile Include="src\Events\ScriptEvent.cpp" />
     <ClCompile Include="src\ExtraData\ExtraAliasInstanceArray.cpp" />
     <ClCompile Include="src\ExtraData\ExtraCannotWear.cpp" />
@@ -98,6 +98,7 @@
     <ClCompile Include="src\Forms\TESPackage.cpp" />
     <ClCompile Include="src\Forms\TESQuest.cpp" />
     <ClCompile Include="src\Forms\TESRace.cpp" />
+    <ClCompile Include="src\Forms\TESTopicInfo.cpp" />
     <ClCompile Include="src\Memory.cpp" />
     <ClCompile Include="src\Menus\Console.cpp" />
     <ClCompile Include="src\Menus\HUDMenu.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="include\Skyrim\BSCore\CompactingStoreCommon.h" />
     <ClInclude Include="include\Skyrim\BSCore\CRC.h" />
     <ClInclude Include="include\Skyrim\BSCore\HeapBlocks.h" />
+    <ClInclude Include="include\Skyrim\BSDevices\InputMappingManager.h" />
     <ClInclude Include="include\Skyrim\BSDevices\InputDevice.h" />
     <ClInclude Include="include\Skyrim\BSDevices\InputManager.h" />
     <ClInclude Include="include\Skyrim\BSDevices\MenuControls.h" />
@@ -290,7 +292,6 @@
     <ClInclude Include="include\Skyrim\Events\MenuEvent.h" />
     <ClInclude Include="include\Skyrim\Events\PositionPlayerEvent.h" />
     <ClInclude Include="include\Skyrim\Events\ScriptEvent.h" />
-    <ClInclude Include="include\Skyrim\Events\UserEventManager.h" />
     <ClInclude Include="include\Skyrim\ExtraData\BSExtraData.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraActivateRefChildren.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraAliasInstanceArray.h" />

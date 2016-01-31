@@ -459,9 +459,6 @@
     <ClCompile Include="src\BSPathFinding\BSNavmeshInfo.cpp">
       <Filter>Source Files\BSPathFinding</Filter>
     </ClCompile>
-    <ClCompile Include="src\Events\UserEventManager.cpp">
-      <Filter>Source Files\Events</Filter>
-    </ClCompile>
     <ClCompile Include="src\Forms\TESRace.cpp">
       <Filter>Source Files\Forms</Filter>
     </ClCompile>
@@ -560,6 +557,12 @@
     </ClCompile>
     <ClCompile Include="src\NetImmerse\BSFadeNode.cpp">
       <Filter>Source Files\NetImmerse</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Forms\TESTopicInfo.cpp">
+      <Filter>Source Files\Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BSDevices\InputMappingManager.cpp">
+      <Filter>Source Files\BSDevices</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2006,9 +2009,6 @@
     <ClInclude Include="include\Skyrim\FormComponents\TESForm.h">
       <Filter>Header Files\Skyrim\FormComponents</Filter>
     </ClInclude>
-    <ClInclude Include="include\Skyrim\Events\UserEventManager.h">
-      <Filter>Header Files\Skyrim\Events</Filter>
-    </ClInclude>
     <ClInclude Include="include\Skyrim\NetImmerse\NiSmartPointer.h">
       <Filter>Header Files\Skyrim\NetImmerse</Filter>
     </ClInclude>
@@ -2227,6 +2227,9 @@
     </ClInclude>
     <ClInclude Include="include\Skyrim\ExtraData\ExtraAshPileRef.h">
       <Filter>Header Files\Skyrim\ExtraData</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSDevices\InputMappingManager.h">
+      <Filter>Header Files\Skyrim\BSDevices</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
