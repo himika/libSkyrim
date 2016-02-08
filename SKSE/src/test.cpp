@@ -9,6 +9,7 @@
 #include "SKSE/GameObjects.h"
 #include "SKSE/GameReferences.h"
 #include "SKSE/GameRTTI.h"
+#include "SKSE/CommandTable.h"
 #include "SKSE/NiObjects.h"
 #include "SKSE/NiControllers.h"
 #include "SKSE/NiNodes.h"

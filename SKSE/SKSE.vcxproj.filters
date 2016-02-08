@@ -22,6 +22,9 @@
     <Filter Include="Header Files\SKSE\netimmerse">
       <UniqueIdentifier>{d7563cc0-ebc3-45f1-b13e-8feeca413899}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SKSE\obscript">
+      <UniqueIdentifier>{8fb4a3ca-5b74-4a4a-81bd-6734420213ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DebugLog.cpp">
@@ -70,6 +73,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEvents_Misc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -163,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="include\SKSE\NiNodes.h">
       <Filter>Header Files\SKSE\netimmerse</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKSE\CommandTable.h">
+      <Filter>Header Files\SKSE\obscript</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

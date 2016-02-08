@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IMenu.h"
+#include <cstdarg>
 
 class TESObjectREFR;
 
@@ -58,4 +59,31 @@ public:
 
 protected:
 	static RefHandle & pickedRefHandle;
+};
+
+
+class ConsoleManager
+{
+public:
+	ConsoleManager();
+	~ConsoleManager();
+
+	static ConsoleManager * GetSingleton()
+	{
+		return *((ConsoleManager **)0x01B10B58);
+	}
+
+	void Print(const char * fmt, ...)
+	{
+		va_list	args;
+		va_start(args, fmt);
+		VPrint(fmt, args);
+		va_end(args);
+	}
+
+	static bool IsConsoleMode();
+
+	DEFINE_MEMBER_FN(VPrint, void, 0x008486F0, const char *fmt, va_list args);
+
+	void	* scriptContext;	// 00
 };

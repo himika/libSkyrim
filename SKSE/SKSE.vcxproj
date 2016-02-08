@@ -16,6 +16,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CommandTable.cpp" />
     <ClCompile Include="src\DebugLog.cpp" />
     <ClCompile Include="src\GameEvents.cpp" />
     <ClCompile Include="src\GameEvents_Misc.cpp" />
@@ -35,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SKSE.h" />
+    <ClInclude Include="include\SKSE\CommandTable.h" />
     <ClInclude Include="include\SKSE\DebugLog.h" />
     <ClInclude Include="include\SKSE\GameEvents.h" />
     <ClInclude Include="include\SKSE\GameCamera.h" />
