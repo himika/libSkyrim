@@ -321,7 +321,7 @@ public:
 		}
 
 		difference_type operator-(const _iter& rhs) const {
-			return (mcur - rhs.m_cur);
+			return (m_cur - rhs.m_cur);
 		}
 		_iter& operator+=(difference_type diff) {
 			m_cur += diff;
@@ -405,7 +405,7 @@ public:
 		}
 
 		difference_type operator-(const const_iterator& rhs) const {
-			return (mcur - rhs.m_cur);
+			return (m_cur - rhs.m_cur);
 		}
 		_iter& operator+=(difference_type diff) {
 			m_cur += diff;
