@@ -203,27 +203,35 @@ public:
 	// is required to set anything on the tint
 	TintMask * GetOverlayTintMask(TintMask * original);
 
+	static UInt32 TryToSteal(TESObjectREFR *containerRef, InventoryEntryData *pEntry, UInt32 count, UInt32 unk)
+	{
+		typedef UInt32(*Fn)(TESObjectREFR *containerRef, InventoryEntryData *pEntry, UInt32 count, UInt32 unk);
+		const Fn fn = (Fn)0x00476900;
+		return fn(containerRef, pEntry, count, unk);
+	}
+
+
 	DEFINE_MEMBER_FN(GetTintList, BSTArray <TintMask *> *, 0x0055FF90);
 	DEFINE_MEMBER_FN(GetNumTints, UInt32, 0x00735F40, UInt32 tintType);
 	DEFINE_MEMBER_FN(GetTintMask, TintMask *, 0x00735F00, UInt32 tintType, UInt32 index);
-	DEFINE_MEMBER_FN(GetDamage, double, 0x00730810, InventoryEntryData * pEntry);
-	DEFINE_MEMBER_FN(GetArmorValue, double, 0x007307E0, InventoryEntryData * pEntry);
+	DEFINE_MEMBER_FN(GetDamage, double, 0x00730810, InventoryEntryData *pEntry);
+	DEFINE_MEMBER_FN(GetArmorValue, double, 0x007307E0, InventoryEntryData *pEntry);
 	DEFINE_MEMBER_FN(SetAngleX, void, 0x006AE540, float angleX);
 	DEFINE_MEMBER_FN(SetAngleZ, void, 0x006A8910, float angleZ);
 	DEFINE_MEMBER_FN(StartActivation, void, 0x00743530);
 	DEFINE_MEMBER_FN(StartGrabbing, void, 0x0074FE50);
 	DEFINE_MEMBER_FN(StopGrabbing, void, 0x0074C580);
-
-	DEFINE_MEMBER_FN(TryToPickpocket, bool, Actor *target, UInt32 unk2, UInt32 unk3, bool unk4);
-
-	DEFINE_MEMBER_FN(PlayPickupEvent, void, 0x0073B020, TESForm *item, TESForm *containerOwner, TESObjectREFR *containerRef, UInt32 soundType);
-
+	DEFINE_MEMBER_FN(EscapeFromJail, void, 0x00744990, bool unk1, bool unk2);
+	DEFINE_MEMBER_FN(TryToPickpocket, bool, 0x00746A20, Actor *target, InventoryEntryData *pEntry, UInt32 numItems, bool unk4);
+	DEFINE_MEMBER_FN(PlayPickupEvent, void, 0x0073B020, TESForm *item, TESForm *containerOwner, TESObjectREFR *containerRef, UInt32 eventType);	// 3:thief 5:container 6:dead body
 	DEFINE_MEMBER_FN(OnCrosshairRefChanged, void, 0x00739FD0);		// called from 0074F855
 	DEFINE_MEMBER_FN(GetActorInFavorState, Actor*, 0x0073D4B0);
 
 
 	// @members
-	UInt32		pad238[(0x490 - 0x238) >> 2];	// 238
+	UInt32		pad238[(0x42C - 0x238) >> 2];	// 238
+	TESFaction	* crimeFaction;					// 42C
+	UInt32		pad430[(0x490 - 0x430) >> 2];	// 430
 	RefHandle	unk490;							// 490 - Handle
 	UInt32		pad494[(0x54C - 0x494) >> 2];	// 494
 	RefHandle	doingFavorHandle;				// 54C - Handle

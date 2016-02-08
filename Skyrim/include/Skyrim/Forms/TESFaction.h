@@ -49,22 +49,22 @@ public:
 	// 2C
 	struct CrimeValues
 	{
-		TESObjectREFR	* exteriorJailMarker;		// 00 himika
-		TESObjectREFR	* followerWaitMarker;		// 04 himika
-		TESObjectREFR	* stolenGoodsContainer;		// 08 himika
-		TESObjectREFR	* playerInventoryContainer;	// 0C himika
-		BGSListForm		* sharedCrimeFactionList;	// 10 himika
-		BGSOutfit		* jailOutfit;				// 14 himika
-		bool	arrest;				// 18
-		bool	attackOnSight;		// 19
-		UInt16	murder;				// 1A
-		UInt16	assault;			// 1C
-		UInt16	trespass;			// 1E fixed by himika
-		UInt16	pickpocket;			// 20 fixed by himika
-		UInt16	pad22;				// 22 fixed by himika
-		float	stealMult;			// 24
-		UInt16	escape;				// 28
-		UInt16	werewolf;			// 2A
+		TESObjectREFR	* exteriorJailMarker;		// 00 (34)
+		TESObjectREFR	* followerWaitMarker;		// 04 (38)
+		TESObjectREFR	* stolenGoodsContainer;		// 08 (3C)
+		TESObjectREFR	* playerInventoryContainer;	// 0C (40)
+		BGSListForm		* sharedCrimeFactionList;	// 10 (44)
+		BGSOutfit		* jailOutfit;				// 14 (48)
+		bool			arrest;						// 18 (4C)
+		bool			attackOnSight;				// 19 (4D)
+		UInt16			murder;						// 1A (4E)
+		UInt16			assault;					// 1C (50)
+		UInt16			trespass;					// 1E (52)
+		UInt16			pickpocket;					// 20 (54)
+		UInt16			pad22;						// 22 (56)
+		float			stealMult;					// 24 (58)
+		UInt16			escape;						// 28 (5C)
+		UInt16			werewolf;					// 2A (5E)
 	};
 
 	// 20

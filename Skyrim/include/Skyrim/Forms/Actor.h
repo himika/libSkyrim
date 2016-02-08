@@ -465,7 +465,7 @@ public:
 	virtual void	Unk_B3(void);									// 006BCAF0
 	virtual void	Unk_B4(void);									// 006AECA0
 	virtual void	Unk_B5(void);									// 006AECC0
-	virtual void	Unk_B6(void);									// 006AECF0
+	virtual void	AddCrimeGold(UInt32 mount, bool bViolent, TESFaction *faction);	// 006AECF0
 	virtual void	Unk_B7(void);									// 006AED10
 	virtual void	Unk_B8(UInt32 arg1, UInt32 arg2, UInt32 arg3);	// 00D62BE0 { return; }
 	virtual void	Unk_B9(void);									// 006C50E0 { return; }
@@ -537,8 +537,8 @@ public:
 	virtual void	RemovePerk(BGSPerk * perk);						// 00588F30 { return; }
 	virtual void	Unk_FC(UInt32 arg);								// 00588F30 { return; }
 	virtual void	Unk_FD(UInt32 arg);								// 00588F30 { return; }
-	virtual bool	Unk_FE(UInt32 arg);								// 006AA210
-	virtual void	Unk_FF(UInt32 arg1, UInt32 arg2);				// 006AA240 { if (processManager) processManager->Unk00724660(arg1, arg2); }
+	virtual bool	CanProcessEntryPointPerkEntry(UInt32 entryType);	// 006AA210 
+	virtual void	VisitEntryPointPerkEntries(UInt32 entryType, PerkEntryVisitor &visitor);	// 006AA240 { if (processManager) processManager->Unk00724660(arg1, visitor); }
 	virtual void	Unk_100(void);									// 006AA260
 	virtual void	Unk_101(void);									// 006C50E0 { return; }
 	virtual bool	Unk_102(void);									// 0092D110 { return false; }
@@ -706,6 +706,7 @@ public:
 	DEFINE_MEMBER_FN(UpdateWeaponAbility, void, 0x006ED980, TESForm*, BaseExtraList * extraData, bool bLeftHand);
 	DEFINE_MEMBER_FN(UpdateArmorAbility, void, 0x006E8650, TESForm*, BaseExtraList * extraData);
 
+	DEFINE_MEMBER_FN(SendStealAlerm, void, 0x006CC0D0, TESObjectREFR *refItemOrContainer, TESForm *stolenItem, UInt32 numItems, UInt32 unk1, TESForm *owner, bool unk2);
 
 	// @members
 	struct

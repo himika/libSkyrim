@@ -13,6 +13,7 @@ class TESIdleForm;
 class TESTopic;
 class TESPackage;
 class CustomActorPackageData;
+class PerkEntryVisitor;
 
 class NiNode;
 class ActorKnowledge;
@@ -179,13 +180,12 @@ public:
 	DEFINE_MEMBER_FN(UpdateEquipment,			void, 0x007031A0, Actor *actor);
 	DEFINE_MEMBER_FN(CreateDetectionEvent,		void, 0x00702070, Actor *owner, NiPoint3 *point, UInt32 soundLevel, TESObjectREFR *object);
 	DEFINE_MEMBER_FN(UpdateAnimationChannel,	void, 0x007022A0, Actor *owner);
+	DEFINE_MEMBER_FN(GetActorKnowledge, ActorKnowledge *, 0x00709A20, Actor *actor, Actor *target);
 	DEFINE_MEMBER_FN(GetAnimationVariables,		BSTArray<AnimationVariableData>*, 0x0071F010);
 	DEFINE_MEMBER_FN(SetEquipFlag,				void, 0x0071F520, UInt8 flags);
 	DEFINE_MEMBER_FN(GetAnimationGraphManager,	bool, 0x00721F30, BSAnimationGraphManagerPtr &ptr);
 	DEFINE_MEMBER_FN(GetAnimationResponse,		bool, 0x00721E70, BSAnimationResponsePtr &ptr);
-
-	DEFINE_MEMBER_FN(GetActorKnowledge, ActorKnowledge *, 0x00709A20, Actor *actor, Actor *target);
-
+	DEFINE_MEMBER_FN(VisitPerkEntries,			void, 0x00724660, UInt8 entryType, PerkEntryVisitor &visitor);
 
 	// @members
 	UInt32			unk00;								// 00

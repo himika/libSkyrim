@@ -5,8 +5,12 @@
 #include "../FormComponents/TESDescription.h"
 #include "../FormComponents/TESIcon.h"
 #include "../FormComponents/Condition.h"
+#include "../FormComponents/BGSPerkRankArray.h"
 #include "../BSCore/BSTArray.h"
 
+class BGSPerk;
+class Actor;
+class SpellItem;
 
 /*==============================================================================
 class BGSEntryPointFunctionData +0000 (_vtbl=010A2BAC)
@@ -15,16 +19,72 @@ class BGSEntryPointFunctionData +0000 (_vtbl=010A2BAC)
 class BGSEntryPointFunctionData
 {
 public:
-	virtual ~BGSEntryPointFunctionData();						// // 0054B640
+	enum FunctionType
+	{
+		kFunctionType_Invalid = 0,
+		kFunctionType_OneValue,
+		kFunctionType_TwoValue,
+		kFunctionType_LeveledList,
+		kFunctionType_DataActivateChoice,
+		kFunctionType_DataSpellItem,
+		kFunctionType_DataBooleanGraphVariable,
+		kFunctionType_DataText
+	};
+	
+	virtual ~BGSEntryPointFunctionData();		// 0054B640
 
-	virtual void Unk_001(void) = 0;	// pure
-	virtual void Unk_002(void) = 0;	// pure
-	virtual void Unk_003(void);		// 00588F30 (UInt32 arg) { return; }
-	virtual void Unk_004(void);		// 004D43E0 (UInt32 arg1, UInt32 arg2) { return; }
-	virtual void Unk_005(void);		// 0054F4B0
-	virtual void Unk_006(void);		// 00588F30 (UInt32 arg) { return; }
-	virtual void Unk_007(void);		// 005EADD0 (void) { return 0; }
+	virtual UInt32	GetType(void) const = 0;	// pure
+	virtual void	Unk_002(void) = 0;			// pure
+	virtual void	Unk_003(void);				// 00588F30 (UInt32 arg) { return; }
+	virtual void	Unk_004(void);				// 004D43E0 (UInt32 arg1, UInt32 arg2) { return; }
+	virtual void	Unk_005(void);				// 0054F4B0
+	virtual void	Unk_006(void);				// 00588F30 (UInt32 arg) { return; }
+	virtual void	Unk_007(void);				// 005EADD0 (void) { return 0; }
 };
+
+//class BGSEntryPointFunctionDataOneValue;				// type: 1
+//class BGSEntryPointFunctionDataTwoValue;				// type: 2
+//class BGSEntryPointFunctionDataLeveledList;			// type: 3
+
+/*==============================================================================
+class BGSEntryPointFunctionDataActivateChoice +0000 (_vtbl=010A2C60)
+0000: class BGSEntryPointFunctionDataActivateChoice
+0000: |   class BGSEntryPointFunctionData
+==============================================================================*/
+// 14
+class BGSEntryPointFunctionDataActivateChoice : public BGSEntryPointFunctionData
+{
+public:
+	enum Flags
+	{
+		kFlag_RunImmediately = 1,
+		kFlag_ReplaceDefault = 2
+	};
+
+	virtual ~BGSEntryPointFunctionDataActivateChoice();				// 0054B6D0
+
+	virtual UInt32	GetType() const override;						// 009048A0 { return 0x00000004; }
+	//virtual ????   Unk_002(????) override;                        // 0054BF50
+	//virtual ????   Unk_003(????) override;                        // 0054C1B0
+	//virtual ????   Unk_005(????) override;                        // 0054B630
+	//virtual ????   Unk_006(????) override;                        // 00474D90
+	//virtual UInt32 Unk_007(void) override;                        // 005E8920 { return (UInt32)unk8; }
+
+	// @members
+	BSFixedString	unk04;			// 04
+	BGSPerk			* perk;			// 08 - init'd arg1
+	SpellItem		* applySpell;	// 0C - init'd 0
+	UInt16			flags;			// 10 - init'd 0
+	UInt16			unk12;			// 12 - init'd arg2 - flag ?
+
+private:
+	DEFINE_MEMBER_FN(ctor, BGSEntryPointFunctionDataActivateChoice *, 0x0054B690, BGSPerk *a_perk, UInt16 arg2);
+};
+
+//class BGSEntryPointFunctionDataSpellItem;				// type: 5
+//class BGSEntryPointFunctionDataBooleanGraphVariable;	// type: 6
+//class BGSEntryPointFunctionDataText;					// type: 7
+
 
 /*==============================================================================
 class BGSPerkEntry +0000 (_vtbl=010A3658)
@@ -33,19 +93,18 @@ class BGSPerkEntry +0000 (_vtbl=010A3658)
 class BGSPerkEntry
 {
 public:
-	virtual ~BGSPerkEntry();		// 009EA550
-
-	virtual bool	Unk_001(void);				// 0092D110 (void) { return false; }
-	virtual UInt32	Unk_002(void);				// 005EADD0 (void) { return 0; }
-	virtual void	Unk_003(void);				// 0054FCB0
-	virtual void	Unk_004(void) = 0;			// pure
-	virtual void	Unk_005(void);				// 006C50E0 (void) { return; }
-	virtual void	Unk_006(UInt32 arg);		// 00588F30 (UInt32 arg) { return; }
-	virtual bool	Unk_007(UInt32 arg);		// 00C8CCA0 (UInt32 arg) { return true; }
-	virtual void	Unk_008(UInt32 arg);		// 00588F30 (UInt32 arg) { return; }
-	virtual void	Unk_009(void);				// 0054F4B0
-	virtual void	Unk_00A(void) = 0;			// pure
-	virtual void	Unk_00B(UInt32 arg) = 0;	// pure
+	virtual bool	CanProcess(UInt32 numArgs, void *args);	// 009EA550 { return false; }
+	virtual UInt8	GetType(void) const;					// 0092D110 { return 0; }
+	virtual BGSEntryPointFunctionData *	GetFunctionData(void) const;	// 005EADD0 { return nullptr; }
+	virtual ~BGSPerkEntry();								// 0054FCB0
+	virtual void	Unk_04(void) = 0;						// pure
+	virtual void	Unk_05(void);							// 006C50E0 { return; }
+	virtual void	Unk_06(UInt32 arg);						// 00588F30 { return; }
+	virtual bool	Unk_07(UInt32 arg);						// 00C8CCA0 { return true; }
+	virtual void	Unk_08(UInt32 arg);						// 00588F30 { return; }
+	virtual void	Unk_09(void);							// 0054F4B0
+	virtual void	Unk_0A(void) = 0;						// pure
+	virtual void	Unk_0B(UInt32 arg) = 0;					// pure
 
 	// @members
 	//void	** _vtbl;	// 00
@@ -62,14 +121,12 @@ class BGSQuestPerkEntry +0000 (_vtbl=010A368C)
 class BGSQuestPerkEntry : public BGSPerkEntry
 {
 public:
-	//virtual ~BGSQuestPerkEntry();						// 009EA550 (not overrided)
-
 	// @override
-	virtual void	Unk_004(void) override;				// 005EADD0 (void) { return 0; }
-	virtual void	Unk_006(UInt32 arg) override;		// 0054F690
-	virtual bool	Unk_007(UInt32 arg) override;		// 0054FCE0
-	virtual void	Unk_00A(void) override;				// 0054F4C0
-	virtual void	Unk_00B(UInt32 arg) override;		// 00588F30 (UInt32 arg) { return; }
+	virtual void	Unk_04(void) override;				// 005EADD0 (void) { return 0; }
+	virtual void	Unk_06(UInt32 arg) override;		// 0054F690
+	virtual bool	Unk_07(UInt32 arg) override;		// 0054FCE0
+	virtual void	Unk_0A(void) override;				// 0054F4C0
+	virtual void	Unk_0B(UInt32 arg) override;		// 00588F30 (UInt32 arg) { return; }
 
 	TESQuest	* quest;
 	UInt8		stage;
@@ -84,13 +141,11 @@ class BGSAbilityPerkEntry +0000 (_vtbl=010A36C0)
 class BGSAbilityPerkEntry : public BGSPerkEntry
 {
 public:
-	//virtual ~BGSAbilityPerkEntry();					// 009EA550 (not overrided)
-
-	virtual void	Unk_004(void) override;				// 00CAC8A0
-	virtual void	Unk_006(UInt32 arg) override;		// 0054F710
-	virtual bool	Unk_007(UInt32 arg) override;		// 0054FDE0
-	virtual void	Unk_00A(void) override;				// 0054F500
-	virtual void	Unk_00B(UInt32 arg) override;		// 0054F530
+	virtual void	Unk_04(void) override;				// 00CAC8A0
+	virtual void	Unk_06(UInt32 arg) override;		// 0054F710
+	virtual bool	Unk_07(UInt32 arg) override;		// 0054FDE0
+	virtual void	Unk_0A(void) override;				// 0054F500
+	virtual void	Unk_0B(UInt32 arg) override;		// 0054F530
 
 	SpellItem	* spellItem;
 };
@@ -100,6 +155,7 @@ class BGSEntryPointPerkEntry +0000 (_vtbl=010A36F4)
 0000: class BGSEntryPointPerkEntry
 0000: |   class BGSPerkEntry
 ==============================================================================*/
+// 18
 class BGSEntryPointPerkEntry : public BGSPerkEntry
 {
 public:
@@ -200,33 +256,30 @@ public:
 		kNumPerkEntryPoints
 	};
 
-	virtual ~BGSEntryPointPerkEntry();					// 0054FE70 - Has a number of virtuals, don't know what they are yet
 
-	virtual bool	Unk_001(void) override;				// 00941C90
-	virtual UInt32	Unk_002(void) override;				// 00E80F90
-	virtual void	Unk_003(void) override;				// 00550280
-	virtual void	Unk_004(void) override;				// 005C8DE0
-	virtual void	Unk_005(void) override;				// 0054FFA0
-	virtual void	Unk_006(UInt32 arg) override;		// 0054F560
-	virtual bool	Unk_007(UInt32 arg) override;		// 0054F790
-	virtual void	Unk_008(UInt32 arg) override;		// 0054F5A0
-	virtual void	Unk_009(void) override;				// 0054F5C0
-	virtual void	Unk_00A(void) override;				// 0054F5E0
-	virtual void	Unk_00B(UInt32 arg) override;		// 0054F610
+	virtual bool	CanProcess(UInt32 numArgs, void *args) override;	// 0054FE70
+	virtual UInt8	GetType(void) const override;						// 00941C90 { return this->unk09; }
+	virtual BGSEntryPointFunctionData *	GetFunctionData(void) const override;	// 00E80F90 { return this->unk0C; }
+	virtual ~BGSEntryPointPerkEntry();									// 00550280
+	virtual void	Unk_04(void) override;								// 005C8DE0
+	virtual void	Unk_05(void) override;								// 0054FFA0
+	virtual void	Unk_06(UInt32 arg) override;						// 0054F560
+	virtual bool	Unk_07(UInt32 arg) override;						// 0054F790
+	virtual void	Unk_08(UInt32 arg) override;						// 0054F5A0
+	virtual void	Unk_09(void) override;								// 0054F5C0
+	virtual void	Unk_0A(void) override;								// 0054F5E0
+	virtual void	Unk_0B(UInt32 arg) override;						// 0054F610
 
-	static void Calcurate(EntryPointType type, TESObjectREFR *source, ...);
+	static void Calculate(EntryPointType type, TESObjectREFR *source, ...);
 
-	UInt32						unk08;
-	BGSEntryPointFunctionData	* data;
-	void						* unk10;
-	BGSPerk						* perk;
+	UInt8						type;				// 08 - EntryPointType
+	UInt8						unk09;				// 09
+	UInt8						numArgs;			// 0A
+	BGSEntryPointFunctionData	* functionData;		// 0C
+	Condition					* conditions;		// 10
+	BGSPerk						* perk;				// 14
 };
 
-class PerkRankVisitor
-{
-public:
-	virtual void Visit(void) = 0;
-};
 
 /*==============================================================================
 class BGSPerk +0000 (_vtbl=010A37CC)
@@ -295,3 +348,10 @@ public:
 	BGSPerk *						nextPerk;		// 48
 };
 STATIC_ASSERT(sizeof(BGSPerk) == 0x4C);
+
+
+class PerkEntryVisitor
+{
+public:
+	virtual UInt32 Visit(BGSPerkEntry *perkEntry) = 0;
+};

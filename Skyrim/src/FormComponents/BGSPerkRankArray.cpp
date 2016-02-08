@@ -1,7 +1,7 @@
 #include "Skyrim.h"
 #include "Skyrim/FormComponents/BGSPerkRankArray.h"
 
-void BGSPerkRankArray::VisitPerkEntry(PerkEntryVisitor &visitor) const
+void BGSPerkRankArray::VisitPerkRanks(PerkRankVisitor &visitor) const
 {
 	for (UInt32 i = 0; i < numPerkRanks; ++i)
 	{

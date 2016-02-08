@@ -150,7 +150,7 @@ public:
 	virtual UInt32	Unk_53(UInt32 arg);									// 004D59D0 { extraData->GetByType<ExtraStartingPos>() ... return arg; }
 	virtual void	Unk_54(NiPoint3 * pos);								// 004D9C60 SetStartingPos ?
 	virtual void	Unk_55(void);										// 004D5950
-	virtual void	RemoveItem(RefHandle* droppedItemHandle, TESForm* akItem, UInt32 aiCount, UInt32 mode, BaseExtraList* extraList, TESObjectREFR* moveToRef, UInt32 unk7, UInt32 unk8);	// 004DC790 mode 0:remove 1:idk 2:trade(item ownership changes) 3:drop 4:move 5:idk - called from 0084ABE9
+	virtual void	RemoveItem(RefHandle* droppedItemHandle, TESForm* akItem, UInt32 aiCount, UInt32 mode, BaseExtraList* extraList, TESObjectREFR* moveToRef, UInt32 unk7, UInt32 unk8);	// 004DC790 mode 0:remove 1:steal 2:trade(item ownership changes) 3:drop 4:take 5:idk - called from 0084ABE9
 	virtual bool	Unk_57(UInt32 arg1, UInt32 arg2, UInt32 arg3, UInt32 arg4, UInt32 arg5);	// 004D5C00
 	virtual void	Unk_58(UInt32 arg);									// 00588F30 { return; }
 	virtual void	Unk_59(UInt32 arg1, UInt32 arg2);					// 004D43E0 { return; }
@@ -196,7 +196,7 @@ public:
 	virtual void	Unk_81(UInt32 arg);									// 00588F30 { return; }
 	virtual void	Unk_82(UInt32 arg);									// 00588F30 { return; }
 	virtual void	Unk_83(UInt32 arg);									// 00588F30 { return; }
-	virtual void	Unk_84(void);										// 004D5DF0
+	virtual void	Unk_84(UInt32 arg);									// 004D5DF0
 	virtual void	Unk_85(void);										// 004D6120
 	virtual void	Unk_86(void);										// 004DA630
 	virtual void	Unk_87(UInt32 arg);									// 00588F30 { return; }

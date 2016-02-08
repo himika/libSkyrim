@@ -3,7 +3,7 @@
 #include "BaseFormComponent.h"
 
 class BGSPerk;
-class PerkEntryVisitor;
+class PerkRankVisitor;
 
 // 0C
 class BGSPerkRankArray : public BaseFormComponent
@@ -20,11 +20,11 @@ public:
 	Entry	* perkRanks;	// 04
 	UInt32	numPerkRanks;	// 08
 
-	void VisitPerkEntry(PerkEntryVisitor &visitor) const;
+	void VisitPerkRanks(PerkRankVisitor &visitor) const;
 };
 
 
-class PerkEntryVisitor
+class PerkRankVisitor
 {
 public:
 	virtual bool operator()(const BGSPerkRankArray::Entry *) = 0;
