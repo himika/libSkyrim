@@ -3,7 +3,6 @@
 #include "../BSCore/BSTEvent.h"
 #include "../BSCore/BSTSingleton.h"
 #include "../BSCore/BSTArray.h"
-#include "../Events.h"
 
 
 struct BGSFootstepEvent

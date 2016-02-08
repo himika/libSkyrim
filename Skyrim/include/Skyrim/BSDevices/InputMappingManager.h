@@ -36,8 +36,11 @@ public:
 		kContext_MapDebug,
 		kContext_Lockpicking,
 		kContext_Favor,
-		kContextCount = 17
+		kContextCount = 17,
+
+		kContext_Invalid = 18
 	};
+
 
 	struct InputMapping
 	{
@@ -47,7 +50,7 @@ public:
 			BSFixedString	name;		// 00 - User Event Name
 			UInt32			buttonID;	// 04
 			UInt32			sortIndex;	// 08
-			UInt32			unk0C;		// 0C
+			UInt32			flags;		// 0C - User Event Binary Flag
 		};
 
 		// @members
@@ -83,6 +86,9 @@ public:
 private:
 	friend struct BSTSingletonSDMBase<BSTSDMTraits<InputMappingManager>>;
 	DEFINE_MEMBER_FN(ctor, InputMappingManager*, 0x00A68770);
+
+	DEFINE_MEMBER_FN(DisableUserEvent, void, 0x00A67A30, UInt32 flags, bool unk1, book unk2);
+
 };
 STATIC_ASSERT(offsetof(InputMappingManager, unk78) == 0x78);
 STATIC_ASSERT(offsetof(InputMappingManager, unk84) == 0x84);

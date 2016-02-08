@@ -27,6 +27,10 @@ class MenuControls :
 public:
 	virtual			~MenuControls();
 
+	// @override class BSTEventSink<class InputEvent *> : (vtbl=010E6A60)
+	virtual EventResult ReceiveEvent(InputEvent **evn, BSTEventSource<InputEvent *> *source) override;	// 0087A3D0
+
+
 	void RegisterHandler(MenuEventHandler *handler)
 	{
 		RegisterHandler_Impl(handler);

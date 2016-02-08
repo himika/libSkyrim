@@ -37,7 +37,7 @@ public:
 		kType_ItemMenu				= 0x2000,
 		kType_StopCrosshairUpdate	= 0x4000,
 		kType_Unk8000				= 0x8000,
-		kType_Unk10000				= 0x10000
+		kType_Unk10000				= 0x10000	// mouse cursor
 	};
 
 	IMenu();			// 00A64B70
@@ -115,15 +115,7 @@ public:
 									//    -                                  ||  +---------------0800 Do Not Prevent Save Game
 									//    -                                  |+------------------2000 Item Menu, Prevent Other Item Menu
 									//    -                                  +-------------------4000 Stop Updating Crosshair, Disable Journal, Prevent Game Load
-	UInt32			unk14;			// 14 - init'd to 0x12
-									//    - if this value is 0x01, seems to disable player movement control
-									//    - 0x01 Main Menu, TweenMenu, Credits Menu
-									//    - 0x02 Console
-									//    - 0x03 MagicMenu
-									//    - 0x06 FavoritesMenu
-									//    - 0x07 MapMenu
-									//    - 0x08 StatsMenu
-									//    - 0x0C Journal Menu
+	UInt32			context;		// 14 - input context - init'd to 0x12 (kContext_Invalid)
 	FxDelegate		* fxDelegate;	// 18 - allocated in SetMovieView
 
 private:

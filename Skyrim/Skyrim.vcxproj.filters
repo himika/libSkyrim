@@ -581,9 +581,6 @@
     <ClInclude Include="include\Skyrim\VMState.h">
       <Filter>Header Files\Skyrim</Filter>
     </ClInclude>
-    <ClInclude Include="include\Skyrim\Events.h">
-      <Filter>Header Files\Skyrim</Filter>
-    </ClInclude>
     <ClInclude Include="include\Skyrim\BSScript\BSScript.h">
       <Filter>Header Files\Skyrim\BSScript</Filter>
     </ClInclude>
@@ -2229,6 +2226,9 @@
       <Filter>Header Files\Skyrim\ExtraData</Filter>
     </ClInclude>
     <ClInclude Include="include\Skyrim\BSDevices\InputMappingManager.h">
+      <Filter>Header Files\Skyrim\BSDevices</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSDevices\KeyCode.h">
       <Filter>Header Files\Skyrim\BSDevices</Filter>
     </ClInclude>
   </ItemGroup>

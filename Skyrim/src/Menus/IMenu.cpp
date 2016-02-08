@@ -1,9 +1,8 @@
 #include "Skyrim/Menus/IMenu.h"
 #include "Skyrim/Menus/BSScaleformLoader.h"
 
-IMenu::IMenu() : view(nullptr), fxDelegate(nullptr), menuDepth(3), flags(0)
+IMenu::IMenu() : view(nullptr), fxDelegate(nullptr), menuDepth(3), flags(0), context(0x12)
 {
-	unk14 = 0x12;
 }
 
 

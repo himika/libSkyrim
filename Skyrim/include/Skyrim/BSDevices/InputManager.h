@@ -124,8 +124,8 @@ STATIC_ASSERT(sizeof(InputStringHolder) == 0x1A0);
 
 // 44
 class InputManager :
-	public BSTEventSource<InputEvent *>,
-	public BSTSingletonSDM<InputManager>
+	public BSTEventSource<InputEvent *>,	// 00
+	public BSTSingletonSDM<InputManager>	// 30
 {
 public:
 	bool IsGamepadEnabled(void) const	// 00A68E80

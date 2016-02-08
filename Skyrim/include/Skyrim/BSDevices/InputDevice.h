@@ -19,7 +19,7 @@ public:
 
 	virtual void	Unk_05(void) = 0;
 
-	enum
+	enum DeviceType
 	{
 		kDeviceType_Keyboard = 0,
 		kDeviceType_Mouse,
