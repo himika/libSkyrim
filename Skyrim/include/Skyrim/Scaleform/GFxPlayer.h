@@ -205,7 +205,7 @@ protected:
 		DEFINE_MEMBER_FN_const(HasMember, bool, 0x00920C50, void *pdata, const char *name, bool isdobj);
 		DEFINE_MEMBER_FN_const(GetMember, bool, 0x00923960, void *pdata, const char *name, GFxValue *pval, bool isdobj);
 		DEFINE_MEMBER_FN_const(SetMember, bool, 0x00920D20, void *pdata, const char *name, const GFxValue &pval, bool isdobj);
-		DEFINE_MEMBER_FN(Invoke, bool, 0x00922ED0, void *pdata, GFxValue *presult, const char *name, const GFxValue *pargs, UInt32 nargs, bool isdobj);
+		DEFINE_MEMBER_FN(Invoke, bool, 0x00922ED0, void *pdata, GFxValue *pResult, const char *name, const GFxValue *pArgs, UInt32 nargs, bool isdobj);
 		DEFINE_MEMBER_FN(DeleteMember, bool, 0x00920DE0, void *pdata, const char *name, bool isdobj);
 		void    VisitMembers(void* pdata, ObjVisitor* visitor, bool isdobj) const;						// not found
 		DEFINE_MEMBER_FN_const(GetArraySize, UInt32, 0x00920E80, void *pdata);
@@ -363,13 +363,13 @@ public:
 	{
 		return pObjectInterface->SetMember(Value.pData, name, val, IsDisplayObject());
 	}
-	bool Invoke(const char* name, GFxValue* presult, const GFxValue* pargs, UInt32 nargs)
+	bool Invoke(const char* name, GFxValue* pResult, const GFxValue* pArgs, UInt32 nargs)
 	{
-		return pObjectInterface->Invoke(Value.pData, presult, name, pargs, nargs, IsDisplayObject());
+		return pObjectInterface->Invoke(Value.pData, pResult, name, pArgs, nargs, IsDisplayObject());
 	}
-	bool Invoke(const char* name, GFxValue* presult = nullptr)
+	bool Invoke(const char* name, GFxValue* pResult = nullptr)
 	{
-		return Invoke(name, presult, nullptr, 0);
+		return Invoke(name, pResult, nullptr, 0);
 	}
 	void VisitMembers(ObjectVisitor* visitor) const
 	{
@@ -632,7 +632,7 @@ public:
 	virtual bool			IsAvailable(const char* pPathToVar) const = 0;					// 0A
 	virtual void			CreateString(GFxValue* pValue, const char* pstring) = 0;		// 0B
 	virtual void			CreateStringW(GFxValue* pValue, const wchar_t* pstring) = 0;	// 0C
-	virtual void			CreateObject(GFxValue* pValue, const char* className = NULL, const GFxValue* pargs = NULL, UInt32 nargs = 0) = 0;	// 0D
+	virtual void			CreateObject(GFxValue* pValue, const char* className = NULL, const GFxValue* pArgs = NULL, UInt32 nargs = 0) = 0;	// 0D
 	virtual void			CreateArray(GFxValue* pValue) = 0;								// 0E
 	virtual void			CreateFunction(GFxValue* pValue, GFxFunctionHandler* pfc, void* puserData = NULL) = 0;						// 0F
 	virtual bool			SetVariable(const char* pPathToVar, const GFxValue& value, SetVarType setType = SV_Sticky) = 0;				// 10
@@ -641,9 +641,9 @@ public:
 	virtual bool			SetVariableArraySize(const char* pPathToVar, UInt32 count, SetVarType setType = SV_Sticky) = 0;				// 13
 	virtual UInt32			GetVariableArraySize(const char* pPathToVar) = 0;															// 14
 	virtual bool			GetVariableArray(SetArrayType type, const char* pPathToVar, UInt32 index, void* pdata, UInt32 count) = 0;	// 15
-	virtual bool			Invoke(const char* pmethodName, GFxValue *presult, const GFxValue* pargs, UInt32 numArgs) = 0;				// 16
-	virtual bool			Invoke(const char* pmethodName, GFxValue *presult, const char* pargFmt, ...) = 0;							// 17
-	virtual bool			InvokeArgs(const char* pmethodName, GFxValue *presult, const char* pargFmt, va_list args) = 0;				// 18
+	virtual bool			Invoke(const char* pMethodName, GFxValue *pResult, const GFxValue* pArgs, UInt32 numArgs) = 0;				// 16
+	virtual bool			Invoke(const char* pMethodName, GFxValue *pResult, const char* pArgFmt, ...) = 0;							// 17
+	virtual bool			InvokeArgs(const char* pMethodName, GFxValue *pResult, const char* pArgFmt, va_list args) = 0;				// 18
 
 	inline UInt32 GetFrameCount() const { return GetMovieDef()->GetFrameCount(); }
 	inline float GetFrameRate() const { return GetMovieDef()->GetFrameRate(); }
@@ -679,6 +679,13 @@ public:
 	{
 		return GetVariableArray(SA_Value, pPathToVar, index, pdata, count);
 	}
+
+	template <std::size_t SIZE>
+	inline bool Invoke(const char* pMethodName, GFxValue *pResult, const GFxValue(&args)[SIZE])
+	{
+		return Invoke(pMethodName, pResult, args, SIZE);
+	}
+
 
 	static float GetRenderPixelScale() { return 20.f; }
 };
@@ -808,9 +815,9 @@ public:
 
 	//const char *	GetVariable(const char* pPathToVar) const;
 	//const wchar_t *	GetVariableStringW(const char* pPathToVar) const;
-	//const char *	Invoke(const char* pmethodName, const GFxValue* pargs, UInt32 numArgs);
-	//const char *	Invoke(const char* pmethodName, const char* pargFmt, ...);
-	//const char *	InvokeArgs(const char* pmethodName, const char* pargFmt, va_list args);
+	//const char *	Invoke(const char* pMethodName, const GFxValue* pArgs, UInt32 numArgs);
+	//const char *	Invoke(const char* pMethodName, const char* pArgFmt, ...);
+	//const char *	InvokeArgs(const char* pMethodName, const char* pArgFmt, va_list args);
 };
 
 
