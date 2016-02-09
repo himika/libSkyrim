@@ -282,6 +282,7 @@ public:
 	{
 	public:
 		typedef const_iterator _iter;
+		typedef typename BSTArray::value_type		value_type;
 		typedef typename BSTArray::pointer			pointer;
 		typedef typename BSTArray::reference		reference;
 		typedef typename BSTArray::const_pointer	const_pointer;
@@ -440,6 +441,19 @@ public:
 	BSTArray() {
 	}
 
+	BSTArray(const BSTArray &rhs) {
+		UInt32 size = rhs.GetSize();
+		if (size > 0)
+		{
+			functor_type pred(this);
+			_allocate(pred, size, sizeof(value_type));
+			pointer p = rhs->_head();
+			pointer last = rhs->_last();
+			while (p <= last)
+				push_back(*p++);
+		}
+	}
+
 	explicit BSTArray(std::size_t num) {
 		functor_type pred(this);
 		_allocate(pred, num, sizeof(value_type));
@@ -518,7 +532,7 @@ public:
 		SInt32 index = _push(pred, GetCapacity(), sizeof(value_type));
 		if (index >= 0) {
 			_move(_head(), 1, 0, index, sizeof(value_type));
-			(*this)[0] = ref;
+			new(_head())value_type(ref);
 		}
 	}
 
@@ -527,7 +541,7 @@ public:
 		functor_type pred(this);
 		SInt32 index = _push(pred, GetCapacity(), sizeof(value_type));
 		if (index >= 0) {
-			(*this)[index] = ref;
+			new(_head() + index)value_type(ref);
 		}
 	}
 
@@ -546,6 +560,21 @@ public:
 			p->~value_type();
 			_pop(1);
 		}
+	}
+
+	inline iterator erase(iterator it) {
+		if (begin() <= it && it < end())
+		{
+			difference_type index = it - begin();
+			iterator::pointer(it)->~value_type();
+
+			difference_type next = index + 1;
+			std::size_t num = size() - next;
+			if (num > 0)
+				_move(_head(), index, next, num, sizeof(value_type));
+			_pop(1);
+		}
+		return it;
 	}
 
 	//==================================================
