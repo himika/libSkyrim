@@ -155,6 +155,11 @@ namespace SKSEScript
 			return NativeCall(m_callback, resultValue, baseValue, frame, state);
 		}
 
+		inline CallbackType GetCallback() const
+		{
+			return m_callback;
+		}
+
 	private:
 		// @members
 		CallbackType m_callback;		// 2C
