@@ -341,6 +341,7 @@
     <ClInclude Include="include\Skyrim\ExtraData\ExtraSeenData.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraSoul.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraStartingPosition.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraTeleport.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraTextDisplayData.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraTimeLeft.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraWorn.h" />

@@ -2231,6 +2231,9 @@
     <ClInclude Include="include\Skyrim\BSDevices\KeyCode.h">
       <Filter>Header Files\Skyrim\BSDevices</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraTeleport.h">
+      <Filter>Header Files\Skyrim\ExtraData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl">

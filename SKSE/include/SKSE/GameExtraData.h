@@ -44,6 +44,7 @@
 #include <Skyrim/ExtraData/ExtraScale.h>
 #include <Skyrim/ExtraData/ExtraSoul.h>
 #include <Skyrim/ExtraData/ExtraStartingPosition.h>
+#include <Skyrim/ExtraData/ExtraTeleport.h>
 #include <Skyrim/ExtraData/ExtraTextDisplayData.h>
 #include <Skyrim/ExtraData/ExtraTimeLeft.h>
 #include <Skyrim/ExtraData/ExtraWorn.h>
