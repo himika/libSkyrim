@@ -59,7 +59,7 @@ public:
 		BSTArray<Data>	gamepadMap;
 	};
 
-	// 14;
+	// 14
 	struct UnkData
 	{
 		BSFixedString	unk00;
