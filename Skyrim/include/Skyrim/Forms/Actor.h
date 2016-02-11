@@ -648,7 +648,7 @@ public:
 	DEFINE_MEMBER_FN_const(IsHostileToActor, bool, 0x006D4360, Actor *actor);
 
 	///<summary>Returns whether this actor is in a kill move or not.</summary>
-	bool IsInKillmove() const		// 006E16F0
+	bool IsInKillMove() const		// 006E16F0
 	{
 		return flags2.killMove;
 	}
