@@ -115,9 +115,14 @@ public:
 		return IsNot(first) && IsNot(rest...);
 	}
 
+	bool IsKey() const		{ return this->Is(FormType::Key); }
 	bool IsWeapon()	const	{ return this->Is(FormType::Weapon); }
 	bool IsAmmo() const		{ return this->Is(FormType::Ammo); }
 	bool IsArmor() const	{ return this->Is(FormType::Armor); }
+	bool IsSoulGem() const	{ return this->Is(FormType::SoulGem); }
+
+	bool IsLockpick() const	{ return this->formID == 0x00000A; }
+	bool IsGold() const		{ return this->formID == 0x00000F; }
 
 	bool HasWorldModel(void) const;
 	UInt32	GetGoldValue() const;
