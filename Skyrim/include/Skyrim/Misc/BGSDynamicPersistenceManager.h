@@ -36,7 +36,7 @@ public:
 	// @members
 	//BSTSingletonSDM						singleton;				// 00
 	BSTArray<Data>							offensiveEnchants;		// 04
-	BSTArray<Data>							difensiveEnchants;		// 10
+	BSTArray<Data>							defensiveEnchants;		// 10
 	BSTHashMap<FormID, TESBoundObject *>	offensiveObjects;		// 1C - weapon and poison
 	BSTHashMap<FormID, TESBoundObject *>	defensiveObjects;		// 3C - armor and potion
 	BSTHashMap<UInt32, UInt32>				map5C;					// 5C
