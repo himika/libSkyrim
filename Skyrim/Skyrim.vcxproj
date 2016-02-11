@@ -109,6 +109,7 @@
     <ClCompile Include="src\Misc\BGSDynamicPersistenceManager.cpp" />
     <ClCompile Include="src\Misc\BGSFootstepManager.cpp" />
     <ClCompile Include="src\Misc\BGSImpactManager.cpp" />
+    <ClCompile Include="src\Misc\GarbageCollector.cpp" />
     <ClCompile Include="src\Misc\InventoryChanges.cpp" />
     <ClCompile Include="src\Misc\MagicFavorites.cpp" />
     <ClCompile Include="src\Misc\MiscStat.cpp" />

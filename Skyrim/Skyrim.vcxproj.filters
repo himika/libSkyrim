@@ -567,6 +567,9 @@
     <ClCompile Include="src\Misc\BGSDynamicPersistenceManager.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="src\Misc\GarbageCollector.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Skyrim.h">
