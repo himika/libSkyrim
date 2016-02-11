@@ -106,6 +106,7 @@
     <ClCompile Include="src\Menus\MenuManager.cpp" />
     <ClCompile Include="src\Menus\RaceSexMenu.cpp" />
     <ClCompile Include="src\Menus\UIMessage.cpp" />
+    <ClCompile Include="src\Misc\BGSDynamicPersistenceManager.cpp" />
     <ClCompile Include="src\Misc\BGSFootstepManager.cpp" />
     <ClCompile Include="src\Misc\BGSImpactManager.cpp" />
     <ClCompile Include="src\Misc\InventoryChanges.cpp" />

@@ -8,6 +8,7 @@
 #include <Skyrim/FileIO/BGSSaveLoadGame.h>
 
 #include <Skyrim/Misc/MiscStats.h>
+#include <Skyrim/Misc/BGSDynamicPersistenceManager.h>
 
 #include <Skyrim/Sky/Atmosphere.h>
 #include <Skyrim/Sky/Clouds.h>

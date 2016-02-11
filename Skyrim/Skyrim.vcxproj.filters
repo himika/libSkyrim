@@ -564,6 +564,9 @@
     <ClCompile Include="src\BSDevices\InputMappingManager.cpp">
       <Filter>Source Files\BSDevices</Filter>
     </ClCompile>
+    <ClCompile Include="src\Misc\BGSDynamicPersistenceManager.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Skyrim.h">
