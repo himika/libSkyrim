@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../BSCore/BSTEvent.h"
+#include "../BSSystem/BSTSmartPointer.h"
 
 class TESForm;
 class ActiveEffect;
@@ -15,8 +16,8 @@ struct BGSEventProcessedEvent
 // 8
 struct TESActivateEvent
 {
-	TESObjectREFR* target;
-	TESObjectREFR* caster;
+	TESObjectREFR	* target;		// 00 - TESObjectREFRPtr
+	TESObjectREFR	* caster;		// 04 - TESObjectREFRPtr
 };
 
 struct TESActiveEffectApplyRemoveEvent
@@ -27,9 +28,9 @@ struct TESActiveEffectApplyRemoveEvent
 	UInt32			unk0C;
 	UInt32			unk10;
 	UInt32			unk14;
-	UInt32			unk18; // Flags?
-	UInt32			unk1C; // Use effect2 if this is 1
-	TESForm			* source; // Not really sure what this is, probably the extra form
+	UInt32			unk18;			// Flags?
+	UInt32			unk1C;			// Use effect2 if this is 1
+	TESForm			* source;		// Not really sure what this is, probably the extra form
 	ActiveEffect	* effect1;
 	ActiveEffect	* effect2;
 };
@@ -49,7 +50,7 @@ struct TESBookReadEvent
 struct TESCellAttachDetachEvent
 {
 	// SendEvent: 004CEB5F
-	TESObjectREFR*	ref;
+	TESObjectREFR	* ref;
 	bool			bAttach;
 	UInt8			pad[3];
 };
@@ -68,15 +69,15 @@ struct TESCellReadyToApplyDecalsEvent
 struct TESCellFullyLoadedEvent
 {
 	// SendEvent: 00437663 <= 4CDD8E
-	TESObjectCELL*	cell;
+	TESObjectCELL	* cell;
 };
 
 // 0C
 struct TESCombatEvent
 {
-	Actor*  caster;
-	Actor*  target;
-	UInt32  state;
+	Actor	* caster;
+	Actor	* target;
+	UInt32	state;
 };
 
 // 18
@@ -106,10 +107,10 @@ struct TESEnterBleedoutEvent
 // 10
 struct TESEquipEvent
 {
-	UInt32 unk_00;
-	UInt32 unk_01;
-	UInt32 unk_02;
-	UInt32 unk_03;
+	UInt32	unk_00;
+	UInt32	unk_01;
+	UInt32	unk_02;
+	UInt32	unk_03;
 };
 
 struct TESFormDeleteEvent
@@ -240,8 +241,8 @@ struct TESSellEvent
 // 08
 struct TESSleepStartEvent
 {
-	float startTime;	// 00
-	float endTime;		// 04
+	float	startTime;		// 00
+	float	endTime;		// 04
 };
 
 struct TESSleepStopEvent
@@ -312,6 +313,88 @@ struct TESSwitchRaceCompleteEvent
 {
 	Actor	* actor;
 };
+
+
+// 9F0
+struct ScriptEventSourceHolder :
+	public BSTEventSource<BGSEventProcessedEvent>,				// 000
+	public BSTEventSource<TESActivateEvent>,					// 030
+	public BSTEventSource<TESActiveEffectApplyRemoveEvent>,		// 060
+	public BSTEventSource<TESActorLocationChangeEvent>,			// 090
+	public BSTEventSource<TESBookReadEvent>,					// 0C0
+	public BSTEventSource<TESCellAttachDetachEvent>,			// 0F0
+	public BSTEventSource<TESCellFullyLoadedEvent>,				// 120
+	public BSTEventSource<TESCellReadyToApplyDecalsEvent>,		// 150
+	public BSTEventSource<TESCombatEvent>,						// 180
+	public BSTEventSource<TESContainerChangedEvent>,			// 1B0
+	public BSTEventSource<TESDeathEvent>,						// 1E0
+	public BSTEventSource<TESDestructionStageChangedEvent>,		// 210
+	public BSTEventSource<TESEnterBleedoutEvent>,				// 240
+	public BSTEventSource<TESEquipEvent>,						// 270
+	public BSTEventSource<TESFormDeleteEvent>,					// 2A0
+	public BSTEventSource<TESFurnitureEvent>,					// 2D0
+	public BSTEventSource<TESGrabReleaseEvent>,					// 300
+	public BSTEventSource<TESHitEvent>,							// 330
+	public BSTEventSource<TESInitScriptEvent>,					// 360
+	public BSTEventSource<TESLoadGameEvent>,					// 390
+	public BSTEventSource<TESLockChangedEvent>,					// 3C0
+	public BSTEventSource<TESMagicEffectApplyEvent>,			// 3F0
+	public BSTEventSource<TESMagicWardHitEvent>,				// 420
+	public BSTEventSource<TESMoveAttachDetachEvent>,			// 450
+	public BSTEventSource<TESObjectLoadedEvent>,				// 480
+	public BSTEventSource<TESObjectREFRTranslationEvent>,		// 4B0
+	public BSTEventSource<TESOpenCloseEvent>,					// 4E0
+	public BSTEventSource<TESPackageEvent>,						// 510
+	public BSTEventSource<TESPerkEntryRunEvent>,				// 540
+	public BSTEventSource<TESQuestInitEvent>,					// 570
+	public BSTEventSource<TESQuestStageEvent>,					// 5A0
+	public BSTEventSource<TESQuestStageItemDoneEvent>,			// 5D0
+	public BSTEventSource<TESQuestStartStopEvent>,				// 600
+	public BSTEventSource<TESResetEvent>,						// 630
+	public BSTEventSource<TESResolveNPCTemplatesEvent>,			// 660
+	public BSTEventSource<TESSceneEvent>,						// 690
+	public BSTEventSource<TESSceneActionEvent>,					// 6C0
+	public BSTEventSource<TESScenePhaseEvent>,					// 6F0
+	public BSTEventSource<TESSellEvent>,						// 720
+	public BSTEventSource<TESSleepStartEvent>,					// 750
+	public BSTEventSource<TESSleepStopEvent>,					// 780
+	public BSTEventSource<TESSpellCastEvent>,					// 7B0
+	public BSTEventSource<TESPlayerBowShotEvent>,				// 7E0
+	public BSTEventSource<TESTopicInfoEvent>,					// 810
+	public BSTEventSource<TESTrackedStatsEvent>,				// 840
+	public BSTEventSource<TESTrapHitEvent>,						// 870
+	public BSTEventSource<TESTriggerEvent>,						// 8A0
+	public BSTEventSource<TESTriggerEnterEvent>,				// 8D0
+	public BSTEventSource<TESTriggerLeaveEvent>,				// 900
+	public BSTEventSource<TESUniqueIDChangeEvent>,				// 930
+	public BSTEventSource<TESWaitStartEvent>,					// 960
+	public BSTEventSource<TESWaitStopEvent>,					// 990
+	public BSTEventSource<TESSwitchRaceCompleteEvent>			// 9C0
+{
+	static ScriptEventSourceHolder* GetInstance(void) {			// 00438740
+		ScriptEventSourceHolder *pThis = (ScriptEventSourceHolder*)0x012E4C30;
+		//bool &bInit = *(bool*)(pThis + 1);
+		//if (!bInit) {
+		//	pThis->ctor();
+		//	bInit = true;
+		//}
+		return pThis;
+	}
+
+	template <class EventT>
+	BSTEventSource<EventT>* GetEventSource() {
+		return static_cast<BSTEventSource<EventT>*>(this);
+	}
+
+	DEFINE_MEMBER_FN(SendActivateEvent,						void,	0x004E0450, BSTSmartPointer<TESObjectREFR> &target, BSTSmartPointer<TESObjectREFR> &caster);
+	//DEFINE_MEMBER_FN(SendTopicInfoEvent,					void,	0x0057DDD0,	FormID topicInfoID, ActorPtr &speaker, UInt32 flag, BSTSmartPointer<REFREventCallbacks::IEventCallback> &arg4);
+	//DEFINE_MEMBER_FN(SendTESObjectREFRTranslationEvent,	void,	0x004CB220,	UInt32 arg1, UInt32 arg2);
+
+private:
+	DEFINE_MEMBER_FN(ctor, ScriptEventSourceHolder*, 0x00436B90);
+
+};
+STATIC_ASSERT(sizeof(ScriptEventSourceHolder) == 0x9F0);
 
 
 extern BSTEventSource<BGSEventProcessedEvent>&				g_eventProcessedEventSource;

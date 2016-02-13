@@ -62,7 +62,7 @@ public:
 	virtual bool	Unk_5F(void);						// 0092D110 { return false; }
 	virtual bool	Unk_60(void);						// 0092D110 { return false; }
 	virtual bool	Unk_61(UInt32 arg);					// 004091A0 { return false; }
-	virtual bool	Unk_62(void);						// 00405250
+	virtual bool	Unk_62(void);						// 00405250 offensive or defensive ?
 	virtual bool	Unk_63(void);						// 0092D110 { return false; }
 	virtual void	Unk_64(UInt32 arg0, UInt32 arg1);	// 004D43E0 { return; }
 	virtual float	Unk_65(void);						// 0066E8A0 { return 0.0f; }
@@ -88,12 +88,12 @@ public:
 	// @members
 	struct EffectItem
 	{
-		float	magnitude;		// 00
-		UInt32	area;			// 04
-		UInt32	duration;		// 08
-		EffectSetting* mgef;	// 0C
-		float	cost;			// 10 - ?
-		UInt32	unk14;			// 14 - ?
+		float			magnitude;		// 00
+		UInt32			area;			// 04
+		UInt32			duration;		// 08
+		EffectSetting	* mgef;			// 0C
+		float			cost;			// 10 - ?
+		UInt32			unk14;			// 14 - ?
 
 		EffectItem()
 		{

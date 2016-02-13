@@ -329,7 +329,7 @@ public:
 	DEFINE_MEMBER_FN(GetWorldSpace, TESWorldSpace *, 0x004D5EB0);
 
 	// Returns if this reference has an active effect coming from a magic effect with the specified keyword attached.
-	bool HasEffectKeyword(BGSKeyword* keyword) const;
+	bool HasEffectKeyword(const BGSKeyword *keyword) const;	// 004D57A0
 
 	// Returns if this reference has the specified name node in its 3D.
 	bool HasNode(const BSFixedString &nodeName)	const;

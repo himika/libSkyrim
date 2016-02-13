@@ -47,7 +47,7 @@ public:
 	UInt32 unk08;		// 08
 
 	///<summary>Checks to see if the specified keyword is attached to a magic effect that belongs to an active effect currently on this reference.</summary>
-	DEFINE_MEMBER_FN_const(HasEffectKeyword, bool, 0x006635B0, BGSKeyword *, bool);
+	DEFINE_MEMBER_FN_const(HasEffectKeyword, bool, 0x006635B0, const BGSKeyword *, bool);
 
 	///<summary>Checks to see if this actor is currently being affected by the given Magic Effect.</summary>
 	DEFINE_MEMBER_FN_const(HasMagicEffect, bool, 0x00662E80, ActiveEffect *);

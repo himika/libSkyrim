@@ -667,6 +667,12 @@ public:
 
 	DEFINE_MEMBER_FN(GetDetectionLevel, SInt32, 0x006AE830, Actor *target, UInt32 flag);	// return -1000 if not detected
 	
+	///<summary>Checks to see if this actor is currently being affected by a Magic Effect with the given Keyword.</summary>
+	bool HasMagicEffectWithKeyword(const BGSKeyword *keyword) const		// 008DA550
+	{
+		return MagicTarget::HasEffectKeyword(keyword, false);
+	}
+
 	///<summary>Returns whether the actors AI is enabled.</summary>
 	bool IsAIEnabled() const		// SKSE
 	{

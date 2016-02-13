@@ -20,29 +20,12 @@ namespace SKSEScript
 		functor(state, base, eventName);
 	}
 
-	template <class _T, class...Args>
-	void QueueEvent(VMState * state, _T* base, const char * name, Args... args)
-	{
-		FunctionArguments<Args...> functor(args...);
-		BSFixedString eventName(name);
-		functor(state, base, eventName);
-	}
-
 	template <class...Args>
 	void QueueEvent(VMState * state, VMHandle handle, const BSFixedString & eventName, Args... args)
 	{
 		FunctionArguments<Args...> functor(args...);
 		functor(state, handle, eventName);
 	}
-
-	template <class...Args>
-	void QueueEvent(VMState * state, VMHandle handle, const char * name, Args... args)
-	{
-		FunctionArguments<Args...> functor(args...);
-		BSFixedString eventName(name);
-		functor(state, handle, eventName);
-	}
-
 
 	class FunctionArgumentsBase : public BSScript::IFunctionArguments
 	{
@@ -57,7 +40,7 @@ namespace SKSEScript
 		}
 
 		template <typename Base>
-		void operator()(VMState* state, Base* base, const BSFixedString &eventName, bool bBroadcast = false)
+		void operator()(VMState* state, Base* base, const BSFixedString &eventName, bool bBroadcast = true)
 		{
 			if (bBroadcast)
 			{
@@ -91,7 +74,7 @@ namespace SKSEScript
 
 		void QueueEvent(VMHandle handle, const BSFixedString &eventName, bool bBroadcast);
 
-		VMState* m_state;
+		VMState	* m_state;
 	};
 	
 
@@ -101,7 +84,6 @@ namespace SKSEScript
 	public:
 		FunctionArguments(Args... args) : m_args(args...)
 		{
-			//m_args = std::make_tuple(args...);
 		}
 
 		virtual ~FunctionArguments()

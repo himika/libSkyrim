@@ -11,15 +11,6 @@ class BSInputDevice +0000 (_vtbl=0110E944)
 class BSInputDevice
 {
 public:
-	virtual UInt32	Unk_00(void) = 0;					// 00 
-	virtual	void	Unk_01(float unk1) = 0;				// 01 
-	virtual	void	Unk_02(void) = 0;					// 02 
-	virtual bool	IsEnabled(void) const;				// 03 009B86F0 { return true; }
-
-	virtual			~BSInputDevice();					// 04 00A6AD80
-
-	virtual void	Unk_05(void) = 0;					// 05
-
 	enum DeviceType
 	{
 		kDeviceType_Keyboard = 0,
@@ -32,12 +23,23 @@ public:
 	{
 		BSFixedString	name;		// 00
 		float			timer;		// 04
-		UInt32			unk08;
-		UInt32			unk0C;
+		UInt32			charCode;	// 08
+		UInt32			unk0C;		// 0C
 	};
 
+	virtual UInt32	Unk_00(void) = 0;					// 00 
+	virtual	void	Unk_01(float unk1) = 0;				// 01 
+	virtual	void	Unk_02(void) = 0;					// 02 
+	virtual bool	IsEnabled(void) const;				// 03 009B86F0 { return true; }
+	virtual			~BSInputDevice();					// 04 00A6AD80
+	virtual void	Unk_05(void) = 0;					// 05
+
+	inline bool IsKeyboard() const	{ return deviceType == kDeviceType_Keyboard; }
+	inline bool IsMouse() const		{ return deviceType == kDeviceType_Mouse; }
+	inline bool IsGamepad() const	{ return deviceType == kDeviceType_Gamepad; }
+
 	// @members
-	UInt32						deviceType;		// 04
+	DeviceType					deviceType;		// 04
 	BSTHashMap<UInt32, Data *>	codeMap;		// 08
 };
 

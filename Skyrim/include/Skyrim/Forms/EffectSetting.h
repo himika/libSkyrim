@@ -15,7 +15,7 @@ class BGSArtObject;
 class BGSImpactDataSet;
 class BGSDualCastData;
 class TESImageSpaceModifier;
-class TESSound;
+class BGSSoundDescriptorForm;
 
 /*==============================================================================
 class EffectSetting +0000 (_vtbl=010776AC)
@@ -348,8 +348,8 @@ public:
 
 	struct SoundInfo
 	{
-		UInt32		value;
-		TESSound*	sound;
+		UInt32					value;		// 00
+		BGSSoundDescriptorForm	* sound;	// 04
 	};
 
 	// @members

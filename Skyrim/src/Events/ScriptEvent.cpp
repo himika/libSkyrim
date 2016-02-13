@@ -1,79 +1,8 @@
 #include "Skyrim/Events/ScriptEvent.h"
 
-// 9F0
-struct ScriptEventSourceHolder :
-	public BSTEventSource<BGSEventProcessedEvent>,				// 000
-	public BSTEventSource<TESActivateEvent>,					// 030
-	public BSTEventSource<TESActiveEffectApplyRemoveEvent>,		// 060
-	public BSTEventSource<TESActorLocationChangeEvent>,			// 090
-	public BSTEventSource<TESBookReadEvent>,					// 0C0
-	public BSTEventSource<TESCellAttachDetachEvent>,			// 0F0
-	public BSTEventSource<TESCellFullyLoadedEvent>,				// 120
-	public BSTEventSource<TESCellReadyToApplyDecalsEvent>,		// 
-	public BSTEventSource<TESCombatEvent>,						// 
-	public BSTEventSource<TESContainerChangedEvent>,			// 
-	public BSTEventSource<TESDeathEvent>,						// 
-	public BSTEventSource<TESDestructionStageChangedEvent>,		// 
-	public BSTEventSource<TESEnterBleedoutEvent>,				// 
-	public BSTEventSource<TESEquipEvent>,						// 
-	public BSTEventSource<TESFormDeleteEvent>,					// 
-	public BSTEventSource<TESFurnitureEvent>,					// 
-	public BSTEventSource<TESGrabReleaseEvent>,					// 
-	public BSTEventSource<TESHitEvent>,							// 
-	public BSTEventSource<TESInitScriptEvent>,					// 
-	public BSTEventSource<TESLoadGameEvent>,					//
-	public BSTEventSource<TESLockChangedEvent>,
-	public BSTEventSource<TESMagicEffectApplyEvent>,
-	public BSTEventSource<TESMagicWardHitEvent>,
-	public BSTEventSource<TESMoveAttachDetachEvent>,
-	public BSTEventSource<TESObjectLoadedEvent>,
-	public BSTEventSource<TESObjectREFRTranslationEvent>,
-	public BSTEventSource<TESOpenCloseEvent>,
-	public BSTEventSource<TESPackageEvent>,
-	public BSTEventSource<TESPerkEntryRunEvent>,
-	public BSTEventSource<TESQuestInitEvent>,
-	public BSTEventSource<TESQuestStageEvent>,
-	public BSTEventSource<TESQuestStageItemDoneEvent>,
-	public BSTEventSource<TESQuestStartStopEvent>,
-	public BSTEventSource<TESResetEvent>,
-	public BSTEventSource<TESResolveNPCTemplatesEvent>,
-	public BSTEventSource<TESSceneEvent>,
-	public BSTEventSource<TESSceneActionEvent>,
-	public BSTEventSource<TESScenePhaseEvent>,
-	public BSTEventSource<TESSellEvent>,
-	public BSTEventSource<TESSleepStartEvent>,
-	public BSTEventSource<TESSleepStopEvent>,
-	public BSTEventSource<TESSpellCastEvent>,
-	public BSTEventSource<TESPlayerBowShotEvent>,
-	public BSTEventSource<TESTopicInfoEvent>,						// 810
-	public BSTEventSource<TESTrackedStatsEvent>,					// 840
-	public BSTEventSource<TESTrapHitEvent>,							// 870
-	public BSTEventSource<TESTriggerEvent>,							// 8A0
-	public BSTEventSource<TESTriggerEnterEvent>,					// 8D0
-	public BSTEventSource<TESTriggerLeaveEvent>,					// 900
-	public BSTEventSource<TESUniqueIDChangeEvent>,					// 930
-	public BSTEventSource<TESWaitStartEvent>,						// 960
-	public BSTEventSource<TESWaitStopEvent>,						// 990
-	public BSTEventSource<TESSwitchRaceCompleteEvent>				// 9C0
-{
-	static inline ScriptEventSourceHolder* GetInstance(void) {
-		return (ScriptEventSourceHolder*)0x012E4C30;
-	}
-
-	template <class EventT>
-	static inline BSTEventSource<EventT>* GetEventSource() {
-		return static_cast<BSTEventSource<EventT>*>(GetInstance());
-	}
-
-private:
-	DEFINE_MEMBER_FN(ctor, ScriptEventSourceHolder*, 0x00436B90);
-	//DEFINE_MEMBER_FN(SendTopicInfoEvent, void, 0x0057DDD0, FormID topicInfoID, ActorPtr &speaker, UInt32 flag, BSTSmartPointer<REFREventCallbacks::IEventCallback> &arg4);
-};
-STATIC_ASSERT(sizeof(ScriptEventSourceHolder) == 0x9F0);
 
 
-#define DECLARE_EVENT_SOURCE(name, g_name) \
-	BSTEventSource<name>& g_name = *ScriptEventSourceHolder::GetEventSource<name>();
+#define DECLARE_EVENT_SOURCE(eventName, g_name) BSTEventSource<eventName>& g_name = *(static_cast<BSTEventSource<eventName> *>(ScriptEventSourceHolder::GetInstance()));
 
 DECLARE_EVENT_SOURCE(BGSEventProcessedEvent, g_eventProcessedEventSource);
 DECLARE_EVENT_SOURCE(TESActivateEvent, g_activateEventSource);

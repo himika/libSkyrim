@@ -151,7 +151,7 @@ bool TESObjectREFR::IsMapMarkerVisible() const
 	return xMarker && xMarker->mapMarker && flags.visible;
 }
 
-bool TESObjectREFR::HasEffectKeyword(BGSKeyword* keyword) const
+bool TESObjectREFR::HasEffectKeyword(const BGSKeyword *keyword) const
 {
 	MagicTarget *magicTarget = GetMagicTarget();
 
