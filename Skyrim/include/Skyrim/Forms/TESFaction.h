@@ -28,33 +28,32 @@ class TESFaction : public TESForm,
 public:
 	enum { kTypeID = (UInt32)FormType::Faction };
 
-	// @members
-
-	enum {
-		kFlag_HiddenFromPC						= 1 << 0,
-		kFlag_SpecialCombat						= 1 << 1,
-		kFlag_CanBeOwner						= 1 << 15,
-		kFlag_TrackCrime						= 1 << 6,
-		kFlag_Ignore_Murder						= 1 << 7,
-		kFlag_Ignore_Assault					= 1 << 8,
-		kFlag_Ignore_Pickpocket					= 1 << 9,
-		kFlag_Ignore_Stealing					= 1 << 10,
-		kFlag_Ignore_Trespass					= 1 << 13,
-		kFlag_Ignore_Werewolf					= 1 << 16,
-		kFlag_DoNotReportCrimesAgainstMembers	= 1 << 11,
-		kFlag_CrimeGoldUseDefaults				= 1 << 12,
-		kFlag_Vender							= 1 << 14
+	enum FactionFlags
+	{
+		kFlag_HiddenFromPC				= 1 << 0,		//     1
+		kFlag_SpecialCombat				= 1 << 1,		//     2
+		kFlag_TrackCrime				= 1 << 6,		//    40
+		kFlag_IgnoreMurder				= 1 << 7,		//    80
+		kFlag_IgnoreAssault				= 1 << 8,		//   100
+		kFlag_IgnorePickpocket			= 1 << 9,		//   200
+		kFlag_IgnoreStealing			= 1 << 10,		//   400
+		kFlag_DoReportCrimes			= 1 << 11,		//   800
+		kFlag_CrimeGoldDefaults			= 1 << 12,		//  1000
+		kFlag_IgnoreTrespass			= 1 << 13,		//  2000
+		kFlag_Vender					= 1 << 14,		//  4000
+		kFlag_CanBeOwner				= 1 << 15,		//  8000
+		kFlag_IgnoreWerewolf			= 1 << 16		// 10000
 	};
 
 	// 2C
-	struct CrimeValues
+	struct CrimeValues								// CRVA
 	{
-		TESObjectREFR	* exteriorJailMarker;		// 00 (34)
-		TESObjectREFR	* followerWaitMarker;		// 04 (38)
-		TESObjectREFR	* stolenGoodsContainer;		// 08 (3C)
-		TESObjectREFR	* playerInventoryContainer;	// 0C (40)
-		BGSListForm		* sharedCrimeFactionList;	// 10 (44)
-		BGSOutfit		* jailOutfit;				// 14 (48)
+		TESObjectREFR	* exteriorJailMarker;		// 00 (34) JAIL
+		TESObjectREFR	* followerWaitMarker;		// 04 (38) WAIT
+		TESObjectREFR	* stolenGoodsContainer;		// 08 (3C) STOL
+		TESObjectREFR	* playerInventoryContainer;	// 0C (40) PLCN
+		BGSListForm		* sharedCrimeFactionList;	// 10 (44) CRGR
+		BGSOutfit		* jailOutfit;				// 14 (48) JOUT
 		bool			arrest;						// 18 (4C)
 		bool			attackOnSight;				// 19 (4D)
 		UInt16			murder;						// 1A (4E)
@@ -68,16 +67,16 @@ public:
 	};
 
 	// 20
-	struct VendorData
+	struct VendorValues							// VENV
 	{
 		UInt16			startHour;				// 00
 		UInt16			endHour;				// 02
 		UInt32			radius;					// 04
-		UInt8			onlyBuysStolenItems;	// 08
-		UInt8			notSellBuy;				// 0A
-		UInt16			pad0B;					// 0B
+		bool			onlyBuysStolenItems;	// 08
+		bool			notSellBuy;				// 09
+		UInt16			pad0B;					// 0A
 		void			* packageLocation;		// 0C
-		Condition		* condition;			// 10 himika
+		Condition		* condition;			// 10
 		BGSListForm		* buySellList;			// 14
 		TESObjectREFR	* merchantContainer;	// 18
 		UInt32			unk1C;					// 1C
@@ -90,33 +89,16 @@ public:
 		UInt32	unk4;	// 4
 	};
 
-	UInt32	unk2C;	// 2C
-
-	enum
-	{
-		kFactionFlag_HiddenFromNPC		= (1 << 0),
-		kFactionFlag_SpecialCombat		= (1 << 1),
-		kFactionFlag_TrackCrime			= (1 << 4),
-		kFactionFlag_IgnoreMurder		= (1 << 5),
-		kFactionFlag_IgnoreAssult		= (1 << 6),
-		kFactionFlag_IngoreStealing		= (1 << 7),
-		kFactionFlag_IgnoreTrespass		= (1 << 8),
-		kFactionFlag_NoReportCrime		= (1 << 9),
-		kFactionFlag_CrimeGoldDefaults	= (1 << 10),
-		kFactionFlag_IgnorePickpocket	= (1 << 11),
-		kFactionFlag_Vendor				= (1 << 12),
-		kFactionFlag_CanBeOwner			= (1 << 13),
-		kFactionFlag_IgnoreWerewolf		= (1 << 14)
-	};
-
-	UInt32		factionFlags;	// 30
-	CrimeValues	crimeValues;	// 34
-	VendorData	vendorData;		// 60
-	Data80		unk80;			// 80
-	UInt32		unk88;			// 88
-	UInt32		unk8C;			// 8C
-	float		unk90;			// 90
-	UInt32		unk94;			// 94
+	// @members
+	UInt32			unk2C;			// 2C
+	UInt32			factionFlags;	// 30 - DATA
+	CrimeValues		crimeValues;	// 34 - CRVA
+	VendorValues	vendorValues;	// 60 - VENV
+	Data80			unk80;			// 80
+	UInt32			unk88;			// 88
+	UInt32			unk8C;			// 8C
+	float			unk90;			// 90
+	UInt32			unk94;			// 94
 };
 STATIC_ASSERT(sizeof(TESFaction) == 0x98);
-STATIC_ASSERT(offsetof(TESFaction, vendorData) == 0x60);
+STATIC_ASSERT(offsetof(TESFaction, vendorValues) == 0x60);
