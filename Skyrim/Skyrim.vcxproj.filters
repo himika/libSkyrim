@@ -2240,6 +2240,18 @@
     <ClInclude Include="include\Skyrim\ExtraData\ExtraTeleport.h">
       <Filter>Header Files\Skyrim\ExtraData</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\ActorMagicCaster.h">
+      <Filter>Header Files\Skyrim\Forms\Character\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\ActorState.h">
+      <Filter>Header Files\Skyrim\Forms\Character\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\MovementControllerAI.h">
+      <Filter>Header Files\Skyrim\Forms\Character\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSPathFinding\IMovementControllerRegisterInterface.h">
+      <Filter>Header Files\Skyrim\BSPathFinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl">

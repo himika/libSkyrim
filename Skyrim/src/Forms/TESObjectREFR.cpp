@@ -155,7 +155,7 @@ bool TESObjectREFR::HasEffectKeyword(const BGSKeyword *keyword) const
 {
 	MagicTarget *magicTarget = GetMagicTarget();
 
-	return magicTarget ? magicTarget->HasEffectKeyword(keyword, true) : false;
+	return magicTarget ? magicTarget->HasEffectKeyword(keyword) : false;
 }
 
 BGSVoiceType * TESObjectREFR::GetVoiceType() const

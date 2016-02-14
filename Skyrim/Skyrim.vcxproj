@@ -218,6 +218,7 @@
     <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingStart.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\BSPathSmootherRayCast.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\BSTPathingFactory.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\IMovementControllerRegisterInterface.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\MovementArbitrationAverage.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\MovementArbitrationMaxWeight.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\MovementParameters.h" />
@@ -517,8 +518,11 @@
     <ClInclude Include="include\Skyrim\Forms\ChainExplosion.h" />
     <ClInclude Include="include\Skyrim\Forms\Character.h" />
     <ClInclude Include="include\Skyrim\Forms\Character\Components\ActorKnowledge.h" />
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\ActorMagicCaster.h" />
     <ClInclude Include="include\Skyrim\Forms\Character\Components\ActorProcessManager.h" />
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\ActorState.h" />
     <ClInclude Include="include\Skyrim\Forms\Character\Components\DetectionState.h" />
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\MovementControllerAI.h" />
     <ClInclude Include="include\Skyrim\Forms\ConeProjectile.h" />
     <ClInclude Include="include\Skyrim\Forms\EffectSetting.h" />
     <ClInclude Include="include\Skyrim\Forms\EnchantmentItem.h" />

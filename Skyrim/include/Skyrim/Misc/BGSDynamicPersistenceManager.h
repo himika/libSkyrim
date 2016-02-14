@@ -47,4 +47,4 @@ private:
 	DEFINE_MEMBER_FN(ctor, BGSDynamicPersistenceManager *, 0x0068AA60);
 };
 STATIC_ASSERT(sizeof(BGSDynamicPersistenceManager) == 0x84);
-STATIC_ASSERT(offsetof(BGSDynamicPersistenceManager, weaponEnchants) == 0x04);
+STATIC_ASSERT(offsetof(BGSDynamicPersistenceManager, offensiveEnchants) == 0x04);

@@ -46,12 +46,23 @@ public:
 	UInt32 unk04;		// 04
 	UInt32 unk08;		// 08
 
+
 	///<summary>Checks to see if the specified keyword is attached to a magic effect that belongs to an active effect currently on this reference.</summary>
-	DEFINE_MEMBER_FN_const(HasEffectKeyword, bool, 0x006635B0, const BGSKeyword *, bool);
+	inline bool HasEffectKeyword(const BGSKeyword *keyword) const
+	{
+		return GetMagicEffectWithKeyword_Internal(keyword, nullptr);
+	}
+
+	inline ActiveEffect * GetEffectWithKeyword(const BGSKeyword *keyword) const
+	{
+		ActiveEffect *effect = nullptr;
+		return (GetMagicEffectWithKeyword_Internal(keyword, &effect)) ? effect : nullptr;
+	}
 
 	///<summary>Checks to see if this actor is currently being affected by the given Magic Effect.</summary>
 	DEFINE_MEMBER_FN_const(HasMagicEffect, bool, 0x00662E80, ActiveEffect *);
 
 private:
 	DEFINE_MEMBER_FN(VisitActiveEffects_Internal, void, 0x00663410, ForEachActiveEffectVisitor & visitor);
+	DEFINE_MEMBER_FN_const(GetMagicEffectWithKeyword_Internal, bool, 0x006635B0, const BGSKeyword *, ActiveEffect **result);
 };

@@ -3,265 +3,19 @@
 #include "TESObjectREFR.h"
 #include "../FormComponents/ActorValueOwner.h"
 #include "../FormComponents/MagicTarget.h"
-#include "../Animation/SimpleAnimationGraphManagerHolde.h"
-#include "../Animation/IPostAnimationChannelUpdateFunctor.h"
 #include "../BSPathFinding/MovementTypes.h"
-#include "../Misc/BGSAttachTechniques.h"
 #include "../BSCore/BSTList.h"
+#include "Character/Components/ActorState.h"
+#include "Character/Components/ActorMagicCaster.h"
+#include "Character/Components/MovementControllerAI.h"
 
 // Declare Classes
-class ActorState;
-class ActorMagicCaster;
-class Actor;
 NiSmartPointer(Actor);
 
 // External Classes
 class ActiveEffect;
-class MovementControllerAI;
-class MovementParameters;
 class ActorProcessManager;
 class PerkEntryVisitor;
-
-
-/*==============================================================================
-class ActorState +0000 (_vtbl=010D0ABC)
-0000: class ActorState
-0000: |   struct IMovementState
-0000: |   |   struct IMovementInterface
-==============================================================================*/
-// 0C
-class ActorState : public IMovementState
-{
-public:
-	virtual ~ActorState();											// 006C51E0
-
-	// @override
-	virtual FormID	IMovementState_Unk_01(void) override;			// 005EADD0 { return 0; } Actor={ return formID; }
-	virtual void	IMovementState_Unk_02(UInt32 arg) override;		// 00588F30 { return; }
-	virtual void	IMovementState_Unk_03(NiPoint3 &pos) override;	// 00588F30 { return; }
-	virtual void	IMovementState_Unk_04(NiPoint3 &pos) override;	// 00588F30 { return; }
-	virtual float	IMovementState_Unk_05(void) override;			// 0066E8A0 { return 0.0f; }
-	virtual float	IMovementState_Unk_06(void) override;			// 0066E8A0 { return 0.0f; }
-	virtual void	IMovementState_Unk_07(NiPoint3 &pos) override;	// 00588F30 { return; }
-	virtual bool	IMovementState_Unk_08(UInt32 arg) override;		// 004091A0 { return false; }
-
-	// @add
-	virtual bool	ActorState_Unk_14(UInt32 arg);					// 006C50B0	- called when ChairEnter (arg=3), BedEnter (arg=7) ChairFurnitureExit BedFurnitureExit (arg=0)
-	virtual bool	ActorState_Unk_15(UInt32 arg);					// 006F0ED0
-
-	enum {
-		kState_Running = 0x40,
-		kState_Walking = 0x80,
-		kState_Sprinting = 0x100,
-		kState_Sneaking = 0x200,
-		kState_Swimming = 0x400,
-		kState_Sit = (0x0F << 0x0E),
-		kState_Flying = (0x07 << 0x12)
-	};
-
-	enum {
-		kSitState_NotSitting = 0,
-		kSitState_WantsToSit = 2,
-		kSitState_Sitting = 3,
-		kSitState_WantsToStand = 4
-	};
-
-	enum {
-		kSleepState_NotSleeping = 0,
-		kSleepState_WantsToSleep = 2,
-		kSleepState_Sleeping = 3,
-		kSleepState_WantsToWake = 4
-	};
-
-	//struct {
-	//	unsigned char	unk0 : 6;				// 00
-	//	bool			runnging : 1;			// 06 0x00000040
-	//	bool			walking : 1;			// 07 0x00000080
-	//	bool			sprinting : 1;			// 08 0x00000100
-	//	bool			sneaking : 1;			// 09 0x00000200
-	//	bool			swimming : 1;			// 0A 0x00000400
-	//	bool			unk0B : 1;				// 0B 0x00000800
-	//	bool			unk0C : 1;				// 0C 0x00001000
-	//	bool			unk0D : 1;				// 0D 0x00002000
-	//	unsigned char	sitSleepState : 4;		// 0E 0x0003C000
-	//	unsigned char	flyingState : 3;		// 12 0x001C0000
-	//	unsigned char	bleedingState : 4;		// 15 0x01E00000
-	//  unsigned char	unk19 : 3;				// 19 0x0E000000
-	//  unsigned char	attackState : 4;		// 1C 0xF0000000
-	//} flags;
-
-	///<summary>Obtains this actor's sit state.</summary>
-	UInt32 GetSitState() const
-	{
-		UInt32 state = (flags04 >> 0x0E) & 0x0F;
-		switch (state)
-		{
-		case 1:
-		case 2:
-			return kSitState_WantsToSit;
-		case 3:
-			return kSitState_Sitting;
-		case 4:
-			return kSitState_WantsToStand;
-		default:
-			return kSitState_NotSitting;
-		}
-	}
-
-	UInt32 GetSleepState() const
-	{
-		UInt32 state = (flags04 >> 0x0E) & 0x0F;
-		switch (state)
-		{
-		case 5:
-		case 6:
-			return kSleepState_WantsToSleep;
-		case 7:
-			return kSleepState_Sleeping;
-		case 8:
-			return kSleepState_WantsToWake;
-		default:
-			return kSleepState_NotSleeping;
-		}
-	}
-
-	///<summary>Obtains this actor's current flying state.</summary>
-	UInt32 GetFlyingState() const
-	{
-		return (flags04 >> 0x12) & 0x07;
-	}
-
-	///<summary>Is this actor currently bleeding out?</summary>
-	bool IsBleedingOut() const
-	{
-		UInt32 state = (flags04 >> 0x15) & 0x0F;
-		return (state == 7 || state == 8);
-	}
-
-	///<summary>Does this actor have his equipped weapon and/or magic spell drawn?</summary>
-	bool IsWeaponDrawn() const
-	{
-		return (flags08 >> 5 & 7) >= 3;
-	}
-
-	///<summary>Is this actor currently sneaking?</summary>
-	bool IsSneaking() const
-	{
-		return (flags04 & kState_Sneaking) != 0;
-	}
-
-	///<summary>Is this actor currently sprinting?</summary>
-	bool IsSwimming() const
-	{
-		return (flags04 & kState_Swimming) != 0;
-	}
-
-	///<summary>Is this actor currently sprinting?</summary>
-	bool IsSprinting() const
-	{
-		return (flags04 & kState_Sprinting) != 0;
-	}
-
-	///<summary>Is this actor currently flying?</summary>
-	bool IsFlying() const
-	{
-		UInt32 flyingState = GetFlyingState();
-		return (flyingState != 0) && (flyingState != 5);
-	}
-
-	///<summary>Is this actor currently unconscious?</summary>
-	bool IsUnconscious() const
-	{
-		return (flags04 & 0x01E00000) == 0x00600000;
-	}
-
-//protected:
-	// @members
-	//void	** _vtbl;	// 00 - 010D0ABC
-	UInt32	flags04;
-	UInt32	flags08;
-};
-STATIC_ASSERT(sizeof(ActorState) == 0x0C);
-
-
-/*==============================================================================
-class ActorMagicCaster +0000 (_vtbl=010C8CB4)
-0000: class ActorMagicCaster
-0000: |   class MagicCaster
-0030: |   class SimpleAnimationGraphManagerHolder
-0030: |   |   class IAnimationGraphManagerHolder
-003C: |   class BSTEventSink<struct BSAnimationGraphEvent>
-==============================================================================*/
-// 90
-class ActorMagicCaster :
-	public MagicCaster,							// 00
-	public SimpleAnimationGraphManagerHolder,	// 30
-	public BSTEventSink<BSAnimationGraphEvent>	// 3C
-{
-public:
-	enum SlotType
-	{
-		kSlot_LeftHand		= 0,
-		kSlot_RightHand		= 1,
-		kSlot_Voice			= 4
-	};
-
-	ActorMagicCaster(Actor* actor, UInt32 slot) {
-		ctor(actor, slot);
-	}
-
-	virtual ~ActorMagicCaster();											// 00659AD0
-
-	// @override MagicCaster
-	virtual void	MagicCaster_Unk_03(void) override;						// 00658D10
-	virtual bool	MagicCaster_Unk_04(void) override;						// 006588D0
-	virtual void	MagicCaster_Unk_05(void) override;						// 00658610
-	virtual void	MagicCaster_Unk_06(void) override;						// 00659360
-	virtual void	MagicCaster_Unk_07(void) override;						// 006571C0 { if (caster) { caster->Unk_006AB9E0(slot, 0); caster->Unk_006E9840(0); } flags &= 0xFFFFFFFC; unk84 = 0; }
-	virtual void	MagicCaster_Unk_08(UInt32 arg1) override;				// 00658940
-	virtual void	MagicCaster_Unk_09(UInt32 arg1, UInt32 arg2, UInt32 arg3) override;		// 00659B00
-	virtual bool	MagicCaster_Unk_0A(UInt32 arg1, UInt32 arg2, float* arg3, UInt32* arg4, UInt32 arg5, UInt32 arg6, UInt32 arg7) override;	// 00657DC0
-	virtual Actor	* MagicCaster_Unk_0B(void) override;					// 006572F0 { return caster; }
-	virtual Actor	* GetCaster() override;									// 006572F0 { return caster; }
-	virtual UInt32	MagicCaster_Unk_0E(void) override;						// 00657510 .... if (eax) unk6C = eax->Unk02; return unk6C;
-	virtual void	MagicCaster_Unk_0F(void) override;						// 006574B0 { unk6C = 0; }
-	virtual void	MagicCaster_Unk_10(UInt32 arg1) override;				// 00658C40
-	virtual void	MagicCaster_Unk_11(void) override;						// 006586F0
-	virtual void	MagicCaster_Unk_12(void) override;						// 00657200
-	virtual void	MagicCaster_Unk_13(void) override;						// 006571B0 { flags |= 2; }
-	virtual void	CalculateMagickaCost(void) override;					// 00657750
-	virtual UInt32	GetSlot(void) override;									// 00657300 { return slot; }
-	virtual bool	MagicCaster_Unk_16(void) override;						// 006574E0 { return flag & 1; }
-	virtual void	MagicCaster_Unk_17(bool b) override;					// 006574F0 { if (b) { flags |= 1; } else { flags &= 0xFFFFFFFE; } }
-	virtual void	MagicCaster_Unk_18(UInt32 arg1) override;				// 00657240
-	virtual void	MagicCaster_Unk_19(UInt32 arg1) override;				// 00657990
-	virtual void	MagicCaster_Unk_1A(UInt32 arg1) override;				// 00657A80
-	virtual void	MagicCaster_Unk_1B(UInt32 arg1, UInt32 arg2) override;	// 00657AE0
-	virtual void	MagicCaster_Unk_1C(UInt32 arg1, UInt32 arg2, UInt32 arg3) override;		// 00657900
-
-	// @override BSTEventSink<BSAnimationGraphEvent>
-	virtual	EventResult	ReceiveEvent(BSAnimationGraphEvent * evn, BSTEventSource<BSAnimationGraphEvent> * source) override;	// 006590C0
-
-	// @add
-	virtual void	ActorMagicCaster_Unk_1D(void);							// 00659680
-
-	// @members
-	//	void	** _vtbl;									// 00 - 0x010C8CB4
-	RefAttachTechniqueInput		refAttachTechniqueInput;	// 40
-	UInt32		unk64;										// 64 - 0
-	Actor		* caster;									// 68 
-	UInt32		pad6C[(0x88 - 0x6C) >> 2];
-	UInt32		slot;										// 88 - 0:left hand 1:right hand 4:voice
-	UInt32		flags;										// 8C
-
-	DEFINE_MEMBER_FN(CastStart, bool, 0x00662430, MagicItem*, UInt32, UInt32);
-	DEFINE_MEMBER_FN(CastRelease, bool, 0x00662120, UInt32, UInt32)
-	DEFINE_MEMBER_FN(UsePower, bool, 0x006622D0, MagicItem*, UInt32, UInt32, UInt32);
-
-private:
-	DEFINE_MEMBER_FN(ctor, ActorMagicCaster*, 0x00657420, Actor* caster, UInt32 slot);
-};
-STATIC_ASSERT(sizeof(ActorMagicCaster) == 0x90);
 
 
 /*==============================================================================
@@ -294,6 +48,8 @@ class Actor : public TESObjectREFR,
 {
 public:
 	enum { kTypeID = (UInt32)FormType::Character };
+
+	using MagicTarget::HasEffectKeyword;
 
 	/*==============================================================================
 	class Actor::ForEachSpellVisitor +0000 (_vtbl=010D0920)
@@ -670,7 +426,7 @@ public:
 	///<summary>Checks to see if this actor is currently being affected by a Magic Effect with the given Keyword.</summary>
 	bool HasMagicEffectWithKeyword(const BGSKeyword *keyword) const		// 008DA550
 	{
-		return MagicTarget::HasEffectKeyword(keyword, false);
+		return MagicTarget::HasEffectKeyword(keyword);
 	}
 
 	///<summary>Returns whether the actors AI is enabled.</summary>
@@ -711,11 +467,9 @@ public:
 	DEFINE_MEMBER_FN(SetRace, void, 0x006AF590, TESRace*, bool isPlayer);
 	DEFINE_MEMBER_FN(UpdateWeaponAbility, void, 0x006ED980, TESForm*, BaseExtraList * extraData, bool bLeftHand);
 	DEFINE_MEMBER_FN(UpdateArmorAbility, void, 0x006E8650, TESForm*, BaseExtraList * extraData);
-
 	DEFINE_MEMBER_FN(SendStealAlerm, void, 0x006CC0D0, TESObjectREFR *refItemOrContainer, TESForm *stolenItem, UInt32 numItems, UInt32 unk1, TESForm *owner, bool unk2);
 
-	// @members
-	struct
+	struct Flags1
 	{
 		bool			unk00 : 1;			// 00 0x00000001
 		bool			AIEnabled : 1;		// 01 0x00000002
@@ -726,40 +480,56 @@ public:
 		bool			playerTeammate : 1;	// 1A 0x04000000
 		unsigned char	unk1B : 3;			// 1B 0x38000000
 		bool			guard : 1;			// 1E 0x40000000
-	} flags1;										// 07C
-	UInt32		unk080;								// 080
-	UInt32		unk084;								// 084
-	ActorProcessManager	* processManager;			// 088
-	UInt32		unk08C;								// 08C | 
-	RefHandle	combatTargetRefHandle;				// 090 | (himika)
-	UInt32		unk094[(0x0C8 - 0x094) >> 2];		// 094 | 
-	BGSLocation	* editorLocation;					// 0C8 |
-	UInt32		pad0CC;								// 0CC |
-	MovementControllerAI	* movementControllerAI;	// 0D0 |
-	UInt32		pad0D4[(0x0FC - 0x0D4) >> 2];		// 0D4 |
-	BSTSmallArray<SpellItem*, 1>	addedSpells;	// 0FC
-	MagicCaster	* magicCaster[4];					// 108 [0] lefthand [1] right hand [2] unknown [3] power/shout
-	MagicItem	* equippingMagicItems[4];			// 118
-	TESForm		* equippedShout;					// 128
-	UInt32		unk12C;								// 12C
-	TESRace		* race;								// 130
-	UInt32		unk134;								// 134
-	struct
+	};
+
+	struct Flags2
 	{
-		bool			unk00 : 1;						// 00 0x00000001
-		bool			hasInteraction : 1;				// 01 0x00000002
-		unsigned char	unk02 : 5;						// 02 0x0000007C
-		bool			canDoFavor : 1;					// 07 0x00000080
-		unsigned char	unk08 : 4;						// 08 0x00000F00
-		bool			trespassing : 1;				// 0C 0x00001000
-		bool			unk0C : 1;						// 0D 0x00002000
-		bool			killMove : 1;					// 0E 0x00004000
-		bool			attackedByAllActors : 1;		// 0F 0x00008000	see Actor.SetAttackActorOnSight
-		bool			commandedActor : 1;				// 10 0x00010000	see Actor.IsCommandedActor
-		bool			unk11 : 1;						// 11 0x00020000
-		bool			essential : 1;					// 12 0x00040000
-	} flags2;										// 138
-	UInt32		unk13C[(0x19C - 0x13C) >> 2];
+		bool			unk00 : 1;					// 00 0x00000001
+		bool			hasInteraction : 1;			// 01 0x00000002
+		unsigned char	unk02 : 5;					// 02 0x0000007C
+		bool			canDoFavor : 1;				// 07 0x00000080
+		unsigned char	unk08 : 4;					// 08 0x00000F00
+		bool			trespassing : 1;			// 0C 0x00001000
+		bool			unk0C : 1;					// 0D 0x00002000
+		bool			killMove : 1;				// 0E 0x00004000
+		bool			attackedByAllActors : 1;	// 0F 0x00008000 - see Actor.SetAttackActorOnSight
+		bool			commandedActor : 1;			// 10 0x00010000 - see Actor.IsCommandedActor
+		bool			unk11 : 1;					// 11 0x00020000
+		bool			essential : 1;				// 12 0x00040000
+	};
+
+	enum SlotType
+	{
+		kSlot_LeftHand = 0,
+		kSlot_RightHand,
+		kSlot_Unknown,
+		kSlot_PowerOrShout,
+
+		kNumSlots
+	};
+
+
+	// @members
+	Flags1						flags1;								// 07C
+	UInt32						unk080;								// 080
+	UInt32						unk084;								// 084
+	ActorProcessManager			* processManager;					// 088
+	UInt32						unk08C;								// 08C | 
+	RefHandle					combatTargetRefHandle;				// 090 | (himika)
+	UInt32						unk094[(0x0C8 - 0x094) >> 2];		// 094 | 
+	BGSLocation					* editorLocation;					// 0C8 |
+	UInt32						pad0CC;								// 0CC |
+	MovementControllerAI		* movementControllerAI;				// 0D0 |
+	UInt32						pad0D4[(0x0FC - 0x0D4) >> 2];		// 0D4 |
+	BSTSmallArray<SpellItem *>	addedSpells;						// 0FC
+	MagicCaster					* magicCaster[kNumSlots];			// 108 [0] lefthand [1] right hand [2] unknown [3] power/shout
+	MagicItem					* equippingMagicItems[kNumSlots];	// 118
+	TESForm						* equippedShout;					// 128
+	UInt32						unk12C;								// 12C
+	TESRace						* race;								// 130
+	UInt32						unk134;								// 134
+	Flags2						flags2;								// 138
+	UInt32						unk13C[(0x19C - 0x13C) >> 2];		// 13C
 
 private:
 	DEFINE_MEMBER_FN_const(HasSpell_Impl, bool, 0x006E9130, SpellItem* spell);
