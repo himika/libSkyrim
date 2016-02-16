@@ -162,6 +162,7 @@
     <ClInclude Include="include\Skyrim\Animation\BSResponse.h" />
     <ClInclude Include="include\Skyrim\Animation\BSTAnimationGraphDataChannel.h" />
     <ClInclude Include="include\Skyrim\Animation\IAnimationGraphManagerHolder.h" />
+    <ClInclude Include="include\Skyrim\Animation\IAnimationSetCallbackFunctor.h" />
     <ClInclude Include="include\Skyrim\Animation\IPostAnimationChannelUpdateFunctor.h" />
     <ClInclude Include="include\Skyrim\Animation\SimpleAnimationGraphManagerHolde.h" />
     <ClInclude Include="include\Skyrim\BSAudio\BSAudioManager.h" />
@@ -219,6 +220,7 @@
     <ClInclude Include="include\Skyrim\BSPathFinding\BSPathSmootherRayCast.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\BSTPathingFactory.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\IMovementControllerRegisterInterface.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\IMovementInterface.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\MovementArbitrationAverage.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\MovementArbitrationMaxWeight.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\MovementParameters.h" />
@@ -523,6 +525,7 @@
     <ClInclude Include="include\Skyrim\Forms\Character\Components\ActorState.h" />
     <ClInclude Include="include\Skyrim\Forms\Character\Components\DetectionState.h" />
     <ClInclude Include="include\Skyrim\Forms\Character\Components\MovementControllerAI.h" />
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\MovementControllerNPC.h" />
     <ClInclude Include="include\Skyrim\Forms\ConeProjectile.h" />
     <ClInclude Include="include\Skyrim\Forms\EffectSetting.h" />
     <ClInclude Include="include\Skyrim\Forms\EnchantmentItem.h" />

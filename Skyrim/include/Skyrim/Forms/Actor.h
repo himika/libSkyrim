@@ -140,8 +140,8 @@ public:
 	// @override ActorState (vtbl=0x010CFB9C)
 	virtual FormID	IMovementState_Unk_01(void) override;			// 006A7CE0 { return formID; }
 	virtual void	IMovementState_Unk_02(UInt32 arg) override;		// 006B5B90 { Pathing::GetSingleton()->Unk_00609A40((Actor*)this); .... }
-	virtual void	IMovementState_Unk_03(NiPoint3 &pos) override;	// 006A7CF0 { pos = this->pos; }
-	virtual void	IMovementState_Unk_04(NiPoint3 &pos) override;	// 006A7D10
+	virtual void	GetPosition(NiPoint3 &pos) override;			// 006A7CF0 { pos = this->pos; }
+	virtual void	GetAngle(NiPoint3 &pos) override;				// 006A7D10
 	virtual float	IMovementState_Unk_05(void) override;			// 006A7D40 { return this->processManager->Unk_0071F140(); }
 	virtual float	IMovementState_Unk_06(void) override;			// 006A7C60 { return this->processManager->Unk_0071F2C0(); }
 	virtual void	IMovementState_Unk_07(NiPoint3 &pos) override;	// 006A7D70 { pos = NiPoint3{0f,0f,0f}; }
@@ -153,11 +153,10 @@ public:
 	virtual float	IMovementState_Unk_0D(void) override;			// 006ABBD0 { return Acotr::Unk_006AB410() * 0.75; }
 	virtual bool	IMovementState_Unk_0E(void) override;			// 006B17C0
 	virtual MovementParameters *	IMovementState_Unk_0F(void) override;	// 006A7DF0 { return (MovementParameters*)0x01275B88; }
-	virtual bool	IMovementState_Unk_10(UInt32 arg) override;		// 006A7DA0
-	virtual UInt32	IMovementState_Unk_11(void) override;			// 006ABB80
+	virtual bool	IMovementState_Unk_10(UInt32 arg) override;		// 006A7DA0 { return processManager ? processManager->Unk_006FCF40(arg) : false; }
+	virtual UInt32	IMovementState_Unk_11(void) override;			// 006ABB80 { processManager->Unk_00720880(); ... }
 	virtual bool	IMovementState_Unk_12(void) override;			// 006ABBB0 { Actor::Unk_006A6F20(g_thePlayer)}
 	virtual bool	IMovementState_Unk_13(void) override;			// 006A7DD0 { return (byte)rece->data.unk7C & 1; }
-	virtual bool	ActorState_Unk_14(UInt32 arg);					// 006C50B0
 	virtual bool	ActorState_Unk_15(UInt32 arg);					// 006EBA30
 
 	// @override class IAnimationGraphManagerHolder : (vtbl=010CFC54)

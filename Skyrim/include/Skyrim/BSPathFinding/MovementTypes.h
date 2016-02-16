@@ -1,20 +1,9 @@
 #pragma once
 
+#include "IMovementInterface.h"
 #include "MovementParameters.h"
 
 class NiPoint3;
-
-/*==============================================================================
-struct IMovementInterface +0000 (_vtbl=010D0AB4)
-0000: struct IMovementInterface
-==============================================================================*/
-// 04
-struct IMovementInterface
-{
-public:
-	virtual ~IMovementInterface();		// 0076DC90
-};
-
 
 /*==============================================================================
 struct IMovementState +0000 (_vtbl=010CF71C)
@@ -29,8 +18,8 @@ public:
 
 	virtual FormID	IMovementState_Unk_01(void) = 0;
 	virtual void	IMovementState_Unk_02(UInt32 arg) = 0;
-	virtual void	IMovementState_Unk_03(NiPoint3 &pos) = 0;
-	virtual void	IMovementState_Unk_04(NiPoint3 &pos) = 0;
+	virtual void	GetPosition(NiPoint3 &pos) = 0;
+	virtual void	GetAngle(NiPoint3 &pos) = 0;
 	virtual float	IMovementState_Unk_05(void) = 0;
 	virtual float	IMovementState_Unk_06(void) = 0;
 	virtual void	IMovementState_Unk_07(NiPoint3 &pos) = 0;

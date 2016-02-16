@@ -2252,6 +2252,15 @@
     <ClInclude Include="include\Skyrim\BSPathFinding\IMovementControllerRegisterInterface.h">
       <Filter>Header Files\Skyrim\BSPathFinding</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skyrim\Forms\Character\Components\MovementControllerNPC.h">
+      <Filter>Header Files\Skyrim\Forms\Character\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSPathFinding\IMovementInterface.h">
+      <Filter>Header Files\Skyrim\BSPathFinding</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\Animation\IAnimationSetCallbackFunctor.h">
+      <Filter>Header Files\Skyrim\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl">
