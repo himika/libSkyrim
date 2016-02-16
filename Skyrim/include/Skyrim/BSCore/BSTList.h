@@ -207,15 +207,8 @@ public:
 	}
 
 	void clear() {
-		if (!empty())
-		{
-			NodePtr node = &m_listHead;
-			while (!node->empty()) {
-				NodePtr next = node->next;
-				node->item.~value_type();
-				node = next;
-			}
-		}
+		while (!empty())
+			pop_front();
 	}
 
 	void push_front(const_reference ref) {
@@ -241,6 +234,8 @@ public:
 		NodePtr next = m_listHead.next;
 		if (next->empty()) {
 			m_listHead.item.~value_type();
+			m_listHead.item = 0;
+			m_listHead.next = nullptr;
 		}
 		else {
 			m_listHead.item = std::move(next->item);

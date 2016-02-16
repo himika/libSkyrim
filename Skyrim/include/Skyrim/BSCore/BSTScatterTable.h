@@ -421,24 +421,28 @@ protected:
 			return true;
 		}
 
-		entry_type *prevEntry = nullptr;
-		entry_type *curEntry = targetEntry;
-		while (!is_key_equal(curEntry->key, key)) {
-			prevEntry = curEntry;
-			curEntry = curEntry->next;
+		entry_type *prevEntry = targetEntry;
+		entry_type *curEntry = targetEntry->next;
+		while (true)
+		{
 			if (curEntry == m_eolPtr)
 				return false;		// not found
+			if (is_key_equal(curEntry->key, key))
+				break;				// found
+
+			prevEntry = curEntry;
+			curEntry = curEntry->next;
 		}
 		entry_type *nextEntry = curEntry->next;
-		
+
 		curEntry->~entry_type();
 		++m_freeCount;
 
 		if (nextEntry != m_eolPtr) {
-			_entry_move(targetEntry, nextEntry);
+			_entry_move(curEntry, nextEntry);
 			nextEntry->next = nullptr;
 		}
-		else if (prevEntry){
+		else {
 			prevEntry->next = m_eolPtr;
 		}
 
