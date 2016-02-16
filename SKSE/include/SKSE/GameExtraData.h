@@ -25,6 +25,7 @@
 #include <Skyrim/ExtraData/ExtraHotkey.h>
 #include <Skyrim/ExtraData/ExtraInteraction.h>
 #include <Skyrim/ExtraData/ExtraItemDropper.h>
+#include <Skyrim/ExtraData/ExtraLeveledItem.h>
 #include <Skyrim/ExtraData/ExtraLightData.h>
 #include <Skyrim/ExtraData/ExtraLinkedRef.h>
 #include <Skyrim/ExtraData/ExtraLinkedRefChildren.h>

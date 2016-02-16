@@ -16,7 +16,7 @@ public:
 	virtual ~StandardItemData();						// 00841A60
 
 	// @override
-	virtual const char *	GetName(void);				// 01 00867C30 { return objDesc->GenerateName(); }
+	virtual const char *	GetName(void);				// 01 00867C30 { return objDesc->GenerateName(); } - called from 00842193
 	virtual UInt32			GetCount(void);				// 02 00867C40 { return objDesc->GetCount(); }
 	virtual UInt32			GetEquipState(void);		// 03 00868A80
 	virtual UInt32			GetFilterFlag(void);		// 04 00868330

@@ -10,7 +10,7 @@ class TESReactionForm : public BaseFormComponent
 {
 public:
 	// 0C
-	struct RelationData
+	struct RelationData						// XNAM
 	{
 		TESFaction	* faction;				// 00
 		UInt32		modifier;				// 04

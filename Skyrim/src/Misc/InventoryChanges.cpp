@@ -19,10 +19,13 @@ InventoryEntryData::~InventoryEntryData()
 
 void InventoryEntryData::AddEntryList(BaseExtraList *extra)
 {
+	if (!extra)
+		return;
+
 	if (!extraList)
 		extraList = new BSSimpleList<BaseExtraList *>;
-
-	extraList->push_back(extra);
+	if (extraList)
+		extraList->push_back(extra);
 }
 
 

@@ -3,6 +3,7 @@
 #include "../BSCore/BSFixedString.h"
 #include "../BSCore/BSTEvent.h"
 #include "../Events/MenuEvent.h"
+#include "InputDevice.h"
 
 // 09C+
 class InputMappingManager :
@@ -10,13 +11,6 @@ class InputMappingManager :
 	public BSTEventSource<UserEventEnabledEvent>	// 04
 {
 public:
-	enum DeviceType
-	{
-		kDevice_Keyboard = 0,
-		kDevice_Mouse,
-		kDevice_Gamepad
-	};
-	
 	enum ContextType
 	{
 		kContext_Gameplay = 0,
@@ -38,7 +32,7 @@ public:
 		kContext_Favor,
 		kContextCount = 17,
 
-		kContext_Invalid = 18
+		kContext_Invalid = 18		// 0x12
 	};
 
 
@@ -70,8 +64,13 @@ public:
 	};
 	STATIC_ASSERT(sizeof(UnkData) == 0x14);
 
-	UInt32 GetMappedKey(const BSFixedString &name, DeviceType deviceType, ContextType contextIdx = kContext_Gameplay) const;
-	const BSFixedString & GetUserEventName(UInt32 buttonID, DeviceType deviceType, ContextType contextIdx = kContext_Gameplay) const;
+	enum
+	{
+		kInvalid = 0xFFFFFFFF
+	};
+
+	UInt32 GetMappedKey(const BSFixedString &name, BSInputDevice::Type deviceType, ContextType contextIdx = kContext_Gameplay) const;
+	const BSFixedString & GetUserEventName(UInt32 buttonID, BSInputDevice::Type deviceType, ContextType contextIdx = kContext_Gameplay) const;
 
 	// @members
 	InputMapping		* mappings[kContextCount];		// 34

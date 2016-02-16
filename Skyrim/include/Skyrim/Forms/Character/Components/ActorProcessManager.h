@@ -67,7 +67,7 @@ public:
 	UInt32		unk68;			// 68
 	UInt32		unk6C;			// 6C
 	UInt32		unk70;			// 70
-	UInt32		unk74;			// 74
+	float		unk74;			// 74 - refered by Actor::IMovementState_Unk_06()
 	UInt32		unk78;			// 78
 	UInt32		unk7C;			// 7C
 	UInt32		unk80;			// 80
@@ -125,7 +125,7 @@ public:
 	UInt32		unk150;			// 150
 	UInt32		unk154;			// 154
 	UInt32		unk158;			// 158
-	void		* unk15C;		// 15C - hkCharacterProxy?
+	void		* unk15C;		// 15C - hkpCharacterProxy?
 	void		* unk160;		// 160
 	UInt32		unk164;			// 164
 	UInt32		unk168;			// 168
@@ -139,7 +139,7 @@ public:
 	UInt32		unk188;			// 188
 	UInt32		unk18C;			// 18C
 	UInt32		unk190;			// 190
-	UInt32		unk194;			// 194
+	float		unk194;			// 194 - refered by Actor::IMovementState_Unk_05
 	UInt32		unk198;			// 198
 	UInt32		unk19C;			// 19C
 	UInt32		unk1A0;			// 1A0
@@ -193,7 +193,8 @@ public:
 		void		* unk060;						// 60
 		Actor		* unk064;						// 64
 		UInt32		unk068[(0xB4 - 0x68) >> 2];		// 68
-		SInt32		unk0B4[15];						// B4
+		SInt32		unk0B4[12];						// B4
+		SInt32		unk0E4[3];						// E4 - refered by Actor::IMovementState_Unk_10()
 		UInt32		unk0F0;							// F0
 		float		unk0F4;							// F4 - 1.0f
 		UInt32		unk0F8[(0x14C - 0x0F8) >> 2];	// F8

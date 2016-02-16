@@ -11,11 +11,11 @@ class BSInputDevice +0000 (_vtbl=0110E944)
 class BSInputDevice
 {
 public:
-	enum DeviceType
+	enum Type
 	{
-		kDeviceType_Keyboard = 0,
-		kDeviceType_Mouse,
-		kDeviceType_Gamepad
+		kType_Keyboard = 0,
+		kType_Mouse,
+		kType_Gamepad
 	};
 
 	// 10
@@ -34,13 +34,19 @@ public:
 	virtual			~BSInputDevice();					// 04 00A6AD80
 	virtual void	Unk_05(void) = 0;					// 05
 
-	inline bool IsKeyboard() const	{ return deviceType == kDeviceType_Keyboard; }
-	inline bool IsMouse() const		{ return deviceType == kDeviceType_Mouse; }
-	inline bool IsGamepad() const	{ return deviceType == kDeviceType_Gamepad; }
+	inline bool IsKeyboard() const	{ return type == kType_Keyboard; }
+	inline bool IsMouse() const		{ return type == kType_Mouse; }
+	inline bool IsGamepad() const	{ return type == kType_Gamepad; }
+
+	inline bool IsPressed(UInt32 keyCode) const
+	{
+		Data *data = nullptr;
+		return (codeMap.GetAt(keyCode, data) && data->timer > 0.0f);
+	}
 
 	// @members
-	DeviceType					deviceType;		// 04
-	BSTHashMap<UInt32, Data *>	codeMap;		// 08
+	Type						type;		// 04
+	BSTHashMap<UInt32, Data *>	codeMap;	// 08
 };
 
 

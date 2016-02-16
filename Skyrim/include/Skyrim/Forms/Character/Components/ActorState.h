@@ -12,23 +12,8 @@ class ActorState +0000 (_vtbl=010D0ABC)
 class ActorState : public IMovementState
 {
 public:
-	virtual ~ActorState();											// 006C51E0
-
-	// @override
-	virtual FormID	IMovementState_Unk_01(void) override;			// 005EADD0 { return 0; } Actor={ return formID; }
-	virtual void	IMovementState_Unk_02(UInt32 arg) override;		// 00588F30 { return; }
-	virtual void	IMovementState_Unk_03(NiPoint3 &pos) override;	// 00588F30 { return; }
-	virtual void	IMovementState_Unk_04(NiPoint3 &pos) override;	// 00588F30 { return; }
-	virtual float	IMovementState_Unk_05(void) override;			// 0066E8A0 { return 0.0f; }
-	virtual float	IMovementState_Unk_06(void) override;			// 0066E8A0 { return 0.0f; }
-	virtual void	IMovementState_Unk_07(NiPoint3 &pos) override;	// 00588F30 { return; }
-	virtual bool	IMovementState_Unk_08(UInt32 arg) override;		// 004091A0 { return false; }
-
-	// @add
-	virtual bool	ActorState_Unk_14(UInt32 arg);					// 006C50B0	- called when ChairEnter (arg=3), BedEnter (arg=7) ChairFurnitureExit BedFurnitureExit (arg=0)
-	virtual bool	ActorState_Unk_15(UInt32 arg);					// 006F0ED0
-
-	enum {
+	enum
+	{
 		kState_Running = 0x40,
 		kState_Walking = 0x80,
 		kState_Sprinting = 0x100,
@@ -38,19 +23,37 @@ public:
 		kState_Flying = (0x07 << 0x12)
 	};
 
-	enum {
+	enum SitState
+	{
 		kSitState_NotSitting = 0,
 		kSitState_WantsToSit = 2,
 		kSitState_Sitting = 3,
 		kSitState_WantsToStand = 4
 	};
 
-	enum {
+	enum
+	{
 		kSleepState_NotSleeping = 0,
 		kSleepState_WantsToSleep = 2,
 		kSleepState_Sleeping = 3,
 		kSleepState_WantsToWake = 4
 	};
+
+	virtual ~ActorState();											// 006C51E0
+
+	// @override
+	virtual FormID	IMovementState_Unk_01(void) override;			// 005EADD0 { return 0; } Actor={ return formID; }
+	virtual void	IMovementState_Unk_02(UInt32 arg) override;		// 00588F30 { return; }
+	virtual void	GetPosition(NiPoint3 &pos) override;			// 00588F30 { return; }
+	virtual void	GetAngle(NiPoint3 &pos) override;				// 00588F30 { return; }
+	virtual float	IMovementState_Unk_05(void) override;			// 0066E8A0 { return 0.0f; }
+	virtual float	IMovementState_Unk_06(void) override;			// 0066E8A0 { return 0.0f; }
+	virtual void	IMovementState_Unk_07(NiPoint3 &pos) override;	// 00588F30 { return; }
+	virtual bool	IMovementState_Unk_08(UInt32 arg) override;		// 004091A0 { return false; }
+
+	// @add
+	virtual bool	SetSitSleepState(UInt32 state);					// 006C50B0	- called when ChairEnter (arg=3), BedEnter (arg=7) ChairFurnitureExit BedFurnitureExit (arg=0)
+	virtual bool	ActorState_Unk_15(UInt32 arg);					// 006F0ED0
 
 	//struct {
 	//	unsigned char	unk0 : 6;				// 00

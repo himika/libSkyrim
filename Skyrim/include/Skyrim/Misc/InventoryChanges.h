@@ -22,6 +22,8 @@ public:
 		return IsOwnedBy_Impl1(actor, itemOwner, unk1);
 	}
 
+	TES_FORMHEAP_REDEFINE_NEW();
+
 	DEFINE_MEMBER_FN(GenerateName, const char *, 0x00475AA0);
 	DEFINE_MEMBER_FN_const(GetCount, UInt32, 0x005E8920);
 	DEFINE_MEMBER_FN_const(GetValue, SInt32, 0x00475450);
