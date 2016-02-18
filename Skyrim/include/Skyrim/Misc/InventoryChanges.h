@@ -88,8 +88,7 @@ public:
 	inline TESObjectREFR * GetOwner() {
 		return owner;
 	}
-
-
+	
 	InventoryEntryData * FindEntry(TESForm *item) const;
 
 	DEFINE_MEMBER_FN(SetUniqueID,		void,	0x00482050, BaseExtraList* itemList, TESForm * oldForm, TESForm * newForm);
@@ -106,6 +105,6 @@ public:
 	UInt8								unk11;			// 11 - init'd 0
 
 private:
-	DEFINE_MEMBER_FN(ctor, InventoryEntryData *, 0x00477280, TESObjectREFR *ref);
+	DEFINE_MEMBER_FN(ctor, InventoryChanges *, 0x00477280, TESObjectREFR *ref);
 	DEFINE_MEMBER_FN(dtor, void, 0x00477A60);
 };
