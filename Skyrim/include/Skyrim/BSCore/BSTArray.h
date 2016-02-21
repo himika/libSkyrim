@@ -5,6 +5,7 @@
 
 #include "../Memory.h"
 #include <memory.h>
+#include <utility>
 #include <functional>
 
 // 04
@@ -87,7 +88,7 @@ public:
 			_Free();
 	}
 
-	size_type	GetCapacity() const		{ return _M_capacity; }
+	size_type	capacity() const		{ return _M_capacity; }
 
 protected:
 	void		* _GetEntries()			{ return _M_entries; }
@@ -132,7 +133,7 @@ public:
 			_Free();
 	}
 
-	size_type	GetCapacity() const		{ return (_M_capacity & ~kLocalAlloc); }
+	size_type	capacity() const		{ return (_M_capacity & ~kLocalAlloc); }
 
 protected:
 	void		* _GetEntries()			{ return _IsLocal() ? _M_entries.local : _M_entries.heap; }
@@ -184,7 +185,7 @@ public:
 			_Free();
 	}
 
-	size_type	GetCapacity() const { return _M_capacity; }
+	size_type	capacity() const	{ return _M_capacity; }
 
 protected:
 	void		* _GetEntries()	{ return _M_entries; }
@@ -274,7 +275,7 @@ public:
 
 	// compiler hints for GCC
 	using _TAlloc::_GetEntries;
-	using _TAlloc::GetCapacity;
+	using _TAlloc::capacity;
 
 	TES_FORMHEAP_REDEFINE_NEW();
 
@@ -514,12 +515,12 @@ public:
 	}
 
 	void reserve(size_type num) {
-		size_type capacity = GetCapacity();
-		if (capacity >= num)
+		const size_type cap = capacity();
+		if (cap >= num)
 			return;
 
 		functor_type pred(this);
-		if (capacity) {
+		if (cap) {
 			_resize(pred, num, sizeof(value_type));
 		}
 		else {
@@ -529,7 +530,7 @@ public:
 
 	void push_front(const_reference ref) {
 		functor_type pred(this);
-		SInt32 index = _push(pred, GetCapacity(), sizeof(value_type));
+		SInt32 index = _push(pred, capacity(), sizeof(value_type));
 		if (index >= 0) {
 			_move(_head(), 1, 0, index, sizeof(value_type));
 			new(_head())value_type(ref);
@@ -539,9 +540,28 @@ public:
 	// TESV.0043C670
 	void push_back(const_reference ref) {
 		functor_type pred(this);
-		SInt32 index = _push(pred, GetCapacity(), sizeof(value_type));
+		SInt32 index = _push(pred, capacity(), sizeof(value_type));
 		if (index >= 0) {
 			new(_head() + index)value_type(ref);
+		}
+	}
+
+	template <class... ValTy>
+	void emplace_front(ValTy&&... val) {
+		functor_type pred(this);
+		SInt32 index = _push(pred, capacity(), sizeof(value_type));
+		if (index >= 0) {
+			_move(_head(), 1, 0, index, sizeof(value_type));
+			new(_head())value_type(std::forward<ValTy>(val)...);
+		}
+	}
+
+	template <class... ValTy>
+	void emplace_back(ValTy&&... val) {
+		functor_type pred(this);
+		SInt32 index = _push(pred, capacity(), sizeof(value_type));
+		if (index >= 0) {
+			new(_head() + index)value_type(std::forward<ValTy>(val)...);
 		}
 	}
 
@@ -581,6 +601,10 @@ public:
 
 	inline UInt32 GetSize() const {
 		return size();
+	}
+
+	inline UInt32 GetCapacity() const {
+		return capacity();
 	}
 
 	inline reference Front() {
