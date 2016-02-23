@@ -59,15 +59,15 @@ public:
 	// 30
 	struct Data14
 	{
-		UInt32		unk00;		// 00 (14) - init'd [01B912CC]
-		UInt32		unk04;		// 04 (18) - init'd [01B912D0]
-		UInt32		unk08;		// 08 (1C) - init'd [01B912CC]
-		UInt32		unk0C;		// 0C (20) - init'd [01B912D0]
-		UInt32		unk10;		// 10 (24) - init'd [01B912CC]
-		UInt32		unk14;		// 14 (28) - init'd [01B912D0]
-		UInt32		unk18;		// 18 (2C) - init'd [01B912CC]
-		UInt32		unk1C;		// 1C (30) - init'd [01B912D0]
-		float		unk20;		// 20 (34) - init'd 0 - init'd [0127B934] in PlayerControls::ctor()
+		float		movementX;	// 00 (14) - init'd [01B912CC] - Strafe Left=-1, Strafe Right=1
+		float		movementY;	// 04 (18) - init'd [01B912D0] - Forward=1, Back=-1 
+		float		unk08;		// 08 (1C) - init'd [01B912CC]
+		float		unk0C;		// 0C (20) - init'd [01B912D0]
+		float		unk10;		// 10 (24) - init'd [01B912CC]
+		float		unk14;		// 14 (28) - init'd [01B912D0]
+		float		unk18;		// 18 (2C) - init'd [01B912CC]
+		float		unk1C;		// 1C (30) - init'd [01B912D0]
+		UInt32		unk20;		// 20 (34) - init'd [0127B934]
 		UInt8		autoRun;	// 24 (38)
 		UInt8		runMode;	// 25 (39)
 		UInt8		unk26;		// 26 (3A)

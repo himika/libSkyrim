@@ -35,6 +35,14 @@ public:
 		kContext_Invalid = 18		// 0x12
 	};
 
+	enum ControlState
+	{
+		kControlState_Looking	= 0x002,
+		kControlState_Flying	= 0x040,
+		kControlState_Sneaking	= 0x080,
+		kControlState_Menu		= 0x100,
+		kControlState_Movement	= 0x401
+	};
 
 	struct InputMapping
 	{
@@ -42,7 +50,8 @@ public:
 		struct Data
 		{
 			BSFixedString	name;		// 00 - User Event Name
-			UInt32			buttonID;	// 04
+			UInt16			buttonID;	// 04
+			UInt16			modifier;	// 06
 			UInt32			sortIndex;	// 08
 			UInt32			flags;		// 0C - User Event Binary Flag
 		};
@@ -72,11 +81,17 @@ public:
 	UInt32 GetMappedKey(const BSFixedString &name, BSInputDevice::Type deviceType, ContextType contextIdx = kContext_Gameplay) const;
 	const BSFixedString & GetUserEventName(UInt32 buttonID, BSInputDevice::Type deviceType, ContextType contextIdx = kContext_Gameplay) const;
 
+	inline bool IsLookingControlsEnabled() const	{ return (controlState & kControlState_Looking) == kControlState_Looking; }
+	inline bool IsFlyingControlsEnabled() const		{ return (controlState & kControlState_Flying) == kControlState_Flying; }
+	inline bool IsSneakingControlsEnabled() const	{ return (controlState & kControlState_Sneaking) == kControlState_Sneaking; }
+	inline bool IsMenuControlsEnabled() const		{ return (controlState & kControlState_Menu) == kControlState_Menu; }
+	inline bool IsMovementControlsEnabled() const	{ return (controlState & kControlState_Movement) == kControlState_Movement; }
+
 	// @members
 	InputMapping		* mappings[kContextCount];		// 34
 	BSTArray<UnkData>	unk78;							// 78
 	BSTArray<UInt32>	unk84;							// 84
-	SInt32				unk90;							// 90 - init'd -1
+	SInt32				controlState;					// 90 - init'd -1
 	UInt32				unk94;							// 94 - init'd 0x80000000
 	UInt8				unk98;							// 98 - init'd 0
 	UInt8				unk99;							// 99 - init'd 0

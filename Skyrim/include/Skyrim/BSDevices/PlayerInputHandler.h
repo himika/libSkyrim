@@ -124,10 +124,23 @@ struct MovementHandler +0000 (_vtbl=010D4594)
 0000: struct MovementHandler
 0000: |   class PlayerInputHandler
 ==============================================================================*/
+struct MovementHandler : public PlayerInputHandler
+{
 	//// @override class PlayerInputHandler : (vtbl=010D4594)
-	//virtual ????   Unk_001(????) override;                           // 00772000
-	//virtual ????   Unk_002(????) override;                           // 00770F70
-	//virtual ????   Unk_004(????) override;                           // 00772090
+	virtual	bool	CanProcess(InputEvent *evn) override;												// 00772000
+	virtual	void	ProcessThumbstick(ThumbstickEvent *evn, PlayerControls::Data14 *arg2) override;		// 00770F70
+	virtual	void	ProcessButton(ButtonEvent *evn, PlayerControls::Data14 *arg2) override;				// 00772090
+
+	MovementHandler() : disabled(true)
+	{
+	}
+
+	inline bool IsEnabled()	const { return enabled && !disabled; }
+
+	// @members
+	//void	** _vtbl;	// 00 - 010D4594
+	bool	disabled;	// 04 - init'd true
+};
 
 /*==============================================================================
 struct LookHandler +0000 (_vtbl=010D45AC)
