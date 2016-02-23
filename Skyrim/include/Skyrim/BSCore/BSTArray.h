@@ -623,6 +623,10 @@ public:
 		return (index < size()) ? (*(_head() + index) = val, true) : false;
 	}
 
+	inline bool SetAt(size_type index, value_type &&rval) {
+		return (index < size()) ? (*(_head() + index) = rval, true) : false;
+	}
+
 	inline bool GetNthItem(size_type index, reference val) const {
 		return (index < size()) ? (val = *(_head() + index), true) : false;
 	}

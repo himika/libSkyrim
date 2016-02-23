@@ -818,7 +818,7 @@ public:
 		return _find(m_entries, get_hash(key), key) ? 1 : 0;
 	}
 
-	bool insert(const key_type &key, const value_type &value) {
+	bool insert(const key_type &key, const value_type &lvalue) {
 		hash_type hash = get_hash(key);
 		entry_type *p = nullptr;
 
@@ -828,7 +828,20 @@ public:
 				return false;
 		}
 
-		new (&p->value)value_type(value);
+		new (&p->value)value_type(lvalue);
+		return true;
+	}
+	bool insert(const key_type &key, value_type &&rvalue) {
+		hash_type hash = get_hash(key);
+		entry_type *p = nullptr;
+
+		while (!(p = _insert(m_entries, hash, key))) {
+			_grow_table();
+			if (!m_entries || !m_freeCount)
+				return false;
+		}
+
+		new (&p->value)value_type(rvalue);
 		return true;
 	}
 	// original implementation
@@ -853,8 +866,12 @@ public:
 		return false;
 	}
 
-	inline bool SetAt(key_type key, value_type &value) {
-		return insert(key, value);
+	inline bool SetAt(key_type key, value_type &lvalue) {
+		return insert(key, lvalue);
+	}
+
+	inline bool SetAt(key_type key, value_type &&rvalue) {
+		return insert(key, rvalue);
 	}
 
 	inline bool RemoveAt(key_type key) {
