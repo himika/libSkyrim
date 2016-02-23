@@ -25,7 +25,7 @@ public:
 	TES_FORMHEAP_REDEFINE_NEW();
 
 	DEFINE_MEMBER_FN(GenerateName, const char *, 0x00475AA0);
-	DEFINE_MEMBER_FN_const(GetCount, UInt32, 0x005E8920);
+	DEFINE_MEMBER_FN_const(GetCount, UInt32, 0x005E8920);		// { return this->countDelta; }
 	DEFINE_MEMBER_FN_const(GetValue, SInt32, 0x00475450);
 	DEFINE_MEMBER_FN_const(GetOwner, TESForm*, 0x004755A0);
 	DEFINE_MEMBER_FN_const(IsQuestItem, bool, 0x004759B0);
@@ -101,8 +101,8 @@ public:
 	TESObjectREFR						* owner;		// 04
 	float								totalWeight;	// 08 - init'd -1
 	float								armorWeight;	// 0C
-	UInt8								unk10;			// 10 - init'd 0
-	UInt8								unk11;			// 11 - init'd 0
+	bool								changed;		// 10 - init'd 0
+	bool								unk11;			// 11 - init'd 0
 
 private:
 	DEFINE_MEMBER_FN(ctor, InventoryChanges *, 0x00477280, TESObjectREFR *ref);

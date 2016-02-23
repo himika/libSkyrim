@@ -279,7 +279,7 @@ public:
 
 	DEFINE_MEMBER_FN(QueueAliasEvent, void, 0x008C6B30, VMHandle handle, const BSFixedString& eventName, BSScript::IFunctionArguments* args, UInt32 arg4);
 	DEFINE_MEMBER_FN(UnregisterForUpdate, void, 0x008D1E00, VMHandle handle);
-	DEFINE_MEMBER_FN(RegisterDelayFunctor, bool, 0x008C7810, SkyrimScript::DelayFunctor*);
+	DEFINE_MEMBER_FN(AddDelayFunctor, bool, 0x008C7810, BSTSmartPointer<SkyrimScript::DelayFunctor> &delayFunctorPtr);
 
 
 	// @members
@@ -309,6 +309,8 @@ public:
 	BSSpinLock					m_updateLock;			// 046C
 	UpdateRegistrationHolder	m_updateRegHolder;		// 0474
 	UpdateRegistrationHolder	m_updateGameTimeRegHolder;	// 0480
+	//BSSpinLock				m_delayFunctorLock;		// 4570
+	//BSTCommonLLMessageQueue<BSTSmartPointer<SkyrimScript::DelayFunctor>> *delayFunctorQueue;	// 457C
 
 private:
 	friend struct BSTSingletonSDMBase<BSTSDMTraits<SkyrimVM>>;

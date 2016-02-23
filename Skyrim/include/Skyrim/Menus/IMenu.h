@@ -83,7 +83,7 @@ public:
 									//    - 0x00004880 Mist Menu           : *  :*   :*   :    
 									//    - 0x00008800 Fader Menu          :*   :*   :    :    
 									//    - 0x00000004 TitleSequence Menu  :    :    :    : *
-									//    - 0x00000585 Main Menu		   :    : * *:*   : * *
+									//    - 0x00000585 Main Menu           :    : * *:*   : * *
 									//    - 0x00008800 Cursor Menu         :*   :*   :    :    
 									//    - 0x00018902 HUD Menu           *:*   :*  *:    :  *
 									//    - 0x00000E2D Journal Menu        :    :*** :  * :** *
@@ -91,7 +91,7 @@ public:
 									//    - 0x00009005 MapMenu             :*  *:    :    : * *
 									//    - 0x0000CC05 TweenMenu           :**  :**  :    : * *
 									//    - 0x00000905 Sleep/Wait Menu     :    :*  *:    : * *
-									//    - 0x00000455 Tutorial Menu       :    : *  : * *: * *
+									//    - 0x00000415 Tutorial Menu       :    : *  :   *: * *
 									//    - 0x0000040D Training Menu       :    : *  :    :** *
 									//    - 0x00000807 Console             :    :*   :    : ***
 									//    - 0x0000648C Crafting Menu       : ** : *  :*   :**

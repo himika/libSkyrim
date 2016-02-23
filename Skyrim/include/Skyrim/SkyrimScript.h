@@ -119,11 +119,11 @@ namespace SkyrimScript
 		virtual ~DelayFunctor();			// 008AF430
 
 		virtual BSScript::BSScriptVariable* Unk_01(BSScript::BSScriptVariable* var) = 0;
-		virtual bool Unk_02() = 0;			// (pure)
-		virtual void Unk_03(void);			// 0092D110 (void) { return false; }
-		virtual void Unk_04(void);			// 008AF460
-		virtual void Unk_05(void) = 0;		// (pure)
-		virtual void Unk_06(void);			// 008AF5B0
+		virtual bool	Unk_02() = 0;			// (pure)
+		virtual bool	Unk_03(void);			// 0092D110 (void) { return false; }
+		virtual void	Unk_04(void);			// 008AF460
+		virtual UInt32	GetType(void) = 0;		// (pure)
+		virtual void	Unk_06(void);			// 008AF5B0
 		// @members
 		// void **	_vtbl		// 00 - 010EA1DC
 	};

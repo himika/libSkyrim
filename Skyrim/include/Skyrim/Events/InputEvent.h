@@ -71,11 +71,11 @@ public:
 	}
 
 	inline bool IsDown() const {
-		return (pressure > 0) && (timer == 0);
+		return (pressure > 0) && (timer == 0.0f);
 	}
 
 	inline bool IsUp() const {
-		return (pressure == 0) && (timer > 0);
+		return (pressure == 0) && (timer > 0.0f);
 	}
 
 	DEFINE_MEMBER_FN_const(IsLongTap, bool, 0x00770F00, float timeThreshold);
