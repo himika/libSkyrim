@@ -77,6 +77,16 @@ public:
 		kFlag_Harvested = 0x2000
 	};
 
+	enum RemoveType
+	{
+		kRemoveType_Remove,
+		kRemoveType_Steal,
+		kRemoveType_Trade,
+		kRemoveType_Drop,
+		kRemoveType_Take,
+		kRemoveType_Unk05
+	};
+
 	//TESObjectREFR();																// 004E6930
 	virtual ~TESObjectREFR();														// 004E6FA0
 
