@@ -680,6 +680,7 @@
     <ClInclude Include="include\Skyrim\NetImmerse\NiTMapBase.h" />
     <ClInclude Include="include\Skyrim\NetImmerse\NiTPointerAllocator.h" />
     <ClInclude Include="include\Skyrim\NetImmerse\NiTPointerMap.h" />
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTStringMap.h" />
     <ClInclude Include="include\Skyrim\NetImmerse\NiTypes.h" />
     <ClInclude Include="include\Skyrim\RTTI.h" />
     <ClInclude Include="include\Skyrim\Scaleform\FxGameDelegate.h" />

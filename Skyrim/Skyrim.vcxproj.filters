@@ -2261,6 +2261,9 @@
     <ClInclude Include="include\Skyrim\Animation\IAnimationSetCallbackFunctor.h">
       <Filter>Header Files\Skyrim\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skyrim\NetImmerse\NiTStringMap.h">
+      <Filter>Header Files\Skyrim\NetImmerse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl">
