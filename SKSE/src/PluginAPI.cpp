@@ -17,7 +17,9 @@
 #  pragma warning(pop)
 #endif
 
+
 #define SKSE_API extern "C" __declspec(dllexport)
+
 
 struct PluginInfo
 {
@@ -32,6 +34,19 @@ struct PluginInfo
 	const char *	name;
 	UInt32			version;
 };
+
+
+enum SKSEInterfaceType
+{
+	kInterface_Invalid = 0,
+	kInterface_Scaleform,
+	kInterface_Papyrus,
+	kInterface_Serialization,
+	kInterface_Task,
+	kInterface_Messaging,
+	kInterface_Max,
+};
+
 
 static HINSTANCE                    hInstance;
 static std::string					dllName;
@@ -116,12 +131,6 @@ SKSEPlugin::~SKSEPlugin()
 	{
 		gLog.close();
 	}
-}
-
-// @virtual
-bool SKSEPlugin::InitInstance()
-{
-	return true;
 }
 
 // @virtual

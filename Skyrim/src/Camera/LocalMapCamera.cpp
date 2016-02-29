@@ -1,6 +1,9 @@
 #include "Skyrim/Camera/LocalMapCamera.h"
 #include "Skyrim/BSMain/Setting.h"
 
+const float	* g_mapLocalHeight = *(float **)0x0124166C;
+const float	* g_localMapMinFrustumWidth = *(float **)0x012B5B80;
+
 
 void LocalMapCamera::SetDefaultStateMinFrustumDimensions(float width, float height)
 {

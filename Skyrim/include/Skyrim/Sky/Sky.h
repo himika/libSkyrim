@@ -18,8 +18,6 @@ class Sky +0000 (_vtbl=010A81BC)
 // 238
 class Sky
 {
-	CLASS_SIZE_ASSERT(0x238)
-
 public:
 	virtual ~Sky();						// 010A81BC
 
@@ -83,3 +81,4 @@ private:
 	void			* skyEffectController;			// 210
 	UInt32			unk214[(0x238 - 0x214) >> 2];	// 214
 };
+STATIC_ASSERT(sizeof(Sky) == 0x238);

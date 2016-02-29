@@ -3,12 +3,9 @@
 #include "Skyrim/Memory.h"
 #include <string.h>
 
-INISettingCollection	*& g_iniSettingCollection		= *(INISettingCollection **)0x01B97F14;
-INISettingCollection	*& g_iniPrefSettingCollection	= *(INISettingCollection **)0x01B8FAF8;
-GameSettingCollection	*& g_gameSettingCollection		= *(GameSettingCollection **)0x012E7164;
-
-const float	* g_mapLocalHeight = *(float **)0x0124166C;
-const float	* g_localMapMinFrustumWidth = *(float **)0x012B5B80;
+INISettingCollection		*& g_iniSettingCollection		= *(INISettingCollection **)0x01B97F14;
+INIPrefSettingCollection	*& g_iniPrefSettingCollection	= *(INIPrefSettingCollection **)0x01B8FAF8;
+GameSettingCollection		*& g_gameSettingCollection		= *(GameSettingCollection **)0x012E7164;
 
 // sLanguage:General
 // ### if you were using g_gameLanguage, just look it up in g_iniSettingCollection

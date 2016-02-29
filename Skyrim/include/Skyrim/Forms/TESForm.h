@@ -120,7 +120,6 @@ public:
 	bool IsAmmo() const		{ return this->Is(FormType::Ammo); }
 	bool IsArmor() const	{ return this->Is(FormType::Armor); }
 	bool IsSoulGem() const	{ return this->Is(FormType::SoulGem); }
-
 	bool IsLockpick() const	{ return this->formID == 0x00000A; }
 	bool IsGold() const		{ return this->formID == 0x00000F; }
 

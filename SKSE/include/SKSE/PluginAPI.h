@@ -5,7 +5,6 @@
 
 typedef UInt32	PluginHandle;	// treat this as an opaque type
 
-
 // External Classes
 class InventoryEntryData;
 class GFxMovieView;
@@ -34,17 +33,6 @@ enum
 	kPluginHandle_Invalid = 0xFFFFFFFF
 };
 
-
-enum
-{
-	kInterface_Invalid = 0,
-	kInterface_Scaleform,
-	kInterface_Papyrus,
-	kInterface_Serialization,
-	kInterface_Task,
-	kInterface_Messaging,
-	kInterface_Max,
-};
 
 enum SKSEVersion
 {
@@ -98,6 +86,7 @@ enum SKSEVersion
 	kSKSEVersion_1_7_2  = 0x01070020,
 	kSKSEVersion_1_7_3  = 0x01070030
 };
+
 
 struct SKSEInterface
 {
@@ -222,8 +211,10 @@ struct SKSEPapyrusInterface
 		Version_1 = 1,			// 1.7.1
 		CurrentVersion = Version_1
 	};
-	UInt32	version;
+
 	typedef bool(*RegisterFunctions)(VMState * state);
+
+	UInt32	version;
 	bool(*Register)(RegisterFunctions callback);
 };
 
@@ -385,12 +376,12 @@ public:
 	SKSEPlugin();
 	virtual ~SKSEPlugin();
 
-	virtual bool InitInstance();
+	virtual bool InitInstance() = 0;
 	virtual bool OnLoad();
 	virtual void OnModLoaded();
 
-	void SetName(const char* name);
-	void SetVersion(UInt32 version);
+	const char * GetDllName() const;
+	static const SKSEPlugin* GetSingleton();
 
 	PluginHandle GetPluginHandle() const;
 	UInt32 GetRuntimeVersion() const;
@@ -412,6 +403,10 @@ public:
 		return GetInterface((Interface::Version)0);
 	}
 
+protected:
+	void SetName(const char* name);
+	void SetVersion(UInt32 version);
+
 	bool Requires(SKSEVersion version) const;
 	bool Requires(SKSEScaleformInterface::Version version) const;
 	bool Requires(SKSEPapyrusInterface::Version version) const;
@@ -424,8 +419,4 @@ public:
 	bool Requires(Arg0 arg0, Args... args) const {
 		return Requires(arg0) && Requires(args...);
 	}
-
-	const char * GetDllName() const;
-
-	static const SKSEPlugin* GetSingleton();
 };

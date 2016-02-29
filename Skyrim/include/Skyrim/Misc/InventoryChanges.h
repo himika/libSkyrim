@@ -25,7 +25,7 @@ public:
 	TES_FORMHEAP_REDEFINE_NEW();
 
 	DEFINE_MEMBER_FN(GenerateName, const char *, 0x00475AA0);
-	DEFINE_MEMBER_FN_const(GetCount, UInt32, 0x005E8920);		// { return this->countDelta; }
+	DEFINE_MEMBER_FN_const(GetCount, SInt32, 0x005E8920);		// { return this->countDelta; }
 	DEFINE_MEMBER_FN_const(GetValue, SInt32, 0x00475450);
 	DEFINE_MEMBER_FN_const(GetOwner, TESForm*, 0x004755A0);
 	DEFINE_MEMBER_FN_const(IsQuestItem, bool, 0x004759B0);

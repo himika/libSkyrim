@@ -17,12 +17,12 @@
 const RefHandle & g_invalidRefHandle = *(RefHandle*)0x01310630;
 
 
-bool TESObjectREFR::LookupByHandle(RefHandle &refHandle, TESObjectREFR* &refrOut)
+bool TESObjectREFR::LookupByHandle(const RefHandle &refHandle, TESObjectREFR* &refrOut)
 {
 	return ::LookupREFRByHandle(refHandle, refrOut);
 }
 
-bool TESObjectREFR::LookupByHandle(RefHandle &refHandle, TESObjectREFRPtr &refrOut)
+bool TESObjectREFR::LookupByHandle(const RefHandle &refHandle, TESObjectREFRPtr &refrOut)
 {
 	return ::LookupREFRByHandle(refHandle, refrOut);
 }

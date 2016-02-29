@@ -41,3 +41,6 @@ public:
 	DEFINE_MEMBER_FN(ctor, LocalMapCamera*, 0x00487420);
 };
 STATIC_ASSERT(offsetof(LocalMapCamera, northRotation) == 0x48);
+
+extern const float	* g_mapLocalHeight;
+extern const float	* g_localMapMinFrustumWidth;

@@ -403,8 +403,8 @@ public:
 		return IsOwnedBy_Impl(actor, unk1, unk2);
 	}
 
-	static bool LookupByHandle(RefHandle &handle, TESObjectREFR* &refrOut);
-	static bool LookupByHandle(RefHandle &handle, TESObjectREFRPtr &managedOut);
+	static bool LookupByHandle(const RefHandle &handle, TESObjectREFR* &refrOut);
+	static bool LookupByHandle(const RefHandle &handle, TESObjectREFRPtr &managedOut);
 
 	// @members
 	//void			** _vtbl00;		// 00 - 01089424 TESObjectREFR
@@ -440,17 +440,17 @@ STATIC_ASSERT(sizeof(TESObjectREFR) == 0x54);
 // Note: May set refHandle to 0
 extern const RefHandle & g_invalidRefHandle;
 
-inline bool LookupREFRByHandle(RefHandle &refHandle, TESObjectREFR *&refrOut)
+inline bool LookupREFRByHandle(const RefHandle &refHandle, TESObjectREFR *&refrOut)
 {
-	typedef bool(*_Lookup)(RefHandle &refHandle, TESObjectREFR *&refrOut);
+	typedef bool(*_Lookup)(const RefHandle &refHandle, TESObjectREFR *&refrOut);
 	const _Lookup Lookup = (_Lookup)0x004A9180;
 
 	return Lookup(refHandle, refrOut);
 }
 
-inline bool LookupREFRByHandle(RefHandle &refHandle, TESObjectREFRPtr &refrOut)
+inline bool LookupREFRByHandle(const RefHandle &refHandle, TESObjectREFRPtr &refrOut)
 {
-	typedef bool(*_Lookup)(RefHandle &refHandle, TESObjectREFRPtr &managedOut);
+	typedef bool(*_Lookup)(const RefHandle &refHandle, TESObjectREFRPtr &managedOut);
 	const _Lookup Lookup = (_Lookup)0x004951F0;
 
 	return Lookup(refHandle, refrOut);
