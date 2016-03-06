@@ -24,6 +24,39 @@ class TESForm : public BaseFormComponent
 public:
 	enum { kTypeID = 0 };	// special-case
 
+	struct TESFileArray
+	{
+		TESFile		** files;
+		UInt32		numFiles;
+	};
+
+	struct FlagData
+	{
+		bool	visible : 1;
+		bool	unk01 : 1;
+		bool	unk02 : 1;
+		bool	unk03 : 1;
+		bool	unk04 : 1;
+		bool	deleted : 1;			// :05 0x0020
+		bool	playerKnows : 1;		// :06 0x0040
+		bool	unk07 : 1;
+		bool	unk08 : 1;
+		bool	unk09 : 1;
+		bool	unk0A : 1;
+		bool	disabled : 1;			// :0B 0x0800
+		bool	unk0C : 1;				// :0C 0x1000
+		bool	unk0D : 1;
+		bool	unk0E : 1;              // :0E 0x4000 see TEObjetREFR::~TESObjectREFR()
+		bool	unk0F : 1;
+		bool	unk10 : 1;				// :10 0x10000
+		bool	unk11 : 1;
+		bool	unk12 : 1;
+		bool	unk13 : 1;
+		bool	ignoreFriendlyHits : 1;	// 14 0x00100000
+		bool	unk15 : 1;				// 15 0x00200000 see 0067BE72
+	};
+
+
 	virtual ~TESForm();													// 004522A0
 
 	// @override
@@ -123,45 +156,28 @@ public:
 	bool IsLockpick() const	{ return this->formID == 0x00000A; }
 	bool IsGold() const		{ return this->formID == 0x00000F; }
 
-	bool HasWorldModel(void) const;
+	bool	HasWorldModel(void) const;
 	UInt32	GetGoldValue() const;
 	double	GetWeight() const;
 	bool	HasKeyword(BGSKeyword* keyword) const;
 
-protected:
-	DEFINE_MEMBER_FN(ReadVMAD, void, 0x0045170, TESFile *mod);	// virtual machine adaptor
+	TESFile * GetFile(SInt32 index = -1) const {
+		return GetFile_Impl(index);
+	}
 
 public:
 	// @members
-	//void		** _vtbl;	// 00 - 0107CBE4
-	void		* unk04;	// 04 - TESFile **
-	struct Flags{
-		bool	visible : 1;
-		bool	unk01 : 1;
-		bool	unk02 : 1;
-		bool	unk03 : 1;
-		bool	unk04 : 1;
-		bool	deleted : 1;			// :05 0x0020
-		bool	playerKnows : 1;		// :06 0x0040
-		bool	unk07 : 1;
-		bool	unk08 : 1;
-		bool	unk09 : 1;
-		bool	unk0A : 1;
-		bool	disabled : 1;			// :0B 0x0800
-		bool	unk0C : 1;				// :0C 0x1000
-		bool	unk0D : 1;
-		bool	unk0E : 1;              // :0E 0x4000 see TEObjetREFR::~TESObjectREFR()
-		bool	unk0F : 1;
-		bool	unk10 : 1;				// :10 0x10000
-		bool	unk11 : 1;
-		bool	unk12 : 1;
-		bool	unk13 : 1;
-		bool	ignoreFriendlyHits : 1;	// 14 0x00100000
-		bool	unk15 : 1;				// 15 0x00200000 see 0067BE72
-	} flags;				// 08
-	FormID		formID;		// 0C
-	UInt16		unk10;		// 10
-	FormType	formType;	// 12
-	UInt8		pad13;		// 13
+	//void			** _vtbl;			// 00 - 0107CBE4
+	TESFileArray	* TESFileArray;		// 04 - TESFile **
+	FlagData		flags;				// 08
+	FormID			formID;				// 0C
+	UInt16			unk10;				// 10
+	FormType		formType;			// 12
+	UInt8			pad13;				// 13
+
+protected:
+	DEFINE_MEMBER_FN(ReadVMAD, void, 0x0045170, TESFile *mod);			// virtual machine adaptor
+	DEFINE_MEMBER_FN_const(GetFile_Impl, TESFile *, 0x004515B0, SInt32 index);
+
 };
 STATIC_ASSERT(sizeof(TESForm) == 0x14);

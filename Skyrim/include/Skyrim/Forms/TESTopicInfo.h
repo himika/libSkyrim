@@ -2,10 +2,14 @@
 
 #include "TESForm.h"
 #include "../FormComponents/Condition.h"
+#include "../BSCore/BSFixedString.h"
+#include "../BSCore/BSString.h"
 
 class TESTopic;
 class TESNPC;
 class BGSSoundOutput;
+class BGSSoundDescriptorForm;
+class TESIdleForm;
 
 /*==============================================================================
 class TESTopicInfo +0000 (_vtbl=010A6CCC)
@@ -33,6 +37,35 @@ public:
 		kDialogFlag_SpendsFavorPoints =			1 << 14,
 	};
 
+	enum EmotionType
+	{
+		kEmotionType_Neutral	= 0,
+		kEmotionType_Anger,
+		kEmotionType_Disgust,
+		kEmotionType_Fear,
+		kEmotionType_Sad,
+		kEmotionType_Happy,
+		kEmotionType_Surprise,
+		kEmotionType_Puzzled
+	};
+
+	// 28
+	struct ResponseData
+	{
+		UInt32					emotionType;		// 00
+		UInt32					emotionValue;		// 04
+		UInt32					unk08;				// 08
+		UInt32					unk0C;				// 0C
+		BGSSoundDescriptorForm	* sound;			// 10
+		UInt32					unk14;				// 14
+		const char				* responseText;		// 18
+		TESIdleForm				* idleSpeaker;		// 1C
+		TESIdleForm				* idleListener;		// 20
+		ResponseData			* next;				// 24
+	};
+	STATIC_ASSERT(sizeof(ResponseData) == 0x28);
+
+
 	virtual ~TESTopicInfo();		// 0057ED90
 
 	// @override
@@ -53,19 +86,21 @@ public:
 	BGSSoundOutput *	GetSoundOutputOverride() const;
 
 	// @members
-	TESTopic	* topic;			// 14
-	UInt32		unk18;				// 18 - DNAM - show response data from info?
-	Condition	* conditions;		// 1C - CTDA
-	UInt16		unk20;				// 20 - init'd to FFFF
-	UInt8		unk22;				// 22
-	UInt8		favorLevel;			// 23 - CNAM
-	UInt16		dialogFlags;		// 24 - ENAM - Response flags
-	UInt16		hoursUntilReset;	// 26
-	UInt32		unk28;				// 28
+	TESTopic		* topic;			// 14
+	TESTopicInfo	* sharesInfo;		// 18 - DNAM - share response data from info?
+	Condition		* conditions;		// 1C - CTDA
+	UInt16			unk20;				// 20 - init'd to FFFF
+	UInt8			unk22;				// 22
+	UInt8			favorLevel;			// 23 - CNAM
+	UInt16			dialogFlags;		// 24 - ENAM - Response flags
+	UInt16			hoursUntilReset;	// 26
+	UInt32			unk28;				// 28 - response data
 
 private:
 	DEFINE_MEMBER_FN(ctor, TESTopicInfo *, 0x0057ECC0);
 	DEFINE_MEMBER_FN(dtor, void, 0x0057ECF0);
+
+	DEFINE_MEMBER_FN(GetResponseData, void *, 0x0057DA40, ResponseData *& rawData);
 
 	DEFINE_MEMBER_FN(SendEvent, void, 0x0057E1F0, UInt32 flag, RefHandle speakerRefHandle, bool arg3);
 };
