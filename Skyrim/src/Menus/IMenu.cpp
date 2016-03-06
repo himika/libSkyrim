@@ -74,5 +74,5 @@ bool IMenu::LoadMovie(const char *swfName, GFxMovieView::ScaleModeType mode, flo
 	if (!loader)
 		return false;
 
-	return loader->LoadMovie(this, view, swfName, GFxMovieView::SM_ShowAll, 0.0f);
+	return loader->LoadMovie(this, view, swfName, mode, 0.0f);
 }
