@@ -329,6 +329,48 @@ void SKSESerializationInterface::SetFormDeleteCallback(SKSESerializationInterfac
 
 //=============================================================================================
 
+namespace
+{
+	template <class BaseT>
+	class TempTaskDelegate : public BaseT
+	{
+	public:
+		std::function<void()> m_task;
+
+		inline explicit TempTaskDelegate(const std::function<void()> &task) : m_task(task) {}
+
+		void Run() override
+		{
+			m_task();
+		}
+
+		void Dispose() override
+		{
+			delete this;
+		}
+
+		inline static BaseT * Create(const std::function<void()> &task)
+		{
+			TempTaskDelegate *pThis = new TempTaskDelegate(task);
+			return pThis;
+		}
+	};
+}
+
+
+void SKSETaskInterface::AddTask(std::function<void()> task) const
+{
+	AddTask(TempTaskDelegate<TaskDelegate>::Create(task));
+}
+
+void SKSETaskInterface::AddUITask(std::function<void()> task) const
+{
+	AddUITask(TempTaskDelegate<UIDelegate>::Create(task));
+}
+
+
+//=============================================================================================
+
 bool SKSEMessagingInterface::RegisterListener(const char* sender, SKSEMessagingInterface::EventCallback handler) const
 {
 	return m_RegisterListener(pluginHandle, sender, handler);

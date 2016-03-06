@@ -198,8 +198,19 @@ struct SKSETaskInterface
 	// Allocate before adding
 	// Define your Run function
 	// Delete your object in the Dispose call
-	void(*AddTask)(TaskDelegate * task);
-	void(*AddUITask)(UIDelegate * task);		// ver.2 (1.7.1)
+	
+	inline void AddTask(TaskDelegate *task) const {
+		m_AddTask(task);
+	}
+	void AddTask(std::function<void()> task) const;
+
+	inline void AddUITask(UIDelegate *task) const {
+		m_AddUITask(task);
+	}
+	void AddUITask(std::function<void()> task) const;
+
+	void(*m_AddTask)(TaskDelegate * task);
+	void(*m_AddUITask)(UIDelegate * task);		// ver.2 (1.7.1)
 };
 
 
