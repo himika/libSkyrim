@@ -5,6 +5,7 @@
 #include "../NetImmerse/BSRenderTargetGroup.h"
 #include "../NetImmerse/NiCullingProcess.h"
 #include "../NetImmerse/NiAlphaAccumulator.h"
+#include "../Camera/MapCamera.h"
 #include "../Camera/LocalMapCamera.h"
 #include "../BSDevices/MenuEventHandler.h"
 
@@ -28,6 +29,73 @@ private:
 	DEFINE_MEMBER_FN(ctor, BSShaderAccumulator*, 0x00C94620, UInt32 arg1, UInt32 arg2);	// arg1 = 0x63 or 0x64, arg2 = 1 // called in class Main::ctor
 };
 
+
+// 2A8
+struct LocalMapMenu
+{
+public:
+	/*==============================================================================
+	class LocalMapMenu::InputHandler +0000 (_vtbl=010E9060)
+	0000: class LocalMapMenu::InputHandler
+	0000: |   class MenuEventHandler
+	0004: |   |   struct BSIntrusiveRefCounted
+	==============================================================================*/
+	// 10
+	class InputHandler : public MenuEventHandler
+	{
+		// @members
+		//void		**_vtbl;	// 00 - 010E9060
+		UInt32		unk0C;		// 0C
+	};
+
+
+	// 238
+	class LocalMapCullingProcess
+	{
+	public:
+		// @members
+		BSCullingProcess	cullingProcess;					// 000
+		LocalMapCamera		localMapCamera;					// 170
+		BSShaderAccumulator	* shaderAccumulator;			// 1BC
+		BSRenderTargetGroup	* localMapTexture;				// 1C0
+		UInt32				unk1C4[(0x230 - 0x1C4) >> 2];	// 1C4
+		UInt32				width;							// 230
+		UInt32				height;							// 234
+		NiNode				* niNode;						// 238
+
+	private:
+		DEFINE_MEMBER_FN(ctor, void, 0x00487610);
+		DEFINE_MEMBER_FN(CreateMapTarget, BSRenderTargetGroup **, 0x00486590, UInt32 width, UInt32 height);
+		DEFINE_MEMBER_FN(Init, void, 0x00487D20);
+		DEFINE_MEMBER_FN(Process, void, 0x00487900);
+	};
+	STATIC_ASSERT(offsetof(LocalMapCullingProcess, localMapCamera) == 0x170);
+	STATIC_ASSERT(offsetof(LocalMapCullingProcess, niNode) == 0x238);
+
+
+	// @members
+	BSTArray<UInt32>		unk00;							// 00
+	UInt32					unk0C;							// 0C
+	GFxValue				markerData;						// 10
+	float					unk20;							// 20 - 192.0f
+	float					unk24;							// 24 - 200.0f
+	float					unk28;							// 28 - 832.0f
+	float					unk2C;							// 2C - 560.0f
+	LocalMapCullingProcess	cullingProcess;					// 30
+	NiRenderedTexture		* renderedLocalMapTexture;		// 26C
+	UInt32					unk270;							// 270
+	UInt32					unk274;							// 274
+	GFxValue				localMapRoot;					// 278
+	GFxValue				mapRoot;						// 288
+	GFxMovieView			* view;							// 298
+	InputHandler			* inputHandler;					// 29C
+	UInt32					unk2A0;							// 2A0
+	UInt8					unk2A4[4];						// 2A4
+
+	DEFINE_MEMBER_FN(ctor, LocalMapMenu *, 0x0089B2C0);
+};
+STATIC_ASSERT(offsetof(LocalMapMenu, cullingProcess) == 0x30);
+STATIC_ASSERT(offsetof(LocalMapMenu, renderedLocalMapTexture) == 0x26C);
 
 
 /*==============================================================================
@@ -96,9 +164,9 @@ struct IMapCameraCallbacks
 
 	virtual ~IMapCameraCallbacks();		// 0089BED0
 
-	MapMoveHandler*	mapMoveHandler;		// 04
-	MapLookHandler*	mapLookHandler;		// 08
-	MapZoomHandler*	mapZoomHandler;		// 0C
+	MapMoveHandler*	mapMoveHandler;		// 04 - init'd 0
+	MapLookHandler*	mapLookHandler;		// 08 - init'd 0
+	MapZoomHandler*	mapZoomHandler;		// 0C - init'd 0
 };
 
 
@@ -114,6 +182,7 @@ class MapMenu +0000 (_vtbl=010E95B4)
 001C: |   class BSTEventSink<class MenuOpenCloseEvent>
 0020: |   struct IMapCameraCallbacks
 ==============================================================================*/
+// 3B8
 class MapMenu : public IMenu,
 	public BSTEventSink<class MenuOpenCloseEvent>,		// 1C
 	public IMapCameraCallbacks							// 20
@@ -140,57 +209,12 @@ public:
 		UInt32		unk1C;			// 1C
 	};
 
-	// 238
-	class LocalMapCullingProcess
-	{
-	public:
-		// @members
-		BSCullingProcess	cullingProcess;					// 000
-		LocalMapCamera		localMapCamera;					// 170
-		BSShaderAccumulator	* shaderAccumulator;			// 1BC
-		BSRenderTargetGroup	* localMapTexture;				// 1C0
-		UInt32				unk1C4[(0x230 - 0x1C4) >> 2];	// 1C4
-		UInt32				width;							// 230
-		UInt32				height;							// 234
-		NiNode				* niNode;						// 238
-
-	private:
-		DEFINE_MEMBER_FN(ctor, void, 0x00487610);
-		DEFINE_MEMBER_FN(CreateMapTarget, BSRenderTargetGroup **, 0x00486590, UInt32 width, UInt32 height);
-		DEFINE_MEMBER_FN(Init, void, 0x00487D20);
-		DEFINE_MEMBER_FN(Process, void, 0x00487900);
-	};
-	STATIC_ASSERT(offsetof(LocalMapCullingProcess, localMapCamera) == 0x170);
-	STATIC_ASSERT(offsetof(LocalMapCullingProcess, niNode) == 0x238);
-
-	struct LocalMap
-	{
-		UInt32					unk00;							// 00
-		UInt32					unk04;							// 04
-		UInt32					unk08;							// 08
-		UInt32					unk0C;							// 0C
-		GFxValue				markerData;						// 10
-		float					unk20;							// 20 - 192.0f
-		float					unk24;							// 24 - 200.0f
-		float					unk28;							// 28 - 832.0f
-		float					unk2C;							// 2C - 560.0f
-		LocalMapCullingProcess	cullingProcess;					// 30
-		NiRenderedTexture		* renderedLocalMapTexture;		// 26C
-		UInt32					unk270;							// 270
-		UInt32					unk274;							// 274
-		GFxValue				localMapRoot;					// 278
-		GFxValue				mapRoot;						// 288
-		GFxMovieView			* view;							// 298
-		void					* localMapInputHandler;			// 29C
-		UInt32					unk2A0;							// 2A0
-		UInt8					unk2A4[4];						// 2A4
-	};
 
 	virtual ~MapMenu();				// 008A1DF0
 
 	// @override class IMenu : (vtbl=010E95B4)
 	virtual void	Accept(CallbackProcessor *processor) override;	// 008A34F0
-	virtual UInt32	ProcessMessage(UIMessage *message) override;		// 008A2B60
+	virtual UInt32	ProcessMessage(UIMessage *message) override;	// 008A2B60
 	virtual void	NextFrame(UInt32 arg0, UInt32 arg1) override;	// 008A27C0
 	virtual void	Unk_07(void) override;							// 0089F630
 	virtual void	InitMovie(void) override;						// 0089F8A0
@@ -203,16 +227,32 @@ public:
 	virtual void IMapCameraCallbacks_Unk_01(void) override;		// 006C50E0 { return; }
 
 
+	static IMenu * Create()
+	{
+		return ((IMenu*(*)())0x008A1D90)();
+	}
+
 	// @members
-	//void					** _vtbl;								// 00 - 010E95B4
-	UInt32					unk30; 									// 30
-	UInt32					unk34; 									// 34
-	LocalMap				localMap;								// 38
-	UInt32					unk2E0[4];								// 2E0
+	//void					** _vtbl;								// 000 - 010E95B4
+	//MapMoveHandler*		IMapCameraCallbacks::mapMoveHandler;	// 024 - init'd 0
+	//MapLookHandler*		IMapCameraCallbacks::mapLookHandler;	// 028 - init'd 0
+	//MapZoomHandler*		IMapCameraCallbacks::mapZoomHandler;	// 02C - init'd 0
+	UInt32					unk030; 								// 030 - init'd 0
+	UInt32					unk034; 								// 034
+	LocalMapMenu			localMap;								// 038
+	UInt32					unk2E0;									// 2E0
+	UInt32					unk2E4;									// 2E4
+	UInt32					unk2E8;									// 2E8
+	UInt32					unk2EC;									// 2EC
 	BSTArray<MarkerData>	markers;								// 2F0
-																	// ..
+	BSTArray<UInt32>		unk2FC;									// 2FC
+	MapCamera				mapCamera;								// 308
+	//																// 368
+	// ..
+
+private:
+	DEFINE_MEMBER_FN(ctor, MapMenu *, 0x008A0F30);
+	DEFINE_MEMBER_FN(dtor, void, 0x008A1410);
 };
 STATIC_ASSERT(offsetof(MapMenu, localMap) == 0x38);
-STATIC_ASSERT(offsetof(MapMenu::LocalMap, cullingProcess) == 0x30);
-STATIC_ASSERT(offsetof(MapMenu::LocalMap, renderedLocalMapTexture) == 0x26C);
 STATIC_ASSERT(offsetof(MapMenu, markers) == 0x2F0);
