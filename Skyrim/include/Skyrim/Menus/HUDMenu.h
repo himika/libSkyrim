@@ -8,6 +8,37 @@
 
 class TESObjectREFR;
 
+
+class SubtitleManager
+{
+public:
+	// 14
+	struct SubtitleData
+	{
+		RefHandle		speakerRefHandle;	// 00
+		BSString		text;				// 04
+		UInt32			unk0C;				// 0C - float ?
+		bool			unk10;				// 10
+	};
+
+
+	static SubtitleManager * GetSintleton()
+	{
+		return (SubtitleManager *)0x012E35EC;
+	}
+
+	DEFINE_MEMBER_FN(Display, bool, 0x00893220);
+	DEFINE_MEMBER_FN(AddSubtitle, void, 0x00892CE0, Actor *speaker, const char *str, bool arg3);	// push
+	DEFINE_MEMBER_FN(Unk_00892DA0, void, 0x00892DA0);
+
+
+	// @members
+	UInt32					unk00;		// 00 - BSTSingletonSDM ?
+	BSTArray<SubtitleData>	subtitles;	// 04
+	UInt32					unk10;		// 10
+};
+
+
 /*==============================================================================
 class HUDData +0000 (_vtbl=010E8D4C)
 0000: class HUDData
