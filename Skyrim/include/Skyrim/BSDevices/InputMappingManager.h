@@ -30,9 +30,9 @@ public:
 		kContext_MapDebug,
 		kContext_Lockpicking,
 		kContext_Favor,
-		kContextCount = 17,
+		kContextCount,
 
-		kContext_Invalid = 18		// 0x12
+		kContext_Invalid		// 0x12
 	};
 
 	enum ControlState

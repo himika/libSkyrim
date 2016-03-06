@@ -866,7 +866,7 @@ public:
 		return false;
 	}
 
-	inline bool SetAt(key_type key, value_type &lvalue) {
+	inline bool SetAt(key_type key, const value_type &lvalue) {
 		return insert(key, lvalue);
 	}
 

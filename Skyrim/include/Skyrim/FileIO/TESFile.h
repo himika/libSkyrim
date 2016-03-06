@@ -61,6 +61,8 @@ public:
 
 	DEFINE_MEMBER_FN(GetCurrentSubRecordType, UInt32, 0x00445B70);
 
+	DEFINE_MEMBER_FN(ReadFile, void, 0x00446130, const char *filePath, const char *fileName, UInt32 arg3, UInt32 arg4);
+
 	// @members
 	BSSimpleList<UInt32>				unkList;			// 000
 	NiTPointerMap<UInt32, TESFile *>	* pointerMap;		// 008 - ctor 00445150 - called from 00446FE0

@@ -37,7 +37,7 @@ public:
 		kType_ItemMenu				= 0x2000,
 		kType_StopCrosshairUpdate	= 0x4000,
 		kType_Unk8000				= 0x8000,
-		kType_Unk10000				= 0x10000	// mouse cursor
+		kType_Unk10000				= 0x10000	// ignore mouse cursor?
 	};
 
 	IMenu();			// 00A64B70

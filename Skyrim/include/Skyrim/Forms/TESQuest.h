@@ -117,31 +117,31 @@ public:
 	typedef BSTHashMap<BGSDialogueBranch*, BSTArray<TESTopic*> *>	TopicMap;
 
 	// @members
-	//void						** _vtbl;				// 00 - 010A5FEC
-	//TESFullName				fullName				// 018 - FULL
-	BSTArray<void*>				unk020;					// 020
-	UInt32						unk02C;					// 02C
-	BSTArray<BGSBaseAlias*>		aliases;				// 030
-	BSTHashMap<UInt32, void*>	unk03C;					// 03C
-	BSTHashMap<UInt32, void*>	unk05C;					// 05C
-	Data07C						unk07C;					// 07C
-	SInt32						unk084;					// 084 - init'd -1 - ENAM (event name?)
-	Data088						unk088;					// 088
-	BSSimpleList<Objective*>	objectives;				// 090 - QOBJ
-	Condition					* dialogueConditions;	// 098 - CTDA (quest dialogue conditions)
-	Condition					* conditions;			// 09C - CTDA (conditions)
-	TopicMap					topicMap;				// 0A0
-	BSTHashMap<UInt32, void*>	unk0C0;					// 0C0
-	BSTArray<void*>				unk0E0[6];				// 0E0
-	BSTArray<void*>				unk128;					// 128
-	BSTArray<TESGlobal*>		* globals;				// 134 - QTGL (text display globals)
-	UInt16						currentStageID;			// 138 - init'd 0
-	UInt8						unk13A;					// 13A - init'd 0
-	UInt8						pad13B;					// 13B
-	BSString					questID;				// 13C
-	void						* unk144;				// 144
-	void						* unk148;				// 148
-	BSTArray<UInt32>			unk14C;					// 14C
+	//void							** _vtbl;				// 00 - 010A5FEC
+	//TESFullName					fullName				// 018 - FULL
+	BSTArray<void*>					unk020;					// 020
+	UInt32							unk02C;					// 02C
+	BSTArray<BGSBaseAlias*>			aliases;				// 030
+	BSTHashMap<UInt32, RefHandle>	unk03C;					// 03C - BSTHashMap<RefAliasID, RefHandle>
+	BSTHashMap<UInt32, void*>		unk05C;					// 05C
+	Data07C							unk07C;					// 07C
+	SInt32							unk084;					// 084 - init'd -1 - ENAM (event name?)
+	Data088							unk088;					// 088
+	BSSimpleList<Objective*>		objectives;				// 090 - QOBJ
+	Condition						* dialogueConditions;	// 098 - CTDA (quest dialogue conditions)
+	Condition						* conditions;			// 09C - CTDA (conditions)
+	TopicMap						topicMap;				// 0A0
+	BSTHashMap<UInt32, void*>		unk0C0;					// 0C0
+	BSTArray<void*>					unk0E0[6];				// 0E0
+	BSTArray<void*>					unk128;					// 128
+	BSTArray<TESGlobal*>			* globals;				// 134 - QTGL (text display globals)
+	UInt16							currentStageID;			// 138 - init'd 0
+	UInt8							unk13A;					// 13A - init'd 0
+	UInt8							pad13B;					// 13B
+	BSString						questID;				// 13C
+	void							* unk144;				// 144
+	void							* unk148;				// 148
+	BSTArray<UInt32>				unk14C;					// 14C
 
 	bool IsCompleted(void) const;
 	/// <summary>Checks to see if this quest is running or not.</summary>
@@ -165,6 +165,7 @@ public:
 	DEFINE_MEMBER_FN(ClearReferenceAlias, void, 0x00570780, BGSRefAlias *);
 	DEFINE_MEMBER_FN(ClearLocationAlias, void, 0x005709A0, BGSLocAlias *);
 	DEFINE_MEMBER_FN(ForceRefTo, UInt32, 0x005728C0, UInt32 aliasId, TESObjectREFR * reference);
+	DEFINE_MEMBER_FN_const(LookupAliasById, BGSBaseAlias *, 0x0056B6F0, UInt32 aliasId);
 
 private:
 	DEFINE_MEMBER_FN(ctor, void, 0x5735C0);

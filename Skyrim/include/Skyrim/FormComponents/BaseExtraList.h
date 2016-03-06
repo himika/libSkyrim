@@ -221,6 +221,10 @@ public:
 		SetInventoryChanges_Impl(changes);
 	}
 
+	inline const char * GetEditorID() const {
+		return GetEditorID_Impl();
+	}
+
 protected:
 	struct PresenceBitfield
 	{
@@ -284,6 +288,9 @@ private:
 	DEFINE_MEMBER_FN_const(	GetOwner_Impl,					TESForm*,		0x0040C0B0);
 	DEFINE_MEMBER_FN_const(	GetItemCount_Impl,				SInt16,			0x0040C190);
 	DEFINE_MEMBER_FN(		SetInventoryChanges_Impl,		void,			0x0040C660, InventoryChanges *changes);
+	//DEFINE_MEMBER_FN_const(GetCellImageSpace_Impl,		CellImageSpace*,	0x0040CDE0);
+	DEFINE_MEMBER_FN_const(	GetEditorID_Impl,				const char*,	0x0040CDF0);
+	//DEFINE_MEMBER_FN_const(GetPackage_Impl,				TESPackage*,	0x0040CE00);
 	DEFINE_MEMBER_FN_const(	IsActivationBlocked_Impl,		bool,			0x0040E850, bool unk1);
 	DEFINE_MEMBER_FN_const(	GetAshPileRefHandle_Impl,		RefHandle,		0x00411850, RefHandle &refHandle);
 	DEFINE_MEMBER_FN_const(	GetLinkedRef_Impl,				TESObjectREFR*,	0x00415700, BGSKeyword * keyword);

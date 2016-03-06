@@ -111,6 +111,13 @@ namespace BSScript
 			return *this;
 		}
 
+		bool operator==(const BSScriptVariable & rhs) const {
+			return (type == rhs.type) && (data.u == rhs.data.u);
+		}
+		bool operator!=(const BSScriptVariable & rhs) const {
+			return !operator==(rhs);
+		}
+
 		UInt32 GetUnmangledType(void) const {
 			if (type < kType_ArraysEnd)
 				return type;
@@ -122,7 +129,7 @@ namespace BSScript
 		}
 
 		bool IsObjectArray() const {
-			return (type >= kType_ArraysEnd && type & kType_Object);
+			return (type >= kType_ArraysEnd && (type & kType_Object) != 0);
 		}
 
 		bool IsLiteralArray() const {

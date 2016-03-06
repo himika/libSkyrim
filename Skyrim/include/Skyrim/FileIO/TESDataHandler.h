@@ -39,142 +39,142 @@ public:
 	DEFINE_MEMBER_FN(HotLoadPlugin, void, 0x00443810, const char *name);
 
 	// @members
-	UInt32							unk004;
-	BSTArray<TESForm*>				persistanceForms;	// 08 - PapyrusPersistenceForm(formid=028A), CommandingActorPersistenceForm(0294)
-	UnkFormArray					unk014;				// 14
-	UnkFormArray					unk020;
-	UnkFormArray					unk02C;
-	BSTArray<BGSKeyword*>			keywords;
-	BSTArray<BGSLocationRefType*>	locRefTypes;
-	BSTArray<BGSAction*>			actions;
-	BSTArray<BGSTextureSet*>		textureSets;
-	BSTArray<BGSMenuIcon*>			menuIcons;
-	BSTArray<TESGlobal*>			globals;
-	BSTArray<TESClass*>				classes;
-	BSTArray<TESFaction*>			factions;
-	BSTArray<BGSHeadPart*>			headParts;
-	BSTArray<TESEyes*>				eyes;
-	BSTArray<TESRace*>				races;
-	BSTArray<TESSound*>				sounds;
-	BSTArray<BGSAcousticSpace*>		acousticSpaces;
-	UnkFormArray					unkSkills;
-	BSTArray<EffectSetting*>		magicEffects;
-	BSTArray<Script*>				scripts;
-	BSTArray<TESLandTexture*>		landTextures;
-	BSTArray<EnchantmentItem*>		enchantments;
-	BSTArray<SpellItem*>			spellItems;
-	BSTArray<ScrollItem*>			scrolls;
-	BSTArray<TESObjectACTI*>		activators;
-	BSTArray<BGSTalkingActivator*>	talkingActivators;
-	BSTArray<TESObjectARMO*>		armors;
-	BSTArray<TESObjectBOOK*>		books;
-	BSTArray<TESObjectCONT*>		containers;
-	BSTArray<TESObjectDOOR*>		doors;
-	BSTArray<IngredientItem*>		ingredients;
-	BSTArray<TESObjectLIGH*>		lights;
-	BSTArray<TESObjectMISC*>		miscObjects;
-	BSTArray<BGSApparatus*>			apparatuses;
-	BSTArray<TESObjectSTAT*>		statics;
-	BSTArray<BGSStaticCollection*>	staticCollections;
-	BSTArray<BGSMovableStatic*>		movableStatics;
-	BSTArray<TESGrass*>				grasses;
-	BSTArray<TESObjectTREE*>		trees;
-	BSTArray<TESFlora*>				flora;
-	BSTArray<TESFurniture*>			furniture;
-	BSTArray<TESObjectWEAP*>		weapons;
-	BSTArray<TESAmmo*>				ammo;
-	BSTArray<TESNPC*>				npcs;
-	BSTArray<TESLevCharacter*>		levCharacters;
-	BSTArray<TESKey*>				keys;
-	BSTArray<AlchemyItem*>			potions;
-	BSTArray<BGSIdleMarker*>		idleMarkers;
-	BSTArray<BGSNote*>				notes;
-	BSTArray<BGSConstructibleObject*> constructibles;
-	BSTArray<BGSProjectile*>		projectiles;
-	BSTArray<BGSHazard*>			bgsHazards;
-	BSTArray<TESSoulGem*>			soulGems;
-	BSTArray<TESLevItem*>			levItems;
-	BSTArray<TESWeather*>			weather;
-	BSTArray<TESClimate*>			climates;
-	BSTArray<BGSShaderParticleGeometryData*>	shaderParticleGeometryData;
-	BSTArray<BGSReferenceEffect*>	referenceEffects;
-	BSTArray<TESRegion*>			regions;
-	BSTArray<NavMeshInfoMap*>		navMeshInfoMaps;
-	BSTArray<TESObjectCELL*>		cells;
-	BSTArray<TESObjectREFR*>		refs;
-	BSTArray<Character*>			characters;
-	BSTArray<MissileProjectile*>	missleProjs;
-	BSTArray<ArrowProjectile*>		arrowProjs;
-	BSTArray<GrenadeProjectile*>	grenadeProjs;
-	BSTArray<BeamProjectile*>		beamProjs;
-	BSTArray<FlameProjectile*>		flameProjs;
-	BSTArray<ConeProjectile*>		coneProjs;
-	BSTArray<BarrierProjectile*>	barrierProjs;
-	BSTArray<Hazard*>				hazards;
-	BSTArray<TESWorldSpace*>		worldSpaces;
-	BSTArray<TESObjectLAND*>		lands;
-	BSTArray<NavMesh*>				navMeshes;
-	UnkFormArray					unkTLOD;
-	BSTArray<TESTopic*>				topics;
-	BSTArray<TESTopicInfo*>			topicInfos;
-	BSTArray<TESQuest*>				quests;
-	BSTArray<TESIdleForm*>			idleForms;
-	BSTArray<TESPackage*>			packages;
-	BSTArray<TESCombatStyle*>		combatStyles;
-	BSTArray<TESLoadScreen*>		loadScreens;
-	BSTArray<TESLevSpell*>			levSpells;
-	BSTArray<TESObjectANIO*>		anios;
-	BSTArray<TESWaterForm*>			waterForms;
-	BSTArray<TESEffectShader*>		effectShaders;
-	UnkFormArray					unkTOFTs;
-	BSTArray<BGSExplosion*>			explosions;
-	BSTArray<BGSDebris*>			debris;
-	BSTArray<TESImageSpace*>		imageSpaces;
-	BSTArray<TESImageSpaceModifier*>	imageSpaceModifiers;
-	BSTArray<BGSListForm*>			listForms;
-	BSTArray<BGSPerk*>				perks;
-	BSTArray<BGSBodyPartData*>		bodyPartData;
-	BSTArray<BGSAddonNode*>			addonNodes;
-	BSTArray<ActorValueInfo*>		actorValueInfos;
-	BSTArray<BGSCameraShot*>		cameraShots;
-	BSTArray<BGSCameraPath*>		cameraPaths;
-	BSTArray<BGSVoiceType*>			voiceTypes;
-	BSTArray<BGSMaterialType*>		materialTypes;
-	BSTArray<BGSImpactData*>		impactData;
-	BSTArray<BGSImpactDataSet*>		impactDataSets;
-	BSTArray<TESObjectARMA*>		armorAddons;
-	BSTArray<BGSEncounterZone*>		encounterZones;
-	BSTArray<BGSLocation*>			locations;
-	BSTArray<BGSMessage*>			messages;
-	BSTArray<BGSRagdoll*>			ragdolls;
-	UnkFormArray					unkDOBJs;
-	BSTArray<BGSLightingTemplate*>	lightingTemplates;
-	BSTArray<BGSMusicType*>			musicTypes;
-	BSTArray<BGSFootstep*>			footsteps;
-	BSTArray<BGSFootstepSet*>		footstepSets;
-	BSTArray<BGSStoryManagerBranchNode*>	branchNodes;
-	BSTArray<BGSStoryManagerQuestNode*>	questNodes;
-	BSTArray<BGSStoryManagerEventNode*>	eventNodes;
-	BSTArray<BGSDialogueBranch*>	dialogBranches;
-	BSTArray<BGSMusicTrackFormWrapper*>	musicTrackFormWrappers;
-	UnkFormArray					unkDLVWs;
-	BSTArray<TESWordOfPower*>		wordOfPowers;
-	BSTArray<TESShout*>				shouts;
-	BSTArray<BGSEquipSlot*>			equipSlots;
-	BSTArray<BGSRelationship*>		relationships;
-	BSTArray<BGSScene*>				scenes;
-	BSTArray<BGSAssociationType*>	associationTypes;
-	BSTArray<BGSOutfit*>			outfits;
-	BSTArray<BGSArtObject*>			artObjects;
-	BSTArray<BGSMaterialObject*>	materialObjects;
-	BSTArray<BGSMovementType*>		movementTypes;
-	BSTArray<BGSSoundDescriptorForm*>	soundDescriptors;
-	BSTArray<BGSDualCastData*>		dualCastData;
-	BSTArray<BGSSoundCategory*>		soundCategories;
-	BSTArray<BGSSoundOutput*>		soundOutputs;
-	BSTArray<BGSCollisionLayer*>	collisonLayers;
-	BSTArray<BGSColorForm*>			colors;
-	BSTArray<BGSReverbParameters*>	reverbParams;
+	UInt32							unk004;				// 004
+	BSTArray<TESForm*>				persistanceForms;	// 008 - PapyrusPersistenceForm(formid=028A), CommandingActorPersistenceForm(0294)
+	UnkFormArray					unk014;				// 014
+	UnkFormArray					unk020;				// 020
+	UnkFormArray					unk02C;				// 02C
+	BSTArray<BGSKeyword*>			keywords;			// 038
+	BSTArray<BGSLocationRefType*>	locRefTypes;		// 044
+	BSTArray<BGSAction*>			actions;			// 050
+	BSTArray<BGSTextureSet*>		textureSets;		// 05C
+	BSTArray<BGSMenuIcon*>			menuIcons;			// 068
+	BSTArray<TESGlobal*>			globals;			// 074
+	BSTArray<TESClass*>				classes;			// 080
+	BSTArray<TESFaction*>			factions;			// 08C
+	BSTArray<BGSHeadPart*>			headParts;			// 098
+	BSTArray<TESEyes*>				eyes;				// 0A4
+	BSTArray<TESRace*>				races;				// 0B0
+	BSTArray<TESSound*>				sounds;				// 0BC
+	BSTArray<BGSAcousticSpace*>		acousticSpaces;		// 0C8
+	UnkFormArray					unkSkills;			// 0D4
+	BSTArray<EffectSetting*>		magicEffects;		// 0E0
+	BSTArray<Script*>				scripts;			// 0EC
+	BSTArray<TESLandTexture*>		landTextures;		// 0F8
+	BSTArray<EnchantmentItem*>		enchantments;		// 104
+	BSTArray<SpellItem*>			spellItems;			// 110
+	BSTArray<ScrollItem*>			scrolls;			// 11C
+	BSTArray<TESObjectACTI*>		activators;			// 128
+	BSTArray<BGSTalkingActivator*>	talkingActivators;	// 134
+	BSTArray<TESObjectARMO*>		armors;				// 140
+	BSTArray<TESObjectBOOK*>		books;				// 14C
+	BSTArray<TESObjectCONT*>		containers;			// 158
+	BSTArray<TESObjectDOOR*>		doors;				// 164
+	BSTArray<IngredientItem*>		ingredients;		// 170
+	BSTArray<TESObjectLIGH*>		lights;				// 17C
+	BSTArray<TESObjectMISC*>		miscObjects;		// 188
+	BSTArray<BGSApparatus*>			apparatuses;		// 194
+	BSTArray<TESObjectSTAT*>		statics;			// 1A0
+	BSTArray<BGSStaticCollection*>	staticCollections;	// 1AC
+	BSTArray<BGSMovableStatic*>		movableStatics;		// 1B8
+	BSTArray<TESGrass*>				grasses;			// 1C4
+	BSTArray<TESObjectTREE*>		trees;				// 1D0
+	BSTArray<TESFlora*>				flora;				// 1DC
+	BSTArray<TESFurniture*>			furniture;			// 1E8
+	BSTArray<TESObjectWEAP*>		weapons;			// 1F4
+	BSTArray<TESAmmo*>				ammo;				// 200
+	BSTArray<TESNPC*>				npcs;				// 20C
+	BSTArray<TESLevCharacter*>		levCharacters;		// 218
+	BSTArray<TESKey*>				keys;				// 224
+	BSTArray<AlchemyItem*>			potions;			// 230
+	BSTArray<BGSIdleMarker*>		idleMarkers;		// 23C
+	BSTArray<BGSNote*>				notes;				// 248
+	BSTArray<BGSConstructibleObject*> constructibles;	// 254
+	BSTArray<BGSProjectile*>		projectiles;		// 260
+	BSTArray<BGSHazard*>			bgsHazards;			// 26C
+	BSTArray<TESSoulGem*>			soulGems;			// 278
+	BSTArray<TESLevItem*>			levItems;			// 284
+	BSTArray<TESWeather*>			weather;			// 290
+	BSTArray<TESClimate*>			climates;			// 29C
+	BSTArray<BGSShaderParticleGeometryData*>	shaderParticleGeometryData;		// 2A8
+	BSTArray<BGSReferenceEffect*>	referenceEffects;	// 2B4
+	BSTArray<TESRegion*>			regions;			// 2C0
+	BSTArray<NavMeshInfoMap*>		navMeshInfoMaps;	// 
+	BSTArray<TESObjectCELL*>		cells;				// 
+	BSTArray<TESObjectREFR*>		refs;				// 
+	BSTArray<Character*>			characters;			// 
+	BSTArray<MissileProjectile*>	missleProjs;		// 
+	BSTArray<ArrowProjectile*>		arrowProjs;			// 
+	BSTArray<GrenadeProjectile*>	grenadeProjs;		// 
+	BSTArray<BeamProjectile*>		beamProjs;			// 
+	BSTArray<FlameProjectile*>		flameProjs;			// 
+	BSTArray<ConeProjectile*>		coneProjs;			// 
+	BSTArray<BarrierProjectile*>	barrierProjs;		// 
+	BSTArray<Hazard*>				hazards;			// 
+	BSTArray<TESWorldSpace*>		worldSpaces;		// 
+	BSTArray<TESObjectLAND*>		lands;				// 
+	BSTArray<NavMesh*>				navMeshes;			// 
+	UnkFormArray					unkTLOD;			// 
+	BSTArray<TESTopic*>				topics;				// 
+	BSTArray<TESTopicInfo*>			topicInfos;			// 
+	BSTArray<TESQuest*>				quests;				// 
+	BSTArray<TESIdleForm*>			idleForms;			// 
+	BSTArray<TESPackage*>			packages;			// 
+	BSTArray<TESCombatStyle*>		combatStyles;		// 
+	BSTArray<TESLoadScreen*>		loadScreens;		// 
+	BSTArray<TESLevSpell*>			levSpells;			// 
+	BSTArray<TESObjectANIO*>		anios;				// 
+	BSTArray<TESWaterForm*>			waterForms;			// 
+	BSTArray<TESEffectShader*>		effectShaders;		// 
+	UnkFormArray					unkTOFTs;			// 
+	BSTArray<BGSExplosion*>			explosions;			// 
+	BSTArray<BGSDebris*>			debris;				// 
+	BSTArray<TESImageSpace*>		imageSpaces;		// 
+	BSTArray<TESImageSpaceModifier*>	imageSpaceModifiers;		// 
+	BSTArray<BGSListForm*>			listForms;			// 
+	BSTArray<BGSPerk*>				perks;				// 
+	BSTArray<BGSBodyPartData*>		bodyPartData;		// 
+	BSTArray<BGSAddonNode*>			addonNodes;			// 
+	BSTArray<ActorValueInfo*>		actorValueInfos;	// 
+	BSTArray<BGSCameraShot*>		cameraShots;		// 
+	BSTArray<BGSCameraPath*>		cameraPaths;		// 
+	BSTArray<BGSVoiceType*>			voiceTypes;			// 
+	BSTArray<BGSMaterialType*>		materialTypes;		// 
+	BSTArray<BGSImpactData*>		impactData;			// 
+	BSTArray<BGSImpactDataSet*>		impactDataSets;		// 
+	BSTArray<TESObjectARMA*>		armorAddons;		// 
+	BSTArray<BGSEncounterZone*>		encounterZones;		// 
+	BSTArray<BGSLocation*>			locations;			// 
+	BSTArray<BGSMessage*>			messages;			// 
+	BSTArray<BGSRagdoll*>			ragdolls;			// 
+	UnkFormArray					unkDOBJs;			// 
+	BSTArray<BGSLightingTemplate*>	lightingTemplates;	// 
+	BSTArray<BGSMusicType*>			musicTypes;			// 
+	BSTArray<BGSFootstep*>			footsteps;			// 
+	BSTArray<BGSFootstepSet*>		footstepSets;		// 
+	BSTArray<BGSStoryManagerBranchNode*>	branchNodes;	// 
+	BSTArray<BGSStoryManagerQuestNode*>	questNodes;		// 
+	BSTArray<BGSStoryManagerEventNode*>	eventNodes;		// 
+	BSTArray<BGSDialogueBranch*>	dialogBranches;		// 
+	BSTArray<BGSMusicTrackFormWrapper*>	musicTrackFormWrappers;		// 
+	UnkFormArray					unkDLVWs;			// 
+	BSTArray<TESWordOfPower*>		wordOfPowers;		// 
+	BSTArray<TESShout*>				shouts;				// 
+	BSTArray<BGSEquipSlot*>			equipSlots;			// 
+	BSTArray<BGSRelationship*>		relationships;		// 
+	BSTArray<BGSScene*>				scenes;				// 
+	BSTArray<BGSAssociationType*>	associationTypes;	// 
+	BSTArray<BGSOutfit*>			outfits;			// 
+	BSTArray<BGSArtObject*>			artObjects;			// 
+	BSTArray<BGSMaterialObject*>	materialObjects;	// 
+	BSTArray<BGSMovementType*>		movementTypes;		// 
+	BSTArray<BGSSoundDescriptorForm*>	soundDescriptors;		// 
+	BSTArray<BGSDualCastData*>		dualCastData;		// 
+	BSTArray<BGSSoundCategory*>		soundCategories;	// 
+	BSTArray<BGSSoundOutput*>		soundOutputs;		// 
+	BSTArray<BGSCollisionLayer*>	collisonLayers;		// 
+	BSTArray<BGSColorForm*>			colors;				// 
+	BSTArray<BGSReverbParameters*>	reverbParams;		// 
 
 	TESRegionList					* regionList;		// 65C - ctor 0048E4A0
 

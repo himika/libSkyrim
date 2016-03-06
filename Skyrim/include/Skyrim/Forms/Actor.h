@@ -513,7 +513,7 @@ public:
 	UInt32						unk080;								// 080
 	UInt32						unk084;								// 084
 	ActorProcessManager			* processManager;					// 088
-	UInt32						unk08C;								// 08C | 
+	RefHandle					dialogueTargetRefHandle;			// 08C | 
 	RefHandle					combatTargetRefHandle;				// 090 | (himika)
 	UInt32						unk094[(0x0C8 - 0x094) >> 2];		// 094 | 
 	BGSLocation					* editorLocation;					// 0C8 |

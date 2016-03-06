@@ -16,22 +16,15 @@ class BGSRefAlias : public BGSBaseAlias
 public:
 	enum { kTypeID = (UInt32)FormType::ReferenceAlias };
 
-	virtual ~BGSRefAlias();											// 00555270
+	virtual ~BGSRefAlias();												// 00555270
 
 	// @override
-	virtual bool					Unk01(UInt32 arg1) override;	// 00554090
-	virtual void					Unk02(UInt32 arg1) override;	// 00554BA0
-	virtual const BSFixedString &	GetTypeString(void) override;	// 005533C0 { return BSFixedString("Ref")
+	virtual bool					Unk01(UInt32 arg1) override;		// 00554090
+	virtual void					Unk02(UInt32 arg1) override;		// 00554BA0
+	virtual const BSFixedString &	GetTypeString(void) const override;	// 005533C0 { return BSFixedString("Ref")
 
 	// @add
 	virtual void					Unk_04(void);					// 00666552
-
-	explicit operator TESObjectREFR*() {
-		return GetReference();
-	}
-	explicit operator Actor*() {
-		return GetActorReference();
-	}
 
 	void Clear();
 	TESObjectREFR* GetReference(void);

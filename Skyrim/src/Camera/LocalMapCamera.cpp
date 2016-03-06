@@ -30,4 +30,3 @@ void LocalMapCamera::SetDefaultStateBounds(float x, float y, float z)
 	defaultState->someBoundMin.y = y - defaultState->someBoundMax.y;
 	defaultState->someBoundMin.z = z - defaultState->someBoundMax.z;
 }
-
