@@ -5,7 +5,7 @@
 
 void BGSRefAlias::Clear(void)
 {
-	if ((flags & kFlag_Optional) == 0)
+	if ((flags & kFlag_Optional) != 0)
 		owner->ClearReferenceAlias(this);
 }
 
@@ -42,8 +42,5 @@ Actor* BGSRefAlias::GetActorReference(void)
 
 UInt32 BGSRefAlias::ForceRefTo(TESObjectREFR * reference)
 {
-	UInt32 result = 0;
-	if (owner)
-		result = owner->ForceRefTo(aliasId, reference);
-	return result;
+	return (owner) ? owner->ForceRefTo(aliasId, reference) : 0;
 }

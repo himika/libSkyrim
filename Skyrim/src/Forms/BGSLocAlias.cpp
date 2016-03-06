@@ -4,6 +4,6 @@
 
 void BGSLocAlias::Clear(void)
 {
-	if ((flags & kFlag_Optional) == 0)
+	if ((flags & kFlag_Optional) != 0)
 		owner->ClearLocationAlias(this);
 }

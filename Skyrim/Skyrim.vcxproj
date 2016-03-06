@@ -81,6 +81,7 @@
     <ClCompile Include="src\FormComponents\TESSpellList.cpp" />
     <ClCompile Include="src\FormComponents\TintMask.cpp" />
     <ClCompile Include="src\Forms\Actor.cpp" />
+    <ClCompile Include="src\Forms\BGSBaseAlias.cpp" />
     <ClCompile Include="src\Forms\BGSDefaultObjectManager.cpp" />
     <ClCompile Include="src\Forms\BGSEquipSlot.cpp" />
     <ClCompile Include="src\Forms\BGSListForm.cpp" />
