@@ -16,9 +16,19 @@ public:
 	LocalMapCamera();
 	virtual ~LocalMapCamera();
 
+	/*==============================================================================
+	class LocalMapCamera::DefaultState +0000 (_vtbl=0107F5C8)
+	0000: class LocalMapCamera::DefaultState
+	0000: |   class TESCameraState
+	0004: |   |   struct BSIntrusiveRefCounted
+	==============================================================================*/
 	class DefaultState : public TESCameraState
 	{
 	public:
+		virtual ~DefaultState();						// 004863A0
+		virtual void	OnUpdate(void * unk1) override;	// 00486D80
+
+		// @members
 		NiPoint3	someBoundMax;		// 10
 		NiPoint3	someBoundMin;		// 1C
 		float		zoomPercent;		// 28
@@ -26,11 +36,12 @@ public:
 		float		minFrustumHeight;	// 30
 	};
 
-	NiPoint3	areaBoundsMax;			// 28
-	NiPoint3	areaBoundsMin;			// 34
+	// @members
+	NiPoint3		areaBoundsMax;		// 28
+	NiPoint3		areaBoundsMin;		// 34
 	DefaultState	* defaultState;		// 40
-	NiObject	* niCamera;				// 44
-	float		northRotation;			// 48
+	NiObject		* niCamera;			// 44
+	float			northRotation;		// 48
 
 	void SetDefaultStateMinFrustumDimensions(float width, float height);
 	void SetAreaBounds(NiPoint3 * maxBound, NiPoint3 * minBound);

@@ -29,7 +29,7 @@ namespace BSScript
 		return result;
 	}
 
-	SInt32 BSScriptObject::Lock(void)
+	SInt32 BSScriptObject::Lock(void)	// 00C30720
 	{
 		UInt32	spinCount = 0;
 		SInt32	lockValue;

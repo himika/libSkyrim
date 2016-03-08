@@ -143,8 +143,6 @@ namespace SKSEScript
 			m_retnType = BSScript::GetTypeID<_Result>(state);
 		}
 
-		virtual ~NativeFunction() {}
-
 		virtual bool HasCallback(void) const override
 		{
 			return (m_callback != nullptr);

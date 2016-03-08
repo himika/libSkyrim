@@ -90,6 +90,6 @@ namespace BSScript
 		UInt32				len;		// 08
 		UInt32				unk0C;		// 0C
 		UInt32				unk10;		// 10
-		//BSScriptVariable	data[];	// 14~
+		//BSScriptVariable	data[];		// 14~
 	};
 }
