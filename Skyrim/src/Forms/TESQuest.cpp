@@ -5,9 +5,15 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
+BSSpinLock & TESQuest::ms_lock = *(BSSpinLock*)0x012E5BE8;
+
+bool TESQuest::IsActive(void) const {
+	//return ((data.flags & Data07C::kQuestFlag_Active) != 0);
+	return data.flags.active;
+}
+
+
 /*
-CPU Disasm
-Address   Hex dump              Command                                  Comments
 009152F0  /.  8B4424 0C         MOV EAX,DWORD PTR SS:[ARG.3]
 009152F4  |.  0FB780 80000000   MOVZX EAX,WORD PTR DS:[EAX+80]
 009152FB  |.  D1E8              SHR EAX,1
@@ -16,12 +22,11 @@ Address   Hex dump              Command                                  Comment
 */
 bool TESQuest::IsCompleted() const
 {
-	return (unk07C.flags & Data07C::kQuestFlag_Completed) != 0;
+	//return (data.flags & Data07C::kQuestFlag_Completed) != 0;
+	return data.flags.completed;
 }
 
 /*
-CPU Disasm
-Address   Hex dump              Command                                  Comments
 00915930  /.  8B4424 0C         MOV EAX,DWORD PTR SS:[ARG.3]
 00915934  |.  F680 80000000 01  TEST BYTE PTR DS:[EAX+80],01
 0091593B  |.  74 1D             JZ SHORT 0091595A
@@ -38,13 +43,12 @@ Address   Hex dump              Command                                  Comment
 */
 bool TESQuest::IsRunning() const
 {
-	return ((unk07C.flags & 1) != 0 && ((unk07C.flags >> 7) & 1) == 0 && unk148 == 0);
+	//return ((data.flags & Data07C::kQuestFlag_Running) != 0 && (data.flags & Data07C::kQuestFlag_Stopping) == 0 && unk148 == 0);
+	return data.flags.running && !data.flags.stopping && unk148 == 0;
 }
 
 
 /*
-CPU Disasm
-Address   Hex dump              Command                                  Comments
 00915960  /.  8B4424 0C         MOV EAX,DWORD PTR SS:[ARG.3]
 00915964  |.  F680 80000000 01  TEST BYTE PTR DS:[EAX+80],01
 0091596B  |.  74 1D             JZ SHORT 0091598A
@@ -61,13 +65,12 @@ Address   Hex dump              Command                                  Comment
 */
 bool TESQuest::IsStarting() const
 {
-	return ((unk07C.flags & 1) != 0 && ((unk07C.flags >> 7) & 1) == 0 && unk148 != 0);
+	//return ((data.flags & Data07C::kQuestFlag_Running) != 0 && (data.flags & Data07C::kQuestFlag_Stopping) == 0 && unk148 != 0);
+	return data.flags.running && !data.flags.stopping && unk148 != 0;
 }
 
 
 /*
-CPU Disasm
-Address   Hex dump              Command                                  Comments
 00915990  /.  8B4424 0C         MOV EAX,DWORD PTR SS:[ARG.3]
 00915994  |.  F680 80000000 01  TEST BYTE PTR DS:[EAX+80],01
 0091599B  |.  75 13             JNZ SHORT 009159B0
@@ -82,7 +85,8 @@ Address   Hex dump              Command                                  Comment
 */
 bool TESQuest::IsStopping() const
 {
-	return ((unk07C.flags & 1) == 0 && ((unk07C.flags >> 7) & 1) != 0);
+	//return ((data.flags & Data07C::kQuestFlag_Running) == 0 && (data.flags & Data07C::kQuestFlag_Stopping) != 0);
+	return !data.flags.running && data.flags.stopping;
 }
 
 /*
@@ -102,17 +106,18 @@ Address   Hex dump              Command                                  Comment
 */
 bool TESQuest::IsStopped() const
 {
-	return ((unk07C.flags & 1) == 0 && ((unk07C.flags >> 7) & 1) == 0);
+	//return ((data.flags & Data07C::kQuestFlag_Running) == 0 && (data.flags & Data07C::kQuestFlag_Stopping) == 0);
+	return !data.flags.running && !data.flags.stopping;
 }
 
 
-BGSBaseAlias* TESQuest::GetAlias(UInt32 iAliasID)	// 0056B6F0
+BGSBaseAlias* TESQuest::GetAlias(UInt32 aliasID) const	// 0056B6F0
 {
 	BGSBaseAlias *alias = nullptr;
 
 	for (BGSBaseAlias *p : aliases)
 	{
-		if (p && p->aliasId == iAliasID)
+		if (p && p->aliasId == aliasID)
 		{
 			alias = p;
 			break;

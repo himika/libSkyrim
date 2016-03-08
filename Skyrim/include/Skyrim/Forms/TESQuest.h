@@ -10,6 +10,8 @@
 #include "../BSCore/BSTArray.h"
 #include "../BSCore/BSTList.h"
 #include "../BSCore/BSTHashMap.h"
+#include "../BSCore/BSSpinLock.h"
+#include "../NetImmerse/NiCriticalSection.h"
 
 class BGSBaseAlias;
 class BGSRefAlias;
@@ -32,48 +34,10 @@ class TESQuest : public BGSStoryManagerTreeForm,
 public:
 	enum { kTypeID = (UInt32)FormType::Quest };
 
-	// @override TESForm
-	virtual void			Unk_04(void) override;							// 0056B3A0 reset/init?
-	virtual void			Unk_05(void) override;							// 0056E900 release pointers?
-	virtual bool			LoadForm(TESFile *mod) override;				// 0056D910
-	virtual void			SaveBuffer(BGSSaveFormBuffer *arg) override;	// 0056EFA0
-	virtual void			LoadBuffer(BGSLoadFormBuffer *arg) override;	// 00572BA0
-	virtual void			Unk_11(BGSLoadFormBuffer *buf);					// 0056BF10
-	virtual void			Unk_12(BGSLoadFormBuffer *buf);					// 0056FE30
-	virtual void			InitItem(void);									// 005751D0
-	virtual const char *	GetName(void) override;							// 00573770
-	virtual bool			SetName(const char * str) override;				// 0056C780
-
-	// @override BGSStoryManagerTreeForm
-	virtual void *			Unk_3D(void) override;						// 00573750 (void) { return &unk98; }
-	virtual void			Unk_3E(void *arg1) override;				// 0056B570 { return arg1->Unk_03(this); }
-
-
-	// 8
-	struct Data07C
+	// 08 - DNAM: general data
+	struct Data
 	{
-		enum {
-			kQuestFlag_Running = 1,
-			kQuestFlag_Completed = 0x02,
-			kQuestFlag_0004 = 0x04,
-			kQuestFlag_AllowRepeatStages = 0x08,
-			kQuestFlag_StartGameEnabled = 0x10,
-			kQuestFlag_Stopping = 0x80,
-			kQuestFlag_RunOnce = 0x100,
-			kQuestFlag_ExcludeFromDialogueExport = 0x200,
-			kQuestFlag_WarnOnAliasFillFailure = 0x400,
-			kQuestFlag_Active = 0x800
-		};
-
-		UInt32	unk0;		// 00
-		UInt16	flags;		// 04
-		UInt8	priority;	// 06
-		UInt8	type;		// 07
-	};
-
-	struct _Data07C
-	{
-		UInt32	unk0;							// unknown
+		UInt32	unk00;			// 00 - unknown
 		struct Flags {
 			bool running : 1;					// 00 -   1
 			bool completed : 1;					// 01 -   2
@@ -87,13 +51,18 @@ public:
 			bool excludeFromDialogueExport : 1;	// 09 - 200
 			bool warnOnAliasFillFailure : 1;	// 10 - 400
 			bool active : 1;					// 11 - 800
-		} flags;
-		UInt8	priority;
-		UInt8	type;
+			bool : 1;							// 12
+			bool : 1;							// 13
+			bool : 1;							// 14
+			bool : 1;							// 15
+		} flags;				// 04
+		UInt8	priority;		// 06
+		UInt8	type;			// 07
 	};
+	STATIC_ASSERT(sizeof(Data) == 0x08);
 
-	// 18
-	struct Objective	// QOBJ
+	// 18 - QOBJ: objectives
+	struct Objective
 	{
 		BSFixedString	displayText;	// 00 - NNAM 00551CA7
 		TESQuest		* owner;		// 04
@@ -116,60 +85,84 @@ public:
 
 	typedef BSTHashMap<BGSDialogueBranch*, BSTArray<TESTopic*> *>	TopicMap;
 
+
+	// @override TESForm
+	virtual void			Unk_04(void) override;							// 0056B3A0 reset/init?
+	virtual void			Unk_05(void) override;							// 0056E900 release pointers?
+	virtual bool			LoadForm(TESFile *mod) override;				// 0056D910
+	virtual void			SaveBuffer(BGSSaveFormBuffer *arg) override;	// 0056EFA0
+	virtual void			LoadBuffer(BGSLoadFormBuffer *arg) override;	// 00572BA0
+	virtual void			Unk_11(BGSLoadFormBuffer *buf);					// 0056BF10
+	virtual void			Unk_12(BGSLoadFormBuffer *buf);					// 0056FE30
+	virtual void			InitItem(void);									// 005751D0
+	virtual const char *	GetName(void) override;							// 00573770
+	virtual bool			SetName(const char * str) override;				// 0056C780
+
+	// @override BGSStoryManagerTreeForm
+	virtual void *			Unk_3D(void) override;						// 00573750 (void) { return &unk98; }
+	virtual void			Unk_3E(void *arg1) override;				// 0056B570 { return arg1->Unk_03(this); }
+
+
+	///<summary>Checks to see if this quest is active (currently tracked by the player).</summary>
+	bool IsActive(void) const;
+	///<summary>Checks to see if this quest is completed.</summary>
+	bool IsCompleted(void) const;
+	///<summary>Checks to see if this quest is running or not.</summary>
+	bool IsRunning(void) const;
+	///<summary>Checks to see if this quest is in the process of starting up.</summary>
+	bool IsStarting(void) const;
+	///<summary>Checks to see if this quest is in the process of shutting down.</summary>
+	bool IsStopping(void) const;
+	///<summary>Checks to see if this quest is completely stopped.</summary>
+	bool IsStopped(void) const;
+	///<summary>Obtains the alias with the specified ID that is attached to this quest.</summary>
+	BGSBaseAlias * GetAlias(UInt32 aliasID) const;
+	///<summary>Obtains the highest completed stage in this quest.</summary>
+	UInt32 GetCurrentStageID(void) const {
+		return currentStageID;
+	}
+
+	DEFINE_MEMBER_FN(SetActive, void, 0x0056B530);
+	DEFINE_MEMBER_FN(CreateRefHandleByAliasID, RefHandle &, 0x0056EE10, RefHandle &refHandle, UInt32 aliasId);
+	DEFINE_MEMBER_FN(ClearReferenceAlias, void, 0x00570780, BGSRefAlias *refAlias);
+	DEFINE_MEMBER_FN(ClearLocationAlias, void, 0x005709A0, BGSLocAlias *locAlias);
+	DEFINE_MEMBER_FN(ForceRefTo, UInt32, 0x005728C0, UInt32 aliasId, TESObjectREFR * reference);
+
+
 	// @members
-	//void							** _vtbl;				// 00 - 010A5FEC
+	//void							** _vtbl;				// 000 - 010A5FEC
 	//TESFullName					fullName				// 018 - FULL
-	BSTArray<void*>					unk020;					// 020
+	BSTArray<void *>				unk020;					// 020
 	UInt32							unk02C;					// 02C
-	BSTArray<BGSBaseAlias*>			aliases;				// 030
-	BSTHashMap<UInt32, RefHandle>	unk03C;					// 03C - BSTHashMap<RefAliasID, RefHandle>
-	BSTHashMap<UInt32, void*>		unk05C;					// 05C
-	Data07C							unk07C;					// 07C
+	BSTArray<BGSBaseAlias *>		aliases;				// 030
+	BSTHashMap<UInt32, RefHandle>	refAliasMap;			// 03C - reference alias map - BSTHashMap<RefAliasID, RefHandle>
+	BSTHashMap<UInt32, void *>		locAliasMap;			// 05C - location alias map - BSTHashMap<LocAliasID, void *>
+	Data							data;					// 07C - DNAM
 	SInt32							unk084;					// 084 - init'd -1 - ENAM (event name?)
 	Data088							unk088;					// 088
-	BSSimpleList<Objective*>		objectives;				// 090 - QOBJ
+	BSSimpleList<Objective *>		objectives;				// 090 - QOBJ
 	Condition						* dialogueConditions;	// 098 - CTDA (quest dialogue conditions)
 	Condition						* conditions;			// 09C - CTDA (conditions)
 	TopicMap						topicMap;				// 0A0
-	BSTHashMap<UInt32, void*>		unk0C0;					// 0C0
-	BSTArray<void*>					unk0E0[6];				// 0E0
-	BSTArray<void*>					unk128;					// 128
-	BSTArray<TESGlobal*>			* globals;				// 134 - QTGL (text display globals)
+	BSTHashMap<UInt32, void *>		unk0C0;					// 0C0
+	BSTArray<void *>				unk0E0[6];				// 0E0
+	BSTArray<void *>				unk128;					// 128
+	BSTArray<TESGlobal *>			* globals;				// 134 - QTGL (text display globals)
 	UInt16							currentStageID;			// 138 - init'd 0
 	UInt8							unk13A;					// 13A - init'd 0
 	UInt8							pad13B;					// 13B
 	BSString						questID;				// 13C
 	void							* unk144;				// 144
 	void							* unk148;				// 148
-	BSTArray<UInt32>				unk14C;					// 14C
+	BSTArray<RefHandle>				unk14C;					// 14C
 
-	bool IsCompleted(void) const;
-	/// <summary>Checks to see if this quest is running or not.</summary>
-	bool IsRunning(void) const;
-	bool IsStarting(void) const;
-	bool IsStopping(void) const;
-	bool IsStopped(void) const;
-
-	BGSBaseAlias* GetAlias(UInt32 iAliasID);
-
-	UInt32 GetCurrentStageID(void) const {
-		return currentStageID;
-	}
-	
-	bool IsActive(void) const {
-		return (unk07C.flags & Data07C::kQuestFlag_Active) != 0;
-	}
-	
-	DEFINE_MEMBER_FN(SetActive, void, 0x0056B530);
-	DEFINE_MEMBER_FN(CreateRefHandleByAliasID, RefHandle &, 0x0056EE10, RefHandle &, UInt32);
-	DEFINE_MEMBER_FN(ClearReferenceAlias, void, 0x00570780, BGSRefAlias *);
-	DEFINE_MEMBER_FN(ClearLocationAlias, void, 0x005709A0, BGSLocAlias *);
-	DEFINE_MEMBER_FN(ForceRefTo, UInt32, 0x005728C0, UInt32 aliasId, TESObjectREFR * reference);
-	DEFINE_MEMBER_FN_const(LookupAliasById, BGSBaseAlias *, 0x0056B6F0, UInt32 aliasId);
+	static NiCriticalSection	& ms_criticalSection;		// 01B112D8
+	static BSSpinLock			& ms_lock;					// 012E5BE8
 
 private:
 	DEFINE_MEMBER_FN(ctor, void, 0x5735C0);
 	DEFINE_MEMBER_FN(dtor, void, 0x573790);
+	//DEFINE_MEMBER_FN_const(GetAlias_Impl, BGSBaseAlias *, 0x0056B6F0, UInt32 aliasId);
 };
 
 STATIC_ASSERT(sizeof(TESQuest) == 0x158);

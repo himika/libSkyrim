@@ -26,5 +26,5 @@ public:
 
 	void Clear();
 
-	UInt32 unk14[0x08];
+	UInt32 unk18[0x08];
 };
