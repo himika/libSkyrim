@@ -363,6 +363,13 @@ public:
 	///<summary>Enables or disables this actor's AI.</summary>
 	DEFINE_MEMBER_FN(EnableAI, void, 0x006AA690, bool bEnable);
 
+	///<summary>Forces this actor's AI to re-evaluate its package stack.</summary>
+	void EvalueatePackage()
+	{
+		if (!flags.disabled && !flags.deleted)
+			EvaluatePackage_Impl(false, false);
+	}
+
 	///<summary>Obtains this actor's current combat state.</summary>
 	DEFINE_MEMBER_FN_const(GetCombatState, void, 0x006E10F0);
 
@@ -513,13 +520,14 @@ public:
 	UInt32						unk080;								// 080
 	UInt32						unk084;								// 084
 	ActorProcessManager			* processManager;					// 088
-	RefHandle					dialogueTargetRefHandle;			// 08C | 
-	RefHandle					combatTargetRefHandle;				// 090 | (himika)
-	UInt32						unk094[(0x0C8 - 0x094) >> 2];		// 094 | 
-	BGSLocation					* editorLocation;					// 0C8 |
-	UInt32						pad0CC;								// 0CC |
-	MovementControllerAI		* movementControllerAI;				// 0D0 |
-	UInt32						pad0D4[(0x0FC - 0x0D4) >> 2];		// 0D4 |
+	RefHandle					dialogueTargetRefHandle;			// 08C
+	RefHandle					combatTargetRefHandle;				// 090
+	RefHandle					killerRefHandle;					// 094
+	UInt32						unk094[(0x0C8 - 0x098) >> 2];		// 098
+	BGSLocation					* editorLocation;					// 0C8
+	UInt32						pad0CC;								// 0CC
+	MovementControllerAI		* movementControllerAI;				// 0D0
+	UInt32						pad0D4[(0x0FC - 0x0D4) >> 2];		// 0D4
 	BSTSmallArray<SpellItem *>	addedSpells;						// 0FC
 	MagicCaster					* magicCaster[kNumSlots];			// 108 [0] lefthand [1] right hand [2] unknown [3] power/shout
 	MagicItem					* equippingMagicItems[kNumSlots];	// 118
@@ -532,6 +540,7 @@ public:
 
 private:
 	DEFINE_MEMBER_FN_const(HasSpell_Impl, bool, 0x006E9130, SpellItem* spell);
+	DEFINE_MEMBER_FN(EvaluatePackage_Impl, void, 0x006BE790, bool, bool);
 };
 STATIC_ASSERT(offsetof(Actor, addedSpells) == 0xFC);
 STATIC_ASSERT(sizeof(Actor) == 0x19C);
