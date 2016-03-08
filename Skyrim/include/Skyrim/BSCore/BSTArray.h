@@ -536,9 +536,24 @@ public:
 			new(_head())value_type(ref);
 		}
 	}
+	void push_front(value_type &&ref) {
+		functor_type pred(this);
+		SInt32 index = _push(pred, capacity(), sizeof(value_type));
+		if (index >= 0) {
+			_move(_head(), 1, 0, index, sizeof(value_type));
+			new(_head())value_type(ref);
+		}
+	}
 
 	// TESV.0043C670
 	void push_back(const_reference ref) {
+		functor_type pred(this);
+		SInt32 index = _push(pred, capacity(), sizeof(value_type));
+		if (index >= 0) {
+			new(_head() + index)value_type(ref);
+		}
+	}
+	void push_back(value_type &&ref) {
 		functor_type pred(this);
 		SInt32 index = _push(pred, capacity(), sizeof(value_type));
 		if (index >= 0) {
@@ -632,6 +647,9 @@ public:
 	}
 
 	inline void Add(const_reference ref) {
+		push_back(ref);
+	}
+	inline void Add(value_type &&ref) {
 		push_back(ref);
 	}
 
