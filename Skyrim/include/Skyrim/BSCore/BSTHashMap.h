@@ -32,7 +32,7 @@ class BSTHashMap : public BSTHashMapBase< BSTHashMapTraits<Key, Value, Table<Key
 	//size_type					m_size;				// 08
 	//size_type					m_freeCount;		// 0C
 	//size_type					m_freeOffset;		// 10
-	//entry_type				* m_eolPtr;			// 14
+	//entry_type				* m_eolPtr;			// 14 - hash sentinel
 	//UInt32					pad18;				// 18
 	//entry_type				* m_entries;		// 1C
 };

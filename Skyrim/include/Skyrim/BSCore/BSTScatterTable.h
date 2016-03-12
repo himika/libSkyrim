@@ -719,6 +719,7 @@ protected:
 		m_size = rhs.m_size;
 		m_freeCount = rhs.m_freeCount;
 		m_freeOffset = rhs.m_freeOffset;
+		m_eolPtr = rhs.m_eolPtr;
 		m_entries = rhs.m_entries;
 
 		rhs.m_size = 0;
