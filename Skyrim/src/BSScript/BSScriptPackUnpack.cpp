@@ -4,13 +4,14 @@
 
 namespace BSScript
 {
-	static void BindID(BSScriptObjectPtr &objectPtr, void * srcData, VMState * state, IObjectHandlePolicy * handlePolicy, UInt32 typeID)
+	static void BindID(BSScriptObjectPtr &objectPtr, const void * srcData, UInt32 typeID, VMState * state)
 	{
-		UInt32	id = 0;
+		UInt32 id = 0;
 		BSScriptClassPtr classPtr = objectPtr->GetClass();
 
 		if (state->GetFormTypeID(classPtr->GetName(), id))
 		{
+			auto handlePolicy = state->GetHandlePolicy();
 			VMHandle handle = handlePolicy->Create(typeID, srcData);
 
 			if (handlePolicy->IsType(id, handle) || handle == handlePolicy->GetInvalidHandle())
@@ -29,14 +30,13 @@ namespace BSScript
 		return result;
 	}
 
-	void PackHandle(BSScriptVariable * dst, void * src, UInt32 typeID, VMState * state)
+	void PackHandle(BSScriptVariable * dst, const void * src, UInt32 typeID, VMState * state)
 	{
 		dst->SetNone();
 
 		if (!src)
 			return;
-
-
+		
 		BSScriptClassPtr classPtr;
 		state->GetScriptClassByTypeID(typeID, classPtr);
 		if (!classPtr)
@@ -52,7 +52,7 @@ namespace BSScript
 			if (state->CreateScriptObject(classPtr->GetName(), objectPtr) && objectPtr)
 			{
 				// create handle and bind it to the new objectPtr
-				BindID(objectPtr, src, state, handlePolicy, typeID);
+				BindID(objectPtr, src, typeID, state);
 			}
 		}
 
@@ -62,17 +62,7 @@ namespace BSScript
 
 	void * UnpackHandle(const BSScriptVariable * src, UInt32 typeID)
 	{
-		void* result = nullptr;
-
-		const BSScriptObject* objectPtr = src->GetObject();
-		if (objectPtr)
-		{
-			BSScript::IObjectHandlePolicy* policy = g_objectHandlePolicy;
-			VMHandle handle = objectPtr->GetHandle();
-			if (policy->IsType(typeID, handle) && policy->IsValidHandle(handle))
-				result = policy->Resolve(typeID, handle);
-		}
-
-		return result;
+		const BSScriptObject *pObject = src->GetObject();
+		return (pObject) ? pObject->Resolve(typeID) : nullptr;
 	}
 }

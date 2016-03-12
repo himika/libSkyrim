@@ -4,9 +4,12 @@
 #include <Skyrim/BSScript/BSScriptPackUnpack.h>
 #include <Skyrim/BSScript/BSScriptIFunctionArguments.h>
 #include <Skyrim/VMState.h>
+#include <SKSE/DebugLog.h>
 
+#include <utility>
 #include <tuple>
 #include <type_traits>
+
 
 namespace SKSEScript
 {
@@ -29,6 +32,11 @@ namespace SKSEScript
 
 	class FunctionArgumentsBase : public BSScript::IFunctionArguments
 	{
+	protected:
+		VMState	* m_state;
+		
+		void QueueEvent(VMHandle handle, const BSFixedString &eventName, bool bBroadcast);
+
 	public:
 		FunctionArgumentsBase();
 		virtual ~FunctionArgumentsBase();
@@ -56,31 +64,33 @@ namespace SKSEScript
 				QueueEvent(handle, eventName, bBroadcast);
 			}
 		}
-
-	protected:
-		static void * enabler;
-		
-		template <std::size_t N = 0, class Tuple, typename std::enable_if< std::tuple_size<Tuple>::value != N >::type *& = enabler>
-		static void PackTuple(VMState * state, Output & dst, Tuple & tp)
-		{
-			dst[N].Pack(std::get<N>(tp), state);
-			PackTuple<N + 1>(state, dst, tp);
-		}
-
-		template <std::size_t N = 0, class Tuple, typename std::enable_if< std::tuple_size<Tuple>::value == N >::type *& = enabler>
-		static void PackTuple(VMState * state, Output & dst, Tuple & tp)
-		{
-		}
-
-		void QueueEvent(VMHandle handle, const BSFixedString &eventName, bool bBroadcast);
-
-		VMState	* m_state;
 	};
 	
 
 	template <class... Args>
 	class FunctionArguments : public FunctionArgumentsBase
 	{
+	private:
+		std::tuple<Args...>	m_args;
+
+		static void * enabler;
+
+		template <std::size_t N = 0, class Tuple, typename std::enable_if< std::tuple_size<Tuple>::value != N >::type *& = enabler>
+		inline static void PackTuple(VMState * state, Output & dst, const Tuple & tp)
+		{
+			BSScriptVariable var;
+			var.Pack(std::get<N>(tp), state);
+			dst.Add(std::move(var));
+
+			PackTuple<N + 1>(state, dst, tp);
+		}
+
+		template <std::size_t N = 0, class Tuple, typename std::enable_if< std::tuple_size<Tuple>::value == N >::type *& = enabler>
+		inline static void PackTuple(VMState * state, Output & dst, const Tuple & tp)
+		{
+			// finish
+		}
+
 	public:
 		FunctionArguments(Args... args) : m_args(args...)
 		{
@@ -92,12 +102,9 @@ namespace SKSEScript
 
 		virtual bool Copy(Output & dst) override
 		{
-			dst.Resize(sizeof...(Args));
+			dst.reserve(sizeof...(Args));
 			PackTuple(m_state, dst, m_args);
 			return true;
 		}
-
-	private:
-		std::tuple<Args...>	m_args;
 	};
 }

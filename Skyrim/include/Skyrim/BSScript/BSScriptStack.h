@@ -3,7 +3,10 @@
 // c:_skyrim\code\tesv\bsscript\BSScriptStack.h
 
 #include "../BSSystem/BSTSmartPointer.h"
+#include "../BSCore/BSTArray.h"
 #include "BSScriptVariable.h"
+#include "BSScriptInternalCodeTasklet.h"
+
 
 class ProbablyCallStackManager;
 
@@ -39,50 +42,41 @@ class ProbablyCallStackManager;
 //};
 
 
-
 namespace BSScript
 {
 	BSSmartPointer(BSScriptStack);
 	BSSmartPointer(IStackCallbackFunctor);
 
-	// 20
+	class IFunction;
+
+	// 20 + sizeof(BSScriptVariable) * numArgs
 	// the same type as VMState in skse
-	// the same type as UnkStackData1 except missing unk000
 	class StackFrame
 	{
 	public:
-		using BSScriptStack = BSScript::BSScriptStack;
-		using BSScriptVariable = BSScript::BSScriptVariable;
-		using IFunction = BSScript::IFunction;
-
 		BSScriptStack		* stack;		// 00
 		StackFrame			* parent;		// 04
 		IFunction			* func;			// 08
-		void				* unk0C;
-		UInt32				unk10;
+		void				* unk0C;		// 0C
+		UInt32				unk10;			// 10
 		BSScriptVariable	baseValue;		// 14
 		UInt32				numArgs;		// 1C
-		//BSScriptVariable	Args[];			// 20~
+		//BSScriptVariable	args[];			// 20
 
-		BSScriptVariable *	GetArgs() const {
-			return (BSScriptVariable*)(this + 1);
+		BSScriptVariable * GetArgs() const {
+			return (BSScriptVariable *)(this + 1);
 		}
 	};
 
-	// 48
-	// the same type as VMArgList and UnkVMStackData2 in skse)
-	// BSScriptStack?
+	// 58? - the same type as VMArgList and UnkVMStackData2 in skse)
 	class BSScriptStack : public BSIntrusiveRefCounted
 	{
 	public:
-		typedef BSTSmartPointer<BSScriptStack> SmartPtr;
-
-		using BSScriptVariable = BSScript::BSScriptVariable;
-
 		BSScriptStack();
-		~BSScriptStack();
+		~BSScriptStack() { dtor(); }
 
-		// 08 + sizeof(Data)
+		// 08 + sizeof(StackFrame)
+		// the same type as UnkStackData1
 		struct Chunk
 		{
 			void *	GetHead(void) const	{ return (void*)(this + 1); }
@@ -99,26 +93,43 @@ namespace BSScript
 		// 08
 		struct Pair
 		{
-			Chunk *	chunk;		// 00
+			Chunk	* chunk;	// 00
 			UInt32	unk04;		// 04
 		};
 
-		// @members
-		ProbablyCallStackManager *	manager;		// 04
-		UInt32						unk08;
-		BSTSmallArray<Pair, 3>		chunks;			// 0C - stack data is splitted into 128-byte chunks
-		UInt32						unk2C;			// 2C
-		StackFrame *				current;		// 30
-		UInt32						unk34;
-		UInt32						unk38;
-		BSScriptVariable			resultValue;	// 3C
-		UInt32						stackID;		// 44
+		inline UInt32 GetOffset(StackFrame * frame) const {
+			return GetOffset_Impl(frame);
+		}
 
-		DEFINE_MEMBER_FN_const(GetOffset, UInt32, 0x00C3A620, StackFrame * frame);
-		DEFINE_MEMBER_FN(Get, BSScript::BSScriptVariable *, 0x00C3AC40, StackFrame * frame, UInt32 idx, UInt32 offset);
+		inline BSScript::BSScriptVariable * Get(StackFrame *frame, UInt32 idx, UInt32 offset) const {
+			return Get_Impl(frame, idx, offset);
+		}
+
+		// @members
+		ProbablyCallStackManager	* manager;		// 04
+		UInt32						unk08;			// 08
+		BSTSmallArray<Pair, 3>		chunks;			// 0C - stack data is splitted into 128-byte chunks
+		UInt32						unk2C;			// 2C - init'd 0
+		StackFrame					* current;		// 30 - init'd 0
+		UInt32						unk34;			// 34 - init'd 0
+		UInt32						unk38;			// 38 - init'd 0
+		BSScriptVariable			resultValue;	// 3C - init'd 0
+		UInt32						stackID;		// 44
+		UInt32						unk48;			// 48
+		InternalCodeTaskletData		* taskletData;	// 4C - init'd 0
+		void						* unk50;		// 50 - has vtbl. probably BSTSmartPointer
+		UInt32						unk54;			// 54 - init'd 0
+
+	private:
+		DEFINE_MEMBER_FN(ctor, BSScriptStack *, 0x00C3DA50, ProbablyCallStackManager *a_manager, UInt32 a_unk08, UInt32 a_stackID, UInt32 a_unk48, BSTSmartPointer<void> &a_unk50);
+		DEFINE_MEMBER_FN(dtor, void, 0x00C3CCA0);
+		DEFINE_MEMBER_FN(Unk_00C3C6C0, bool, 0x00C3C6C0);	// called in dtor
+
+		DEFINE_MEMBER_FN_const(GetOffset_Impl, UInt32, 0x00C3A620, StackFrame * frame);
+		DEFINE_MEMBER_FN_const(Get_Impl, BSScript::BSScriptVariable *, 0x00C3AC40, StackFrame * frame, UInt32 idx, UInt32 offset);
 	};
-	STATIC_ASSERT(offsetof(BSScriptStack, unk2C) == 0x2C);
-	STATIC_ASSERT(sizeof(BSScriptStack) == 0x48);
+	STATIC_ASSERT(offsetof(BSScriptStack, current) == 0x30);
+	STATIC_ASSERT(offsetof(BSScriptStack, stackID) == 0x44);
 
 
 	/*==============================================================================

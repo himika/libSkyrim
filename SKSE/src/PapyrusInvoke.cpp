@@ -10,7 +10,7 @@ namespace SKSEScript
 		while (p)
 		{
 			BSScript::IFunction **func;
-			func = p->GetMemberFunction(fnName);
+			func = p->GetMemberFunctions(fnName);
 			if (func && *func)
 			{
 				result = *func;
@@ -42,4 +42,3 @@ namespace SKSEScript
 		return GetFunction(state, classInfo, fnName);
 	}
 }
-

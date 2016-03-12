@@ -3,9 +3,8 @@
 // c:_skyrim\code\tesv\bsscript\BSScriptVariable.h
 
 #include "../BSSystem/BSTSmartPointer.h"
+#include "../BSCore/BSFixedString.h"
 #include <string>
-
-#include "BSScriptClass.h"
 
 class VMState;
 
@@ -14,16 +13,17 @@ namespace BSScript
 	// Forward declarations
 	class BSScriptArray;
 	class BSScriptObject;
+	class BSScriptVariable;
 
 	template <class, class>		VMTypeID	GetTypeID(VMState * state);
 	template <class _Ty, class>	void		PackValue(BSScriptVariable & dst, _Ty & src, VMState * state);
 	template <class _Ty, class>	_Ty			UnpackValue(const BSScriptVariable& src);
 
-	// the same type as VMValue in skse
+	// 08 - the same type as VMValue in skse
 	class BSScriptVariable
 	{
 	public:
-		enum
+		enum Type
 		{
 			kType_None = 0,
 			kType_Object = 1,
@@ -32,12 +32,12 @@ namespace BSScript
 			kType_Float = 4,
 			kType_Bool = 5,
 
-			kType_ObjectArray = 11,
 			kType_ArraysStart = 11,
-			kType_StringArray = 12,
-			kType_IntArray = 13,
-			kType_FloatArray = 14,
-			kType_BoolArray = 15,
+			kType_ObjectArray = 11,		// 0B
+			kType_StringArray = 12,		// 0C
+			kType_IntArray = 13,		// 0D
+			kType_FloatArray = 14,		// 0E
+			kType_BoolArray = 15,		// 0F
 			kType_ArraysEnd = 16,
 
 			kNumLiteralArrays = 4
@@ -60,12 +60,12 @@ namespace BSScript
 			operator bool() const					{ return b; }
 			operator const char*() const			{ return str; }
 
-			operator BSFixedString() const			{ return *reinterpret_cast<const BSFixedString*>(this); }
-			operator const BSFixedString&() const	{ return *reinterpret_cast<const BSFixedString*>(this); }
-			operator BSScriptObject*()				{ return object; }
-			operator const BSScriptObject*() const	{ return object; }
-			operator BSScriptArray*()					{ return arr; }
-			operator const BSScriptArray*() const		{ return arr; }
+			operator BSFixedString() &				{ return *reinterpret_cast<BSFixedString *>(this); }
+			operator const BSFixedString &() const	{ return *reinterpret_cast<const BSFixedString *>(this); }
+			operator BSScriptObject *()				{ return object; }
+			operator const BSScriptObject *() const	{ return object; }
+			operator BSScriptArray *()				{ return arr; }
+			operator const BSScriptArray *() const	{ return arr; }
 
 			Data& operator=(SInt32 a_i)						{ i = a_i; return *this; }
 			Data& operator=(UInt32 a_u)						{ u = a_u; return *this; }
@@ -93,6 +93,7 @@ namespace BSScript
 			rhs.type = kType_None;
 			rhs.data.u = 0;
 		}
+
 		~BSScriptVariable() {
 			Destroy();
 		}
@@ -103,16 +104,21 @@ namespace BSScript
 		}
 		BSScriptVariable& operator=(BSScriptVariable && rhs) {
 			Destroy();
+
 			type = rhs.type;
 			data.u = rhs.data.u;
 
 			rhs.type = kType_None;
 			rhs.data.u = 0;
+			
 			return *this;
 		}
 
 		bool operator==(const BSScriptVariable & rhs) const {
-			return (type == rhs.type) && (data.u == rhs.data.u);
+			if (IsObject() && rhs.IsObject())
+				return data.u == rhs.data.u;
+			else
+				return (type == rhs.type) && (data.u == rhs.data.u);
 		}
 		bool operator!=(const BSScriptVariable & rhs) const {
 			return !operator==(rhs);
@@ -127,27 +133,24 @@ namespace BSScript
 		bool IsObject(void)	const {
 			return GetUnmangledType() == kType_Object;
 		}
-
 		bool IsObjectArray() const {
 			return (type >= kType_ArraysEnd && (type & kType_Object) != 0);
 		}
-
 		bool IsLiteralArray() const {
 			return type - kType_ArraysStart <= kNumLiteralArrays;
 		}
-
 		bool IsInt() const {
 			return type == kType_Int;
 		}
-
 		bool IsFloat() const {
 			return type == kType_Float;
 		}
-
 		bool IsString() const {
 			return type == kType_String;
 		}
-
+		bool IsBool() const {
+			return type == kType_Bool;
+		}
 		bool IsArray() const {
 			return IsLiteralArray() || IsObjectArray();
 		}
@@ -183,7 +186,7 @@ namespace BSScript
 		}
 
 		template <class _Ty>
-		void Pack(_Ty src, VMState* state)
+		void Pack(const _Ty src, VMState* state)
 		{
 			PackValue<_Ty>(*this, src, state);
 		}
@@ -195,6 +198,8 @@ namespace BSScript
 		}
 
 		std::string GetTypeName() const;
+
+		void GetTypeName(BSFixedString &out) const;
 
 		// convert class object to string - e.g. [Actor < (00000014)>]
 		std::string ToString(bool arg1, bool arg2) const;
@@ -208,6 +213,7 @@ namespace BSScript
 		DEFINE_MEMBER_FN(Destroy, void, 0x00C328E0);
 		//DEFINE_MEMBER_FN(SetArray, void, 0x00C32CE0, BSScriptArray * data);
 		DEFINE_MEMBER_FN_const(ToString_Internal, void, 0x00C325E0, char* buf, UInt32 bufSize, bool arg3, bool arg4);
+		DEFINE_MEMBER_FN_const(IsNoneOrInvalid, bool, 0x00C31C60);
 	};
 	STATIC_ASSERT(sizeof(BSScriptVariable) == 0x08);
 }

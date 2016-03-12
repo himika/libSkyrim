@@ -25,25 +25,21 @@ namespace BSScript
 	{
 	};
 
-	//VMClassInfo
-	class BSScriptClass;	// ==> BSScriptClass.h
+	class BSScriptClass;				// ==> BSScriptClass.h
 
-	//VMIdentifier
-	class BSScriptObject;	// ==> BSScriptObject.h
+	class BSScriptObject;				// ==> BSScriptObject.h
 
 	class BSScriptObjectTypeInfo;
 
 	class BSScriptObjectPropertyTypeInfo;
 
-	//VMValue
-	class BSScriptVariable;	// ==> BSScriptVariable.h
+	class BSScriptVariable;				// ==> BSScriptVariable.h
 
-	//VMValue::ArrayData
-	class BSScriptArray;		// ==> ScriptVariable.h
+	class BSScriptArray;				// ==> ScriptVariable.h
 
 	class IForEachScriptObjectFunctor;	// => BSScriptIForEachScriptObjectFunctor.h
 
-	class IFunctionArguments;		// ==> BSScriptIFunctionArguments.h
+	class IFunctionArguments;			// ==> BSScriptIFunctionArguments.h
 	class ZeroFunctionArguments;
 
 	/*==============================================================================

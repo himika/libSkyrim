@@ -5,7 +5,6 @@
 class BSFixedString;
 template <class> class VMArray;
 
-
 namespace BSScript {
 	struct StaticFunctionTag;
 

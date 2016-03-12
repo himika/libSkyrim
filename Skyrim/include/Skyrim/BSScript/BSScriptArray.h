@@ -4,6 +4,7 @@
 
 
 #include "../BSSystem/BSTSmartPointer.h"
+#include "../BSCore/BSSpinLock.h"
 #include "BSScriptVariable.h"
 
 namespace BSScript
@@ -18,7 +19,7 @@ namespace BSScript
 	public:
 		BSScriptTypeID() {}
 		BSScriptTypeID(VMTypeID a_id) : id(a_id) {}
-		BSScriptTypeID(BSScriptTypeID& typeID, bool bToVector) {
+		BSScriptTypeID(const BSScriptTypeID &typeID, bool bToVector) {
 			ctor(typeID, bToVector);
 		}
 
@@ -30,7 +31,7 @@ namespace BSScript
 		VMTypeID	id;
 
 	private:
-		DEFINE_MEMBER_FN(ctor, BSScriptTypeID*, 0x00C3A4A0, BSScriptTypeID& typeID, bool bToVecter);
+		DEFINE_MEMBER_FN(ctor, BSScriptTypeID *, 0x00C3A4A0, const BSScriptTypeID &typeID, bool bToVecter);
 	};
 
 
@@ -43,7 +44,10 @@ namespace BSScript
 		typedef BSScriptVariable value_type;
 		typedef BSTSmartPointer<BSScriptArray> SmartPtr;
 
-		~BSScriptArray();
+		BSScriptArray(BSScriptTypeID & typeID, size_type size) {
+			ctor(typeID, size);
+		}
+		~BSScriptArray() { dtor(); }
 
 		UInt32 GetSize(void) const {
 			return len;
@@ -70,10 +74,6 @@ namespace BSScript
 	private:
 		BSScriptArray();
 
-		BSScriptArray(BSScriptTypeID & typeID, size_type size) {
-			ctor(typeID, size);
-		}
-
 		BSScriptVariable * GetData(void) {
 			return reinterpret_cast<BSScriptVariable*>(this + 1);
 		}
@@ -88,8 +88,7 @@ namespace BSScript
 		// @members
 		BSScriptTypeID		typeID;		// 04
 		UInt32				len;		// 08
-		UInt32				unk0C;		// 0C
-		UInt32				unk10;		// 10
-		//BSScriptVariable	data[];		// 14~
+		BSSpinLock			lock;		// 0C
+		//BSScriptVariable	data[];		// 14
 	};
 }

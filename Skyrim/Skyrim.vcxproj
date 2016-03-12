@@ -248,6 +248,7 @@
     <ClInclude Include="include\Skyrim\BSScript\BSScriptIForEachScriptObjectFunctor.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptIFunction.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptIFunctionArguments.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptInternalCodeTasklet.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptInternalVDescTable.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptIObjectHandlePolicy.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptMemoryPagePolicy.h" />

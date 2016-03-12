@@ -1,6 +1,7 @@
 #include "Skyrim.h"
 #include "Skyrim/BSScript/BSScriptObject.h"
 #include "Skyrim/BSScript/BSScriptClass.h"
+#include "Skyrim/BSScript/BSScriptVariable.h"
 #include "Skyrim/SkyrimScript.h"
 
 #define WIN32_LEAN_AND_MEAN
@@ -16,15 +17,90 @@ enum
 
 namespace BSScript
 {
-	VMHandle BSScriptObject::GetHandle(void) const
+	SkyrimScript::HandlePolicy *& BSScriptObject::ms_handlePolicy = *(SkyrimScript::HandlePolicy**)0x01BA7008;
+
+
+	BSScriptObject::BSScriptObject(const BSScriptClassPtr &a_classPtr, SkyrimScript::HandlePolicy *a_handlePolicy, UInt32 a_numProperties)	// 0x00C30DF0
 	{
-		VMHandle result = g_objectHandlePolicy->GetInvalidHandle();
+		flags = 4;
+		numProperties = a_numProperties;
 
-		BSScriptObject* unconst_this = const_cast<BSScriptObject*>(this);
+		classPtr = a_classPtr;
 
-		SInt32	oldLock = unconst_this->Lock();
-		result = unconst_this->handle;
-		unconst_this->Unlock(oldLock);
+		static BSFixedString defaultState = "";
+		currentState = defaultState;
+
+		//unk0C = nullptr;
+
+		handle = a_handlePolicy->GetInvalidHandle();
+		
+		ms_handlePolicy = a_handlePolicy;
+	}
+
+	// called from 00C589E5, 00C58B61
+	BSScriptObject::~BSScriptObject()		// 00C30E90
+	{
+		if (flags & kFlag_HasVariables)
+		{
+			UInt32 numVars = classPtr->GetNumAllVariables();
+			BSScriptVariable *pVar = GetVariables();
+			while (numVars)
+			{
+				pVar->~BSScriptVariable();
+				--numVars;
+			}
+		}
+
+		flags = 0;
+
+		if (unk0C.GetFlag())
+		{
+			InterlockedDecrement(unk0C);
+		}
+	}
+
+	VMHandle BSScriptObject::GetHandle(void) const		// 00C307C0
+	{
+		VMHandle result = ms_handlePolicy->GetInvalidHandle();
+
+		BSScriptObject* pThis = const_cast<BSScriptObject *>(this);
+
+		SInt32	oldLock = pThis->Lock();
+		result = pThis->handle;
+		pThis->Unlock(oldLock);
+
+		return result;
+	}
+
+	void BSScriptObject::SetHandle(VMHandle a_handle)	// 00C307C0
+	{
+		SInt32	oldLock = Lock();
+
+		ms_handlePolicy->AddRef(a_handle);
+		ms_handlePolicy->Release(handle);
+		handle = a_handle;
+
+		Unlock(oldLock);
+	}
+
+	bool BSScriptObject::IsInvalidHandle() const
+	{
+		return GetHandle() == ms_handlePolicy->GetInvalidHandle();
+	}
+
+	void BSScriptObject::GetClass(BSScriptClassPtr &a_classPtr) const		// 00505F30
+	{
+		a_classPtr = classPtr;
+	}
+
+	void * BSScriptObject::Resolve(UInt32 typeID) const
+	{
+		void *result = nullptr;
+		
+		VMHandle handle = GetHandle();
+		auto policy = ms_handlePolicy;
+		if (policy->IsType(typeID, handle) && policy->IsValidHandle(handle))
+			result = policy->Resolve(typeID, handle);
 
 		return result;
 	}
@@ -36,7 +112,7 @@ namespace BSScript
 
 		while (true)
 		{
-			lockValue = lock;
+			lockValue = refCount;
 
 			if (lockValue & kLockBit)
 			{
@@ -54,7 +130,7 @@ namespace BSScript
 			else
 			{
 				// try to take the lock
-				if (InterlockedCompareExchange(&lock, lockValue | kLockBit, lockValue) == lockValue)
+				if (InterlockedCompareExchange(&refCount, lockValue | kLockBit, lockValue) == lockValue)
 					break;
 			}
 		}
@@ -64,18 +140,18 @@ namespace BSScript
 
 	void BSScriptObject::Unlock(SInt32 oldLock)
 	{
-		lock = oldLock;
+		refCount = oldLock;
 	}
 
 	// try to increment the lock
-	// on 1 -> 2, call IObjectHandlePolicy::Unk_09(handle) with the lock held
-	void BSScriptObject::IncRefCount(void)
+	// on 1 -> 2, call IObjectHandlePolicy::AddRef(handle) with the lock held
+	void BSScriptObject::IncRefCount(void)		// 00C306A0
 	{
 		UInt32	spinCount = 0;
 
 		while (true)
 		{
-			SInt32	lockValue = lock;
+			SInt32	lockValue = refCount;
 
 			if (lockValue & kLockBit)
 			{
@@ -93,16 +169,16 @@ namespace BSScript
 			{
 				if (lockValue == 1)
 				{
-					if (InterlockedCompareExchange(&lock, lockValue | kLockBit, lockValue) == lockValue)
+					if (InterlockedCompareExchange(&refCount, lockValue | kLockBit, lockValue) == lockValue)
 					{
-						g_objectHandlePolicy->AddRef(handle);
-						lock = 2;
+						ms_handlePolicy->AddRef(handle);
+						refCount = 2;
 						break;
 					}
 				}
 				else
 				{
-					if (InterlockedCompareExchange(&lock, lockValue + 1, lockValue) == lockValue)
+					if (InterlockedCompareExchange(&refCount, lockValue + 1, lockValue) == lockValue)
 						break;
 				}
 			}
@@ -110,14 +186,14 @@ namespace BSScript
 	}
 
 	// try to decrement the lock
-	// on 2 -> 1, call IObjectHandlePolicy::Unk_0A(handle) with the lock held
-	SInt32 BSScriptObject::DecRefCount(void)
+	// on 2 -> 1, call IObjectHandlePolicy::Release(handle) with the lock held
+	SInt32 BSScriptObject::DecRefCount(void)		// 00C30720
 	{
 		UInt32	spinCount = 0;
 
 		while (true)
 		{
-			SInt32	lockValue = lock;
+			SInt32	lockValue = refCount;
 
 			if (lockValue & kLockBit)
 			{
@@ -135,20 +211,19 @@ namespace BSScript
 			{
 				if (lockValue == 2)
 				{
-					if (InterlockedCompareExchange(&lock, lockValue | kLockBit, lockValue) == lockValue)
+					if (InterlockedCompareExchange(&refCount, lockValue | kLockBit, lockValue) == lockValue)
 					{
-						g_objectHandlePolicy->Release(handle);
-						lock = 1;
+						ms_handlePolicy->Release(handle);
+						refCount = 1;
 						return 1;
 					}
 				}
 				else
 				{
-					if (InterlockedCompareExchange(&lock, lockValue - 1, lockValue) == lockValue)
+					if (InterlockedCompareExchange(&refCount, lockValue - 1, lockValue) == lockValue)
 						return lockValue - 1;
 				}
 			}
 		}
 	}
 }
-

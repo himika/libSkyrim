@@ -58,7 +58,7 @@ class BSTSmartPointer
 {
 public:
 	typedef Ty value_type;
-	typedef Ty *pointer;
+	typedef Ty * pointer;
 	typedef const Ty *const_pointer;
 	typedef RefManager<Ty> reference_manager;
 	// typedef Ty &reference;
@@ -119,6 +119,12 @@ public:
 	}
 	const_pointer operator->() const {
 		return ptr;
+	}
+	value_type & operator*() {
+		return *ptr;
+	}
+	const value_type & operator*() const {
+		return *ptr;
 	}
 	void Attach(const_pointer a_p) {
 		ptr = const_cast<pointer>(a_p);

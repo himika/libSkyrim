@@ -18,30 +18,32 @@ namespace BSScript
 	class BSScriptClass : public BSIntrusiveRefCounted
 	{
 	public:
-		typedef BSTSmartPointer<BSScriptClass> SmartPtr;
-
 		BSScriptClass()		{ }
 		~BSScriptClass()	{ dtor(); }
 
+		// 04
 		union FlagData
 		{
 			const char	* name;
 			bool		value;
 		};
 
+		// 08
 		struct VariableData
 		{
 			const char	* name;
 			UInt32		index;
 		};
 
+		// 0C
 		struct Unk0CData
 		{
 			UInt32		unk00;
 			UInt32		unk04;
-			UInt32		unk0C;
+			UInt32		unk08;
 		};
 
+		// 28
 		struct Unk28Data
 		{
 			UInt32		unk00;
@@ -56,37 +58,37 @@ namespace BSScript
 			UInt32		unk24;
 		};
 		
-		const BSFixedString & GetName() const {
+		const char * GetName() const {
 			return name;
 		}
 
 		UInt32 GetNumVariables() const
 		{
-			return nums.numVariables;
+			return numVariables;
 		}
 
 		UInt32 GetNumMemberFunctions() const
 		{
-			return nums.numMemberFuncs;
+			return numMemberFuncs;
 		}
 
 		UInt32 GetNumGlobalFunctions() const
 		{
-			return nums.numGlobalFuncs;
+			return numGlobalFuncs;
 		}
 
 		IFunction ** GetFunctions() const
 		{
 			return (IFunction**)(dataPtr
-				+ sizeof(FlagData) * nums.numScriptFlags
-				+ sizeof(VariableData) * nums.numVariables
-				+ sizeof(Unk0CData) * nums.numUnk0C
-				+ sizeof(Unk28Data) * nums.numUnk28);
+				+ sizeof(FlagData) * numScriptFlags
+				+ sizeof(VariableData) * numVariables
+				+ sizeof(Unk0CData) * numUnk0C
+				+ sizeof(Unk28Data) * numUnk28);
 		}
 
 		VariableData* GetVariables() const
 		{
-			return (VariableData*)(dataPtr + sizeof(FlagData) * nums.numScriptFlags);
+			return (VariableData*)(dataPtr + sizeof(FlagData) * numScriptFlags);
 		}
 
 		IFunction* FindFunction(const char * name);
@@ -110,7 +112,7 @@ namespace BSScript
 		bool IsConditional();
 
 		VMTypeID GetTypeID(void) const {
-			return reinterpret_cast<VMTypeID>(this);
+			return (this) ? reinterpret_cast<VMTypeID>(this) : 1;
 		}
 
 		bool IsBaseOf(const BSScriptClass* a_class) const;
@@ -118,35 +120,37 @@ namespace BSScript
 			return parent;
 		}
 
-		DEFINE_MEMBER_FN_const(GetVariableIndex, SInt32, 0x00C33E30, const BSFixedString & name);
-		DEFINE_MEMBER_FN_const(GetFunction, BSScript::IFunction*, 0x00C36540, const char * fnName);
-		DEFINE_MEMBER_FN_const(GetMemberFunction, BSScript::IFunction**, 0x00C365A0, const char * fnName);
-		DEFINE_MEMBER_FN_const(GetScriptFlag, bool, 0x00C33890, const BSFixedString & name, bool arg2);
+		DEFINE_MEMBER_FN_const(	GetNumAllVariables,	UInt32,			0x00C335F0);	// traverse parent class
+		DEFINE_MEMBER_FN_const(	GetScriptFlag,		bool,			0x00C33890,	const BSFixedString & name, bool arg2);
+		DEFINE_MEMBER_FN_const(	GetVariableIndex,	SInt32,			0x00C33E30,	const BSFixedString & name);
+		DEFINE_MEMBER_FN_const(	GetFunctions,		IFunction *,	0x00C36540,	const char * fnName);
+		DEFINE_MEMBER_FN_const(	GetMemberFunctions,	IFunction **,	0x00C365A0,	const char * fnName);
 
 	//protected:
 		// @members
-		BSFixedString	name;		// 04
-		BSScriptClass	* parent;	// 08
-		void			* unk0C;	// 0C
+		const char		* name;					// 04 - always refers to a BSFixedString but is not, because of no destruction in dtor.
+		BSScriptClass	* parent;				// 08
+		BSFixedString	unk0C;					// 0C
 
-		struct {
-			unsigned 	flag			: 2;	// 00
-			unsigned	numScriptFlags	: 6;	// 02
-			unsigned	numVariables	: 10;	// 08
-			unsigned	numPad0_18		: 14;	// 18
+		unsigned int 	flags			: 2;	// 10 - bit 0
+		unsigned int	numScriptFlags	: 6;	// 10 - bit 2
+		unsigned int	numVariables	: 10;	// 10 - bit 8
+		unsigned int					: 14;	// 10 - bit 12
 
-			unsigned	numUnk0C		: 10;	// 00
-			unsigned	numUnk28		: 10;	// 10
-			unsigned	numGlobalFuncs	: 9;	// 20
-			unsigned	numPad1_29		: 3;	// 29
+		unsigned int	numUnk0C		: 10;	// 14 - bit 0
+		unsigned int	numUnk28		: 10;	// 14 - bit A
+		unsigned int	numGlobalFuncs	: 9;	// 14 - bit 14
+		unsigned int					: 3;	// 14 - bit 1D
 
-			unsigned	numMemberFuncs	: 9;	// 00
-		} nums;
+		unsigned int	numMemberFuncs	: 9;	// 18 - bit 0
 
-		UInt32			dataPtr;	// 1C
+		UInt32			dataPtr;				// 1C
 
 	private:
 		DEFINE_MEMBER_FN(dtor, void, 0x00C34ED0);
+
+		DEFINE_MEMBER_FN(FreeData, void, 0x00C348E0, bool); // called in dtor
 	};
 	STATIC_ASSERT(sizeof(BSScriptClass) == 0x20);
+	STATIC_ASSERT(offsetof(BSScriptClass, dataPtr) == 0x1C);
 }

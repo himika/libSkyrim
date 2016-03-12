@@ -283,38 +283,41 @@ public:
 
 
 	// @members
-	//void						** _vtbl;				// 0000
-	VMState						* m_state;				// 0100
-	UInt32						pad104;					// 
-	UInt32						pad108;					//      (vtbl)    (demangled class name)
-	ProbablyCallStackManager	unk10C;					// 010C 01149B68  ? probably stack manager
-	ProbablyLoader				papyrusLoader;			// 0130
-	UInt8						pad130[0x454 - 0x150];	// 0150 01148BF4  SkyrimScript::Logger
-														// 01AC             | BSFixedString("Papyrus")
-														// 01B0             | BSFixedString("Logs/Script")
-														// 01B8 010EBA1C  SkyrimScript::HandlePolicy
-														// 0204 010EBAD4  SkyrimScript::ObjectBindPolicy
-														// 0294           BSTHashMap<????>  traits=012B64D4
-														// 0294+48          BSSpinLock
-														// 0360 010EA744  SkyrimScript::Profiler
-														// 0400 010EA79C  SkyrimScript::SavePatcher
-														// 0430           ?
-														// 0438           ?
-														// 043C           ?
-														// 0444           ?
-														// 0448           ?
-	BSSpinLock					m_losLock;				// 0454
-	LOSRegistrationHolder		m_losRegHolder;			// 045C
-	UInt32						unk468;					// 0468
-	BSSpinLock					m_updateLock;			// 046C
-	UpdateRegistrationHolder	m_updateRegHolder;		// 0474
+	//void						** _vtbl;					// 0000
+	VMState						* m_state;					// 0100
+	UInt32						pad104;						// 
+	UInt32						pad108;						//      (vtbl)    (demangled class name)
+	ProbablyCallStackManager	unk10C;						// 010C 01149B68  ? probably stack manager
+	ProbablyLoader				papyrusLoader;				// 0130
+	UInt8						pad150[0x1B8 - 0x150];		// 0150
+	//SkyrimScript::Logger									// 0150 01148BF4  SkyrimScript::Logger
+															// 01AC             | BSFixedString("Papyrus")
+															// 01B0             | BSFixedString("Logs/Script")
+	SkyrimScript::HandlePolicy	handlePolicy;				// 01B8 010EBA1C  SkyrimScript::HandlePolicy
+	UInt8						pad1B8[0x454 - 0x204];		// 0204
+	//SkyrimScript::ObjectBindPolicy						// 0204 010EBAD4  SkyrimScript::ObjectBindPolicy
+															// 0294           BSTHashMap<????>  traits=012B64D4
+															// 0294+48            BSSpinLock
+															// 0360 010EA744  SkyrimScript::Profiler
+															// 0400 010EA79C  SkyrimScript::SavePatcher
+															// 0430           ?
+															// 0438           ?
+															// 043C           ?
+															// 0444           ?
+															// 0448           ?
+	BSSpinLock					m_losLock;					// 0454
+	LOSRegistrationHolder		m_losRegHolder;				// 045C
+	UInt32						unk468;						// 0468
+	BSSpinLock					m_updateLock;				// 046C
+	UpdateRegistrationHolder	m_updateRegHolder;			// 0474
 	UpdateRegistrationHolder	m_updateGameTimeRegHolder;	// 0480
-	//BSSpinLock				m_delayFunctorLock;		// 4570
+	//BSSpinLock				m_delayFunctorLock;			// 4570
 	//BSTCommonLLMessageQueue<BSTSmartPointer<SkyrimScript::DelayFunctor>> *delayFunctorQueue;	// 457C
 
 private:
 	friend struct BSTSingletonSDMBase<BSTSDMTraits<SkyrimVM>>;
 	DEFINE_MEMBER_FN(ctor, SkyrimVM*, 0x008D7A40);
+	DEFINE_MEMBER_FN(dtor, void, 0x008D7000);
 };
 STATIC_ASSERT(offsetof(SkyrimVM, m_state) == 0x100);
 STATIC_ASSERT(offsetof(SkyrimVM, m_updateRegHolder) == 0x474);

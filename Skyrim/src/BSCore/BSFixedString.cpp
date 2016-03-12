@@ -118,7 +118,7 @@ BSFixedString& BSFixedString::operator=(BSFixedString&& rhs)
 
 bool BSFixedString::operator==(const char* str) const
 {
-	return (strcmp(data, str) == 0);
+	return (data == str || _stricmp(data, str) == 0);
 }
 
 

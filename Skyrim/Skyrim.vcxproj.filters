@@ -2267,6 +2267,9 @@
     <ClInclude Include="include\Skyrim\NetImmerse\NiTStringMap.h">
       <Filter>Header Files\Skyrim\NetImmerse</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptInternalCodeTasklet.h">
+      <Filter>Header Files\Skyrim\BSScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl">

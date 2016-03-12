@@ -19,6 +19,7 @@ public:
 
 	using BSScriptVariable = BSScript::BSScriptVariable;
 	using BSScriptArray = BSScript::BSScriptArray;
+	using BSScriptArrayPtr = BSScript::BSScriptArrayPtr;
 
 	class const_reference
 	{
@@ -105,6 +106,15 @@ public:
 		return ptr->GetSize();
 	}
 
+	bool GetAt(UInt32 index, value_type &out) const {
+		return (index < GetSize()) ? (out = ptr->Get(index).Unpack<value_type>(), true) : false;
+	}
+
+	bool SetAt(UInt32 index, value_type &in) {
+		VMState * state = g_skyrimVM->GetState();
+		return (index < GetSize()) ? (ptr->Get(index).Pack(in, state), true) : false;
+	}
+	
 	reference& operator[](size_type idx) {
 		BSScriptVariable* value = &(ptr->Get(idx));
 		return *(reference*)value;
@@ -185,5 +195,5 @@ public:
 	}
 
 private:
-	BSTSmartPointer<BSScriptArray> ptr;
+	BSScriptArrayPtr ptr;
 };

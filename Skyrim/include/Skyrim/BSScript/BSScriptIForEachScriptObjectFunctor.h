@@ -8,11 +8,17 @@ namespace BSScript
 	class IForEachScriptObjectFunctor
 	{
 	public:
+		enum ResultType
+		{
+			kResult_Abort = 0,
+			kResult_Continue = 1,
+		};
+
 		IForEachScriptObjectFunctor() {};
 		virtual ~IForEachScriptObjectFunctor() {};
 
 		// return true to continue
-		virtual bool Visit(class BSScriptObject * object, bool bConditional) = 0;
+		virtual UInt32 Visit(class BSScriptObject * object, bool bConditional) = 0;
 
 		//	void	** _vtbl;	// 00 - 0108E93C
 	};

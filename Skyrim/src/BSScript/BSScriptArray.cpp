@@ -17,11 +17,6 @@ namespace BSScript
 		return entries[idx];
 	}
 
-	BSScriptArray::~BSScriptArray()
-	{
-		dtor();
-	}
-
 	// 0x00C3A0A0
 	//BSScriptArray::dtor()
 	//{

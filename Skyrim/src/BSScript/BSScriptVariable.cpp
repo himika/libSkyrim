@@ -1,5 +1,6 @@
 #include "Skyrim.h"
 #include "Skyrim/BSScript/BSScriptVariable.h"
+#include "Skyrim/BSScript/BSScriptClass.h"
 #include "Skyrim/BSScript/BSScriptArray.h"
 #include "Skyrim/BSScript/BSScriptObject.h"
 
@@ -98,6 +99,55 @@ namespace BSScript
 			typeName += "[]";
 
 		return typeName;
+	}
+
+	void BSScriptVariable::GetTypeName(BSFixedString &out) const
+	{
+		char buf[256];
+
+		UInt32 tp = GetUnmangledType();
+
+		// array type -> single type
+		if (tp > 10)
+			tp -= 10;
+
+		const char *typeName;
+
+		switch (tp)
+		{
+		case kType_None:
+			typeName = "None";
+			break;
+		case kType_Object:
+		{
+			const BSScriptClass *klass = reinterpret_cast<BSScriptClass *>(type & 0xFFFFFFFE);
+			const BSFixedString &name = klass->GetName();
+			typeName = (name.length() > 0) ? name.c_str() : "None";
+		}
+		break;
+		case kType_String:
+			typeName = "String";
+			break;
+		case kType_Int:
+			typeName = "Int";
+			break;
+		case kType_Float:
+			typeName = "Float";
+			break;
+		case kType_Bool:
+			typeName = "Bool";
+			break;
+		default:
+			typeName = "Unknown";
+			break;
+		}
+
+		strcpy_s(buf, typeName);
+
+		if (IsArray())
+			strcat_s(buf, "[]");
+
+		out = buf;
 	}
 
 	std::string BSScriptVariable::ToString(bool arg1, bool arg2) const

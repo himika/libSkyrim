@@ -14,7 +14,7 @@ namespace BSScript
 {
 	extern void * enabler;
 	extern VMTypeID GetTypeIDFromFormTypeID(UInt32 formTypeID, VMState * state);
-	extern void PackHandle(BSScriptVariable * dst, void * src, UInt32 typeID, VMState * state);
+	extern void PackHandle(BSScriptVariable * dst, const void * src, UInt32 typeID, VMState * state);
 	extern void * UnpackHandle(const BSScriptVariable * src, UInt32 typeID);
 
 	//======================
@@ -52,7 +52,7 @@ namespace BSScript
 	// PackValue
 	//======================
 	template <class _Ty, ENABLE_IF(_Ty, is_builtin)>
-	void PackValue(BSScriptVariable & dst, _Ty & src, VMState * state)
+	void PackValue(BSScriptVariable & dst, const _Ty & src, VMState * state)
 	{
 		dst.SetNone();
 		dst.type = typeid_builtin<_Ty>::value;
@@ -60,20 +60,20 @@ namespace BSScript
 	}
 
 	template <class _Ty, ENABLE_IF(_Ty, is_form_pointer)>
-	void PackValue(BSScriptVariable & dst, _Ty & src, VMState * state)
+	void PackValue(BSScriptVariable & dst, const _Ty & src, VMState * state)
 	{
 		typedef typename std::remove_pointer<_Ty>::type FormT;
 		PackHandle(&dst, src, FormT::kTypeID, state);
 	}
 
 	template <class _Ty, ENABLE_IF(_Ty, is_array), ENABLE_IF(typename remove_array<_Ty>::type, is_builtin)>
-	void PackValue(BSScriptVariable & dst, _Ty & src, VMState * state)
+	void PackValue(BSScriptVariable & dst, const _Ty & src, VMState * state)
 	{
 		dst.SetArray((const BSScriptArray*)src, GetTypeID<_Ty>(state));
 	}
 
 	template <class _Ty, ENABLE_IF(_Ty, is_array), ENABLE_IF(typename remove_array<_Ty>::type, is_form_pointer)>
-	void PackValue(BSScriptVariable & dst, _Ty & src, VMState * state)
+	void PackValue(BSScriptVariable & dst, const _Ty & src, VMState * state)
 	{
 		dst.SetArray((const BSScriptArray*)src, GetTypeID<_Ty>(state));
 	}

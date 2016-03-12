@@ -6,7 +6,6 @@ namespace BSScript
 {
 	std::string IFunction::ToString() const
 	{
-		BSFixedString		name;
 		BSScriptVariable	value;
 
 		std::string declName;
@@ -31,10 +30,11 @@ namespace BSScript
 			if (i != 0)
 				declName += ", ";
 
-			GetParam(i, name, value.type);
+			BSFixedString paramName;
+			GetParam(i, paramName, value.type);
 			declName += value.GetTypeName();
 			declName += ' ';
-			declName += name.c_str();
+			declName += paramName.c_str();
 		}
 		declName += ')';
 
@@ -71,9 +71,9 @@ namespace BSScript
 		const BSFixedString &	NativeFunctionBase::GetStateName(void) const			{ return m_stateName; }
 		void					NativeFunctionBase::GetReturnType(VMTypeID & dst) const	{ dst = m_retnType; }
 		UInt32					NativeFunctionBase::GetNumParams(void) const			{ return m_params.unk06; }
-		void					NativeFunctionBase::GetParam(UInt32 idx, BSFixedString & nameOut, VMTypeID & typeOut) const
+		VMTypeID &				NativeFunctionBase::GetParam(UInt32 idx, BSFixedString & nameOut, VMTypeID & typeOut) const
 		{
-			Impl_GetParam(idx, nameOut, typeOut);	// m_params.GetParam(idx, nameOut, typeOut);
+			return m_params.GetParam(idx, nameOut, typeOut);
 		}
 		UInt32					NativeFunctionBase::GetNumParams2(void) const			{ return m_params.unk06; }
 		bool					NativeFunctionBase::IsNative(void) const				{ return true; }
@@ -83,7 +83,7 @@ namespace BSScript
 		UInt32					NativeFunctionBase::GetUnk24(void) const				{ return unk24; }
 		const BSFixedString &	NativeFunctionBase::GetStr28(void) const				{ return unk28; }
 		void					NativeFunctionBase::Unk_0E(UInt32 unk)					{ }	// always nop?
-		UInt32					NativeFunctionBase::Invoke(BSTSmartPointer<BSScriptStack>& stack, UInt32 unk1, VMState * state, UInt32 unk3)
+		UInt32					NativeFunctionBase::Invoke(BSScriptStackPtr & stack, UInt32 unk1, VMState * state, UInt32 unk3)
 		{
 			return Impl_Invoke(stack, unk1, state, unk3);
 		}

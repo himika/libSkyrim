@@ -4,6 +4,12 @@
 #include "BSScript/BSScriptObject.h"
 #include "BSScript/BSScriptObjectBindPolicy.h"
 #include "BSScript/BSScriptIObjectHandlePolicy.h"
+#include "BSCore/BSSpinLock.h"
+#include "BSCore/BSTHashMap.h"
+
+
+class IObjectManagerInterface;
+
 
 namespace SkyrimScript
 {
@@ -216,32 +222,56 @@ namespace SkyrimScript
 	0000: class SkyrimScript::HandlePolicy
 	0000: |   struct BSScript::IObjectHandlePolicy
 	==============================================================================*/
+	// 4C?
 	class HandlePolicy : public BSScript::IObjectHandlePolicy
 	{
 	public:
+		struct Data0C
+		{
+			UInt32	unk00;
+			UInt32	unk04;
+		};
+
+		struct Data2C
+		{
+			UInt32	unk00;
+			UInt32	unk04;
+		};
+
 		virtual ~HandlePolicy();														// 008D52E0
 
 		virtual bool		IsType(UInt32 typeID, VMHandle handle) override;			// 008B3B20
 		virtual bool		IsValidHandle(VMHandle handle) override;					// 008B3D60
 		virtual VMHandle	GetInvalidHandle(void) override;							// 008B4300 { return 0x0000FFFF00000000; }
-		virtual VMHandle	Create(UInt32 typeID, void * srcData) override;				// 008B4310
+		virtual VMHandle	Create(UInt32 typeID, const void * srcData) override;		// 008B4310
 		virtual bool		IsREFR(VMHandle handle) override;							// 008B39B0 { return IsType(TESObjectREFR::kTypeID, handle); }
 		virtual VMHandle	Unk_06(UInt32 unk0, UInt32 unk1) override;					// 008B4430
 		virtual VMHandle	Unk_07(UInt32 unk0, UInt32 unk1) override;					// 008B44F0
 		virtual void *		Resolve(UInt32 typeID, VMHandle handle) override;			// 008B3E30
 		virtual void		AddRef(VMHandle handle) override;							// 008B5040
 		virtual void		Release(VMHandle handle) override;							// 008B51A0
-		virtual void		ToString(VMHandle handle, const char *& outStr) override;	// 008B3F40 { return "%s (%llX)", (className, handle); }
+		virtual void		ToString(VMHandle handle, BSFixedString &strOut) override;	// 008B3F40 { return "%s (%llX)", (className, handle); }
+
+		template <class Ty>
+		inline Ty * Resolve(VMHandle handle)
+		{
+			return (Ty *)Resolve(Ty::kTypeID, handle);
+		}
 
 		// @members
-		// void		** _vtbl;			// 00 - 010EBA1C
+		// void							** _vtbl;			// 00 - 010EBA1C
+		BSSpinLock						m_lock;				// 04
+		BSTHashMap<VMHandle, Data0C>	unk0C;				// 0C - hash sentinel 012B90B4
+		BSTHashMap<VMHandle, Data2C>	unk2C;				// 2C - hash sentinel 012B6564
 	};
+	STATIC_ASSERT(sizeof(HandlePolicy) == 0x4C);
+
 
 	// 84-90
 	class ObjectBindPolicy : public BSScript::ObjectBindPolicy
 	{
 	public:
-		using BSScriptObject = BSScript::BSScriptObject;
+		using BSScriptObjectPtr = BSScript::BSScriptObjectPtr;
 
 		ObjectBindPolicy();
 		virtual ~ObjectBindPolicy();			// 008D5BF0
@@ -260,15 +290,13 @@ namespace SkyrimScript
 		virtual void	Unk_0C(UInt32 unk0, UInt32 unk1, UInt32 unk2, UInt32 unk3, UInt32 unk4);
 
 		// @members
-		//void			** _vtbl;		// 00 - 010EBAD4
-		UInt32			unk04;
-		void			* unk08;		// 08 - static_cast<IProbablyBindPolicy*>(state);
-		UInt32			unk0C;
-		UInt32			unk10;
+		//void					** _vtbl;		// 00 - 010EBAD4
+		UInt32					unk04;
+		IObjectManagerInterface	* unk08;		// 08 - static_cast<IObjectManagerInterface*>(state);
+		UInt32					unk0C;
+		UInt32					unk10;
+		//BSSpinLock			unk48;
 
-		DEFINE_MEMBER_FN(BindObject, void, 0x00C2BCD0, BSTSmartPointer<BSScriptObject> & object, VMHandle handle);
-		//{ if (unk08) unk08->BindObject(identifier, handle); }
+		DEFINE_MEMBER_FN(BindObject, void, 0x00C2BCD0, BSScriptObjectPtr & objPtr, VMHandle handle);	//{ if (unk08) unk08->BindObject(identifier, handle, 0); }
 	};
 }
-
-extern SkyrimScript::HandlePolicy *& g_objectHandlePolicy;
