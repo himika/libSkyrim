@@ -1,130 +1,22 @@
 #pragma once
 
-#include "BSCore/BSSpinLock.h"
-#include "BSScript/BSScriptClass.h"
-#include "BSScript/BSScriptObject.h"
-#include "BSScript/BSScriptVariable.h"
-#include "BSScript/BSScriptArray.h"
-#include "BSScript/BSScriptObjectBindPolicy.h"
+#include "BSScript/BSScriptIVirtualMachine.h"
 #include "BSScript/BSScriptUnlinkedTypes.h"
-#include "BSScript/BSScriptStack.h"
-#include "BSScript/BSScriptIForEachScriptObjectFunctor.h"
-#include "SkyrimScript.h"
+#include "BSScript/BSScriptIFuncCallQuery.h"
+#include "BSCore/BSSpinLock.h"
 #include "BSCore/BSTHashMap.h"
 #include "BSSystem/BSTPointerAndFlags.h"
 
 #include <functional>
 
-class ProbablyCallStackManager;
+// External Classes
+class SkyrimVM;
 
-
-
-// 1C
-class UnkClass_01B334CC
+namespace BSScript
 {
-public:
-	// @members
-	ProbablyCallStackManager		* callStackManager;	// 00 (48)
-	SkyrimScript::HandlePolicy		* handlePolicy;		// 04 (4C)
-	SkyrimScript::ObjectBindPolicy	* bindPolicy;		// 08 (50)
-	UInt32							pad54;				// 0C (54)
-	UInt32							pad58;				// 10 (58)
-	UInt32							pad5C;				// 14 (5C)
-	SkyrimScript::SavePatcher		* savePatcher;		// 18; (60)
-};
-STATIC_ASSERT(sizeof(UnkClass_01B334CC) == 0x1C);
-
-
-class IVMStateBase :					// 00
-	public BSIntrusiveRefCounted		// 04
-	{
-public:
-	using BSScriptObject = BSScript::BSScriptObject;
-	using BSScriptClass = BSScript::BSScriptClass;
-	using BSScriptVariable = BSScript::BSScriptVariable;
-	using BSScriptArray = BSScript::BSScriptArray;
-	using BSScriptStack = BSScript::BSScriptStack;
-	using IFunction = BSScript::IFunction;
-	using IFunctionArguments = BSScript::IFunctionArguments;
-	using BSScriptObjectPtr = BSScript::BSScriptObjectPtr;
-	using BSScriptClassPtr = BSScript::BSScriptClassPtr;
-	using BSScriptArrayPtr = BSScript::BSScriptArrayPtr;
-	using BSScriptStackPtr = BSScript::BSScriptStackPtr;
-	using IForEachScriptObjectFunctor = BSScript::IForEachScriptObjectFunctor;
-
-
-	enum
-	{
-		kFunctionFlag_NoWait = 0x01
-	};
-
-	enum
-	{
-		kSeverity_Info,
-		kSeverity_Warning,
-		kSeverity_Error
-	};
-
-
-	virtual ~IVMStateBase();			// 00C334D0
-
-	virtual void	Unk_01(void *logger) = 0;
-	virtual void	TraceStack(const char* str, UInt32 stackID, UInt32 aiSeverity = 0) = 0;
-	virtual void	Unk_03(VMHandle handle) = 0;
-	virtual void	OnUpdate(float arg) = 0;
-	virtual void	OnUpdateGameTime(float arg) = 0;
-	virtual void	OnUnk06(bool arg) = 0;
-	virtual bool	OnChangeVMState(void) = 0;
-	virtual void	RegisterForm(UInt32 typeID, const char *papyrusClassName) = 0;
-	virtual bool	GetScriptClassByName(const BSFixedString &className, BSScriptClassPtr &outClassPtr) = 0;
-	virtual bool	GetScriptClassByTypeID(UInt32 typeID, BSScriptClassPtr &outClass) = 0;
-	virtual bool	RegisterScriptClass(const BSFixedString &className, BSScriptClassPtr &classPtr) = 0;
-	virtual bool	GetScriptClassByTypeID2(UInt32 typeID, BSScriptClassPtr &outClass) = 0;
-	virtual bool	GetFormTypeID(const BSFixedString &className, UInt32 &typeID) = 0;
-	virtual void	Unk_0E(UInt32 arg1) = 0;
-	virtual bool	Unk_0F(const UInt32 &typeID, BSScriptClassPtr &classPtr) = 0;
-	virtual bool	Unk_10(UInt32 arg1) = 0;
-	virtual bool	Unk_11(UInt32 arg1) = 0;
-	virtual void	Unk_12(UInt32 arg1, UInt32 arg2) = 0;
-	virtual bool	CreateScriptObjectWithProperty(const BSFixedString &className, void *property, BSScriptObjectPtr &objPtr) = 0;
-	virtual bool	CreateScriptObject(const BSFixedString &className, BSScriptObjectPtr &result) = 0;
-	virtual bool	CreateScriptArray(BSScriptVariable &value, UInt32 size, BSScriptArrayPtr &arrayPtr) = 0;
-	virtual bool	CreateScriptArray2(VMTypeID typeID, const BSFixedString &className, UInt32 size, BSScriptArrayPtr &arrayPtr) = 0;
-	virtual void	RegisterFunction(BSScript::IFunction * fn) = 0;
-	virtual void	SetFunctionFlagsEx(const char * className, UInt32 unk0, const char * fnName, UInt32 flags) = 0;
-	virtual void	SetFunctionFlags(const char * className, const char * fnName, UInt32 flags) = 0;
-	virtual void	VisitScripts(VMHandle handle, IForEachScriptObjectFunctor * functor) = 0;
-	virtual bool	ResolveScriptObject(VMHandle handle, const char * className, BSScriptObjectPtr &result) = 0;
-	virtual void	Unk_1C(VMHandle arg1, VMHandle arg2) = 0;
-	virtual void	Unk_1D(VMHandle handle) = 0;
-	virtual bool	Unk_1E(const BSScriptClassPtr &classPtr, UInt32 arg2, BSScriptObjectPtr &objPtr) = 0;
-	virtual bool	SetObjectProperty(BSScriptObjectPtr &obj, const char *propertyName, BSScriptVariable &setVal) = 0;
-	virtual bool	GetObjectProperty(BSScriptObjectPtr &obj, const char *propertyName, BSScriptVariable &getVal) = 0;
-	virtual bool	ExtractValue(const BSScriptObjectPtr &objPtr, UInt32 index, BSScriptVariable &out) = 0;
-	virtual bool	ExtractValueFromHandle(VMHandle handle, const BSFixedString & className, SInt32 variableIndex, BSScriptVariable & out) = 0;
-	virtual void	QueueEvent(VMHandle handle, const BSFixedString & eventName, IFunctionArguments * args) = 0;
-	virtual bool	QueueEventAll(const BSFixedString & eventName, IFunctionArguments * args) = 0;
-	virtual bool	CallStaticFunction(const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, BSScriptVariable &result) = 0;
-	virtual bool	CallMemberFunction(BSScriptObjectPtr &obj, const BSFixedString &fnName, IFunctionArguments * args, BSScriptVariable &result) = 0;
-	virtual bool	CallMemberFunctionFromHandle(VMHandle handle, const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, BSScriptVariable &result) = 0;
-	virtual bool	Unk_28(VMHandle handle, BSScriptClassPtr &arg3, UInt32 arg4, UInt32 arg5, UInt32 arg6) = 0;
-	virtual bool	IsWaitingStack(UInt32 stackID);
-	virtual void	SetLatentReturn(UInt32 stackID, const BSScriptVariable &val) = 0;
-	virtual BSScript::ErrorLogger			* GetLogger(void) = 0;
-	virtual SkyrimScript::HandlePolicy		* GetHandlePolicy(void) = 0;
-	virtual BSScript::IObjectHandlePolicy	* GetHandlePolicy2(void) = 0;
-	virtual SkyrimScript::ObjectBindPolicy	* GetObjectBindPolicy(void) = 0;
-	virtual BSScript::ObjectBindPolicy		* GetObjectBindPolicy2(void) = 0;
-	virtual BSScript::ISavePatcherInterface	* GetSavePatcher(void) = 0;
-	virtual void	AddLogEventSink(BSTEventSink<BSScript::LogEvent> *sink) = 0;
-	virtual void	RemoveLogEventSink(BSTEventSink<BSScript::LogEvent> *sink) = 0;
-	virtual void	AddStatsEventSink(BSTEventSink<BSScript::StatsEvent> *sink) = 0;
-	virtual void	RemoveStatsEventSink(BSTEventSink<BSScript::StatsEvent> *sink) = 0;
-
-	// @members
-	//void						** vtbl		// 00 - 01148088
-	//BSIntrusiveRefCounted		refCount;	// 04
-};
+	class MemoryPagePolicy;
+	class IStackCallbackSaveInterface;
+}
 
 
 // 04 - VMState+0008
@@ -136,7 +28,7 @@ public:
 	IObjectManagerInterface();
 	virtual ~IObjectManagerInterface();		// 00C2E760
 
-	virtual VMHandle	GetHandle(BSScriptObjectPtr &objPtr) = 0;
+	virtual VMHandle	GetHandle(const BSScriptObjectPtr &objPtr) = 0;
 	virtual bool		IObjectManagerInterface_Unk_02(const BSFixedString &className, VMHandle handle) = 0;
 	virtual void		BindObject(BSScriptObjectPtr &objPtr, VMHandle handle, bool bCounditional) = 0;
 	virtual void		RegisterObject(BSScriptObjectPtr &objPtr, VMHandle handle, bool bCounditional) = 0;
@@ -187,49 +79,28 @@ public:
 // 4B04
 // the same type as VMClassRegistry in skse
 // this does more than hold on to class registrations, but for now that's all we care about
-class VMState :	public IVMStateBase,	// 00
+class VMState :	public BSScript::IVirtualMachine,	// 00
 	public IObjectManagerInterface,		// 08
 	public IUnknown_01148030,			// 0C
 	public IUnknown_0112197C			// 10
 {
 public:
-	using IVMStateBase::BSScriptObject;
-	using IVMStateBase::BSScriptClass;
-	using IVMStateBase::BSScriptVariable;
-	using IVMStateBase::BSScriptArray;
-	using IVMStateBase::BSScriptStack;
-	using IVMStateBase::IFunction;
-	using IVMStateBase::IFunctionArguments;
-	using IVMStateBase::BSScriptObjectPtr;
-	using IVMStateBase::BSScriptClassPtr;
-	using IVMStateBase::BSScriptArrayPtr;
-	using IVMStateBase::BSScriptStackPtr;
-	using IVMStateBase::IForEachScriptObjectFunctor;
-
-
-	struct BoundedScriptMap
-	{
-	public:
-		struct Data
-		{
-			typedef BSTPointerAndFlags<BSScriptObject> Entry;
-
-			UInt32	len;				// 00
-			union
-			{
-				Entry	singleEntry[1];		// (len == 1)
-				Entry	* entries;			// (len > 1)
-			};							// 04
-
-			DEFINE_MEMBER_FN(Visit, void, 0x00C55880, IForEachScriptObjectFunctor *& visitor);
-			DEFINE_MEMBER_FN(RemoveNth, void, 0x00C58BA0, UInt32 index);
-		};
-
-		DEFINE_MEMBER_FN(RemoveAt, void, 0x00C5B4C0, const VMHandle &handle);
-
-		BSSpinLock						lock;		// 00 (4A18)
-		BSTHashMap<VMHandle, Data>		map;		// 04 (4A20)
-	};
+	using BSScriptObject = BSScript::BSScriptObject;
+	using BSScriptClass = BSScript::BSScriptClass;
+	using BSScriptType = BSScript::BSScriptType;
+	using BSScriptVariable = BSScript::BSScriptVariable;
+	using BSScriptArray = BSScript::BSScriptArray;
+	using BSScriptStack = BSScript::BSScriptStack;
+	using IFunction = BSScript::IFunction;
+	using IFunctionArguments = BSScript::IFunctionArguments;
+	using BSScriptObjectPtr = BSScript::BSScriptObjectPtr;
+	using BSScriptClassPtr = BSScript::BSScriptClassPtr;
+	using BSScriptArrayPtr = BSScript::BSScriptArrayPtr;
+	using BSScriptStackPtr = BSScript::BSScriptStackPtr;
+	using IFunctionPtr = BSScript::IFunctionPtr;
+	using IStackCallbackFunctorPtr = BSScript::IStackCallbackFunctorPtr;
+	using IFuncCallQueryPtr = BSScript::IFuncCallQueryPtr;
+	using IForEachScriptObjectFunctor = BSScript::IForEachScriptObjectFunctor;
 
 
 	virtual ~VMState();																												// 00 00C5B770
@@ -243,7 +114,7 @@ public:
 	virtual void	OnUnk06(bool arg) override;																								// 06 00C47070 { this->unk4158 = arg1; } called from 008D540B
 	virtual bool	OnChangeVMState(void) override;																							// 07 00C474C0
 	virtual void	RegisterForm(UInt32 typeID, const char *papyrusClassName) override;														// 08 00C4BCB0
-	virtual bool	GetScriptClassByName(const BSFixedString &className, BSScriptClassPtr &outClassPtr) override;							// 09 00C4AD30 { classListLock.Lock() override; this->Unk_00C4A650(className, outClass) override; classListLock.Release() override; } 
+	virtual bool	GetScriptClassByName(const BSFixedString &className, BSScriptClassPtr &outClassPtr) override;							// 09 00C4AD30
 	virtual bool	GetScriptClassByTypeID(UInt32 typeID, BSScriptClassPtr &outClass) override;												// 0A 00C4AC20
 	virtual bool	RegisterScriptClass(const BSFixedString &className, BSScriptClassPtr &classPtr) override;								// 0B 00C49CA0
 	virtual bool	GetScriptClassByTypeID2(UInt32 typeID, BSScriptClassPtr &outClass) override;											// 0C 00C49B10
@@ -255,25 +126,25 @@ public:
 	virtual void	Unk_12(UInt32 arg1, UInt32 arg2) override;																				// 12 00C554E0 - added in 1.6.86
 	virtual bool	CreateScriptObjectWithProperty(const BSFixedString &className, void *property, BSScriptObjectPtr &objPtr) override;		// 13 00C47500
 	virtual bool	CreateScriptObject(const BSFixedString &className, BSScriptObjectPtr &result) override;									// 14 00C4ED90
-	virtual bool	CreateScriptArray(BSScriptVariable &value, UInt32 size, BSScriptArrayPtr &arrayPtr) override;							// 15 00C4A060
+	virtual bool	CreateScriptArray(const BSScriptType &type, UInt32 size, BSScriptArrayPtr &arrayPtr) override;						// 15 00C4A060
 	virtual bool	CreateScriptArray2(VMTypeID typeID, const BSFixedString &className, UInt32 size, BSScriptArrayPtr &arrayPtr) override;	// 16 00C49F90
 	virtual void	RegisterFunction(BSScript::IFunction * fn) override;																	// 17 00C4D420
 	virtual void	SetFunctionFlagsEx(const char * className, UInt32 unk0, const char * fnName, UInt32 flags) override;					// 18 00C4A160
 	virtual void	SetFunctionFlags(const char * className, const char * fnName, UInt32 flags) override;									// 19 00C47120
-	virtual void	VisitScripts(VMHandle handle, IForEachScriptObjectFunctor * functor) override;											// 1A 00C4BF60
+	virtual void	VisitScripts(VMHandle handle, IForEachScriptObjectFunctor *functor) override;											// 1A 00C4BF60
 	virtual bool	ResolveScriptObject(VMHandle handle, const char *className, BSScriptObjectPtr &result) override;						// 1B 00C4D5F0
 	virtual void	Unk_1C(VMHandle arg1, VMHandle arg2) override;																			// 1C 00C52C70
 	virtual void	Unk_1D(VMHandle handle) override;																						// 1D 00C4C020
-	virtual bool	Unk_1E(const BSScriptClassPtr &classPtr, UInt32 arg2, BSScriptObjectPtr &objPtr) override;								// 1E 00C48B90
+	virtual bool	CastScriptObject(const BSScriptObjectPtr &fromObjPtr, const BSScriptClassPtr &toClassPtr, BSScriptObjectPtr &toObjPtr) override;	// 1E 00C48B90
 	virtual bool	SetObjectProperty(BSScriptObjectPtr &obj, const char *propertyName, BSScriptVariable &setVal) override;					// 1F 00C4F4D0 - only works with a property on the conditional scripts.
 	virtual bool	GetObjectProperty(BSScriptObjectPtr &obj, const char *propertyName, BSScriptVariable &getVal) override;					// 20 00C4F800 - only works with a property on the conditional scripts.
 	virtual bool	ExtractValue(const BSScriptObjectPtr &objPtr, UInt32 index, BSScriptVariable &out) override;							// 21 00C47E90
 	virtual bool	ExtractValueFromHandle(VMHandle handle, const BSFixedString & className, SInt32 variableIndex, BSScriptVariable & out) override;	// 22 00C48D60
 	virtual void	QueueEvent(VMHandle handle, const BSFixedString &eventName, IFunctionArguments * args) override;						// 23 00C4C160
 	virtual bool	QueueEventAll(const BSFixedString & eventName, IFunctionArguments * args) override;										// 24 00C48E40
-	virtual bool	CallStaticFunction(const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, BSScriptVariable &result) override;	// 25 00C4FA10 - "error: Unable to call static function %s on object %s due to stack creation failure or queue full, call ignored."
-	virtual bool	CallMemberFunction(BSScriptObjectPtr &obj, const BSFixedString &fnName, IFunctionArguments *args, BSScriptVariable &result) override;		// 26 00C4FCE0 - "error: Unable to call member function %s on object %s due to stack creation failure or queue full, call ignored."
-	virtual bool	CallMemberFunctionFromHandle(VMHandle handle, const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, BSScriptVariable &result) override;	// 27 00C48F10
+	virtual bool	CallStaticFunction(const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, IStackCallbackFunctorPtr &result) override;	// 25 00C4FA10 - "error: Unable to call static function %s on object %s due to stack creation failure or queue full, call ignored."
+	virtual bool	CallMemberFunction(BSScriptObjectPtr &obj, const BSFixedString &fnName, IFunctionArguments *args, IStackCallbackFunctorPtr &result) override;		// 26 00C4FCE0 - "error: Unable to call member function %s on object %s due to stack creation failure or queue full, call ignored."
+	virtual bool	CallMemberFunctionFromHandle(VMHandle handle, const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, IStackCallbackFunctorPtr &result) override;	// 27 00C48F10
 	virtual bool	Unk_28(VMHandle handle, BSScriptClassPtr &arg3, UInt32 arg4, UInt32 arg5, UInt32 arg6) override;						// 28 00C4B130
 	virtual bool	IsWaitingStack(UInt32 stackID) override;																				// 29 00C4A420
 	virtual void	SetLatentReturn(UInt32 stackID, const BSScriptVariable &val) override;													// 2A 00C50410 - "Received a latent return for stack %d, but stack is not waiting on a latent - ignoring."
@@ -289,7 +160,7 @@ public:
 	virtual void	RemoveStatsEventSink(BSTEventSink<BSScript::StatsEvent> *sink) override;												// 34 00C4A580 { statsEventSource.RemoveEventSink(sink) override; }
 
 	// @override class IObjectManagerInterface : (vtbl=0114C180)
-	virtual VMHandle	GetHandle(BSScriptObjectPtr &objPtr) override;												// 01 00C47330
+	virtual VMHandle	GetHandle(const BSScriptObjectPtr &objPtr) override;										// 01 00C47330
 	virtual bool		IObjectManagerInterface_Unk_02(const BSFixedString &className, VMHandle handle) override;	// 02 00C47F50
 	virtual void		BindObject(BSScriptObjectPtr &objPtr, VMHandle handle, bool bCounditional) override;		// 03 00C480E0
 	virtual void		RegisterObject(BSScriptObjectPtr &objPtr, VMHandle handle, bool bCounditional) override;	// 04 00C52E20 - called in BindObject
@@ -329,15 +200,15 @@ public:
 	{
 		CreateScriptArray2(typeID, className, size, arrayPtr);
 	}
-	inline bool CallScriptFunction(const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, BSScriptVariable &result)
+	inline bool CallScriptFunction(const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, IStackCallbackFunctorPtr &result)
 	{
 		return CallStaticFunction(className, fnName, args, result);
 	}
-	inline bool CallScriptFunction(BSScriptObjectPtr &objPtr, const BSFixedString &fnName, IFunctionArguments *args, BSScriptVariable &result)
+	inline bool CallScriptFunction(BSScriptObjectPtr &objPtr, const BSFixedString &fnName, IFunctionArguments *args, IStackCallbackFunctorPtr &result)
 	{
 		return CallMemberFunction(objPtr, fnName, args, result);
 	}
-	inline bool CallScriptFunction(VMHandle handle, const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, BSScriptVariable &result)
+	inline bool CallScriptFunction(VMHandle handle, const BSFixedString &className, const BSFixedString &fnName, IFunctionArguments *args, IStackCallbackFunctorPtr &result)
 	{
 		return CallMemberFunctionFromHandle(handle, className, fnName, args, result);
 	}
@@ -356,38 +227,103 @@ public:
 	BSScriptStack *	GetStack(UInt32 stackId);
 	bool			GetStack(UInt32 stackId, BSScriptStackPtr &stackPtr);
 
+	DEFINE_MEMBER_FN_const(FindMemberFunction, bool, 0x00C48370, const BSScriptClassPtr &classPtr, const BSFixedString &fnName, const BSFixedString &stateName, BSScriptClassPtr &foundClassPtr, IFunctionPtr &foundFuncPtr);
+
 	DEFINE_MEMBER_FN(AllocateArray, bool, 0x00C49670, const VMTypeID &typeID, UInt32 size, BSScriptArrayPtr &arr);
-	DEFINE_MEMBER_FN(CreateStack, void, 0x00C4E2D0, UInt32 arg1, void *arg2, BSTSmartPointer<BSScriptStack> &stack);
+	DEFINE_MEMBER_FN(CreateStack, void, 0x00C4E2D0, UInt32 arg1, IStackCallbackFunctorPtr &callbackPtr, BSScriptStackPtr &stack);
+	DEFINE_MEMBER_FN(CreateStack2, void, 0x00C4DA30, UInt32 stackID, UInt32 arg1, IStackCallbackFunctorPtr &callbackPtr, BSScriptStackPtr &stack);
+	DEFINE_MEMBER_FN(QueueStack, bool, 0x00C48FB0, BSScriptStack *stack, IFuncCallQueryPtr &queryPtr);
 	DEFINE_MEMBER_FN(InitScriptObject, void, 0x00C4E400, BSScriptObjectPtr &objPtr);	// "error: Unable to call member function OnInit on object %s due to stack creation failure or queue full, call ignored."
+
+
+	// 1C
+	class PolicyHolder
+	{
+	public:
+		// @members
+		BSScript::MemoryPagePolicy				* memoryPagePolicy;		// 00 (48) - 01B333C4 - skyrimVM+010C
+		SkyrimScript::HandlePolicy				* handlePolicy;			// 04 (4C) - 01B33578 - skyrimVM+01B8
+		SkyrimScript::ObjectBindPolicy			* bindPolicy;			// 08 (50) - 01B335C4 - skyrimVM+0204
+		SkyrimVM								* skyrimVM;				// 0C (54) - 01B333C0
+		BSScript::IStackCallbackSaveInterface	* stackCallback;		// 10 (58) - 01B333C4 - skyrimVM+0004
+		void									* unk14;				// 14 (5C) - 0
+		SkyrimScript::SavePatcher				* savePatcher;			// 18 (60) - 01B337C0
+	};
+	STATIC_ASSERT(sizeof(PolicyHolder) == 0x1C);
+
+
+	struct BoundedScriptMap
+	{
+	public:
+		// 08
+		struct Data
+		{
+			typedef BSTPointerAndFlags<BSScriptObject> Entry;
+
+			UInt32	len;				// 00
+			union
+			{
+				Entry	singleEntry[1];		// (len == 1)
+				Entry	* entries;			// (len > 1)
+			};							// 04
+
+			DEFINE_MEMBER_FN(Visit, void, 0x00C55880, IForEachScriptObjectFunctor *& visitor);
+			DEFINE_MEMBER_FN(RemoveAt, void, 0x00C58BA0, UInt32 index);
+		};
+
+		DEFINE_MEMBER_FN(RemoveAt, void, 0x00C5B4C0, const VMHandle &handle);
+
+		BSSpinLock						lock;		// 00 (4A18)
+		BSTHashMap<VMHandle, Data>		map;		// 04 (4A20)
+	};
+
+	struct Data0C
+	{
+		bool	unk00;
+		BSScriptStackPtr	unk04;
+		IFuncCallQueryPtr	unk08;
+
+		// dtor 00C56C70
+	};
+
+	// 08 - VMState::unk4134
+	class UnkClass_0114A8AC
+	{
+	public:
+		virtual ~UnkClass_0114A8AC();
+
+		// @members
+		//void		** _vtbl;		// 00 - 0114A8AC
+		UInt32		lockValue;		// 04
+	};
 
 
 	// @members
 	//void										** _vtbl;							// 0000 - 0114C1B0
 	BSTEventSource<BSScript::StatsEvent>		statsEventSource;					// 0014
 	SkyrimScript::Logger						* logger;							// 0044
-	UnkClass_01B334CC							unk048;								// 0048
-
+	PolicyHolder								policies;							// 0048
 	BSSpinLock									classListLock;						// 0064
 	BSScript::UnlinkedTypes						unlinkedClassList;					// 006C
 	BSTHashMap<BSFixedString, BSScriptClass *>	linkedClassMap;						// 00B4
 	BSTHashMap<UInt32, BSFixedString>			typeToClassNameMap;					// 00D4
 	BSTHashMap<BSFixedString, UInt32>			classNameToTypeMap;					// 00F4
-
 	void										* unk114;							// 0114 - dtor 00C5544C
 	UInt32										unk118;								// 0118
 	UInt32										unk11C;								// 011C
 	BSSpinLock									unk120;								// 0120
 	void										* unk128;							// 0128 - vtbl ???????? - parent 0115A2B8
 	UInt32										unk0128[(0x49B8 - 0x012C) >> 2];	// 012C
-																					// 4134 - vtbl 0114A8AC
+																					// 4134 - vtbl 0114A8AC - dtor 00C56F50 - parent vtbl 01122D2C
+																					// 4148 - BSTArray<Data0C> 
+																					// 4154 - UInt32
 																					// 4160 - vtbl 0114A8C8
 																					// 4574 - vtbl 0114A8C8
-
 	BSSpinLock									stackLock;							// 49B8
 	BSTHashMap<UInt32, BSScriptStackPtr>		allStacks;							// 49C0
 	BSTHashMap<UInt32, BSScriptStackPtr>		waitingStacks;						// 49E0
-
-	UInt32										unk4A00[(0x4A18 - 0x4A00) >> 2];	// 4A00
+	UInt32										nextEmptyStackID;					// 4A00
+	UInt32										unk4A00[(0x4A18 - 0x4A04) >> 2];	// 4A04
 	BoundedScriptMap							boundedScriptMap;					// 4A18
 	UInt32										unk4A40[(0x4A50 - 0x4A40) >> 2];	// 4A40
 	BSSpinLock									unk4A50;							// 4A50 - script array lock ?

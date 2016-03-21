@@ -13,28 +13,6 @@ namespace BSScript
 
 	BSSmartPointer(BSScriptArray);
 
-	// 04
-	class BSScriptTypeID
-	{
-	public:
-		BSScriptTypeID() {}
-		BSScriptTypeID(VMTypeID a_id) : id(a_id) {}
-		BSScriptTypeID(const BSScriptTypeID &typeID, bool bToVector) {
-			ctor(typeID, bToVector);
-		}
-
-		operator VMTypeID() const {
-			return id;
-		}
-
-		// @members
-		VMTypeID	id;
-
-	private:
-		DEFINE_MEMBER_FN(ctor, BSScriptTypeID *, 0x00C3A4A0, const BSScriptTypeID &typeID, bool bToVecter);
-	};
-
-
 	// 14+
 	// the same type as VMValue::ArrayData in skse
 	class BSScriptArray : public BSIntrusiveRefCounted
@@ -44,7 +22,7 @@ namespace BSScript
 		typedef BSScriptVariable value_type;
 		typedef BSTSmartPointer<BSScriptArray> SmartPtr;
 
-		BSScriptArray(BSScriptTypeID & typeID, size_type size) {
+		BSScriptArray(const BSScriptType &typeID, size_type size) {
 			ctor(typeID, size);
 		}
 		~BSScriptArray() { dtor(); }
@@ -82,11 +60,11 @@ namespace BSScript
 			return reinterpret_cast<const BSScriptVariable*>(this + 1);
 		}
 
-		DEFINE_MEMBER_FN(ctor, BSScriptArray*, 0x00C3A050, BSScriptTypeID & typeID, size_type size);
+		DEFINE_MEMBER_FN(ctor, BSScriptArray*, 0x00C3A050, const BSScriptType &typeID, size_type size);
 		DEFINE_MEMBER_FN(dtor, void, 0x00C3A0A0);
 
 		// @members
-		BSScriptTypeID		typeID;		// 04
+		BSScriptType		type;		// 04
 		UInt32				len;		// 08
 		BSSpinLock			lock;		// 0C
 		//BSScriptVariable	data[];		// 14

@@ -1,14 +1,28 @@
 #pragma once
 
-// c:_skyrim\code\tesv\bsscript\BSScriptBoundScript.h
-// c:_skyrim\code\tesv\bsscript\BSScriptTypeInfo.h
-// c:_skyrim\code\tesv\bsscript\BSScriptObject.h
-// c:_skyrim\code\tesv\bsscript\BSScriptMemortPagePolicy.h
 // c:_skyrim\code\tesv\bsscript\BSScriptArray.h
-// c:_skyrim\code\tesv\bsscript\BSScriptProperyTypeInfo.h
-// c:_skyrim\code\tesv\bsscript\BSScriptStack.h
+// c:_skyrim\code\tesv\bsscript\BSScriptBoundScript.h
+// c:_skyrim\code\tesv\bsscript\BSScriptByteCode.h
+// c:_skyrim\code\tesv\bsscript\BSScriptCompiledScriptLoader.h
+// c:_skyrim\code\tesv\bsscript\BSScriptErrorLogger.h
+// c:_skyrim\code\tesv\bsscript\BSScriptIVirtualMachine.h
+// c:_skyrim\code\tesv\bsscript\BSScriptInternalCodeTasklet.h
+// c:_skyrim\code\tesv\bsscript\BSScriptInternalIFuncCallQuery.h
+// c:_skyrim\code\tesv\bsscript\BSScriptInternalScriptFunction.h
 // c:_skyrim\code\tesv\bsscript\BSScriptInternalVDescTable.h
+// c:_skyrim\code\tesv\bsscript\BSScriptInternalVirtualMachine.h
+// c:_skyrim\code\tesv\bsscript\BSScriptLinkerProcessor.h
+// c:_skyrim\code\tesv\bsscript\BSScriptMemoryPagePolicy.h
+// c:_skyrim\code\tesv\bsscript\BSScriptObject.h
+// c:_skyrim\code\tesv\bsscript\BSScriptObjectBindPolicy.h
+// c:_skyrim\code\tesv\bsscript\BSScriptObjectTypeInfo.h
+// c:_skyrim\code\tesv\bsscript\BSScriptPropertyTypeInfo.h
+// c:_skyrim\code\tesv\bsscript\BSScriptStack.h
 // c:_skyrim\code\tesv\bsscript\BSScriptUnlinkedTypes.h
+// c:_skyrim\code\tesv\bsscript\BSScriptUtilities.h
+// c:_skyrim\code\tesv\bsscript\BSScriptVariable.h
+
+
 
 #include "../BSCore/BSTEvent.h"
 #include "../BSSystem/BSTSmartPointer.h"
@@ -18,10 +32,6 @@
 namespace BSScript
 {
 	struct StatsEvent
-	{
-	};
-
-	struct LogEvent
 	{
 	};
 
@@ -56,13 +66,6 @@ namespace BSScript
 		virtual void Unk_03(void) = 0;		// 00F51EE8 (pure)
 	};
 
-	// type_info: 012B65CC
-	class ErrorLogger :
-		public BSTEventSource<BSScript::LogEvent>	// 04
-	{
-	public:
-		virtual ~ErrorLogger();
-	};
 
 	/*==============================================================================
 	class BSScript::IProfilePolicy +0000 (_vtbl=010EAD6C)

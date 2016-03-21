@@ -4,6 +4,7 @@
 #include "BSScript/BSScriptObject.h"
 #include "BSScript/BSScriptObjectBindPolicy.h"
 #include "BSScript/BSScriptIObjectHandlePolicy.h"
+#include "BSScript/BSScriptErrorLogger.h"
 #include "BSCore/BSSpinLock.h"
 #include "BSCore/BSTHashMap.h"
 
@@ -169,12 +170,20 @@ namespace SkyrimScript
 	0004: |   |   class BSTEventSource<struct BSScript::LogEvent>
 	==============================================================================*/
 	// type_info: 012B65A8
+	// 68?
 	class Logger : public BSScript::ErrorLogger
 	{
 	public:
 		virtual ~Logger();
-		// void **	_vtbl		// 00 - 010EA3C8
+		
+		// @members
+		//void			**_vtbl;						// 00 - 010EA3C8
+		UInt32			pad34[(0x5C - 0x34) >> 2];		// 34
+		BSFixedString	strPapyrus;						// 5C - "Papyrus"
+		BSFixedString	folderPath;						// 60 - "Logs/Script"
+		UInt32			unk64;							// 64
 	};
+	STATIC_ASSERT(sizeof(Logger) == 0x68);
 
 
 	/*==============================================================================

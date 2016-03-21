@@ -8,7 +8,6 @@
 
 #include <utility>
 #include <tuple>
-#include <type_traits>
 
 
 namespace SKSEScript
@@ -29,6 +28,8 @@ namespace SKSEScript
 		FunctionArguments<Args...> functor(args...);
 		functor(state, handle, eventName);
 	}
+
+
 
 	class FunctionArgumentsBase : public BSScript::IFunctionArguments
 	{
@@ -105,6 +106,22 @@ namespace SKSEScript
 			dst.reserve(sizeof...(Args));
 			PackTuple(m_state, dst, m_args);
 			return true;
+		}
+	};
+
+	class LambdaFunctionArguments : public BSScript::IFunctionArguments
+	{
+	private:
+		std::function<bool(Output &output)> m_pFn;
+
+	public:
+		explicit LambdaFunctionArguments(std::function<bool(Output &output)> pFn) : m_pFn(pFn)
+		{
+		}
+
+		virtual bool Copy(Output &output) override
+		{
+			return m_pFn(output);
 		}
 	};
 }

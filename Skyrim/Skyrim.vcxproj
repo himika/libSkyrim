@@ -245,6 +245,7 @@
     <ClInclude Include="include\Skyrim\BSScript\BSScriptArray.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptBoundScript.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptClass.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptErrorLogger.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptIForEachScriptObjectFunctor.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptIFunction.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptIFunctionArguments.h" />
@@ -262,6 +263,8 @@
     <ClInclude Include="include\Skyrim\BSScript\BSScriptTypeTraits.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptUnlinkedTypes.h" />
     <ClInclude Include="include\Skyrim\BSScript\BSScriptVariable.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptIFuncCallQuery.h" />
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptIVirtualMachine.h" />
     <ClInclude Include="include\Skyrim\BSShader\BSShaderProperty.h" />
     <ClInclude Include="include\Skyrim\BSSystem\BSStorage.h" />
     <ClInclude Include="include\Skyrim\BSSystem\BSStreamParser.h" />

@@ -5,49 +5,35 @@
 #include "../BSSystem/BSTSmartPointer.h"
 #include "../BSCore/BSTArray.h"
 #include "BSScriptVariable.h"
+#include "BSScriptObject.h"
 #include "BSScriptInternalCodeTasklet.h"
-
-
-class ProbablyCallStackManager;
-
-//// 28
-//class VMInstructionSequence : public BSIntrusiveRefCounted
-//{
-//public:
-//	typedef BSTSmartPointer<VMInstructionSequence> SmartPtr;
-//
-//	using BSScriptClass = BSScript::BSScriptClass;
-//	using BSScriptVariable = BSScript::BSScriptVariable;
-//	using IFunctionArguments = BSScript::IFunctionArguments;
-//
-//	explicit VMInstructionSequence(UInt32 arg1, BSTSmartPointer<BSScriptClass> & classInfo, const BSFixedString & funcName, BSScriptVariable * baseValue, IFunctionArguments::Output* output)
-//	{
-//		ctor(arg1, classInfo, funcName, baseValue, output);
-//	}
-//
-//	virtual ~VMInstructionSequence();	// 00C57D10
-//
-//	virtual bool Set(UInt32 arg1, BSTSmartPointer<BSScriptClass> & classInfo, const BSFixedString & funcName, BSScriptVariable* baseValue, IFunctionArguments::Output* output);	// 00C57C70
-//
-//	// @members
-//	//void						** _vtbl	// 00 - 0114AB9C
-//	UInt32						unk08;
-//	BSTSmartPointer<BSScriptClass>		classInfo;	// 0C
-//	BSFixedString				funcName;	// 10
-//	BSScriptVariable			baseValue;	// 14
-//	BSTArray<BSScriptVariable>	params;		// 1C
-//
-//private:
-//	DEFINE_MEMBER_FN(ctor, VMInstructionSequence*, 0x00C57BB0, UInt32 arg1, BSTSmartPointer<BSScriptClass> & classInfo, const BSFixedString & eventName, BSScriptVariable * baseValue, IFunctionArguments::Output * output);
-//};
 
 
 namespace BSScript
 {
-	BSSmartPointer(BSScriptStack);
 	BSSmartPointer(IStackCallbackFunctor);
+	BSSmartPointer(BSScriptStack);
 
+	// External Classes
 	class IFunction;
+	class MemoryPagePolicy;
+	
+	/*==============================================================================
+	class BSScript::IStackCallbackFunctor +0000 (_vtbl=010EAE50)
+	0000: class BSScript::IStackCallbackFunctor
+	0004: |   struct BSIntrusiveRefCounted
+	==============================================================================*/
+	// 08
+	class IStackCallbackFunctor : public BSIntrusiveRefCounted
+	{
+	public:
+		virtual ~IStackCallbackFunctor();			// 008C5AA0
+
+		virtual void	Unk_01(BSScriptVariable var) = 0;		// 00F51EE8 (pure)
+		virtual bool	Unk_02(void);							// 00C3A5E0 { return false; }
+		virtual void	Unk_03(BSScriptObjectPtr &arg1) = 0;	// 00F51EE8 (pure)
+	};
+
 
 	// 20 + sizeof(BSScriptVariable) * numArgs
 	// the same type as VMState in skse
@@ -68,7 +54,7 @@ namespace BSScript
 		}
 	};
 
-	// 58? - the same type as VMArgList and UnkVMStackData2 in skse)
+	// 58 - the same type as VMArgList and UnkVMStackData2 in skse)
 	class BSScriptStack : public BSIntrusiveRefCounted
 	{
 	public:
@@ -76,7 +62,7 @@ namespace BSScript
 		~BSScriptStack() { dtor(); }
 
 		// 08 + sizeof(StackFrame)
-		// the same type as UnkStackData1
+		// the same type as UnkStackData1 in skse
 		struct Chunk
 		{
 			void *	GetHead(void) const	{ return (void*)(this + 1); }
@@ -106,22 +92,23 @@ namespace BSScript
 		}
 
 		// @members
-		ProbablyCallStackManager	* manager;		// 04
-		UInt32						unk08;			// 08
-		BSTSmallArray<Pair, 3>		chunks;			// 0C - stack data is splitted into 128-byte chunks
-		UInt32						unk2C;			// 2C - init'd 0
-		StackFrame					* current;		// 30 - init'd 0
-		UInt32						unk34;			// 34 - init'd 0
-		UInt32						unk38;			// 38 - init'd 0
-		BSScriptVariable			resultValue;	// 3C - init'd 0
-		UInt32						stackID;		// 44
-		UInt32						unk48;			// 48
-		InternalCodeTaskletData		* taskletData;	// 4C - init'd 0
-		void						* unk50;		// 50 - has vtbl. probably BSTSmartPointer
-		UInt32						unk54;			// 54 - init'd 0
+		//BSIntrusiveRefCounted		refCount;				// 00
+		MemoryPagePolicy			* memoryPagePolicy;		// 04
+		UInt32						* unk08;				// 08 - init'd VMState::PolicyHolder::unk14
+		BSTSmallArray<Pair, 3>		chunks;					// 0C - stack data is splitted into 128-byte chunks
+		UInt32						unk2C;					// 2C - init'd 0
+		StackFrame					* current;				// 30 - init'd 0
+		UInt32						unk34;					// 34 - init'd 0
+		UInt32						unk38;					// 38 - init'd 0
+		BSScriptVariable			resultValue;			// 3C - init'd 0
+		UInt32						stackID;				// 44
+		UInt32						unk48;					// 48
+		InternalCodeTaskletData		* taskletData;			// 4C - init'd 0
+		IStackCallbackFunctorPtr	callbackFunctorPtr;		// 50
+		UInt32						unk54;					// 54 - init'd 0
 
 	private:
-		DEFINE_MEMBER_FN(ctor, BSScriptStack *, 0x00C3DA50, ProbablyCallStackManager *a_manager, UInt32 a_unk08, UInt32 a_stackID, UInt32 a_unk48, BSTSmartPointer<void> &a_unk50);
+		DEFINE_MEMBER_FN(ctor, BSScriptStack *, 0x00C3DA50, MemoryPagePolicy *a_memoryPagePolicy, UInt32 a_unk08, UInt32 a_stackID, UInt32 a_unk48, IStackCallbackPtr &callbackFunctorPtr);
 		DEFINE_MEMBER_FN(dtor, void, 0x00C3CCA0);
 		DEFINE_MEMBER_FN(Unk_00C3C6C0, bool, 0x00C3C6C0);	// called in dtor
 
@@ -130,20 +117,4 @@ namespace BSScript
 	};
 	STATIC_ASSERT(offsetof(BSScriptStack, current) == 0x30);
 	STATIC_ASSERT(offsetof(BSScriptStack, stackID) == 0x44);
-
-
-	/*==============================================================================
-	class BSScript::IStackCallbackFunctor +0000 (_vtbl=010EAE50)
-	0000: class BSScript::IStackCallbackFunctor
-	0004: |   struct BSIntrusiveRefCounted
-	==============================================================================*/
-	class IStackCallbackFunctor : public BSIntrusiveRefCounted
-	{
-	public:
-		virtual ~IStackCallbackFunctor();			// 008C5AA0
-
-		virtual void	Unk_01(UInt32 arg1, UInt32 arg2) = 0;	// 00F51EE8 (pure)
-		virtual bool	Unk_02(void);							// 00C3A5E0 { return false; }
-		virtual void	Unk_03(UInt32 arg1) = 0;				// 00F51EE8 (pure)
-	};
 }

@@ -4,52 +4,11 @@
 #include "BSCore/BSTSingleton.h"
 #include "BSCore/BSSpinLock.h"
 #include "SkyrimScript.h"
+#include "BSScript/BSScriptMemoryPagePolicy.h"
 #include "Events/ScriptEvent.h"
 #include "Events/PositionPlayerEvent.h"
 
 class VMState;
-
-class ICallStackManagerBase
-{
-public:
-	virtual ~ICallStackManagerBase() { }		// 00B72260
-
-	virtual UInt32	Unk_01(void) = 0;
-	virtual UInt32	Unk_02(UInt32 arg1, UInt32 arg2, UInt32 arg3) = 0;
-	virtual UInt32	Unk_03(UInt32 arg1) = 0;
-	virtual void	Unk_04(UInt32 arg) = 0;
-
-	// @members
-	// void **	_vtbl	// 00 - 01122D2C
-};
-
-
-// 24
-class ProbablyCallStackManager : public ICallStackManagerBase
-{
-public:
-	ProbablyCallStackManager(UInt32 arg1, UInt32 arg2, UInt32 arg3)						// 00C428A0 call from 008D7DCE
-		: unk04(arg1), unk08(arg2), unk0C(arg3)
-	{
-	}
-
-	virtual UInt32	Unk_01(void) override;										// 00C42890 { return unk8; }
-	virtual UInt32	Unk_02(UInt32 arg1, UInt32 arg2, UInt32 arg3) override;		// 00C428E0
-	virtual UInt32	Unk_03(UInt32 arg1) override;								// 00C42A10
-	virtual void	Unk_04(UInt32 arg) override;								// 00C42B00
-
-	// @members
-	// void **	_vtbl		// 00 - 01149B68
-	UInt32		unk04;
-	UInt32		unk08;
-	UInt32		unk0C;
-	bool		unk10;
-	UInt32		unk14;
-	UInt32		unk18;
-	UInt32		unk1C;
-	UInt32		unk20;
-};
-
 
 
 // 20
@@ -287,12 +246,9 @@ public:
 	VMState						* m_state;					// 0100
 	UInt32						pad104;						// 
 	UInt32						pad108;						//      (vtbl)    (demangled class name)
-	ProbablyCallStackManager	unk10C;						// 010C 01149B68  ? probably stack manager
+	BSScript::MemoryPagePolicy	memoryPagePolicy;			// 010C 01149B68
 	ProbablyLoader				papyrusLoader;				// 0130
-	UInt8						pad150[0x1B8 - 0x150];		// 0150
-	//SkyrimScript::Logger									// 0150 01148BF4  SkyrimScript::Logger
-															// 01AC             | BSFixedString("Papyrus")
-															// 01B0             | BSFixedString("Logs/Script")
+	SkyrimScript::Logger		logger;						// 0150 01148BF4  SkyrimScript::Logger
 	SkyrimScript::HandlePolicy	handlePolicy;				// 01B8 010EBA1C  SkyrimScript::HandlePolicy
 	UInt8						pad1B8[0x454 - 0x204];		// 0204
 	//SkyrimScript::ObjectBindPolicy						// 0204 010EBAD4  SkyrimScript::ObjectBindPolicy

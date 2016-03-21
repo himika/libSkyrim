@@ -91,7 +91,7 @@ namespace BSScript
 		unsigned int				numProperties	: 19;	// 00-03
 		BSScriptClassPtr			classPtr;				// 04
 		BSFixedString				currentState;			// 08
-		BSTPointerAndFlags<long>	unk0C;					// 0C - BSScriptObjectPropertyTypeInfo ?
+		BSTPointerAndFlags<long>	unk0C;					// 0C - BSTPointerAndFlags<BSScriptObjectPropertyTypeInfo> ?
 		volatile VMHandle			handle;					// 10
 		volatile long				refCount;				// 18
 		//							pad for alignment;		// 1C

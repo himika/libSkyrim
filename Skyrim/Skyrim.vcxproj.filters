@@ -2270,6 +2270,15 @@
     <ClInclude Include="include\Skyrim\BSScript\BSScriptInternalCodeTasklet.h">
       <Filter>Header Files\Skyrim\BSScript</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptIFuncCallQuery.h">
+      <Filter>Header Files\Skyrim\BSScript</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptIVirtualMachine.h">
+      <Filter>Header Files\Skyrim\BSScript</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSScript\BSScriptErrorLogger.h">
+      <Filter>Header Files\Skyrim\BSScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl">

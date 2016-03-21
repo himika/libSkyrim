@@ -88,10 +88,6 @@ namespace BSScript {
 		typedef _Ty type;
 	};
 
-	/// is_valid_base
-	template <class _Ty>
-	using is_valid_base = is_form<_Ty> ;
-
 	/// is_packable
 	template <class _Ty>
 	struct is_packable : std::integral_constant < bool,
@@ -108,5 +104,25 @@ namespace BSScript {
 	/// is_valid_result
 	template <class _Ty>
 	struct is_valid_result : std::integral_constant < bool, std::is_void<_Ty>::value || is_packable<_Ty>::value >
+	{};
+
+	/// is_valid_base
+	template <class _Ty>
+	using is_valid_base = is_form<_Ty>;
+
+	/// are_packable
+	template <class...>
+	struct are_packable;
+
+	template <class T0, class... Ty>
+	struct are_packable<T0, Ty...> : std::integral_constant< bool, is_packable<T0>::value && are_packable<Ty...>::value >
+	{};
+
+	template <class T0>
+	struct are_packable<T0> : public is_packable<T0>
+	{};
+
+	template <>
+	struct are_packable<> : public std::true_type
 	{};
 }

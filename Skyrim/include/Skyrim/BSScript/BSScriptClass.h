@@ -121,10 +121,11 @@ namespace BSScript
 		}
 
 		DEFINE_MEMBER_FN_const(	GetNumAllVariables,	UInt32,			0x00C335F0);	// traverse parent class
-		DEFINE_MEMBER_FN_const(	GetScriptFlag,		bool,			0x00C33890,	const BSFixedString & name, bool arg2);
-		DEFINE_MEMBER_FN_const(	GetVariableIndex,	SInt32,			0x00C33E30,	const BSFixedString & name);
-		DEFINE_MEMBER_FN_const(	GetFunctions,		IFunction *,	0x00C36540,	const char * fnName);
-		DEFINE_MEMBER_FN_const(	GetMemberFunctions,	IFunction **,	0x00C365A0,	const char * fnName);
+		DEFINE_MEMBER_FN_const(	GetScriptFlag,		bool,			0x00C33890,	const BSFixedString &name, bool arg2);
+		DEFINE_MEMBER_FN_const(	GetVariableIndex,	SInt32,			0x00C33E30,	const BSFixedString &name);
+		DEFINE_MEMBER_FN_const(	GetFunctions,		IFunction *,	0x00C36540,	const char *fnName);
+		DEFINE_MEMBER_FN_const(	GetMemberFunctions,	IFunction **,	0x00C365A0,	const char *fnName);
+
 
 	//protected:
 		// @members
