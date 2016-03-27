@@ -12,13 +12,13 @@ class Actor;
 class TESIdleForm;
 class TESTopic;
 class TESPackage;
-class CustomActorPackageData;
+class TESCustomActorPackageData;
 class PerkEntryVisitor;
 class NiNode;
 class ActorKnowledge;
 class BGSAIWorldLocationRefRadius;
-class PathingCell;
-class NavMesh;
+class BSPathingCell;
+class BSNavmesh;
 struct DialogueData;
 
 typedef BSResponse<class BSFixedStringCI, class Actor, class BSFixedStringCI, DoNothingUnhandledPolicy> BSAnimationResponse;
@@ -185,6 +185,23 @@ public:
 	// 35C
 	struct Data08
 	{
+		// 08
+		struct KnownledgeData
+		{
+			FormID			formID;			// 00
+			ActorKnowledge	* knowledge;	// 04
+		};
+
+		struct Data0FC
+		{
+			UInt32			unk00;		// 00 (0FC)
+			UInt32			unk04;		// 04 (100)
+			UInt32			unk08;		// 08 (104)
+			UInt32			unk0C;		// 0C (108)
+			UInt32			unk10;		// 10 (10C)
+			UInt32			unk14;		// 14 (110)
+		};
+
 		UInt32			unk000;
 		UInt32			unk004;
 		SInt32			unk008;							// 08 - (-1)
@@ -204,15 +221,7 @@ public:
 		UInt32			unk0F0;							// F0
 		float			unk0F4;							// F4 - 1.0f
 		UInt32			unk0F8;							// F8
-		struct Data0FC
-		{
-			UInt32			unk00;		// 00 (0FC)
-			UInt32			unk04;		// 04 (100)
-			UInt32			unk08;		// 08 (104)
-			UInt32			unk0C;		// 0C (108)
-			UInt32			unk10;		// 10 (10C)
-			UInt32			unk14;		// 14 (110)
-		} unk0FC;										// FC
+		Data0FC			unk0FC;							// FC
 		UInt32			unk114;							// 114
 		UInt32			unk118;							// 118
 		float			unk11C;							// 11C - init'd -1.0
@@ -222,21 +231,22 @@ public:
 		void			* unk154;						// 154
 		void			* unk158;						// 158
 		UInt32			unk15C;							// 15C
-		PathingCell		* unk160;						// 160
+		BSPathingCell	* unk160;						// 160
 		UInt32			unk164;							// 164
-		NavMesh			* unk168;						// 168
-		UInt32			unk16C;							// 16C
+		BSNavmesh		* unk168;						// 168 - class NavMesh+0018
+		float			unk16C;							// 16C - 7F7FFFFF (nan)
 		UInt32			unk170;							// 170
-		UInt32			pad174[(0x184 - 0x174) >> 2];	// 174
+		UInt32			unk174;							// 174
+		UInt32			unk178;							// 178
+		float			unk17C;							// 17C - 7F7FFFFF (nan)
+		UInt32			unk180;							// 180
 		SInt32			unk184;							// 184 - init'd -1
 		float			unk188;							// 188 - init'd -1.0
 		UInt32			unk18C;							// 18C - init'd 0
 		UInt32			unk190;							// 19C - init'd 0
 		UInt32			unk194;							// 194 - init'd 0
 		BSFixedString	dialogueText;					// 198
-		void			* unk19C;						// 19C
-		UInt32			unk1A0;							// 1A0
-		UInt32			unk1A4;							// 1A4
+		BSTArray<KnownledgeData>	actorKnowledges;	// 19C - sorted by formID
 		BSTArray<void*>	unk1A8;							// 1A8
 		UInt32			pad1B4[(0x20C - 0x1B4) >> 2];	// 1AC
 		bool			unk20C;							// 20C
@@ -247,7 +257,7 @@ public:
 		UInt32			pad29C[(0x2C8 - 0x29C) >> 2];	// 210
 		float			lightLevel;						// 2C8
 		// ...
-		//				2E4
+		//bool			isArrested;						// 34A
 
 		DEFINE_MEMBER_FN(ctor, Data08 *, 0x0071A8F0);
 		DEFINE_MEMBER_FN(dtor, void, 0x0071B080);
@@ -256,6 +266,21 @@ public:
 	STATIC_ASSERT(offsetof(Data08, dialogueText) == 0x198);
 	STATIC_ASSERT(offsetof(Data08, lightLevel) == 0x2C8);
 	
+
+	struct PackageData
+	{
+		TESPackage					* package;					// 00 (0C)
+		TESCustomActorPackageData	* customActorPackageData;	// 04 (10)
+		void						* unk08;					// 08 (14)
+		SInt32						unk0C;						// 0C (18) - init'd -1
+		float						unk10;						// 10 (1C)
+		UInt32						unk14;						// 14 (20)
+		UInt16						unk18;						// 18 (24)
+		UInt8						unk1A;						// 1A (26)
+		UInt8						unk1B;						// 1B (27)
+
+		// ctor 006F05A0
+	};
 
 	DialogueData * GetDialogueData() const {
 		return (unk08) ? unk08->dialogueData : nullptr;
@@ -266,6 +291,7 @@ public:
 	DEFINE_MEMBER_FN(		ClearDialogueData,			void,			0x006FB870);					// { if (unk08) { delete unk08->unk290; unk08->dialogueText = nullptr; } }
 	DEFINE_MEMBER_FN_const(	GetDialogueText,			const char *,	0x006FB910);					// { return (unk08) ? unk08->dialogueText.c_str() : nullptr; }
 	DEFINE_MEMBER_FN(		SetDialogueText,			void,			0x006FB930, const char *);		// { if (unk08) unk08->dialogueText = arg1; } - called from 00893029
+	DEFINE_MEMBER_FN_const(	IsArrested,					bool,			0x006FC260);
 	DEFINE_MEMBER_FN_const(	GetLightLevel,				float,			0x006FC860);					// { return unk08->lightLevel; } - called in Actor::GetLightLevel()
 	DEFINE_MEMBER_FN(		SetLightLevel,				void,			0x006FC890, float lightLevel);	// { unk08->lightLevel = lightLevel; } - called from 00720E57
 	DEFINE_MEMBER_FN(		SetDataFlag,				void,			0x006FD1A0, UInt32 flag);		// { if (unk08) unk08->unk170 = flag; }
@@ -281,24 +307,31 @@ public:
 	DEFINE_MEMBER_FN(		VisitPerkEntries,			void,			0x00724660, UInt8 entryType, PerkEntryVisitor &visitor);
 
 	// @members
-	UInt32			unk00;								// 00
-	MiddleProcess	* middleProcess;					// 04
-	Data08			* unk08;							// 08 - related to ActorKnwoledge, DetectionState, FavorState
-	TESPackage		* package;							// 0C
-	CustomActorPackageData	* customActorPackageData;	// 10
-	UInt32			unk0C[(0x54 - 0x14) >> 2];			// 14
-	float			timeOfDeath;						// 54 - GetTimeDead = (GameDaysPassed*24) - timeOfDeath
-	UInt32			unk58[(0x68 - 0x58) >> 2];			// 58
-	TESForm			* equippedObject[2];				// 68
-	TESForm			* unk70;							// 70
-	UInt32			unk74[(0x90 - 0x74) >> 2];			// 74
-	TESTopic		* topic;							// 90
-	UInt32			unk94;								// 94
-	UInt8			unk98;								// 98
-	UInt8			unk9A;								// 9A
-	SInt8			unk9B;								// 9B - 0 if actor detected by anyone
-	UInt8			unk9C[(0xA0 - 0x9C)];				// 9C
+	UInt32					unk00;								// 00
+	MiddleProcess			* middleProcess;					// 04
+	Data08					* unk08;							// 08 - related to ActorKnwoledge, DetectionState, FavorState
+	PackageData				packageData;						// 0C
+	float					pad28;								// 28 - init'd -1.0
+	UInt32					unk2C;								// 2C
+	void					* actorValues;						// 30
+	UInt32					unk34[(0x54 - 0x34) >> 2];			// 34
+	float					timeOfDeath;						// 54 - GetTimeDead = (GameDaysPassed*24) - timeOfDeath
+	UInt32					unk58;								// 58
+	BSTArray<void *>		unk5C;								// 5C
+	TESForm					* equippedObject[2];				// 68
+	TESForm					* unk70;							// 70
+	UInt32					unk74[(0x90 - 0x74) >> 2];			// 74
+	TESTopic				* topic;							// 90
+	UInt32					unk94;								// 94
+	UInt8					unk98;								// 98
+	UInt8					unk9A;								// 9A - init'd 0
+	SInt8					unk9B;								// 9B - init'd 3 - 0 if actor detected by anyone
+	UInt8					unk9C;								// 9C - init'd 0
+	UInt8					unk9D;								// 9D - init'd 0
+	UInt8					unk9E;								// 9E - init'd 0
+	UInt8					unk9F;								// 9F - init'd 0
 
+	DEFINE_MEMBER_FN(ctor, ActorProcessManager *, 0x006F5820);
 	DEFINE_MEMBER_FN(init, void, 0x0071BFA0);
 };
 STATIC_ASSERT(offsetof(ActorProcessManager, equippedObject) == 0x68);

@@ -20,7 +20,7 @@ public:
 	//void	** _vtbl;	// 00 - 01121994
 
 private:
-	DEFINE_MEMBER_FN(ctor, BSNavmeshInfoMap*, 0x00B57E60)
+	DEFINE_MEMBER_FN(ctor, BSNavmeshInfoMap *, 0x00B57E60)
 };
 STATIC_ASSERT(sizeof(BSNavmeshInfoMap) == 0x4);
 
@@ -31,9 +31,9 @@ class BSPrecomputedNavmeshInfoPathMap : public BSTSingletonExplicit<BSPrecompute
 public:
 	// @members
 	BSTArray<BSTArray<void*> *>	unk00;	// 00
-	BSTHashMap<UInt32, void*>	unk0C;	// 0C
+	BSTHashMap<UInt32, void *>	unk0C;	// 0C
 
 private:
-	DEFINE_MEMBER_FN(ctor, BSPrecomputedNavmeshInfoPathMap*, 0x00B57830)
+	DEFINE_MEMBER_FN(ctor, BSPrecomputedNavmeshInfoPathMap *, 0x00B57830)
 };
 STATIC_ASSERT(sizeof(BSPrecomputedNavmeshInfoPathMap) == 0x2C);

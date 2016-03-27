@@ -215,6 +215,8 @@
     <ClInclude Include="include\Skyrim\BSPathFinding\BSNavmeshInfo.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\BSNavmeshRayCast.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\BSNavmeshTriangle.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingCell.h" />
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingCellManager.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingNode.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingSpline.h" />
     <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingStart.h" />

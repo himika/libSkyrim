@@ -2279,6 +2279,12 @@
     <ClInclude Include="include\Skyrim\BSScript\BSScriptErrorLogger.h">
       <Filter>Header Files\Skyrim\BSScript</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingCell.h">
+      <Filter>Header Files\Skyrim\BSPathFinding</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingCellManager.h">
+      <Filter>Header Files\Skyrim\BSPathFinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl">
