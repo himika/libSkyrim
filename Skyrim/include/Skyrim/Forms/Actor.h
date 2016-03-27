@@ -137,6 +137,15 @@ public:
 	// Unk_9E		006E16C0	
 	// Unk_A1		006D5020	
 	
+	// @override class ActorValueOwner : (vtbl=010CFBF8)
+	virtual float	GetActorValueCurrent(UInt32 arg) override;									// 006DF9C0
+	virtual float	GetActorValueMaximum(UInt32 arg) override;									// 006DFA90
+	virtual float	GetActorValueBase(UInt32 arg) override;										// 006DF850
+	virtual void	SetActorValueBase(UInt32 arg0, float arg1) override;						// 006E06F0
+	virtual void	ModActorValueBase(UInt32 arg0, float arg1) override;						// 006E0730
+	virtual void	ActorValueOwner_Unk_06(UInt32 arg0, UInt32 arg1, UInt32 arg2) override;		// 006E08C0
+
+
 	// @override ActorState (vtbl=0x010CFB9C)
 	virtual FormID	IMovementState_Unk_01(void) override;			// 006A7CE0 { return formID; }
 	virtual void	IMovementState_Unk_02(UInt32 arg) override;		// 006B5B90 { Pathing::GetSingleton()->Unk_00609A40((Actor*)this); .... }
@@ -400,7 +409,7 @@ public:
 	///<summary>Obtains whether this actor is a guard or not.</summary>
 	bool IsGuard() const			// 008DC020
 	{
-		return flags2.essential;
+		return flags1.guard;
 	}
 
 	///<summary>Is this actor flagged as a ghost?</summary>
