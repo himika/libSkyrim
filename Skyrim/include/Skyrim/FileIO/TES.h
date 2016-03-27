@@ -77,20 +77,32 @@ public:
 	// @add
 	virtual void Unk_0A(void);				// 004744E0
 
+	
+	TESObjectCELL * Get(UInt32 x, UInt32 y) {
+		if (!cells || x >= size || y >= size)
+			return nullptr;
+		return cells[x + y*size];
+	}
+
+	bool IsAttached(TESObjectCELL *cell) const {
+		if (!cells || cell)
+			return false;
+
+		const UInt32 length = size * size;
+		for (UInt32 i = 0; i < length; ++i) {
+			if (cells[i] == cell)
+				return true;
+		}
+
+		return false;
+	}
+
 	// @members
 	//void	** _vtbl;		// 00 - 0107F3C0
 	UInt32	unk04;
 	UInt32	unk08;
 	UInt32	size;			// 0C
 	TESObjectCELL**	cells;	// 10
-
-	TESObjectCELL* Get(UInt32 x, UInt32 y) {
-		if (!cells)
-			return nullptr;
-		if (x >= size || y >= size)
-			return nullptr;
-		return cells[x + y*size];
-	}
 };
 
 
@@ -167,6 +179,12 @@ class TES : public ICellAttachDetachEventSource,
 	public BSTEventSink<PositionPlayerEvent>							// 38
 {
 public:
+	struct NPCDeadCount
+	{
+		TESNPC*	npc;		// 00
+		UInt32	deadCount;	// 04
+	};
+
 	//TES(const char *datadir, UInt32 arg2, UInt32 arg3, Sky *a_sky, NiNode *a_node);		// 00435C10;
 	virtual ~TES();																			// 00438310
 
@@ -176,11 +194,8 @@ public:
 	// @override class BSTEventSink<struct PositionPlayerEvent> : (vtbl=0107AC48)
 	virtual EventResult ReceiveEvent(PositionPlayerEvent *, BSTEventSource<PositionPlayerEvent> *) override;	// 00439490
 
-	struct NPCDeadCount
-	{
-		TESNPC*	npc;		// 00
-		UInt32	deadCount;	// 04
-	};
+
+	bool IsAttached(TESObjectCELL *cell) const;
 
 	UInt32				unk3C;					// 3C - init'd 0
 	GridCellArray		* gridCellArray;		// 40 - init'd 0
@@ -231,6 +246,9 @@ public:
 	UInt32				unkDC;					// DC
 	NavMeshInfoMap		* navMeshInfoMap;		// E0
 	LoadedAreaBound		* loadedAreaBound;		// E4
+
+private:
+	DEFINE_MEMBER_FN(ctor, TES *, 0x00435C10, const char *datadir, UInt32 arg2, UInt32 arg3, Sky *a_sky, NiNode *a_node);
 };
 STATIC_ASSERT(sizeof(TES) == 0xE8);
 STATIC_ASSERT(offsetof(TES, loadedAreaBound) == 0xE4);

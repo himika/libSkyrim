@@ -105,6 +105,10 @@ public:
 	virtual bool			Unk_34(void) override;									// 009B86F0 { return true; }
 	virtual bool			Unk_36(FormType arg) override;							// 004C2F50
 
+	/// <summary>Returns whether this cell is currently 'attached' or not. (In the loaded area)</summary>
+	bool IsAttached() const {
+		return (unk30 == 7);
+	}
 
 	/// <summary>Is this cell an interior cell ?</summary>
 	bool IsInterior(void) const {
