@@ -44,8 +44,8 @@ public:
 	class InputHandler : public MenuEventHandler
 	{
 		// @members
-		//void		**_vtbl;	// 00 - 010E9060
-		UInt32		unk0C;		// 0C
+		//void			**_vtbl;			// 00 - 010E9060
+		LocalMapMenu	* localMapMenu;		// 0C
 	};
 
 
@@ -72,30 +72,36 @@ public:
 	STATIC_ASSERT(offsetof(LocalMapCullingProcess, localMapCamera) == 0x170);
 	STATIC_ASSERT(offsetof(LocalMapCullingProcess, niNode) == 0x238);
 
+	struct Texture
+	{
+		NiRenderedTexture		* renderedLocalMapTexture;		// 00 26C 2A4
+		UInt32					unk270;							// 04 270 2A8
+	};
 
 	// @members
-	BSTArray<UInt32>		unk00;							// 00
-	UInt32					unk0C;							// 0C
-	GFxValue				markerData;						// 10
-	float					unk20;							// 20 - 192.0f
-	float					unk24;							// 24 - 200.0f
-	float					unk28;							// 28 - 832.0f
-	float					unk2C;							// 2C - 560.0f
-	LocalMapCullingProcess	cullingProcess;					// 30
-	NiRenderedTexture		* renderedLocalMapTexture;		// 26C
-	UInt32					unk270;							// 270
-	UInt32					unk274;							// 274
-	GFxValue				localMapRoot;					// 278
-	GFxValue				mapRoot;						// 288
-	GFxMovieView			* view;							// 298
-	InputHandler			* inputHandler;					// 29C
-	UInt32					unk2A0;							// 2A0
-	UInt8					unk2A4[4];						// 2A4
+	BSTArray<UInt32>		unk00;							// 000 (38)
+	UInt32					unk0C;							// 00C (3C)
+	GFxValue				markerData;						// 010 (40)
+	float					unk20;							// 020 (50) - 192.0f
+	float					unk24;							// 024 (54) - 200.0f
+	float					unk28;							// 028 (58) - 832.0f
+	float					unk2C;							// 02C (5C) - 560.0f
+	LocalMapCullingProcess	cullingProcess;					// 030 (60)
+	Texture					texture;						// 26C (2A4)
+	GFxValue				localMapRoot;					// 278 (2B0)
+	GFxValue				mapRoot;						// 288 (2C0)
+	GFxMovieView			* view;							// 298 (2D0) - init'd nullptr
+	InputHandler			* inputHandler;					// 29C (2D4) - init'd nullptr
+	SInt32					unk2A0;							// 2A0 (2D8) - init'd -1
+	UInt8					unk2A4;							// 2A4 (2DC) - init'd 0
+	UInt8					unk2A5;							// 2A5 (2DD) - init'd 0
+	UInt8					unk2A6;							// 2A6 (2DE) - init'd 1
+	UInt8					pad2A7;							// 2A7 (2DF)
 
 	DEFINE_MEMBER_FN(ctor, LocalMapMenu *, 0x0089B2C0);
 };
 STATIC_ASSERT(offsetof(LocalMapMenu, cullingProcess) == 0x30);
-STATIC_ASSERT(offsetof(LocalMapMenu, renderedLocalMapTexture) == 0x26C);
+STATIC_ASSERT(offsetof(LocalMapMenu, texture) == 0x26C);
 
 
 /*==============================================================================
@@ -201,14 +207,10 @@ public:
 	{
 		TESFullName * name;			// 00
 		UInt32		refHandle;		// 04
-		void		* unk08;		// 08
-		UInt32		type;			// 0C
-		UInt32		unk10;			// 10
-		UInt32		unk14;			// 14
+		GFxValue	unk08;			// 08
 		UInt32		unk18;			// 18
-		UInt32		unk1C;			// 1C
+		bool		unk1C;			// 1C
 	};
-
 
 	virtual ~MapMenu();				// 008A1DF0
 
@@ -245,7 +247,7 @@ public:
 	UInt32					unk2E8;									// 2E8
 	UInt32					unk2EC;									// 2EC
 	BSTArray<MarkerData>	markers;								// 2F0
-	BSTArray<UInt32>		unk2FC;									// 2FC
+	BSTArray<GFxValue>		unk2FC;									// 2FC
 	MapCamera				mapCamera;								// 308
 	//																// 368
 	// ..

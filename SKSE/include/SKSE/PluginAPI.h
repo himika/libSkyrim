@@ -296,7 +296,7 @@ struct SKSEMessagingInterface
 								// dataLen: length of file path, data: char* file path of .ess savegame file
 		kMessage_InputLoaded,	// sent right after game input is loaded, right before the main menu initializes
 		kMessage_NewGame,		// ver.2 (1.7.2) sent after a new game is created, before the game has loaded (Sends CharGen TESQuest pointer)
-		kMessage_DataLoaded		// ver.3 (1.7.3) send after the data handler has loaded all its forms
+		kMessage_DataLoaded		// ver.2 (1.7.3) send after the data handler has loaded all its forms
 	};
 
 	enum DispatcherType

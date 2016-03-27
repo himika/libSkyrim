@@ -30,7 +30,7 @@ public:
 		UInt32		numFiles;
 	};
 
-	struct FlagData
+	struct Flags
 	{
 		bool	visible : 1;
 		bool	unk01 : 1;
@@ -168,8 +168,8 @@ public:
 public:
 	// @members
 	//void			** _vtbl;			// 00 - 0107CBE4
-	TESFileArray	* TESFileArray;		// 04 - TESFile **
-	FlagData		flags;				// 08
+	TESFileArray	* sourceFiles;		// 04
+	Flags			flags;				// 08
 	FormID			formID;				// 0C
 	UInt16			unk10;				// 10
 	FormType		formType;			// 12

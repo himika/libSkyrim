@@ -4,9 +4,6 @@
 #include "../BSCore/BSString.h"
 #include "../NetImmerse/NiTPointerMap.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
 class TESRegionList;
 class BSFile;
 
@@ -59,6 +56,8 @@ public:
 		return (const char*)description;
 	}
 
+	DEFINE_MEMBER_FN(ReadData, void, 0x00445340, UInt32 numValues, UInt32 valueSize);
+
 	DEFINE_MEMBER_FN(GetCurrentSubRecordType, UInt32, 0x00445B70);
 
 	DEFINE_MEMBER_FN(ReadFile, void, 0x00446130, const char *filePath, const char *fileName, UInt32 arg3, UInt32 arg4);
@@ -89,8 +88,8 @@ public:
 	UInt8								unk298;				// 298
 	bool								bIsBigEndian;		// 299
 	UInt8								unk29A;				// 29A
-	UInt8								pad29B;
-	WIN32_FIND_DATA						fileData;			// 29C
+	UInt8								pad29B;				// 29B
+	UInt32								fileData[0x50];		// 29C - WIN32_FIND_DATA
 	float								unk3DC;				// 3DC init'd to 0.94
 	UInt32								unk3E0;				// 3E0
 	UInt32								flags;				// 3E4 init'd to 0x00000800. 4000 and 40000 do stuff

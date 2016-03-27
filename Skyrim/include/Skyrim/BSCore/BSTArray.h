@@ -438,6 +438,15 @@ protected:
 		return _head() + size();
 	}
 
+	// TESV.00C55EF0
+	void _set(UInt32 index, UInt32 num, const value_type &val) {
+		pointer *p = _head() + index;
+		while (num > 0) {
+			new(p)value_type(val);
+			--num;
+		}
+	}
+
 public:
 	BSTArray() {
 	}

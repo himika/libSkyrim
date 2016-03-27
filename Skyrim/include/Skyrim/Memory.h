@@ -9,7 +9,8 @@ public:
 	DEFINE_MEMBER_FN(Allocate, void *, 0x00A48D60, UInt32 size, UInt32 alignment, bool aligned);
 	DEFINE_MEMBER_FN(Free, void, 0x00A487B0, void * buf, bool aligned);
 	
-	DEFINE_MEMBER_FN(Unk00A481C0, void, 0x00A481C0);
+	DEFINE_MEMBER_FN(Unk_00A481C0, void, 0x00A481C0);
+	DEFINE_MEMBER_FN(Unk_00A48890, UInt32, 0x00A48890);
 };
 
 extern Heap * g_formHeap;

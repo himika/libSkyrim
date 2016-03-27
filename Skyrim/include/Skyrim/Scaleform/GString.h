@@ -68,5 +68,3 @@ private:
 private:
 	DEFINE_MEMBER_FN(ctor, GString *, 0x009259D0, const char * string);
 };
-
-

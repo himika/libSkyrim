@@ -127,24 +127,24 @@ public:
 			kFlags_NotPlayable = 0x80,
 		};
 
-		UInt32	unk00;	// 00
-		float	speed;	// 04
-		float	reach;	// 08
-		float	minRange;	// 0C
-		float	maxRange;	// 10
-		float	animationMult;	// 14
-		float	unk18;	// 18
-		float	stagger;// 1C
-		UInt32	unk20;	// 20
-		UInt32	skill;	// 24
-		UInt32	resist;	// 28
-		UInt16	flags1;	// 2C
-		UInt8	vatsChance;	// 2E
-		UInt8	unk2F;	// 2F
-		UInt8	unk30;	// 30
-		UInt8	type;	// 31
-		UInt8	flags2;	// 32
-		UInt8	unk33;	// 33
+		UInt32	unk00;			// 00 (C0)
+		float	speed;			// 04 (C4)
+		float	reach;			// 08 (C8)
+		float	minRange;		// 0C (CC)
+		float	maxRange;		// 10 (D0)
+		float	animationMult;	// 14 (D4)
+		float	unk18;			// 18 (D8)
+		float	stagger;		// 1C (DC)
+		UInt32	unk20;			// 20 (E0)
+		UInt32	skill;			// 24 (E4)
+		UInt32	resist;			// 28 (E8)
+		UInt16	flags1;			// 2C (EC)
+		UInt8	vatsChance;		// 2E (EE)
+		UInt8	unk2F;			// 2F (EF)
+		UInt8	unk30;			// 30 (F0)
+		UInt8	type;			// 31 (F1)
+		UInt8	flags2;			// 32 (F2)
+		UInt8	unk33;			// 33 (F3)
 	};
 
 	// 0C

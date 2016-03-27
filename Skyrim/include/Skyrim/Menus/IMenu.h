@@ -40,6 +40,13 @@ public:
 		kType_Unk10000				= 0x10000	// ignore mouse cursor?
 	};
 
+	enum
+	{
+		kResult_Processed = 0,
+		kResult_Abort,
+		kResult_NotProcessed
+	};
+
 	IMenu();			// 00A64B70
 	virtual ~IMenu();	// 00A64BB0
 
