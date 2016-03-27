@@ -113,6 +113,7 @@ namespace BSScript
 		virtual void Unk_0A(void) = 0;				// (pure)
 		virtual void Unk_0B(void) = 0;				// (pure)
 	};
+	BSSmartPointer(IStore);
 
 	struct IObjectHandlePolicy;	// ==> BSScriptIObjectHandlePolicy.h
 
@@ -121,13 +122,13 @@ namespace BSScript
 	0000: struct BSScript::ILoader
 	==============================================================================*/
 	// 04
-	class ILoader
+	struct ILoader
 	{
 	public:
 		virtual ~ILoader();		// 00C45DF0
-		virtual ILoader *	Unk_01(void) = 0;
-		virtual void		Unk_02(void *arg0) = 0;
-		virtual bool		Unk_03(const char *name, void *unkObj) = 0;
+		virtual ILoader *	Duplicate(void) = 0;
+		virtual void		SetStore(IStorePtr &arg0) = 0;
+		virtual bool		Load(const char *name, void *unkObj) = 0;
 
 		// void **	_vtbl				// 00 - 010EAD58
 	};

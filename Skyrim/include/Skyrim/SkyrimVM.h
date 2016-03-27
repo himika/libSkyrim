@@ -22,16 +22,19 @@ public:
 
 	virtual ~ProbablyLoader();									// 00C45DF0
 
-	virtual ILoader *	Unk_01(void) override;					// 00C42D70
-	virtual void		Unk_02(void *arg0) override;			// 00C42E80
-	virtual bool		Unk_03(const char *name, void *unkObj);	// 00C45410 called from 00C68E76
+	virtual ILoader *	Duplicate(void) override;							// 00C42D70 - dupulicate this ?
+	virtual void		SetStore(BSScript::IStorePtr &arg) override;		// 00C42E80
+	virtual bool		Load(const char *className, void *unkObj);			// 00C45410 - called from 00C68E76 - "Cannot load class %s without a store" "Cannot open store for class %s, missing file?"
 
 	struct Data
 	{
-		UInt32	unk00;
-		UInt32	unk04;
-		UInt32	unk08;
-		UInt32	unk0C;
+		BSScript::IStorePtr		storePtr;	// 00 - init'd 0
+		void					* unk04;	// 04 - init'd 0 - BSSinpleList<UnkData_size_1008> *
+		BSFixedString			* entries;	// 08 - init'd 0
+		UInt16					numEntries;	// 0C - init'd 0
+
+		// ctor 0x00C3F950
+		// dtor 0x00C3FBD0
 	};
 
 	// @members
@@ -252,7 +255,7 @@ public:
 	SkyrimScript::HandlePolicy	handlePolicy;				// 01B8 010EBA1C  SkyrimScript::HandlePolicy
 	UInt8						pad1B8[0x454 - 0x204];		// 0204
 	//SkyrimScript::ObjectBindPolicy						// 0204 010EBAD4  SkyrimScript::ObjectBindPolicy
-															// 0294           BSTHashMap<????>  traits=012B64D4
+															// 0294           BSTHashMap<????>  sentinel=012B64D4
 															// 0294+48            BSSpinLock
 															// 0360 010EA744  SkyrimScript::Profiler
 															// 0400 010EA79C  SkyrimScript::SavePatcher

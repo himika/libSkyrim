@@ -35,12 +35,12 @@ namespace BSScript
 			kType_Bool = 5,
 
 			kType_ObjectArray = 11,		// 0B
-			kType_StringArray = 12,		// 0C
-			kType_IntArray = 13,		// 0D
-			kType_FloatArray = 14,		// 0E
-			kType_BoolArray = 15,		// 0F
+			kType_StringArray,			// 0C
+			kType_IntArray,				// 0D
+			kType_FloatArray,			// 0E
+			kType_BoolArray,			// 0F
 
-			kType_ArraysEnd = 16,		// 10
+			kType_ArraysEnd,			// 10
 		};
 
 		BSScriptType() : type(kType_None) {
@@ -200,6 +200,8 @@ namespace BSScript
 			data.u = 0;
 		}
 
+		void SetObject(const BSScriptObject *a_object);
+
 		void SetObject(const BSScriptObject *a_object, VMTypeID a_type) {
 			SetNone();
 			type = a_type;
@@ -259,14 +261,14 @@ namespace BSScript
 			this->BSScriptType::ToString(out);
 		}
 
-		// convert class object to string - e.g. [Actor < (00000014)>]
+		// converts to string - e.g. [Actor < (00000014)>]
 		std::string ToString(bool arg1, bool arg2) const;
 
 		const BSScriptVariable & CastTo(const BSScriptType &typeID, BSScriptVariable &var);
 
 		// @members
 		//BSScriptType	type;	// 00
-		Data				data;	// 04
+		Data			data;	// 04
 
 	private:
 		DEFINE_MEMBER_FN(Assign, void, 0x00C329E0, const BSScriptVariable & src);

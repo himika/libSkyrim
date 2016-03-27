@@ -116,6 +116,13 @@ namespace BSScript
 		return empty;
 	}
 
+	void BSScriptVariable::SetObject(const BSScriptObject *a_object)
+	{
+		SetNone();
+		type = a_object->GetClass()->GetTypeID();
+		data = a_object;
+	}
+
 	void BSScriptVariable::SetInt(const char *p)
 	{
 		SetInt(atoi(p));

@@ -34,7 +34,7 @@ namespace BSScript
 
 		virtual ~IVirtualMachine();			// 00C334D0
 
-		virtual void	Unk_01(void *logger) = 0;
+		virtual void	Unk_01(ILoader *loader) = 0;
 		virtual void	TraceStack(const char* str, UInt32 stackID, UInt32 aiSeverity = 0) = 0;
 		virtual void	Unk_03(VMHandle handle) = 0;
 		virtual void	OnUpdate(float arg) = 0;
@@ -45,11 +45,11 @@ namespace BSScript
 		virtual bool	GetScriptClassByName(const BSFixedString &className, BSScriptClassPtr &outClassPtr) = 0;
 		virtual bool	GetScriptClassByTypeID(UInt32 typeID, BSScriptClassPtr &outClass) = 0;
 		virtual bool	RegisterScriptClass(const BSFixedString &className, BSScriptClassPtr &classPtr) = 0;
-		virtual bool	GetScriptClassByTypeID2(UInt32 typeID, BSScriptClassPtr &outClass) = 0;
+		virtual bool	Unk_0C(UInt32 typeID, BSScriptClassPtr &outClass) = 0;
 		virtual bool	GetFormTypeID(const BSFixedString &className, UInt32 &typeID) = 0;
 		virtual void	Unk_0E(UInt32 arg1) = 0;
-		virtual bool	Unk_0F(const UInt32 &typeID, BSScriptClassPtr &classPtr) = 0;
-		virtual bool	Unk_10(UInt32 arg1) = 0;
+		virtual bool	Unk_0F(const BSScriptType &type, BSScriptClassPtr &classPtr) = 0;
+		virtual bool	Unk_10(const BSFixedString &className) = 0;
 		virtual bool	Unk_11(UInt32 arg1) = 0;
 		virtual void	Unk_12(UInt32 arg1, UInt32 arg2) = 0;
 		virtual bool	CreateScriptObjectWithProperty(const BSFixedString &className, void *property, BSScriptObjectPtr &objPtr) = 0;

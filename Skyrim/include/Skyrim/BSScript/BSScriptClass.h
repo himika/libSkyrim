@@ -12,14 +12,18 @@ namespace BSScript
 {
 	BSSmartPointer(BSScriptClass);
 
+	class IFunction;
+
 	// BSScriptObjectTypeInfo?
 	// the same type as VMClassInfo in skse
 	// 20
 	class BSScriptClass : public BSIntrusiveRefCounted
 	{
 	public:
-		BSScriptClass()		{ }
-		~BSScriptClass()	{ dtor(); }
+		enum Flags
+		{
+			kFlag_Missing = 2
+		};
 
 		// 04
 		union FlagData
@@ -36,28 +40,37 @@ namespace BSScript
 		};
 
 		// 0C
-		struct Unk0CData
+		struct DefaultValueData
 		{
-			UInt32		unk00;
-			UInt32		unk04;
-			UInt32		unk08;
+			UInt32		index;		// 00
+			UInt32		unk04;		// 04 | BSScriptVariable
+			UInt32		unk08;		// 08 |
 		};
 
 		// 28
-		struct Unk28Data
+		struct PropertyData
 		{
-			UInt32		unk00;
-			UInt32		unk04;
-			UInt32		unk08;
-			UInt32		unk0C;
-			UInt32		unk10;
-			UInt32		unk14;
-			UInt32		unk18;
-			UInt32		unk1C;
-			UInt32		unk20;
-			UInt32		unk24;
+			enum
+			{
+				kFlag_HasSetter = 1,
+				kFlag_HasGetter = 2
+			};
+
+			BSFixedString	name;				// 00
+			BSFixedString	ownerClassName;		// 04
+			BSFixedString	name2;				// 08
+			VMTypeID		typeID;				// 0C
+			UInt32			flags;				// 10
+			IFunction		* getter;			// 14
+			IFunction		* setter;			// 18
+			SInt32			varIndex;			// 1C - setted -1 if this property has setter/getter method.
+			bool			isHidden;			// 20
+			void			* unk24;			// 24
 		};
 		
+		BSScriptClass() { }
+		~BSScriptClass() { dtor(); }
+
 		const char * GetName() const {
 			return name;
 		}
@@ -79,16 +92,31 @@ namespace BSScript
 
 		IFunction ** GetFunctions() const
 		{
-			return (IFunction**)(dataPtr
+			return (IFunction **)(dataPtr
 				+ sizeof(FlagData) * numScriptFlags
 				+ sizeof(VariableData) * numVariables
-				+ sizeof(Unk0CData) * numUnk0C
-				+ sizeof(Unk28Data) * numUnk28);
+				+ sizeof(DefaultValueData) * numDefaultValues
+				+ sizeof(PropertyData) * numProperties);
 		}
 
-		VariableData* GetVariables() const
+		VariableData * GetVariables() const
 		{
 			return (VariableData*)(dataPtr + sizeof(FlagData) * numScriptFlags);
+		}
+
+		DefaultValueData * GetDefaultValues() const
+		{
+			return (DefaultValueData *)(dataPtr
+				+ sizeof(FlagData) * numScriptFlags
+				+ sizeof(VariableData) * numVariables);
+		}
+
+		PropertyData * GetProperties() const
+		{
+			return (PropertyData *)(dataPtr
+				+ sizeof(FlagData) * numScriptFlags
+				+ sizeof(VariableData) * numVariables
+				+ sizeof(DefaultValueData) * numDefaultValues);
 		}
 
 		IFunction* FindFunction(const char * name);
@@ -133,17 +161,17 @@ namespace BSScript
 		BSScriptClass	* parent;				// 08
 		BSFixedString	unk0C;					// 0C
 
-		unsigned int 	flags			: 2;	// 10 - bit 0
-		unsigned int	numScriptFlags	: 6;	// 10 - bit 2
-		unsigned int	numVariables	: 10;	// 10 - bit 8
-		unsigned int					: 14;	// 10 - bit 12
+		unsigned int 	flags				: 2;	// 10-00
+		unsigned int	numScriptFlags		: 6;	// 10-02
+		unsigned int	numVariables		: 10;	// 10-08
+		unsigned int						: 14;	// 10-12
 
-		unsigned int	numUnk0C		: 10;	// 14 - bit 0
-		unsigned int	numUnk28		: 10;	// 14 - bit A
-		unsigned int	numGlobalFuncs	: 9;	// 14 - bit 14
-		unsigned int					: 3;	// 14 - bit 1D
+		unsigned int	numDefaultValues	: 10;	// 14-00
+		unsigned int	numProperties		: 10;	// 14-0A
+		unsigned int	numGlobalFuncs		: 9;	// 14-14
+		unsigned int						: 3;	// 14-1D
 
-		unsigned int	numMemberFuncs	: 9;	// 18 - bit 0
+		unsigned int	numMemberFuncs		: 9;	// 18 - bit 0
 
 		UInt32			dataPtr;				// 1C
 

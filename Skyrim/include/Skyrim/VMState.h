@@ -36,7 +36,7 @@ public:
 	virtual void		IObjectManagerInterface_Unk_06(VMHandle handle) = 0;
 	virtual void		IObjectManagerInterface_Unk_07(VMHandle handle) = 0;
 	virtual void		IObjectManagerInterface_Unk_08(UInt32 arg1) = 0;
-	virtual bool		CreateScriptObject(const BSFixedString &className, UInt32 numProperties, BSScriptObjectPtr &objPtr) = 0;
+	virtual bool		CreateObject(const BSFixedString &className, UInt32 numProperties, BSScriptObjectPtr &objPtr) = 0;
 	virtual bool		SetProperty(BSScriptObjectPtr &objPtr, void *property, bool arg3) = 0;
 
 	// void **	_vtbl			// 00 - 01147C88
@@ -78,7 +78,6 @@ public:
 
 // 4B04
 // the same type as VMClassRegistry in skse
-// this does more than hold on to class registrations, but for now that's all we care about
 class VMState :	public BSScript::IVirtualMachine,	// 00
 	public IObjectManagerInterface,		// 08
 	public IUnknown_01148030,			// 0C
@@ -106,7 +105,7 @@ public:
 	virtual ~VMState();																												// 00 00C5B770
 
 	// @override class IVMStateBase : (vtbl=0114C1B0)
-	virtual void	Unk_01(void *logger) override;																							// 01 00C5B730 - called from 008D83C8, logger=01B334F0 (vtbl 01149B98, no rtti)
+	virtual void	Unk_01(BSScript::ILoader *loader) override;																				// 01 00C5B730 { classListLock.Lock(); unlinkedClassList.SetLoader(arg); classListLock.Unlock(); } - called from 008D83C8, arg=01B334F0 (vtbl 01149B98, no rtti)
 	virtual void	TraceStack(const char* str, UInt32 stackID, UInt32 aiSeverity = 0) override;											// 02 00C49A30
 	virtual void	Unk_03(VMHandle handle) override;																						// 03 00C47080 - called when script property is missing.
 	virtual void	OnUpdate(float arg) override;																							// 04 00C52840 - called from 008D4A73 "VM is frozen...", "VM is freezing", "VM is thawing"
@@ -117,11 +116,11 @@ public:
 	virtual bool	GetScriptClassByName(const BSFixedString &className, BSScriptClassPtr &outClassPtr) override;							// 09 00C4AD30
 	virtual bool	GetScriptClassByTypeID(UInt32 typeID, BSScriptClassPtr &outClass) override;												// 0A 00C4AC20
 	virtual bool	RegisterScriptClass(const BSFixedString &className, BSScriptClassPtr &classPtr) override;								// 0B 00C49CA0
-	virtual bool	GetScriptClassByTypeID2(UInt32 typeID, BSScriptClassPtr &outClass) override;											// 0C 00C49B10
+	virtual bool	Unk_0C(UInt32 typeID, BSScriptClassPtr &outClass) override;																// 0C 00C49B10
 	virtual bool	GetFormTypeID(const BSFixedString &className, UInt32 &typeID) override;													// 0D 00C49DC0
 	virtual void	Unk_0E(UInt32 arg1) override;																							// 0E 00C489C0
-	virtual bool	Unk_0F(const UInt32 &typeID, BSScriptClassPtr &classPtr) override;														// 0F 00C4ADA0
-	virtual bool	Unk_10(UInt32 arg1) override;																							// 10 00C47DE0
+	virtual bool	Unk_0F(const BSScriptType &type, BSScriptClassPtr &classPtr) override;													// 0F 00C4ADA0
+	virtual bool	Unk_10(const BSFixedString &className) override;																		// 10 00C47DE0 { BSScriptClass classPtr; return (GetScriptClassByName(className, classPtr) && classPtr->flags == 3); }
 	virtual bool	Unk_11(UInt32 arg1) override;																							// 11 00C49E50
 	virtual void	Unk_12(UInt32 arg1, UInt32 arg2) override;																				// 12 00C554E0 - added in 1.6.86
 	virtual bool	CreateScriptObjectWithProperty(const BSFixedString &className, void *property, BSScriptObjectPtr &objPtr) override;		// 13 00C47500
@@ -168,7 +167,7 @@ public:
 	virtual void		IObjectManagerInterface_Unk_06(VMHandle handle) override;									// 06 00C531A0
 	virtual void		IObjectManagerInterface_Unk_07(VMHandle handle) override;									// 07 00C53320
 	virtual void		IObjectManagerInterface_Unk_08(UInt32 arg1) override;										// 08 00C534A0
-	virtual bool		CreateScriptObject(const BSFixedString &className, UInt32 numProperties, BSScriptObjectPtr &objPtr) override;	// 09 00C48A30
+	virtual bool		CreateObject(const BSFixedString &className, UInt32 numProperties, BSScriptObjectPtr &objPtr) override;	// 09 00C48A30
 	virtual bool		SetProperty(BSScriptObjectPtr &objPtr, void *property, bool arg3) override;					// 0A 00C4EDD0 - "%s does not have a property named %s, property skipped."
 
 	// @override class IUnknown_01148030 : (vtbl=0114C128)

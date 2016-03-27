@@ -87,9 +87,20 @@ public:
 	operator const_pointer() const {
 		return ptr;
 	}
-
 	operator bool() const {
 		return ptr != 0;
+	}
+	pointer operator->() {
+		return ptr;
+	}
+	const_pointer operator->() const {
+		return ptr;
+	}
+	value_type & operator*() {
+		return *ptr;
+	}
+	const value_type & operator*() const {
+		return *ptr;
 	}
 
 	BSTSmartPointer & operator=(const pointer a_p) {
@@ -113,18 +124,6 @@ public:
 	}
 	const_pointer Get(void) const {
 		return ptr;
-	}
-	pointer operator->() {
-		return ptr;
-	}
-	const_pointer operator->() const {
-		return ptr;
-	}
-	value_type & operator*() {
-		return *ptr;
-	}
-	const value_type & operator*() const {
-		return *ptr;
 	}
 	void Attach(const_pointer a_p) {
 		ptr = const_cast<pointer>(a_p);
