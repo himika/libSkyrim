@@ -46,6 +46,22 @@ RefHandle TESObjectREFR::CreateRefHandle(void)
 	}
 }
 
+RefHandle & TESObjectREFR::CreateRefHandle(RefHandle & out)		// 006BD6C0
+{
+	if (GetRefCount() == 0)
+	{
+		out = g_invalidRefHandle;
+	}
+	else
+	{
+		typedef void(*_CreateRefHandleByREFR)(RefHandle & refHandleOut, TESObjectREFR * refr);
+		const _CreateRefHandleByREFR CreateRefHandleByREFR = (_CreateRefHandleByREFR)0x0065CC00;
+
+		CreateRefHandleByREFR(out, this);
+	}
+	return out;
+}
+
 RefHandle TESObjectREFR::GetRefHandle(void)
 {
 	ExtraReferenceHandle* xRefHandle = this->extraData.GetByType<ExtraReferenceHandle>();

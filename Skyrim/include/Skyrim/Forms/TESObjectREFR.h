@@ -254,6 +254,8 @@ public:
 	RefHandle CreateRefHandle(void);
 	RefHandle GetRefHandle(void);
 
+	RefHandle & CreateRefHandle(RefHandle &out);	// 006BD6C0
+
 	///<summary>Activates this item with the specified reference as the activator.</summary>
 	bool Activate(TESObjectREFR *activator, bool abDefaultProcessingOnly = false) {
 		if (!activator)
