@@ -8,6 +8,8 @@ class ExtraTextDisplayData;
 class TESObjectREFR;
 class BGSKeyword;
 class InventoryChanges;
+class BGSLoadGameBuffer;
+class BGSSaveGameBuffer;
 
 // 08
 class BaseExtraList
@@ -28,10 +30,6 @@ public:
 
 		operator pointer() const {
 			return m_cur;
-		}
-
-		bool empty() const {
-			return m_cur == nullptr;
 		}
 
 		operator bool() const {
@@ -59,8 +57,12 @@ public:
 			return (!(*this == rhs));
 		}
 
+		bool empty() const {
+			return m_cur == nullptr;
+		}
+
 	protected:
-		BSExtraData *m_cur;
+		BSExtraData	* m_cur;
 	};
 
 	class iterator : public const_iterator
@@ -273,33 +275,38 @@ protected:
 	static BSSpinLock &ms_lock;
 
 private:
-	DEFINE_MEMBER_FN_const(	ItemsInList_Impl,				UInt32,			0x0040A710);
-	DEFINE_MEMBER_FN_const(	HasType_Impl,					bool,			0x0040A760);
-	DEFINE_MEMBER_FN(		AddExtra_Impl,					BSExtraData*,	0x0040A790, BSExtraData *extra);
-	DEFINE_MEMBER_FN_const(	GetExtraData_Impl,				BSExtraData*,	0x0040A8A0, UInt32 type);
-	DEFINE_MEMBER_FN_const(	GetPrevExtraData_Impl,			BSExtraData*,	0x0040A970, UInt32 type);
-	DEFINE_MEMBER_FN_const(	CheckContainerExtraData_Impl,	bool,			0x0040ABF0, bool isEquipped);
-	DEFINE_MEMBER_FN(		RemoveAll_Impl,					void,			0x0040B890, bool bDelete);
-	DEFINE_MEMBER_FN(		RemoveAllDefault_Impl,			void,			0x0040B940, bool bDelete);
-	DEFINE_MEMBER_FN(		RemoveExtra1_Impl,				bool,			0x0040BC10, UInt32 type);
-	DEFINE_MEMBER_FN(		RemoveExtra2_Impl,				void,			0x0040BB00, BSExtraData *toRemove, bool bDelete);
-	DEFINE_MEMBER_FN(		RemoveAllCopyableExtra_Impl,	void,			0x0040BD30, bool bDelete);
-	DEFINE_MEMBER_FN_const(	GetInventoryChanges_Impl,		InventoryChanges*,	0x0040C090);
-	DEFINE_MEMBER_FN_const(	GetOwner_Impl,					TESForm*,		0x0040C0B0);
-	DEFINE_MEMBER_FN_const(	GetItemCount_Impl,				SInt16,			0x0040C190);
-	DEFINE_MEMBER_FN_const(	HasExtraWorn,					bool,			0x0040C400, bool bEitherHand, bool bRight);
-	DEFINE_MEMBER_FN(		SetInventoryChanges_Impl,		void,			0x0040C660, InventoryChanges *changes);
-	//DEFINE_MEMBER_FN_const(GetCellImageSpace_Impl,		CellImageSpace*,	0x0040CDE0);
-	DEFINE_MEMBER_FN_const(	GetEditorID_Impl,				const char*,	0x0040CDF0);
-	//DEFINE_MEMBER_FN_const(GetPackage_Impl,				TESPackage*,	0x0040CE00);
-	DEFINE_MEMBER_FN_const(	IsActivationBlocked_Impl,		bool,			0x0040E850, bool unk1);
-	DEFINE_MEMBER_FN_const(	GetAshPileRefHandle_Impl,		RefHandle,		0x00411850, RefHandle &refHandle);
-	DEFINE_MEMBER_FN_const(	GetLinkedRef_Impl,				TESObjectREFR*,	0x00415700, BGSKeyword * keyword);
-	DEFINE_MEMBER_FN(		BlockActivation_Impl,			void,			0x00416C50, bool unk2, bool bBlocked);
-	DEFINE_MEMBER_FN_const(	GetExtraTextDisplayData_Impl,	ExtraTextDisplayData*,	0x00418590);
-	DEFINE_MEMBER_FN_const(	GetReferenceFromItemDropper_Impl,	TESObjectREFR*,	0x004153C0);
-	DEFINE_MEMBER_FN_const(	IsQuestItem_Impl,				bool,			0x00418FE0);
-
-
+	DEFINE_MEMBER_FN_const(	ItemsInList_Impl,					UInt32,					0x0040A710);
+	DEFINE_MEMBER_FN_const(	HasType_Impl,						bool,					0x0040A760);
+	DEFINE_MEMBER_FN(		AddExtra_Impl,						BSExtraData*,			0x0040A790, BSExtraData *extra);
+	DEFINE_MEMBER_FN_const(	GetExtraData_Impl,					BSExtraData*,			0x0040A8A0, UInt32 type);
+	DEFINE_MEMBER_FN_const(	GetPrevExtraData_Impl,				BSExtraData*,			0x0040A970, UInt32 type);
+	DEFINE_MEMBER_FN_const(	CheckContainerExtraData_Impl,		bool,					0x0040ABF0, bool isEquipped);
+	DEFINE_MEMBER_FN(		RemoveAll_Impl,						void,					0x0040B890, bool bDelete);
+	DEFINE_MEMBER_FN(		RemoveAllDefault_Impl,				void,					0x0040B940, bool bDelete);
+	DEFINE_MEMBER_FN(		RemoveExtra1_Impl,					bool,					0x0040BC10, UInt32 type);
+	DEFINE_MEMBER_FN(		RemoveExtra2_Impl,					void,					0x0040BB00, BSExtraData *toRemove, bool bDelete);
+	DEFINE_MEMBER_FN(		RemoveAllCopyableExtra_Impl,		void,					0x0040BD30, bool bDelete);
+	DEFINE_MEMBER_FN_const(	GetInventoryChanges_Impl,			InventoryChanges *,		0x0040C090);
+	DEFINE_MEMBER_FN_const(	GetOwner_Impl,						TESForm *,				0x0040C0B0);
+	DEFINE_MEMBER_FN_const(	GetItemCount_Impl,					SInt16,					0x0040C190);
+	DEFINE_MEMBER_FN_const(	HasExtraWorn,						bool,					0x0040C400, bool bEitherHand, bool bRight);
+	DEFINE_MEMBER_FN(		SetInventoryChanges_Impl,			void,					0x0040C660, InventoryChanges *changes);
+	//DEFINE_MEMBER_FN_const(GetCellImageSpace_Impl,			CellImageSpace *,		0x0040CDE0);
+	DEFINE_MEMBER_FN_const(	GetEditorID_Impl,					const char*,			0x0040CDF0);
+	//DEFINE_MEMBER_FN_const(GetPackage_Impl,					TESPackage*,			0x0040CE00);
+	DEFINE_MEMBER_FN_const(	IsActivationBlocked_Impl,			bool,					0x0040E850, bool unk1);
+	DEFINE_MEMBER_FN_const(	GetAshPileRefHandle_Impl,			RefHandle,				0x00411850, RefHandle &refHandle);
+	DEFINE_MEMBER_FN(		RemoveNonPersistentCellData,		void,					0x00414940);
+	DEFINE_MEMBER_FN_const(	GetLinkedRef_Impl,					TESObjectREFR *,		0x00415700, BGSKeyword * keyword);
+	DEFINE_MEMBER_FN(		BlockActivation_Impl,				void,					0x00416C50, bool unk2, bool bBlocked);
+	DEFINE_MEMBER_FN_const(	GetExtraTextDisplayData_Impl,		ExtraTextDisplayData *,	0x00418590);
+	DEFINE_MEMBER_FN_const(	GetReferenceFromItemDropper_Impl,	TESObjectREFR *,		0x004153C0);
+	DEFINE_MEMBER_FN_const(	IsQuestItem_Impl,					bool,					0x00418FE0);
+	DEFINE_MEMBER_FN(		SaveGame,							void,					0x00415950, BGSSaveGameBuffer *buf);
+	DEFINE_MEMBER_FN(		LoadGame,							void,					0x00419C80, BGSLoadGameBuffer *buf);
+	DEFINE_MEMBER_FN(		CopyList,							void,					0x0041E6C0,	const BaseExtraList *from);
+	DEFINE_MEMBER_FN(		CopyListForContainer,				void,					0x0041E750,	BaseExtraList *from, bool bNotRemove);
+	DEFINE_MEMBER_FN(		DuplicateExtraListForContainer,		void,					0x0041E8D0,	const BaseExtraList *from);
+	DEFINE_MEMBER_FN(		CopyListForReference,				void,					0x0041EA00,	BaseExtraList *from, bool bRemove);
 };
 STATIC_ASSERT(sizeof(BaseExtraList) == 0x08);

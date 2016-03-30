@@ -2285,6 +2285,21 @@
     <ClInclude Include="include\Skyrim\BSPathFinding\BSPathingCellManager.h">
       <Filter>Header Files\Skyrim\BSPathFinding</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraProcessMiddleLow.h">
+      <Filter>Header Files\Skyrim\ExtraData</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraCellMusicType.h">
+      <Filter>Header Files\Skyrim\ExtraData</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraCellSkyRegion.h">
+      <Filter>Header Files\Skyrim\ExtraData</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraDetachTime.h">
+      <Filter>Header Files\Skyrim\ExtraData</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraObjectHealth.h">
+      <Filter>Header Files\Skyrim\ExtraData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl">

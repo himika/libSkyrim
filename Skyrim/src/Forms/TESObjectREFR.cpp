@@ -143,11 +143,8 @@ bool TESObjectREFR::IsActivateChild(TESObjectREFR *akChild) const
 
 bool TESObjectREFR::IsLocked() const
 {
-	ExtraLock *lock = GetLock_Impl();
-	if (!lock)
-		return false;
-
-	return (lock->unk08 & 1) != 0;
+	LockState *state = GetLockState_Impl();
+	return (state && state->isLocked);
 }
 
 void TESObjectREFR::EnableFastTravel(bool abEnable)

@@ -65,7 +65,7 @@ enum class ExtraDataType : UInt8
 	SavedHavokData,				// 0x3C
 	CannotWear,					// 0x3D
 	Poison,						// 0x3E
-	Unk3F,						// 0x3F
+	MagicLight,					// 0x3F
 	LastFinishedSequence,		// 0x40
 	SavedAnimation,				// 0x41
 	NorthRotation,				// 0x42

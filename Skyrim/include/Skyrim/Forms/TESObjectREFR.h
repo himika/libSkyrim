@@ -26,6 +26,7 @@ class Explosion;
 class Projectile;
 class TESContainer;
 class ExtraLock;
+struct LockState;
 
 NiSmartPointer(TESObjectREFR)
 
@@ -429,7 +430,7 @@ protected:
 	DEFINE_MEMBER_FN_const(IsOwnedBy_Impl, bool, 0x004EC3B0, Actor* actor, bool unk1, bool unk2);
 	DEFINE_MEMBER_FN_const(GetOwner_Impl, TESForm *, 0x004EC0C0);
 
-	DEFINE_MEMBER_FN_const(GetLock_Impl, ExtraLock *, 0x004EB5B0);
+	DEFINE_MEMBER_FN_const(GetLockState_Impl, LockState *, 0x004EB5B0);
 
 
 private:

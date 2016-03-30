@@ -132,6 +132,8 @@ private:
 	DEFINE_MEMBER_FN(ctor, InventoryChanges *, 0x00477280, TESObjectREFR *ref);
 	DEFINE_MEMBER_FN(dtor, void, 0x00477A60);
 
+	DEFINE_MEMBER_FN(RemoveItem, const RefHandle &, 0x0047E920, UInt32 arg1, TESObjectREFR *owner, TESForm *akItem, UInt32 aiCount, UInt32 mode, BaseExtraList *extraList, TESObjectREFR *moveToRef, UInt32 unk8, UInt32 unk9);
+
 	DEFINE_MEMBER_FN(Visit_Impl, void, 0x00475D20, IItemChangeVisitor *visitor);
 	DEFINE_MEMBER_FN(VisitWorn_Impl, void, 0x00475D50, IItemChangeVisitor *visitor);
 };
