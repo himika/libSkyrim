@@ -40,6 +40,21 @@ void BSSpinLock::Lock(const char *owner)
 	lockCount = 1;
 }
 
+bool BSSpinLock::TryToLock(void)
+{
+	long myThreadID = GetCurrentThreadId();
+	if (threadID == myThreadID) {
+		lockCount++;
+		return true;
+	}
+
+	if (InterlockedCompareExchange(&threadID, myThreadID, 0))
+		return false;
+
+	lockCount = 1;
+	return true;
+}
+
 void BSSpinLock::Unlock(void)
 {
 	if (--lockCount == 0)

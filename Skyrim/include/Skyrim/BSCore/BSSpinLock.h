@@ -8,6 +8,7 @@ public:
 
 	void Lock(void);
 	void Lock(const char *owner);
+	bool TryToLock(void);
 	void Unlock(void);
 
 	inline void Release(void) { Unlock(); }
