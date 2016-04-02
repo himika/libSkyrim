@@ -346,6 +346,7 @@
     <ClInclude Include="include\Skyrim\ExtraData\ExtraObjectHealth.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraOutfitItem.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraOwnership.h" />
+    <ClInclude Include="include\Skyrim\ExtraData\ExtraPackage.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraPersistentCell.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraPoison.h" />
     <ClInclude Include="include\Skyrim\ExtraData\ExtraPrimitive.h" />
