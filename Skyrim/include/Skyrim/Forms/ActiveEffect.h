@@ -5,6 +5,7 @@
 #include "../BSCore/BSTEvent.h"
 #include "../FormComponents/MagicTarget.h"
 
+class Actor;
 class ActiveEffect;
 struct ActorInventoryEvent;
 
@@ -46,7 +47,7 @@ public:
 	virtual bool	Unk_1B(void);                                    // 0092D110 { return false; }
 	virtual bool	Unk_1C(void);                                    // 009B86F0 { return true; }
 	virtual bool	Unk_1D(void);                                    // 009B86F0 { return true; }
-	virtual void	Unk_1E(UInt32 arg);                              // 00588F30 { return; }
+	virtual void	Unk_1E(UInt32 *arg);                             // 00588F30 { return; }
 	virtual float *	Unk_1F(void);                                    // 006686B0 { return 0x01B910A4; }
 	virtual bool	Unk_20(void);                                    // 0092D110 { return false; }
 	virtual void	Unk_21(UInt32 arg);                              // 00588F30 { return; }
@@ -119,6 +120,7 @@ class ActiveEffectReferenceEffectController +0000 (_vtbl=010C8AB4)
 0000: class ActiveEffectReferenceEffectController
 0000: |   class ReferenceEffectController
 ==============================================================================*/
+// 18
 class ActiveEffectReferenceEffectController : public ReferenceEffectController
 {
 public:
@@ -141,7 +143,7 @@ public:
 	virtual bool	Unk_0E(void) override;                           // 0092D110 { return false; }
 	virtual bool	Unk_17(void) override;                           // 00668940
 	virtual UInt32	Unk_18(void) override;                           // 00669000
-	virtual void	Unk_1E(UInt32 arg) override;                     // 00668980
+	virtual void	Unk_1E(UInt32 *arg) override;                    // 00668980
 	virtual float *	Unk_1F(void) override;                           // 009995F0 { return &unkC; }
 	virtual bool	Unk_20(void) override;                           // 00668700
 	virtual void	Unk_21(UInt32 arg) override;                     // 00669170
@@ -151,7 +153,10 @@ public:
 	// @members
 	//void			** _vtbl;	// 00 - 010C8AB4
 	ActiveEffect	* effect;	// 04
-	// ...
+	UInt32			unk08;
+	UInt32			unk0C;
+	UInt32			unk10;
+	UInt32			unk14;
 };
 
 
@@ -159,6 +164,7 @@ public:
 class ActiveEffect +0000 (_vtbl=010C8B9C)
 0000: class ActiveEffect
 ==============================================================================*/
+// 64
 class ActiveEffect
 {
 public:
@@ -166,7 +172,8 @@ public:
 
 	enum
 	{
-		kFlag_Inactive = 0x8000
+		kFlag_Inactive = 0x8000,
+		kFlag_Dispelled = 0x40000
 	};
 
 	virtual ~ActiveEffect();			// 00654A90
@@ -197,28 +204,50 @@ public:
 	virtual void	Unk_18(void);						// 007C1470
 
 
+	static ActiveEffect * Create(Actor *caster, UInt32 arg2, MagicItem *magicItem, MagicItem::EffectItem *effectItem, TESForm *sourceItem, bool arg6)	// 00662970
+	{
+		typedef ActiveEffect *(*Fn)(Actor *, UInt32, MagicItem *, MagicItem::EffectItem *, TESForm *, bool);
+		const Fn fn = (Fn)0x00662970;
+
+		return fn(caster, arg2, magicItem, effectItem, sourceItem, arg6);
+	}
+
+	Actor * GetCasterActor() const;
+	Actor * GetTargetActor() const;
+	EffectSetting * GetBaseObject() const {
+		return effect->mgef;
+	}
+
+	DEFINE_MEMBER_FN(Dispell, void, 0x00657160, bool arg1);
+
 	// @members
-	//void					** _vtbl;		// 00
-	ActiveEffectReferenceEffectController	controller;	// 04
-	UInt32					unk0C[8];		// 0C
-	void					* niNode;		// 2C
-	MagicItem				* item;			// 30
-	MagicItem::EffectItem	* effect;		// 34
-	TESObjectREFR			* reference;	// 38
-	TESForm					* sourceItem;	// 3C
-	UInt32					unk40;			// 40
-	UInt32					unk44;			// 44
-	float					elapsed;		// 48
-	float					duration;		// 4C
-	float					magnitude;		// 50
-	UInt32					flags;			// 54
-	UInt32					unk58;			// 58
-	UInt32					effectNum;		// 5C - Somekind of counter used to determine whether the ActiveMagicEffect handle is valid
-	UInt32					unk60;			// 60
-	UInt32					actorValue;		// 64 - Only seems to appear on value modifiers
-	UInt32					unk68;			// 68
-	UInt32					unk6C;			// 6C
+	//void					** _vtbl;							// 00
+	ActiveEffectReferenceEffectController	controller;			// 04
+	SInt32									unk1C;				// 1C - init'd -1
+	UInt8									unk20;				// 20 - init'd 0
+	UInt32									unk24;				// 24 - init'd 0
+	RefHandle								casterRefhandle;	// 28
+	void									* niNode;			// 2C
+	MagicItem								* item;				// 30
+	MagicItem::EffectItem					* effect;			// 34
+	MagicTarget								* magicTarget;		// 38
+	TESForm									* sourceItem;		// 3C
+	UInt32									unk40;				// 40 - init'd 0
+	UInt32									unk44;				// 44 - init'd 0
+	float									elapsed;			// 48 - init'd 0
+	float									duration;			// 4C
+	float									magnitude;			// 50
+	UInt32									flags;				// 54
+	UInt32									unk58;				// 58 - init'd 1
+	UInt16									effectNum;			// 5C - Somekind of counter used to determine whether the ActiveMagicEffect handle is valid
+	UInt16									pad5E;				// 5E
+	UInt32									unk60;				// 60 - init'd 4
+
+private:
+	DEFINE_MEMBER_FN(ctor, ActiveEffect *, 0x00655A10, Actor *caster, MagicItem *pItem, MagicItem::EffectItem *pEffect);
 };
+STATIC_ASSERT(sizeof(ActiveEffect) == 0x64);
+
 
 /*==============================================================================
 class ScriptEffect +0000 (_vtbl=010C9DE4)
@@ -293,7 +322,8 @@ public:
 	//virtual ????   Unk_021(????);                                    // 0066E860
 
 
-	// ??
+	// @members
+	UInt32	actorValue;			// 64
 };
 
 /*==============================================================================

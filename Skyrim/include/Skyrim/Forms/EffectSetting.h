@@ -50,7 +50,8 @@ public:
 	// 98
 	struct Properties
 	{
-		enum {
+		enum Flag
+		{
 			kEffectType_Hostile = 0x00000001,
 			kEffectType_Recover = 0x00000002,
 			kEffectType_Detrimental = 0x00000004,
@@ -70,7 +71,8 @@ public:
 			kEffectType_NoDeathDispel = 0x10000000
 		};
 
-		enum {
+		enum
+		{
 			kArchetype_ValueMod = 0,
 			kArchetype_Script,
 			kArchetype_Dispel,
@@ -117,13 +119,15 @@ public:
 			kArchetype_VampireLord
 		};
 
-		enum {
+		enum
+		{
 			kCastingType_ConstantEffect = 0,
 			kCastingType_FireAndForget,
 			kCastingType_Concentration
 		};
 
-		enum {
+		enum
+		{
 			kDeliveryType_Self = 0,
 			kDeliveryType_Contact,
 			kDeliveryType_Aimed,
@@ -131,14 +135,16 @@ public:
 			kDeliveryType_TargetLocation
 		};
 
-		enum {
+		enum
+		{
 			kVolume_Loud = 0,
 			kVolume_Normal,
 			kVolume_Silent,
 			kVolume_VeryLoud
 		};
 
-		enum {
+		enum
+		{
 			kActorValue_Aggression = 0,
 			kActorValue_Confidence,
 			kActorValue_Energy,

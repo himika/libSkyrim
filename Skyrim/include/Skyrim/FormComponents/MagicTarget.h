@@ -21,7 +21,7 @@ public:
 
 	virtual bool						MagicTarget_Unk_01(float arg);		// 00664740
 	virtual Actor *						MagicTarget_Unk_02(void);			// 005EADD0 { return 0; } PlayerCharacter= { return static_cast<Actor*>(this); }
-	virtual bool						MagicTarget_Unk_03(void);			// 0092D110 { return false; } PlayerCharacter={ return true; }
+	virtual bool						IsActorMagicTarget(void) const;		// 0092D110 { return false; } PlayerCharacter={ return true; }
 	virtual bool						MagicTarget_Unk_04(void);			// 0092D110 { return false; }
 	virtual void						MagicTarget_Unk_05(int);			// 00588F30 (UInt32 arg) { return; }
 	virtual bool						MagicTarget_Unk_06(void) = 0;		// 00F51EE8 (pure)

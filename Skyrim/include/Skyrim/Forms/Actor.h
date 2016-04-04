@@ -189,7 +189,7 @@ public:
 	// @override MagicTarget (vtbl=0x010CFC20)
 	virtual bool	MagicTarget_Unk_01(float arg) override;						// 006ED250
 	virtual Actor *	MagicTarget_Unk_02(void) override;							// 006C5160 { return static_cast<Actor*>(this); }
-	virtual bool	MagicTarget_Unk_03(void) override;							// 009B86F0 { return true; }
+	virtual bool	IsActorMagicTarget(void) const override;					// 009B86F0 { return true; }
 	virtual bool	MagicTarget_Unk_04(void) override;							// 006A9270
 	virtual void	MagicTarget_Unk_05(int) override;							// 006E89F0 { if (processManager) processManager->Unk_00724530(arg); }
 	virtual bool	MagicTarget_Unk_06(void) override;							// 006E8880
@@ -214,13 +214,13 @@ public:
 	virtual void	Unk_A4(UInt32 arg);								// 00588F30 { return; } - called from 0074E217,0074E238,0074864B
 	virtual void	DrawSheatheWeapon(bool draw);					// 006B2050
 	virtual void	Unk_A6(void);									// 006B8BF0 - called when delete? - called from 006A97EF
-	virtual void	Unk_A7(void);									// 006CC930
-	virtual void	Unk_A8(void);									// 006AE470 - 00693025,00742C1C
+	virtual void	Unk_A7(void);									// 006CC930 { ... RemoveSink(BSTEventSink<bhkCharacterMoveFinishEvent? *)this); ... }
+	virtual void	Unk_A8(UInt32 arg1, UInt32 arg2);				// 006AE470 - 00693025,00742C1C
 	virtual void	Unk_A9(void);									// 006AC410
-	virtual void	Unk_AA(void);									// 006DB0A0
-	virtual void	Unk_AB(void);									// 006E7B70
-	virtual void	Unk_AC(void);									// 006C7690 - from 0069495C
-	virtual void	Unk_AD(void);									// 006A8030
+	virtual void	Unk_AA(UInt32 arg1, UInt32 arg2);				// 006DB0A0
+	virtual void	Unk_AB(void);									// 006E7B70 - ExtraInterAction
+	virtual void	Unk_AC(UInt32 arg);								// 006C7690 - from 0069495C
+	virtual void	Unk_AD(UInt32 arg);								// 006A8030 { this->Unk11E(); }
 	virtual void	Unk_AE(UInt32 arg);								// 006A79F0 PlayerCharacter={ return; } from 006D648C
 	virtual void	Unk_AF(void);									// 006D64D0 PlayerCharacter={ return; } from 006D6498
 	virtual void	Unk_B0(void);									// 006B5AF0
@@ -357,11 +357,14 @@ public:
 
 	TESRace *	GetRace() const;
 
-	///<summary>Checks to see if this actor has the given Spell or tesut.</summary>
+	///<summary>Checks to see if this actor has the given Spell or Shout.</summary>
 	bool HasSpell(TESForm * spell) const;
 
 	///<summary>Checks to see if this actor has the given Spell.</summary>
-	bool HasSpell(SpellItem * spell) const { return HasSpell_Impl(spell); }
+	bool HasSpell(SpellItem * spell) const
+	{
+		return HasSpell_Impl(spell);
+	}
 
 	///<summary>Checks to see if this actor has the given Shout.</summary>
 	DEFINE_MEMBER_FN_const(HasShout, bool, 0x006EAF10, TESShout* shout);
@@ -523,6 +526,23 @@ public:
 		kNumSlots
 	};
 
+	// 10
+	struct Data13C
+	{
+		BSFixedString	unk00;
+		UInt32			unk04;
+		BSFixedString	unk08;
+		UInt32			unk0C;
+	};
+
+	// 0C
+	struct Data150
+	{
+		UInt32	unk00;
+		UInt32	unk04;
+		UInt32	unk08;
+	};
+
 
 	// @members
 	Flags1						flags1;								// 07C
@@ -545,9 +565,17 @@ public:
 	TESRace						* race;								// 130
 	UInt32						unk134;								// 134
 	Flags2						flags2;								// 138
-	UInt32						unk13C[(0x19C - 0x13C) >> 2];		// 13C
+	Data13C						unk13C;								// 13C
+	UInt32						unk14C;								// 14C
+	Data150						unk150;								// 150
+	Data150						unk15C;								// 15C
+	Data150						unk168;								// 168
+	Data150						unk174;								// 174
+	UInt32						unk180[(0x19C - 0x180) >> 2];		// 180
 
 private:
+	DEFINE_MEMBER_FN(ctor, Actor *, 0x006CE4F0);
+
 	DEFINE_MEMBER_FN_const(HasSpell_Impl, bool, 0x006E9130, SpellItem* spell);
 	DEFINE_MEMBER_FN(EvaluatePackage_Impl, void, 0x006BE790, bool, bool);
 };

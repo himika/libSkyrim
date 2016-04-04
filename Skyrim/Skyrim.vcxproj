@@ -80,6 +80,7 @@
     <ClCompile Include="src\FormComponents\TESContainer.cpp" />
     <ClCompile Include="src\FormComponents\TESSpellList.cpp" />
     <ClCompile Include="src\FormComponents\TintMask.cpp" />
+    <ClCompile Include="src\Forms\ActiveEffect.cpp" />
     <ClCompile Include="src\Forms\Actor.cpp" />
     <ClCompile Include="src\Forms\BGSBaseAlias.cpp" />
     <ClCompile Include="src\Forms\BGSDefaultObjectManager.cpp" />

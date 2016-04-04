@@ -573,6 +573,9 @@
     <ClCompile Include="src\Forms\BGSBaseAlias.cpp">
       <Filter>Source Files\Forms</Filter>
     </ClCompile>
+    <ClCompile Include="src\Forms\ActiveEffect.cpp">
+      <Filter>Source Files\Forms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Skyrim.h">

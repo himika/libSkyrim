@@ -85,9 +85,9 @@ public:
 		virtual void Visit(void) = 0;
 	};
 
-	// @members
 	struct EffectItem
 	{
+		// @members
 		float			magnitude;		// 00
 		UInt32			area;			// 04
 		UInt32			duration;		// 08
@@ -104,13 +104,18 @@ public:
 			cost = 0.0;
 			unk14 = 0;
 		}
+
+		DEFINE_MEMBER_FN_const(GetMagnitude, float, 0x00402F20);
+		DEFINE_MEMBER_FN_const(GetArea, UInt32, 0x00402F50);
+		DEFINE_MEMBER_FN_const(GetDuration, UInt32, 0x00402F70);
 	};
 
-	BSTArray<EffectItem*> effectItemList;	// 34
-	UInt32				hostile;	// 40
-	EffectSetting*		unk44;	// 44
-	UInt32				unk48;	// 48
-	UInt32				unk4C;	// 4C
+	// @members
+	BSTArray<EffectItem *>	effectItemList;		// 34
+	UInt32					hostile;			// 40
+	EffectSetting			* unk44;			// 44
+	UInt32					unk48;				// 48
+	UInt32					unk4C;				// 4C
 
 	DEFINE_MEMBER_FN(GetCostliestEffectItem, EffectItem *, 0x00407860, int arg1, bool arg2);
 	DEFINE_MEMBER_FN(GetEffectiveMagickaCost, double, 0x00406EF0, Actor * caster);
