@@ -279,153 +279,8 @@ public:
 
 	TES_FORMHEAP_REDEFINE_NEW();
 
-	class const_iterator
-	{
-	public:
-		typedef const_iterator _iter;
-		typedef typename BSTArray::value_type		value_type;
-		typedef typename BSTArray::pointer			pointer;
-		typedef typename BSTArray::reference		reference;
-		typedef typename BSTArray::const_pointer	const_pointer;
-		typedef typename BSTArray::const_reference	const_reference;
-		typedef typename BSTArray::difference_type	difference_type;
-
-		const_iterator() : m_cur(nullptr) {}
-		const_iterator(pointer p) : m_cur(p) {}
-
-		operator const_pointer() const {
-			return m_cur;
-		}
-		const_reference operator*() const {
-			return *m_cur;
-		}
-		const_pointer operator->() const {
-			return m_cur;
-		}
-
-		_iter& operator++() {
-			++m_cur;
-			return *this;
-		}
-		_iter operator++(int) {
-			_iter tmp = *this;
-			++*this;
-			return tmp;
-		}
-		_iter& operator--() {
-			--m_cur;
-			return *this;
-		}
-		_iter operator--(int) {
-			_iter tmp = *this;
-			--*this;
-			return tmp;
-		}
-
-		difference_type operator-(const _iter& rhs) const {
-			return (m_cur - rhs.m_cur);
-		}
-		_iter& operator+=(difference_type diff) {
-			m_cur += diff;
-			return *this;
-		}
-		_iter operator+(difference_type diff) const {
-			_iter tmp = *this;
-			return (tmp.operator+=(diff));
-		}
-		_iter& operator-=(difference_type diff) {
-			m_cur -= diff;
-			return *this;
-		}
-		_iter operator-(difference_type diff) const {
-			_iter tmp = *this;
-			return (tmp.operator-=(diff));
-		}
-
-		bool operator==(const _iter& rhs) const {
-			return (m_cur == rhs.m_cur);
-		}
-		bool operator!=(const _iter& rhs) const {
-			return (!(*this == rhs));
-		}
-		bool operator<(const _iter& rhs) const {
-			return (m_cur < rhs.m_cur);
-		}
-		bool operator<=(const _iter& rhs) const {
-			return (m_cur <= rhs.m_cur);
-		}
-		bool operator>(const _iter& rhs) const {
-			return (m_cur > rhs.m_cur);
-		}
-		bool operator>=(const _iter& rhs) const {
-			return (m_cur >= rhs.m_cur);
-		}
-	protected:
-		pointer m_cur;
-
-		friend class iterator;
-	};
-
-	class iterator : public const_iterator
-	{
-	public:
-		typedef iterator _iter;
-		
-		// compiler hits for GCC
-		using const_iterator::m_cur;
-
-		iterator() { }
-		iterator(pointer p) : const_iterator(p) { }
-
-		operator pointer() const {
-			return m_cur;
-		}
-		reference operator*() const {
-			return *m_cur;
-		}
-		pointer operator->() {
-			return m_cur;
-		}
-
-		_iter& operator++() {
-			++m_cur;
-			return *this;
-		}
-		_iter operator++(int) {
-			_iter tmp = *this;
-			++*this;
-			return tmp;
-		}
-		_iter& operator--() {
-			--m_cur;
-			return *this;
-		}
-		_iter operator--(int) {
-			_iter tmp = *this;
-			--*this;
-			return tmp;
-		}
-
-		difference_type operator-(const const_iterator& rhs) const {
-			return (m_cur - rhs.m_cur);
-		}
-		_iter& operator+=(difference_type diff) {
-			m_cur += diff;
-			return *this;
-		}
-		_iter operator+(difference_type diff) const {
-			_iter tmp = *this;
-			return (tmp.operator+=(diff));
-		}
-		_iter& operator-=(difference_type diff) {
-			m_cur -= diff;
-			return *this;
-		}
-		_iter operator-(difference_type diff) const {
-			_iter tmp = *this;
-			return (tmp.operator-=(diff));
-		}
-	};
+	typedef pointer			iterator;
+	typedef const_pointer	const_iterator;
 
 protected:
 	pointer _head() const {
@@ -476,20 +331,20 @@ public:
 	}
 
 	iterator begin() {
-		return iterator(_head());
+		return _head();
 	}
 	const_iterator cbegin() const {
-		return const_iterator(_head());
+		return _head();
 	}
 	const_iterator begin() const {
 		return cbegin();
 	}
 
 	iterator end() {
-		return iterator(_last());
+		return _last();
 	}
 	const_iterator cend() const {
-		return const_iterator(_last());
+		return _last();
 	}
 	const_iterator end() const {
 		return cend();
@@ -610,7 +465,7 @@ public:
 		if (begin() <= it && it < end())
 		{
 			difference_type index = it - begin();
-			iterator::pointer(it)->~value_type();
+			it->~value_type();
 
 			difference_type next = index + 1;
 			std::size_t num = size() - next;
