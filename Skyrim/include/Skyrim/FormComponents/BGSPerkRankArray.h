@@ -5,6 +5,12 @@
 class BGSPerk;
 class PerkRankVisitor;
 
+
+/*==============================================================================
+class BGSPerkRankArray +0000 (_vtbl=0107C45C)
+0000: class BGSPerkRankArray
+0000: |   class BaseFormComponent
+==============================================================================*/
 // 0C
 class BGSPerkRankArray : public BaseFormComponent
 {
@@ -17,10 +23,12 @@ public:
 		UInt8	pad05[3];	// 05
 	};
 
+	void VisitPerkRanks(PerkRankVisitor &visitor) const;
+
+
+	// @members
 	Entry	* perkRanks;	// 04
 	UInt32	numPerkRanks;	// 08
-
-	void VisitPerkRanks(PerkRankVisitor &visitor) const;
 };
 
 

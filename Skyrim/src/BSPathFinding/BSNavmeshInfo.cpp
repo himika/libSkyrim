@@ -1,4 +1,5 @@
 #include "Skyrim/BSPathFinding/BSNavmeshInfo.h"
+#include "Skyrim/BSPathFinding/BSPrecomputedNavmeshInfoPathMap.h"
 
 BSNavmeshInfoMap *& BSTSingletonExplicit<BSNavmeshInfoMap>::m_pSingleton = *(BSNavmeshInfoMap**)0x01B20FE0;
 

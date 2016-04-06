@@ -6,10 +6,10 @@ class BSSpinLock
 public:
 	BSSpinLock() : threadID(0), lockCount(0) {}
 
-	void Lock(void);
-	void Lock(const char *owner);
+	void Lock(void);				// 00401790
+	void Lock(const char *owner);	// 00401710
 	bool TryToLock(void);
-	void Unlock(void);
+	void Unlock(void);				// 00401770
 
 	inline void Release(void) { Unlock(); }
 

@@ -30,6 +30,7 @@ public:
 	}
 
 private:
+	// @members
 	BGSKeyword	** keywords;	// 04
 	UInt32		numKeywords;	// 08
 };

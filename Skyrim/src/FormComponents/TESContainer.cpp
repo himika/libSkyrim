@@ -1,5 +1,5 @@
 #include "Skyrim.h"
-#include "Skyrim/Forms/TESForm.h"
+#include "Skyrim/FormComponents/TESForm.h"
 #include "Skyrim/FormComponents/TESContainer.h"
 
 class ItemCounter

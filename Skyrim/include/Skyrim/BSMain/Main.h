@@ -40,4 +40,3 @@ private:
 };
 
 extern Main *& g_main;
-

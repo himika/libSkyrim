@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Memory.h"
-#include "../Forms/TESForm.h"
+#include "../FormComponents/TESForm.h"
 
 /*==============================================================================
 class IFormFactory +0000 (_vtbl=01076B14)

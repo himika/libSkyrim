@@ -102,9 +102,9 @@ public:
 	using IForEachScriptObjectFunctor = BSScript::IForEachScriptObjectFunctor;
 
 
-	virtual ~VMState();																												// 00 00C5B770
+	virtual ~VMState();																														// 00 00C5B770
 
-	// @override class IVMStateBase : (vtbl=0114C1B0)
+	// @override class BSScript::IVirtualMachine : (vtbl=0114C1B0)
 	virtual void	Unk_01(BSScript::ILoader *loader) override;																				// 01 00C5B730 { classListLock.Lock(); unlinkedClassList.SetLoader(arg); classListLock.Unlock(); } - called from 008D83C8, arg=01B334F0 (vtbl 01149B98, no rtti)
 	virtual void	TraceStack(const char* str, UInt32 stackID, UInt32 aiSeverity = 0) override;											// 02 00C49A30
 	virtual void	Unk_03(VMHandle handle) override;																						// 03 00C47080 - called when script property is missing.

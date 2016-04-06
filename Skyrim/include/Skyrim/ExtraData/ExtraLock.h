@@ -10,6 +10,8 @@ struct LockState
 	bool	isLocked;	// 08 - init'd 0
 	UInt32	unk0C;		// 0C - init'd 0
 	UInt32	unk10;		// 10 - init'd 0
+
+	DEFINE_MEMBER_FN_const(GetLockLevel, SInt32, 0x00422390, const TESObjectREFR *containerRef);
 };
 
 

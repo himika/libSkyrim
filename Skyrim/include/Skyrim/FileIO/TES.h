@@ -35,6 +35,7 @@ public:
 	virtual ~ICellAttachDetachEventSource();		// 00435BE0
 };
 
+
 /*==============================================================================
 class GridArray +0000 (_vtbl=0107F38C)
 0000: class GridArray
@@ -54,6 +55,7 @@ public:
 	virtual void Unk_08(void) = 0;	// 00F51EE8 (pure)
 	virtual void Unk_09(void) = 0;	// 00F51EE8 (pure)
 };
+
 
 /*==============================================================================
 class GridCellArray +0000 (_vtbl=0107F3C0)
@@ -152,7 +154,7 @@ public:
 	UInt32						unk18;			// 18 - init'd 0
 	UInt32						unk1C;			// 1C - init'd 0
 	UInt32						unk20;			// 20 - init'd 0
-	BSTHashMap<UInt32, void*>	unk24;			// 24
+	BSTHashMap<UInt32, void *>	unk24;			// 24
 	NiPoint3					boundsMax;		// 44
 	NiPoint3					boundsMin;		// 50
 	UInt32						unk5C;
@@ -181,7 +183,7 @@ class TES : public ICellAttachDetachEventSource,
 public:
 	struct NPCDeadCount
 	{
-		TESNPC*	npc;		// 00
+		TESNPC	* npc;		// 00
 		UInt32	deadCount;	// 04
 	};
 
@@ -202,26 +204,26 @@ public:
 	NiNode				* objectLODRoot;		// 44 - init'd 0
 	NiNode				* landLOD;				// 48
 	NiNode				* waterLOD;				// 4C
-	BSTempNodeManager *	tempNodeManager;
-	UInt32				unk54;
-	UInt32				unk58;
-	UInt32				unk5C;					// 7FFFFFFF
-	UInt32				unk60;					// 7FFFFFFF
-	UInt32				unk64;					// 7FFFFFFF
-	UInt32				unk68;					// 7FFFFFFF
-	TESObjectCELL		* currentCell;
-	TESObjectCELL		**  interiorCellBuffer; // idk, visited cells perhaps?
-	UInt32				unk74;
-	UInt32				unk78;					// 0
-	UInt32				unk7C;					// 0
-	UInt32				unk80;					// 7FFFFFFF
-	UInt32				unk84;					// 7FFFFFFF
-	UInt32				unk88;
-	UInt32				unk8C;
-	UInt32				unk90;
-	Sky					* sky;					// Sky
-	UInt32				imageSpaceModifier;		// ImageSpaceModifierInstanceForm
-	UInt32				unk9C;					// ImageSpaceModifierInstanceDOF ** ??
+	BSTempNodeManager	* tempNodeManager;		// 50
+	UInt32				unk54;					// 54
+	UInt32				unk58;					// 58
+	UInt32				unk5C;					// 5C - 7FFFFFFF
+	UInt32				unk60;					// 60 - 7FFFFFFF
+	UInt32				unk64;					// 64 - 7FFFFFFF
+	UInt32				unk68;					// 68 - 7FFFFFFF
+	TESObjectCELL		* currentCell;			// 6C
+	TESObjectCELL		** interiorCellBuffer;	// 70 - idk, visited cells perhaps?
+	UInt32				unk74;					// 74
+	UInt32				unk78;					// 78 - 0
+	UInt32				unk7C;					// 7C - 0
+	UInt32				unk80;					// 80 - 7FFFFFFF
+	UInt32				unk84;					// 84 - 7FFFFFFF
+	UInt32				unk88;					// 88
+	UInt32				unk8C;					// 8C
+	UInt32				unk90;					// 90
+	Sky					* sky;					// 94
+	UInt32				imageSpaceModifier;		// 98 - ImageSpaceModifierInstanceForm
+	UInt32				unk9C;					// 9C - ImageSpaceModifierInstanceDOF ** ??
 	UInt32				unkA0;
 	UInt32				unkA4;
 	UInt8				unkA8;

@@ -2,6 +2,7 @@
 
 #include "BSExtraData.h"
 #include "../BSCore/BSTArray.h"
+#include "../NetImmerse/NiCriticalSection.h"
 
 class TESQuest;
 class BGSBaseAlias;
@@ -12,7 +13,7 @@ class ExtraAliasInstanceArray +0000 (_vtbl=01079AB8)
 0000: class ExtraAliasInstanceArray
 0000: |   class BSExtraData
 ==============================================================================*/
-// 0C
+// 14
 class ExtraAliasInstanceArray : public BSExtraData
 {
 public:
@@ -34,6 +35,11 @@ public:
 	virtual UInt32	GetType(void) const override;		// 00421170 { return 0x00000088; }
 
 
+	DEFINE_MEMBER_FN(Unk_004240C0, void *, 0x004240C0, TESObjectREFR *);	// get package ?
+
+
 	// @members
 	BSTArray<AliasInfo *> aliases;	// 08
+
+	static NiCriticalSection	& ms_lock;	// 012E350C
 };

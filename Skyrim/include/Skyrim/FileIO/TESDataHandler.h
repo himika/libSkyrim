@@ -4,7 +4,7 @@
 #include "../BSCore/BSTList.h"
 #include "../BSCore/BSTSingleton.h"
 #include "../BSCore/BSTEvent.h"
-#include "../Forms/FormTypes.h"
+#include "../FormComponents/FormTypes.h"
 #include "../NetImmerse/NiTArray.h"
 
 class TESFile;
@@ -26,7 +26,7 @@ public:
 
 	struct ModList
 	{
-		BSSimpleList<TESFile*>	modInfoList;			// 00
+		BSSimpleList<TESFile *>	modInfoList;			// 00
 		UInt32					loadedModCount;			// 08
 		TESFile					* loadedMods[0xFF];		// 0C
 	};

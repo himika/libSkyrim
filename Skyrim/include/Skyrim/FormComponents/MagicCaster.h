@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../BSCore/BSTArray.h"
+
 class Actor;
 class MagicItem;
 
@@ -9,8 +11,6 @@ class MagicCaster +0000 (_vtbl=010C95B4)
 ==============================================================================*/
 class MagicCaster
 {
-	CLASS_SIZE_ASSERT(0x30)
-
 public:
 	virtual ~MagicCaster();								// 00660D60
 
@@ -24,10 +24,10 @@ public:
 	virtual void	MagicCaster_Unk_08(UInt32 arg1);				// 00588F30 { return; }
 	virtual void	MagicCaster_Unk_09(UInt32 arg1, UInt32 arg2, UInt32 arg3);		// 00D62BE0 { return; }
 	virtual bool	MagicCaster_Unk_0A(UInt32 arg1, UInt32 arg2, float* arg3, UInt32* arg4, UInt32 arg5, UInt32 arg6, UInt32 arg7);	// 0065E0F0
-	//				{ if (arg3) { *arg3 = 1.0; } if (arg4) { *arg4 = 0; } }
-	virtual Actor	* MagicCaster_Unk_0B(void);						// 005EADD0 { return nullptr; }
-	virtual Actor	* GetCaster();									// 005EADD0 { return nullptr; }
-	virtual Actor	* MagicCaster_Unk_0D(Actor** arg1);				// 0065E120
+																	//				{ if (arg3) { *arg3 = 1.0; } if (arg4) { *arg4 = 0; } }
+	virtual Actor *	MagicCaster_Unk_0B(void);						// 005EADD0 { return nullptr; }
+	virtual Actor *	GetCaster();									// 005EADD0 { return nullptr; }
+	virtual Actor *	MagicCaster_Unk_0D(Actor** arg1);				// 0065E120
 	virtual UInt32	MagicCaster_Unk_0E(void);						// 005EADD0 { return nullptr; }
 	virtual void	MagicCaster_Unk_0F(void);						// 006C50E0 { return; }
 	virtual void	MagicCaster_Unk_10(UInt32 arg1);				// 00588F30 { return; }
@@ -45,29 +45,17 @@ public:
 	virtual void	MagicCaster_Unk_1C(UInt32 arg1, UInt32 arg2, UInt32 arg3);		// 0065E0D0
 
 	// @members
-
-	struct Data04
-	{
-		struct Data
-		{
-			UInt32		unk00;
-		};
-
-		void	* unk00;		// 00 - init'd to 0
-		UInt32	unk04;			// 04 - init'd to 0
-		Data	unk08;			// 08 - init'd to 0
-	};
-
-	//	void	** _vtbl;		// 00 - TESV.010C95B4
-	Data04		unk04;
-	RefHandle	unk10;			// 10 - init'd to 0 | maybe RefHandle
-	MagicItem	* magicItem;	// 14 - init'd to 0 | SpellItem@@ / ScrollItem@@ / EnchantmentItem@@
-	UInt32		unk18;			// 18 - init'd to 0 | current state? 1=cast start 7=???
-	float		unk1C;			// 1C - init'd to 0
-	float		cost;			// 20 - init'd to 1.0f
-	UInt32		unk24;			// 24 - init'd to 0 | always 0?
-	float		unk28;			// 28 - init'd to 0 | 3E800000 = 0.25f
-	UInt32		unk2C;			// 2C 0
+	//void				** _vtbl;		// 00 - 010C95B4
+	BSTArray<void *>	unk04;			// 04
+	RefHandle			unk10;			// 10 - init'd to 0 | maybe RefHandle
+	MagicItem			* magicItem;	// 14 - init'd to 0
+	UInt32				unk18;			// 18 - init'd to 0 | current state? 1=cast start 7=???
+	float				unk1C;			// 1C - init'd to 0
+	float				cost;			// 20 - init'd to 1.0f
+	UInt32				unk24;			// 24 - init'd to 0 | always 0?
+	float				unk28;			// 28 - init'd to 0 | 3E800000 = 0.25f
+	UInt32				unk2C;			// 2C 0
 
 	// ctor		0065FD90
 };
+STATIC_ASSERT(sizeof(MagicCaster) == 0x30);

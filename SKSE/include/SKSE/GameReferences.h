@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Skyrim.h>
-#include <Skyrim/Forms/TESObjectREFR.h>
-#include <Skyrim/Forms/Actor.h>
+#include <Skyrim/TESForms/World/TESObjectREFR.h>
+#include <Skyrim/TESForms/World/Actor.h>
 #include <Skyrim/Forms/Character.h>
 #include <Skyrim/Forms/PlayerCharacter.h>
 #include <Skyrim/Forms/Explosion.h>
@@ -17,6 +17,6 @@
 #include <Skyrim/Forms/MissileProjectile.h>
 #include <Skyrim/Forms/ArrowProjectile.h>
 
-#include <Skyrim/Forms/Character/Components/ActorProcessManager.h>
-#include <Skyrim/Forms/Character/Components/DetectionState.h>
-#include <Skyrim/Forms/Character/Components/ActorKnowledge.h>
+#include <Skyrim/TESForms/World/Components/ActorProcessManager.h>
+#include <Skyrim/TESForms/World/Components/DetectionState.h>
+#include <Skyrim/TESForms/World/Components/ActorKnowledge.h>
