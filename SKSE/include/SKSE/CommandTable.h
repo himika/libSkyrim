@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Skyrim.h>
-#include <Skyrim/Forms/Script.h>
+#include <Skyrim/TESForms/Gameplay/Script.h>
 #include <string>
 
 class TESObjectREFR;

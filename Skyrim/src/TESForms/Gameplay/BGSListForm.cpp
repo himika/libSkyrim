@@ -1,5 +1,5 @@
 #include "Skyrim.h"
-#include "Skyrim/Forms/BGSListForm.h"
+#include "Skyrim/TESForms/Gameplay/BGSListForm.h"
 
 UInt32 BGSListForm::GetSize() const
 {

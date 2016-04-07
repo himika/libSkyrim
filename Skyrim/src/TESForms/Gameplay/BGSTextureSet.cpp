@@ -1,6 +1,6 @@
 #include "Skyrim.h"
-#include "Skyrim/Forms/BGSTextureSet.h"
 #include "Skyrim/Memory.h"
+#include "Skyrim/TESForms/Gameplay/BGSTextureSet.h"
 
 BSShaderTextureSet * BSShaderTextureSet::Create()
 {

@@ -1,6 +1,6 @@
 #include "Skyrim.h"
-#include "Skyrim/Forms/BGSLocAlias.h"
-#include "Skyrim/Forms/TESQuest.h"
+#include "Skyrim/TESForms/Character/BGSLocAlias.h"
+#include "Skyrim/TESForms/Character/TESQuest.h"
 
 void BGSLocAlias::Clear(void)
 {

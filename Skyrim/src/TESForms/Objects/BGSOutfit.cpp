@@ -1,5 +1,5 @@
-#include "Skyrim/Forms/BGSOutfit.h"
-#include "Skyrim/Forms/TESLevItem.h"
+#include "Skyrim/TESForms/Objects/BGSOutfit.h"
+#include "Skyrim/TESForms/Objects/TESLevItem.h"
 
 
 void BGSOutfit::Calcurate(UInt16 level, BSTArray<TESForm*> &result, bool ignoreChanceValue, bool unk) const

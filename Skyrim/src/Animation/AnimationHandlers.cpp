@@ -1,5 +1,5 @@
 #include "Skyrim/Animation/AnimationHandlers.h"
-#include "Skyrim/Forms/BGSSoundDescriptorForm.h"
+#include "Skyrim/TESForms/Gameplay/BGSSoundDescriptorForm.h"
 
 
 TESObjectWEAP * IHandlerFunctor<Actor, BSFixedStringCI>::GetEquippedWeapon(Actor *actor, UInt32 &hand)

@@ -1,7 +1,7 @@
 #include "Skyrim.h"
-#include "Skyrim/Forms/BGSRefAlias.h"
-#include "Skyrim/Forms/TESQuest.h"
-#include "Skyrim/Forms/TESObjectREFR.h"
+#include "Skyrim/TESForms/Character/BGSRefAlias.h"
+#include "Skyrim/TESForms/Character/TESQuest.h"
+#include "Skyrim/TESForms/World/TESObjectREFR.h"
 
 void BGSRefAlias::Clear(void)
 {

@@ -1,4 +1,4 @@
-#include "Skyrim/Forms/BGSEquipSlot.h"
+#include "Skyrim/TESForms/Character/BGSEquipSlot.h"
 
 const _GetEitherHandSlot GetEitherHandSlot = (_GetEitherHandSlot)0x0054C870;
 const _GetRightHandSlot GetRightHandSlot = (_GetRightHandSlot)0x0054C840;

@@ -1,4 +1,4 @@
-#include "Skyrim/Forms/TESObjectCELL.h"
+#include "Skyrim/TESForms/World/TESObjectCELL.h"
 
 TESNPC * TESObjectCELL::GetActorOwner() const
 {

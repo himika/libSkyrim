@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Forms/TESBoundObject.h"
+#include "../Objects/TESBoundObject.h"
 #include "../../FormComponents/TESModel.h"
 #include "../../FormComponents/TESFullName.h"
 #include "../../FormComponents/TESIcon.h"

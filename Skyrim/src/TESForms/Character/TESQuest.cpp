@@ -1,6 +1,6 @@
 #include "Skyrim.h"
-#include "Skyrim/Forms/TESQuest.h"
-#include "Skyrim/Forms/BGSBaseAlias.h"
+#include "Skyrim/TESForms/Character/TESQuest.h"
+#include "Skyrim/TESForms/Character/BGSBaseAlias.h"
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

@@ -1,6 +1,6 @@
 #include "Skyrim.h"
 #include "Skyrim/ExtraData/ExtraForcedTarget.h"
-#include "Skyrim/Forms/TESObjectREFR.h"
+#include "Skyrim/TESForms/World/TESObjectREFR.h"
 
 static const UInt32 s_ExtraForcedTargetVtbl = 0x010797C0;
 

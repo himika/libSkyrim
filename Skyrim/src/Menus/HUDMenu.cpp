@@ -1,5 +1,5 @@
 #include "Skyrim/Menus/HUDMenu.h"
-#include "Skyrim/Forms/PlayerCharacter.h"
+#include "Skyrim/TESForms/World/PlayerCharacter.h"
 
 HUDObject::HUDObject(GFxMovieView *movie)
 {

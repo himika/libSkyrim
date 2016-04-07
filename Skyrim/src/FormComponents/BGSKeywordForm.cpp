@@ -1,5 +1,5 @@
 #include "Skyrim/FormComponents/BGSKeywordForm.h"
-#include "Skyrim/Forms/BGSKeyword.h"
+#include "Skyrim/TESForms/Character/BGSKeyword.h"
 
 bool BGSKeywordForm::HasKeyword(FormID formID) const
 {

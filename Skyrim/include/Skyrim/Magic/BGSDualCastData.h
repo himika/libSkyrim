@@ -2,7 +2,7 @@
 
 // c:_skyrim\code\tesv\magic\BGSDualCastData.h
 
-#include "../Forms/TESBoundObject.h"
+#include "../TESForms/Objects/TESBoundObject.h"
 
 /*==============================================================================
 class BGSDualCastData +0000 (_vtbl=01076E2C)

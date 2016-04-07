@@ -1,6 +1,6 @@
 #include "Skyrim.h"
 #include "Skyrim/ExtraData/ExtraEnableStateParent.h"
-#include "Skyrim/Forms/TESObjectREFR.h"
+#include "Skyrim/TESForms/World/TESObjectREFR.h"
 
 TESObjectREFR * ExtraEnableStateParent::GetReference()
 {

@@ -1,4 +1,4 @@
-#include "Skyrim/Forms/BGSBaseAlias.h"
+#include "Skyrim/TESForms/Character/BGSBaseAlias.h"
 
 
 bool BGSBaseAlias::IsLocationAlias() const

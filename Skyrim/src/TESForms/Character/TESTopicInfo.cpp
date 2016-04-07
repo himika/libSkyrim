@@ -1,4 +1,4 @@
-#include "Skyrim/Forms/TESTopicInfo.h"
+#include "Skyrim/TESForms/Character/TESTopicInfo.h"
 #include "Skyrim/BSCore/BSTHashMap.h"
 #include "Skyrim/BSCore/BSFixedString.h"
 

@@ -1,6 +1,6 @@
 #include "Skyrim.h"
 #include "Skyrim/FileIO/TES.h"
-#include "Skyrim/Forms/TESObjectCELL.h"
+#include "Skyrim/TESForms/World/TESObjectCELL.h"
 
 TES	*& g_TES = *(TES **)0x01B2E864;
 

@@ -1,4 +1,4 @@
-#include "Skyrim/Forms/BGSLocation.h"
+#include "Skyrim/TESForms/World/BGSLocation.h"
 
 UInt32 BGSLocation::GetRefTypeAliveCount(const BGSLocationRefType *locationRefType) const
 {

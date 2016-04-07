@@ -44,11 +44,6 @@
 #include <Skyrim/Forms/BGSSoundCategory.h>
 #include <Skyrim/Forms/BGSSoundDescriptorForm.h>
 #include <Skyrim/Forms/BGSSoundOutput.h>
-#include <Skyrim/Radiant Story/BGSStoryManagerTreeForm.h>
-#include <Skyrim/Radiant Story/BGSStoryManagerNodeBase.h>
-#include <Skyrim/Radiant Story/BGSStoryManagerBranchNode.h>
-#include <Skyrim/Radiant Story/BGSStoryManagerEventNode.h>
-#include <Skyrim/Radiant Story/BGSStoryManagerQuestNode.h>
 #include <Skyrim/Forms/BGSRefAlias.h>
 #include <Skyrim/Forms/BGSLocAlias.h>
 #include <Skyrim/Forms/TESQuest.h>
@@ -75,7 +70,6 @@
 #include <Skyrim/Forms/TESObjectLAND.h>
 #include <Skyrim/Forms/TESPackage.h>
 #include <Skyrim/Forms/TESRace.h>
-#include <Skyrim/Regions/TESRegion.h>
 #include <Skyrim/Forms/TESShout.h>
 #include <Skyrim/Forms/TESTopic.h>
 #include <Skyrim/Forms/TESTopicInfo.h>
@@ -83,3 +77,9 @@
 #include <Skyrim/Forms/TESWeather.h>
 #include <Skyrim/Forms/TESWordOfPower.h>
 #include <Skyrim/Forms/TESWorldSpace.h>
+#include <Skyrim/Radiant Story/BGSStoryManagerTreeForm.h>
+#include <Skyrim/Radiant Story/BGSStoryManagerNodeBase.h>
+#include <Skyrim/Radiant Story/BGSStoryManagerBranchNode.h>
+#include <Skyrim/Radiant Story/BGSStoryManagerEventNode.h>
+#include <Skyrim/Radiant Story/BGSStoryManagerQuestNode.h>
+#include <Skyrim/Regions/TESRegion.h>

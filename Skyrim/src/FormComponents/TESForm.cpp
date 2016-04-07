@@ -1,23 +1,20 @@
 #include "Skyrim.h"
 #include "Skyrim/RTTI.h"
 #include "Skyrim/FormComponents/TESForm.h"
-
-#include "Skyrim/Forms/TESObjectARMO.h"
-#include "Skyrim/Forms/EffectSetting.h"
-#include "Skyrim/Forms/TESObjectREFR.h"
-#include "Skyrim/Forms/TESActorBase.h"
-#include "Skyrim/Forms/TESObjectARMO.h"
-#include "Skyrim/Forms/TESObjectWEAP.h"
-#include "Skyrim/Forms/TESObjectACTI.h"
-#include "Skyrim/Forms/MagicItem.h"
-#include "Skyrim/Forms/TESObjectMISC.h"
-#include "Skyrim/Forms/TESAmmo.h"
-#include "Skyrim/Forms/TESObjectBOOK.h"
-
-#include "Skyrim/Forms/TESRace.h"
-#include "Skyrim/Forms/BGSLocation.h"
-
 #include "Skyrim/FormComponents/BGSKeywordForm.h"
+#include "Skyrim/TESForms/World/TESObjectREFR.h"
+#include "Skyrim/TESForms/World/BGSLocation.h"
+#include "Skyrim/TESForms/Objects/TESObjectARMO.h"
+#include "Skyrim/TESForms/Objects/TESObjectWEAP.h"
+#include "Skyrim/TESForms/Objects/TESObjectACTI.h"
+#include "Skyrim/TESForms/Objects/TESObjectMISC.h"
+#include "Skyrim/TESForms/Objects/TESAmmo.h"
+#include "Skyrim/TESForms/Objects/TESObjectBOOK.h"
+#include "Skyrim/TESForms/Character/TESActorBase.h"
+#include "Skyrim/TESForms/Character/TESRace.h"
+#include "Skyrim/Magic/MagicItem.h"
+#include "Skyrim/Magic/EffectSetting.h"
+
 
 
 const _LookupFormByID LookupFormByID = (_LookupFormByID)0x00451A30;

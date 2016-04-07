@@ -1,5 +1,5 @@
 #include "Skyrim.h"
-#include "Skyrim/Forms/PlayerCharacter.h"
+#include "Skyrim/TESForms/World/PlayerCharacter.h"
 
 PlayerCharacter *& g_thePlayer = *(PlayerCharacter **)0x01B2E8E4;
 

@@ -1,4 +1,4 @@
-#include "Skyrim/Forms/BGSPerk.h"
+#include "Skyrim/TESForms/Character/BGSPerk.h"
 
 void __declspec(naked) BGSEntryPointPerkEntry::Calculate(BGSEntryPointPerkEntry::EntryPointType, TESObjectREFR *source, ...)
 {

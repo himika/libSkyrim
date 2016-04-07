@@ -1,6 +1,6 @@
 #include "Skyrim.h"
 #include "Skyrim/ExtraData/ExtraReferenceHandle.h"
-#include "Skyrim/Forms/TESObjectREFR.h"
+#include "Skyrim/TESForms/World/TESObjectREFR.h"
 
 static const UInt32 s_ExtraReferenceHandleVtbl = 0x01079740;
 

@@ -5,7 +5,7 @@
 #include "../BSCore/BSTSingleton.h"
 #include "../BSCore/BSTList.h"
 #include "../NetImmerse/NiNode.h"
-#include "../Forms/NavMeshInfoMap.h"
+#include "../Pathfinding/NavMeshInfo/NavMeshInfoMap.h"
 
 class NiSourceTexture;
 class TESNPC;

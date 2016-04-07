@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../BSSystem/IHandlerFunctor.h"
-#include "../Forms/Actor.h"
-#include "../Forms/TESObjectWEAP.h"
+#include "../TESForms/World/Actor.h"
+#include "../TESForms/Objects/TESObjectWEAP.h"
 #include "../BSCore/BSFixedString.h"
 
 

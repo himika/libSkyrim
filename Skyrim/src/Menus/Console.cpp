@@ -1,5 +1,5 @@
 #include "Skyrim/Menus/Console.h"
-#include "Skyrim/Forms/TESObjectREFR.h"
+#include "Skyrim/TESForms/World/TESObjectREFR.h"
 
 RefHandle & Console::pickedRefHandle = *(RefHandle*)0x01B3E6EC;
 

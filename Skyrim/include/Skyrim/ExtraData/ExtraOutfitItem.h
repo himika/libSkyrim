@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BSExtraData.h"
-#include "../Forms/BGSOutfit.h"
+#include "../TESForms/Objects/BGSOutfit.h"
 
 /*==============================================================================
 class ExtraOutfitItem +0000 (_vtbl=01079298)

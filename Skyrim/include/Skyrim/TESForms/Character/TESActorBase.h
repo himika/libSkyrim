@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../../Forms/TESBoundAnimObject.h"
-
+#include "../Objects/TESBoundAnimObject.h"
 #include "../../FormComponents/TESActorBaseData.h"
 #include "../../FormComponents/TESContainer.h"
 #include "../../FormComponents/TESSpellList.h"
@@ -15,6 +14,7 @@
 #include "../../FormComponents/BGSPerkRankArray.h"
 
 class TESCombatStyle;
+
 
 /*==============================================================================
 class TESActorBase +0000 (_vtbl=010A56A4)

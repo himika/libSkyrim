@@ -1,6 +1,6 @@
 #include "Skyrim.h"
-#include "Skyrim/Forms/BGSScene.h"
-#include "Skyrim/Forms/TESQuest.h"
+#include "Skyrim/TESForms/Character/BGSScene.h"
+#include "Skyrim/TESForms/Character/TESQuest.h"
 
 void BGSScene::ForceStart(void)
 {

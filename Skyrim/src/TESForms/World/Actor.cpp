@@ -1,14 +1,13 @@
 #include "Skyrim.h"
 #include "Skyrim/RTTI.h"
+#include "Skyrim/TESForms/Character/TESNPC.h"
+#include "Skyrim/TESForms/Gameplay/BGSColorForm.h"
 #include "Skyrim/TESForms/World/Actor.h"
-#include "Skyrim/Forms/TESNPC.h"
-#include "Skyrim/Forms/BGSColorForm.h"
-#include "Skyrim/Forms/PlayerCharacter.h"
-#include "Skyrim/ExtraData/ExtraInteraction.h"
-
+#include "Skyrim/TESForms/World/PlayerCharacter.h"
 #include "Skyrim/TESForms/World/Components/ActorProcessManager.h"
 #include "Skyrim/TESForms/World/Components/DetectionState.h"
 #include "Skyrim/TESForms/World/Components/ActorKnowledge.h"
+#include "Skyrim/ExtraData/ExtraInteraction.h"
 
 #include "Skyrim/NetImmerse/NiTypes.h"
 
