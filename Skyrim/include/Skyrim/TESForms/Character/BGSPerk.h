@@ -67,15 +67,19 @@ public:
 
 
 	// @members
-	UInt8							unk30;			// 30
-	UInt8							unk31;			// 31
-	UInt8							unk32;			// 32
-	UInt8							unk33;			// 33
-	UInt8							unk34;			// 34
-	UInt8							pad35[3];		// 35
-	Condition						* conditions;	// 38
-	BSTArray<BGSPerkEntry *>		perkEntries;	// 3C
-	BGSPerk							* nextPerk;		// 48
+	//void						** _vtbl;		// 00 - 010A37CC
+	UInt8						unk30;			// 30
+	UInt8						unk31;			// 31
+	UInt8						unk32;			// 32
+	UInt8						unk33;			// 33
+	UInt8						unk34;			// 34
+	UInt8						pad35[3];		// 35
+	Condition					conditions;		// 38
+	BSTArray<BGSPerkEntry *>	perkEntries;	// 3C
+	BGSPerk						* nextPerk;		// 48
+
+private:
+	DEFINE_MEMBER_FN(ctor, BGSPerk *, 0x005502B0);
 };
 STATIC_ASSERT(sizeof(BGSPerk) == 0x4C);
 

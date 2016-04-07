@@ -170,8 +170,8 @@ public:
 	SInt32							unk084;					// 084 - init'd -1 - ENAM (event name?)
 	Data088							unk088;					// 088
 	BSSimpleList<Objective *>		objectives;				// 090 - QOBJ
-	Condition						* dialogueConditions;	// 098 - CTDA (quest dialogue conditions)
-	Condition						* conditions;			// 09C - CTDA (conditions)
+	Condition						dialogueConditions;		// 098 - CTDA (quest dialogue conditions)
+	Condition						conditions;				// 09C - CTDA (conditions)
 	TopicMap						topicMap;				// 0A0
 	BSTHashMap<UInt32, void *>		unk0C0;					// 0C0
 	BSTArray<void *>				unk0E0[6];				// 0E0
@@ -189,7 +189,7 @@ public:
 	static BSSpinLock			& ms_lock;					// 012E5BE8
 
 private:
-	DEFINE_MEMBER_FN(ctor, void, 0x5735C0);
+	DEFINE_MEMBER_FN(ctor, TESQuest *, 0x5735C0);
 	DEFINE_MEMBER_FN(dtor, void, 0x573790);
 	//DEFINE_MEMBER_FN_const(GetAlias_Impl, BGSBaseAlias *, 0x0056B6F0, UInt32 aliasId);
 };

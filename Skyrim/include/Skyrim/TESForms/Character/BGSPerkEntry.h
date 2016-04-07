@@ -8,6 +8,7 @@ class SpellItem;
 class TESObjectREFR;
 class BGSPerk;
 
+
 /*==============================================================================
 class BGSPerkEntry +0000 (_vtbl=010A3658)
 0000: class BGSPerkEntry
@@ -200,10 +201,11 @@ public:
 
 
 	// @members
+	//void						** _vtbl;			// 00 - 010A36F4
 	UInt8						type;				// 08 - EntryPointType
 	UInt8						unk09;				// 09
 	UInt8						numArgs;			// 0A
 	BGSEntryPointFunctionData	* functionData;		// 0C
-	Condition					* conditions;		// 10
+	Condition					* conditions;		// 10 - numConditions = *(UInt32 *)(conditions - 1);
 	BGSPerk						* perk;				// 14
 };

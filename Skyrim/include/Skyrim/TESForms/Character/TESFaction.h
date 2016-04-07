@@ -76,7 +76,7 @@ public:
 		bool			notSellBuy;				// 09
 		UInt16			pad0B;					// 0A
 		void			* packageLocation;		// 0C
-		Condition		* condition;			// 10
+		Condition		condition;				// 10
 		BGSListForm		* buySellList;			// 14
 		TESObjectREFR	* merchantContainer;	// 18
 		UInt32			unk1C;					// 1C
