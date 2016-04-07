@@ -2924,6 +2924,39 @@
     <ClInclude Include="include\Skyrim\Misc\TESClassDF.h">
       <Filter>Header Files\Skyrim\Misc</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\BGSAIWorldLocationRef.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\BGSPackageData.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\BGSPackageDataObjectList.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\BGSPackageDataRef.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\PackageTarget.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\TESCondition.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\BGSProcedurePatrol.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\Package.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\PackageDataCustom.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\PackageLocation.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\AI\TESParameters.h">
+      <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Skyrim\BSScript\BSScriptNativeFunctionDef.inl">

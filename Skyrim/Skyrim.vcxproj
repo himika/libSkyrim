@@ -152,12 +152,23 @@
   <ItemGroup>
     <ClInclude Include="include\Skyrim.h" />
     <ClInclude Include="include\Skyrim\AI\ActorValue.h" />
+    <ClInclude Include="include\Skyrim\AI\BGSAIWorldLocationRef.h" />
     <ClInclude Include="include\Skyrim\AI\BGSAttackData.h" />
     <ClInclude Include="include\Skyrim\AI\BGSAttackDataMap.h" />
     <ClInclude Include="include\Skyrim\AI\BGSNamedPackageData.h" />
+    <ClInclude Include="include\Skyrim\AI\BGSPackageData.h" />
+    <ClInclude Include="include\Skyrim\AI\BGSPackageDataObjectList.h" />
+    <ClInclude Include="include\Skyrim\AI\BGSPackageDataRef.h" />
     <ClInclude Include="include\Skyrim\AI\BGSProcedure.h" />
+    <ClInclude Include="include\Skyrim\AI\BGSProcedurePatrol.h" />
     <ClInclude Include="include\Skyrim\AI\BGSProcedureTree.h" />
     <ClInclude Include="include\Skyrim\AI\IPackageData.h" />
+    <ClInclude Include="include\Skyrim\AI\Package.h" />
+    <ClInclude Include="include\Skyrim\AI\PackageDataCustom.h" />
+    <ClInclude Include="include\Skyrim\AI\PackageLocation.h" />
+    <ClInclude Include="include\Skyrim\AI\PackageTarget.h" />
+    <ClInclude Include="include\Skyrim\AI\TESCondition.h" />
+    <ClInclude Include="include\Skyrim\AI\TESParameters.h" />
     <ClInclude Include="include\Skyrim\Animation\AnimationClipDataSingleton.h" />
     <ClInclude Include="include\Skyrim\Animation\AnimationHandlers.h" />
     <ClInclude Include="include\Skyrim\Animation\AnimationSetDataSingleton.h" />
