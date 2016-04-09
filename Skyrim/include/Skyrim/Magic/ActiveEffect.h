@@ -3,7 +3,7 @@
 #include "../FormComponents/FormTypes.h"
 #include "../Magic/MagicItem.h"
 #include "../BSCore/BSTEvent.h"
-#include "../FormComponents/MagicTarget.h"
+#include "../Magic/MagicTarget.h"
 #include "../TempEffects/ReferenceEffectController.h"
 
 class Actor;

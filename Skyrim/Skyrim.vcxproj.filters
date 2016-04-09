@@ -905,12 +905,6 @@
     <ClInclude Include="include\Skyrim\FormComponents\Condition.h">
       <Filter>Header Files\Skyrim\FormComponents</Filter>
     </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\MagicCaster.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\MagicTarget.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
     <ClInclude Include="include\Skyrim\FormComponents\TESActorBaseData.h">
       <Filter>Header Files\Skyrim\FormComponents</Filter>
     </ClInclude>
@@ -2950,6 +2944,12 @@
     </ClInclude>
     <ClInclude Include="include\Skyrim\BSAudio\BSIReverbType.h">
       <Filter>Header Files\Skyrim\BSAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\Magic\MagicCaster.h">
+      <Filter>Header Files\Skyrim\Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\Magic\MagicTarget.h">
+      <Filter>Header Files\Skyrim\Magic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

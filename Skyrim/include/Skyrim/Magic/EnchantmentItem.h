@@ -27,19 +27,19 @@ public:
 	};
 
 	// @override
-	virtual UInt32	GetMagicType(void) override;		// 54 00405270 { return data->type; }
-	virtual void	SetCastType(UInt32 arg) override;	// 55 004051D0 { data->type = arg; MagicItem::Unk_6C(arg); }
-	virtual UInt32	GetCastType(void) override;			// 56 00405280 { return data->castType; }
-	virtual void	SetDeliveryType(UInt32 arg);		// 57 004051E0 { if (Unk_59(arg)) { data->deliveryType = arg1; MagicItem::Unk_6C(arg); }
-	virtual UInt32	GetDeliveryType(void) override;		// 58 00405290 { return data->deliveryType; }
-	virtual float	Unk_65(void) override;				// 65 00405680
-	virtual SInt32	Unk_67(void) override;				// 67 008F8F10 { return 0x00000017; }
-	virtual UInt32	GetSigniture(void) override;		// 69 00405A80 { return 'ENIT'; }
-	virtual void	Unk_6A(MagicItem * src) override;	// 6A 004052E0
-	virtual void *	Unk_6D(void) override;				// 6D 00405210 (void) { return &data; }
-	virtual void *	Unk_6E(void) override;				// 6E 00405210 (void) { return &data; }
-	virtual UInt32	Unk_6F(void) override;				// 6F 00405220 (void) { return sizeof(Data); }
-	virtual void	Unk_70(void) override;				// 70 00405670 { return data->Unk_00405500(); }
+	virtual UInt32	GetMagicType(void) const override;				// 54 00405270 { return data->enchantType; }
+	virtual void	SetCastingType(UInt32 castingType) override;	// 55 004051D0 { data->castingType = arg; MagicItem::SetCastingType(arg); }
+	virtual UInt32	GetCastingType(void) const override;			// 56 00405280 { return data->castingType; }
+	virtual void	SetDeliveryType(UInt32 deliveryType);			// 57 004051E0 { if (Unk_59(arg)) { data->deliveryType = arg1; MagicItem::SetDeliveryType(arg); }
+	virtual UInt32	GetDeliveryType(void) const override;			// 58 00405290 { return data->deliveryType; }
+	virtual float	GetChargeTime(void) const override;				// 65 00405680
+	virtual SInt32	GetActorValueType(void) const override;			// 67 008F8F10 { return kActorValue_Enchanting; }
+	virtual UInt32	GetDataSigniture(void) const override;			// 69 00405A80 { return 'ENIT'; }
+	virtual void	CopyData(MagicItem *src) override;				// 6A 004052E0
+	virtual void *	Unk_6D(void) override;							// 6D 00405210 (void) { return &data; }
+	virtual void *	Unk_6E(void) override;							// 6E 00405210 (void) { return &data; }
+	virtual UInt32	GetDataSize(void) const override;				// 6F 00405220 (void) { return sizeof(Data); }
+	virtual void	Unk_70(void) override;							// 70 00405670 { return data->Unk_00405500(); }
 
 
 	// 24
@@ -52,15 +52,16 @@ public:
 		};
 
 		Calculations	calculations;		// 00 - 50
-		UInt32			castType;			// 08 - 58
-		UInt32			unk0C;				// 0C - 5C
+		UInt32			castingType;		// 08 - 58
+		UInt32			enchantmentAmount;	// 0C - 5C
 		UInt32			deliveryType;		// 10 - 60
-		UInt32			type;				// 14 - 64
-		float			unk18;				// 18 - 68
+		UInt32			enchantType;		// 14 - 64 - enchantment (6), staff enchantment (12)
+		float			chargeTime;			// 18 - 68
 		EnchantmentItem	* baseEnchantment;	// 1C - 6C
 		BGSListForm		* restrictions;		// 20 - 70
 	};
 
-	Data	data;	// 50
+	// @members
+	Data	data;	// 50 - ENIT
 };
 STATIC_ASSERT(sizeof(EnchantmentItem) == 0x74);

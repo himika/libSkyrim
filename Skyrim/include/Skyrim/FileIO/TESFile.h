@@ -37,7 +37,7 @@ public:
 		FormID		formID;				// 0C 
 		UInt32		unk10;				// 10
 		UInt16		unk14;				// 14 always initialized to 0F on SaveForm. 
-		UInt16		unk16;
+		UInt16		unk16;				// 16
 	};
 
 	static const TESFile * LookupByName(const char *name);

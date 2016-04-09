@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../../Misc/BGSAttachTechniques.h"
-#include "../../../FormComponents/MagicCaster.h"
+#include "../../../Magic/MagicCaster.h"
 #include "../../../Animation/SimpleAnimationGraphManagerHolde.h"
 #include "../../../Animation/IPostAnimationChannelUpdateFunctor.h"
 #include "../../../Events/ActorEvent.h"
@@ -48,7 +48,7 @@ public:
 	virtual Actor *	GetCaster() override;									// 006572F0 { return caster; }
 	virtual UInt32	MagicCaster_Unk_0E(void) override;						// 00657510 .... if (eax) unk6C = eax->Unk02; return unk6C;
 	virtual void	MagicCaster_Unk_0F(void) override;						// 006574B0 { unk6C = 0; }
-	virtual void	MagicCaster_Unk_10(UInt32 arg1) override;				// 00658C40
+	virtual void	MagicCaster_Unk_10(MagicItem *arg) override;			// 00658C40
 	virtual void	MagicCaster_Unk_11(void) override;						// 006586F0
 	virtual void	MagicCaster_Unk_12(void) override;						// 00657200
 	virtual void	MagicCaster_Unk_13(void) override;						// 006571B0 { flags |= 2; }

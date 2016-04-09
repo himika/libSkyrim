@@ -9,6 +9,7 @@
 #include "EffectItem.h"
 
 class EffectSetting;
+class Actor;
 
 /*==============================================================================
 class MagicItem +0000 (_vtbl=01077E7C)
@@ -28,58 +29,39 @@ class MagicItem : public TESBoundObject,
 	public BGSKeywordForm	// 28
 {
 public:
-	enum
+	enum MagicType
 	{
-		kType_unk00 = 0,
-		kType_unk01,
-		kType_unk02,
-		kType_unk03,
-		kType_unk04,
-		kType_unk05,
-		kType_unk06,
-		kType_Archemy,		// 7
-		kType_Scroll = 0x0D
+		kType_Spell = 0,
+		kType_Disease,
+		kType_Power,
+		kType_LesserPower,
+		kType_Ability,
+		kType_Poison,
+		kType_Enchantment,
+		kType_Archemy,
+		kType_Ingredient,
+		kType_unk09,
+		kType_unk10,
+		kType_VoicePower,
+		kType_StaffEnchantment,
+		kType_Scroll
 	};
 
-	enum
+	enum CastingType
 	{
-		kCastType_0 = 0,
-		kCastType_1
+		kCastingType_Constant = 0,
+		kCastingType_FireAndForget,
+		kCastingType_Concentration
 	};
 
-	// @override
-	virtual bool	Unk_29(void) override;				// 009B86F0 { return true; }
-
-	// @add
-	virtual UInt32	GetMagicType(void) = 0;				// 54 00F51EE8 ArchemyItem=7 ScrollItem=0x0D
-	virtual void	SetCastType(UInt32 arg);			// 55 00588F30 { return; }
-	virtual UInt32	GetCastType(void) = 0;				// 56 00F51EE8 ArchemyItem=1
-	virtual void	SetDeliveryType(UInt32 arg);		// 57 00588F30 { return; }
-	virtual UInt32	GetDeliveryType(void) = 0;			// 58 00F51EE8 ArchemyItem=0
-	virtual bool	Unk_59(UInt32 arg);					// 00C8CCA0 { return true; }
-	virtual float	Unk_5A(void);						// 0066E8A0 { return 0.0f; }
-	virtual float	Unk_5B(void);						// 0066E8A0 { return 0.0f; }
-	virtual bool	Unk_5C(void);						// 0092D110 { return false; }
-	virtual bool	Unk_5D(void);						// 0092D110 { return false; }
-	virtual bool	Unk_5E(void);						// 0092D110 { return false; }
-	virtual bool	Unk_5F(void);						// 0092D110 { return false; }
-	virtual bool	Unk_60(void);						// 0092D110 { return false; }
-	virtual bool	Unk_61(UInt32 arg);					// 004091A0 { return false; }
-	virtual bool	Unk_62(void);						// 00405250 { return GetMagicType() == 5 } offensive or defensive ?
-	virtual bool	Unk_63(void);						// 0092D110 { return false; }
-	virtual void	Unk_64(UInt32 arg0, UInt32 arg1);	// 004D43E0 { return; }
-	virtual float	Unk_65(void);						// 0066E8A0 { return 0.0f; }
-	virtual UInt32	Unk_66(void);						// 005EADD0 { return 0; } IngredientItem=4
-	virtual SInt32	Unk_67(void);						// 00407240 { return -1; } ArchemyItem=0x10, EnchantmentItem=0x17, ScrollItem=-1
-	virtual bool	Unk_68(void);						// 0092D110 { return false; }
-	virtual UInt32	GetSigniture(void) = 0;				// 69 00F51EE8 returns char code
-	virtual void	Unk_6A(MagicItem * src) = 0;		// 00F51EE8 copy data if possible?
-	virtual void	Unk_6B(UInt32 arg0, UInt32 arg1);	// 004D43E0 loading-related
-	virtual void	Unk_6C(UInt32 arg);					// 00588F30 { return; }
-	virtual void *	Unk_6D(void) = 0;					// 00F51EE8 returns data
-	virtual void *	Unk_6E(void) = 0;					// 00F51EE8 returns data
-	virtual UInt32	Unk_6F(void) = 0;					// 00F51EE8 return size of data, SpellItem=0x24 AlchemyItem=0x14, EnchantmentItem=0x24
-	virtual void	Unk_70(void) = 0;					// 00F51EE8 byteswap?
+	enum DeliveryType
+	{
+		kDeliveryType_Self = 0,
+		kDeliveryType_Contact,
+		kDeliveryType_Aimed,
+		kDeliveryType_TargetActor,
+		kDeliveryType_TargetLocation,
+	};
 
 	class PreloadableVisitor
 	{
@@ -88,15 +70,52 @@ public:
 		virtual void Visit(void) = 0;
 	};
 
+	
+	// @override
+	virtual bool	IsMagicItem(void) const override;		// 29 009B86F0 { return true; }
 
-	// @members
-	BSTArray<EffectItem *>	effectItemList;		// 34
-	UInt32					hostile;			// 40
-	EffectSetting			* unk44;			// 44
-	UInt32					unk48;				// 48
-	UInt32					unk4C;				// 4C
+	// @add
+	virtual UInt32	GetMagicType(void) const = 0;			// 54 (pure)
+	virtual void	SetCastingType(UInt32 castingType);		// 55 00588F30 { return; }
+	virtual UInt32	GetCastingType(void) const = 0;			// 56 (pure)
+	virtual void	SetDeliveryType(UInt32 deliveryType);	// 57 00588F30 { return; }
+	virtual UInt32	GetDeliveryType(void) const = 0;		// 58 (pure)
+	virtual bool	Unk_59(UInt32 arg);						// 59 00C8CCA0 { return true; }
+	virtual float	GetCastDuration(void) const;			// 5A 0066E8A0 { return 0.0f; }
+	virtual float	GetRange(void) const;					// 5B 0066E8A0 { return 0.0f; }
+	virtual bool	Unk_5C(void);							// 5C 0092D110 { return false; }
+	virtual bool	Unk_5D(void);							// 5D 0092D110 { return false; }
+	virtual bool	Unk_5E(void);							// 5E 0092D110 { return false; }
+	virtual bool	Unk_5F(void);							// 5F 0092D110 { return false; }
+	virtual bool	Unk_60(void);							// 60 0092D110 { return false; }
+	virtual bool	Unk_61(UInt32 arg);						// 61 004091A0 { return false; }
+	virtual bool	IsPoison(void) const;					// 62 00405250 { return GetMagicType() == kType_Poison } offensive or defensive ?
+	virtual bool	Unk_63(void);							// 63 0092D110 { return false; }
+	virtual void	Unk_64(void *, Actor *actor);			// 64 004D43E0 { return; } get associated actor value ?
+	virtual float	GetChargeTime(void) const;				// 65 0066E8A0 { return 0.0f; }
+	virtual UInt32	Unk_66(void);							// 66 005EADD0 { return 0; } IngredientItem=4
+	virtual SInt32	GetActorValueType(void) const;			// 67 00407240 { return -1; } used for Actor::AdvanceSkill()
+	virtual bool	Unk_68(void);							// 68 0092D110 { return false; }
+	virtual UInt32	GetDataSigniture(void) const = 0;		// 69 (pure)
+	virtual void	CopyData(MagicItem *src) = 0;			// 6A (pure) copy data if possible?
+	virtual void	Unk_6B(TESFile *file, UInt32 subtype);	// 6B 004D43E0 loading-related
+	virtual void	Unk_6C(TESFile *file);					// 6C 00588F30 { return; }
+	virtual void *	Unk_6D(void) = 0;						// 6D (pure) returns data
+	virtual void *	Unk_6E(void) = 0;						// 6E (pure) returns data
+	virtual UInt32	GetDataSize(void) const = 0;			// 6F (pure) return size of data, SpellItem=0x24 AlchemyItem=0x14, EnchantmentItem=0x24
+	virtual void	Unk_70(void) = 0;						// 70 (pure) byteswap?
+
 
 	DEFINE_MEMBER_FN(GetCostliestEffectItem, EffectItem *, 0x00407860, int arg1, bool arg2);
-	DEFINE_MEMBER_FN(GetEffectiveMagickaCost, double, 0x00406EF0, Actor * caster);
+	DEFINE_MEMBER_FN(GetEffectiveMagickaCost, double, 0x00406EF0, Actor *caster);
+
+
+	// @members
+	//void					** _vtbl;			// 00 - 01077E7C
+	BSTArray<EffectItem *>	effectItemList;		// 34
+	UInt32					hostile;			// 40 - init'd 0
+	EffectSetting			* unk44;			// 44 - init'd 0
+	UInt32					unk48;				// 48 - init'd 0
+	void					* unk4C;			// 4C - init'd nullptr - refCount+0008
 };
 STATIC_ASSERT(sizeof(MagicItem) == 0x50);

@@ -432,8 +432,6 @@
     <ClInclude Include="include\Skyrim\FormComponents\BSMaterialObject.h" />
     <ClInclude Include="include\Skyrim\FormComponents\Condition.h" />
     <ClInclude Include="include\Skyrim\FormComponents\FormTypes.h" />
-    <ClInclude Include="include\Skyrim\FormComponents\MagicCaster.h" />
-    <ClInclude Include="include\Skyrim\FormComponents\MagicTarget.h" />
     <ClInclude Include="include\Skyrim\FormComponents\TESActorBaseData.h" />
     <ClInclude Include="include\Skyrim\FormComponents\TESAIForm.h" />
     <ClInclude Include="include\Skyrim\FormComponents\TESAttackDamageForm.h" />
@@ -621,7 +619,9 @@
     <ClInclude Include="include\Skyrim\Magic\EffectSetting.h" />
     <ClInclude Include="include\Skyrim\Magic\EnchantmentItem.h" />
     <ClInclude Include="include\Skyrim\Magic\IngredientItem.h" />
+    <ClInclude Include="include\Skyrim\Magic\MagicCaster.h" />
     <ClInclude Include="include\Skyrim\Magic\MagicItem.h" />
+    <ClInclude Include="include\Skyrim\Magic\MagicTarget.h" />
     <ClInclude Include="include\Skyrim\Magic\ScrollItem.h" />
     <ClInclude Include="include\Skyrim\Magic\SpellItem.h" />
     <ClInclude Include="include\Skyrim\Memory.h" />

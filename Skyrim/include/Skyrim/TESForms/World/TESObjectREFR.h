@@ -6,7 +6,7 @@
 #include "../../BSCore/BSTEvent.h"
 #include "../../Events/ActorEvent.h"
 #include "../../FormComponents/BaseExtraList.h"
-#include "../../FormComponents/MagicCaster.h"
+#include "../../Magic/MagicCaster.h"
 #include "../../Animation/IAnimationGraphManagerHolder.h"
 #include "../../NetImmerse/NiPoint3.h"
 

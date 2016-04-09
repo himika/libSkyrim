@@ -2,7 +2,7 @@
 
 #include "TESObjectREFR.h"
 #include "../../FormComponents/ActorValueOwner.h"
-#include "../../FormComponents/MagicTarget.h"
+#include "../../Magic/MagicTarget.h"
 #include "../../BSPathFinding/MovementTypes.h"
 #include "../../BSCore/BSTList.h"
 #include "Components/ActorProcessmanager.h"
@@ -192,17 +192,17 @@ public:
 
 
 	// @override MagicTarget (vtbl=0x010CFC20)
-	virtual bool	MagicTarget_Unk_01(float arg) override;						// 006ED250
-	virtual Actor *	MagicTarget_Unk_02(void) override;							// 006C5160 { return static_cast<Actor*>(this); }
-	virtual bool	IsActorMagicTarget(void) const override;					// 009B86F0 { return true; }
-	virtual bool	MagicTarget_Unk_04(void) override;							// 006A9270
-	virtual void	MagicTarget_Unk_05(int) override;							// 006E89F0 { if (processManager) processManager->Unk_00724530(arg); }
-	virtual bool	MagicTarget_Unk_06(void) override;							// 006E8880
-	virtual BSSimpleList<ActiveEffect *> *	GetActiveEffects(void) override;	// 006E9180 { return processManager ? processManager->Unk_0071F120() : nullptr; }
-	virtual void	MagicTarget_Unk_08(int) override;							// 006E9300
-	virtual void	MagicTarget_Unk_09(int)override;							// 006E88B0
-	virtual double	MagicTarget_Unk_0A(int, int, int) override;					// 006E93D0
-	virtual bool	MagicTarget_Unk_0B(int, int, int) override;					// 006EC4F0
+	virtual bool	MagicTarget_Unk_01(void *arg) override;						// 01 006ED250
+	virtual Actor *	GetMagicTargetActor(void) const override;					// 02 006C5160 { return static_cast<Actor *>(this); }
+	virtual bool	IsActorMagicTarget(void) const override;					// 03 009B86F0 { return true; }
+	virtual bool	MagicTarget_Unk_04(void) override;							// 04 006A9270
+	virtual void	MagicTarget_Unk_05(int) override;							// 05 006E89F0 { if (processManager) processManager->Unk_00724530(arg); }
+	virtual bool	MagicTarget_Unk_06(void) override;							// 06 006E8880
+	virtual BSSimpleList<ActiveEffect *> *	GetActiveEffects(void) override;	// 07 006E9180 { return processManager ? processManager->Unk_0071F120() : nullptr; }
+	virtual void	MagicTarget_Unk_08(int) override;							// 08 006E9300
+	virtual void	MagicTarget_Unk_09(ActiveEffect *) override;				// 09 006E88B0
+	virtual double	MagicTarget_Unk_0A(int, int, int) override;					// 0A 006E93D0
+	virtual bool	MagicTarget_Unk_0B(Actor *, MagicItem *, Actor *) override;	// 0B 006EC4F0
 
 
 	// @override BSTEventSink<BSTransformDeltaEvent> (vtbl=010CFB90)

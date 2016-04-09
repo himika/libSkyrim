@@ -52,10 +52,10 @@ public:
 	virtual ~ScrollItem();								// 00409370
 
 	// @override
-	virtual UInt32	GetMagicType(void) override;		// 0055BEC0 { return 0x0000000D; }
-	virtual UInt32	GetCastType(void) override;			// 00CAC8A0 { return 0x00000001; }
-	virtual bool	Unk_61(UInt32 arg) override;		// 004091A0 { return false; }
-	virtual SInt32	Unk_67(void) override;				// 00407240 { return -1; }
-	virtual void	Unk_6B(UInt32 arg0, UInt32 arg1);	// 00409480
+	virtual UInt32	GetMagicType(void) const override;			// 54 0055BEC0 { return kType_Scroll; }
+	virtual UInt32	GetCastingType(void) const override;		// 56 00CAC8A0 { return kCastType_FireAndForget; }
+	virtual bool	Unk_61(UInt32 arg) override;				// 61 004091A0 { return false; }
+	virtual SInt32	GetActorValueType(void) const override;		// 67 00407240 { return -1; }
+	virtual void	Unk_6B(TESFile *file, UInt32 subtype);		// 6B 00409480
 };
 STATIC_ASSERT(sizeof(ScrollItem) == 0xD0);

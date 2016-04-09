@@ -51,52 +51,54 @@ class IngredientItem : public MagicItem,
 public:
 	enum { kTypeID = (UInt32)FormType::Ingredient };
 
-	virtual ~IngredientItem();							// 00405DF0
-
-	// @override
-	virtual UInt32	GetMagicType(void) override;		// 00667E20 (void) { return 0x00000008; }
-	virtual UInt32	GetCastType(void) override;			// 00CAC8A0 (void) { return 0x00000001; }
-	virtual UInt32	GetDeliveryType(void) override;		// 005EADD0 (void) { return 0; }
-	virtual bool	Unk_5E(void) override;				// 00405CF0 { return (Unk_6D()->unk04 >> 1) & 1; }
-	virtual bool	Unk_61(UInt32 arg) override;		// 00406070
-	virtual UInt32	Unk_66(void) override;				// 009048A0 { return 0x04; }
-	virtual SInt32	Unk_67(void) override;				// 00DA29A0 { return 0x10; }
-	virtual UInt32	GetSigniture(void) override;		// 00405A80 { return 'ENIT'; }
-	virtual void	Unk_6A(MagicItem * src) override;	// 00405BA0 { if (formType == src->formType) unkA00 = src->unkA0; }
-	virtual void	Unk_6B(UInt32 arg0, UInt32 arg1);	// 00405E20
-	virtual void *	Unk_6D(void) override;				// 00405A90 { return &unkA0; }
-	virtual void *	Unk_6E(void) override;				// 00405A90 { return &unkA0; }
-	virtual UInt32	Unk_6F(void) override;				// 00405220 { return sizeof(Data); }
-	virtual void	Unk_70(void) override;				// 00406040
-	
-	// @members
-	struct DataA0
+	// 08
+	struct Data
 	{
 		UInt32 unk00; // 00
 		UInt32 unk04; // 04
 	};
-	DataA0 unkA0;
 
 	// ahzaab 8-25-13
 	enum   // type - these are flags
 	{
-		kType_NoEffect = 0,
-		kType_FirstEffect = 1 << 0,
-		kType_SecondEffect = 1 << 1,
-		kType_ThirdEffect = 1 << 2,
-		kType_FourthEffect = 1 << 3
+		kType_NoEffect		= 0,
+		kType_FirstEffect	= 1 << 0,
+		kType_SecondEffect	= 1 << 1,
+		kType_ThirdEffect	= 1 << 2,
+		kType_FourthEffect	= 1 << 3
 	};
-	UInt8  knownEffects;        //The lower nibble contains the known effects, the upper nibble is unknown
 
 	struct DataA9
 	{
 		UInt8  unk00; // 00
-		//UInt16 unk01; // 01
 		UInt8  unk01; // 01
 		UInt8  unk02; // 02
 	};
 
-	DataA9 unkA9;
+
+	virtual ~IngredientItem();							// 00405DF0
+
+	// @override
+	virtual UInt32	GetMagicType(void) const override;			// 54 00667E20 { return kType_Ingredient; }
+	virtual UInt32	GetCastingType(void) const override;		// 56 00CAC8A0 { return kCastType_FireAndForget; }
+	virtual UInt32	GetDeliveryType(void) const override;		// 58 005EADD0 { return kDeliveryType_Self; }
+	virtual bool	Unk_5E(void) override;						// 5E 00405CF0 { return (Unk_6D()->unk04 >> 1) & 1; }
+	virtual bool	Unk_61(UInt32 arg) override;				// 61 00406070
+	virtual UInt32	Unk_66(void) override;						// 66 009048A0 { return 0x04; }
+	virtual SInt32	GetActorValueType(void) const override;		// 67 00DA29A0 { return kActorValue_Alchemy; }
+	virtual UInt32	GetDataSigniture(void) const override;		// 69 00405A80 { return 'ENIT'; }
+	virtual void	CopyData(MagicItem *src) override;			// 6A 00405BA0 { if (formType == src->formType) unkA0 = src->unkA0; }
+	virtual void	Unk_6B(TESFile *file, UInt32 subtype);		// 6B 00405E20
+	virtual void *	Unk_6D(void) override;						// 6D 00405A90 { return &unkA0; }
+	virtual void *	Unk_6E(void) override;						// 6E 00405A90 { return &unkA0; }
+	virtual UInt32	GetDataSize(void) const override;			// 6F 00405220 { return sizeof(Data); }
+	virtual void	Unk_70(void) override;						// 70 00406040
+	
+
+	// @memberes
+	Data		data;				// A0 - ENIT
+	UInt8		knownEffects;		// A8 - The lower nibble contains the known effects, the upper nibble is unknown
+	DataA9		unkA9;				// A9
 };
 STATIC_ASSERT(offsetof(IngredientItem, unkA9) == 0xA9);
 STATIC_ASSERT(sizeof(IngredientItem) == 0xAC);

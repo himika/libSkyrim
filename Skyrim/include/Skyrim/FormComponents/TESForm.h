@@ -101,8 +101,8 @@ public:
 	virtual void			Unk_25(void);									// 25 006C50E0 { return; }
 	virtual void			Unk_26(TESFile *mod);							// 26 00588F30 { return; }
 	virtual bool			Has3D(void);									// 27 0092D110 { return false; }
-	virtual bool			Unk_28(void);									// 28 0092D110 { return false; } TESObject={ return true; }
-	virtual bool			Unk_29(void);									// 29 0092D110 { return false; } MagicItem=true
+	virtual bool			Unk_28(void);									// 28 0092D110 { return false; } TESObject=true;
+	virtual bool			IsMagicItem(void) const;						// 29 0092D110 { return false; } MagicItem=true
 	virtual bool			Unk_2A(void);									// 2A 0092D110 { return false; }
 	virtual TESForm *		Unk_2B(void);									// 2B 005EADD0 { return nullptr; }
 	virtual TESObjectREFR *	GetReference(void);								// 2C 005EADD0 { return nullptr; }

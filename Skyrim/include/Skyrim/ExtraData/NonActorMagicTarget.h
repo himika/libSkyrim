@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BSExtraData.h"
-#include "../FormComponents/MagicTarget.h"
+#include "../Magic/MagicTarget.h"
 
 class Actor;
 
@@ -25,15 +25,15 @@ public:
 	static NonActorMagicTarget* Create();
 
 	// @override MagicTarget
-	virtual bool							MagicTarget_Unk_01(float arg) override;	// 00666FD0 { return MagicTarget::MagicTarget_Unk_01(arg) && MagicTarget::MagicTarget_Unk_01(1.0f); }
-	virtual Actor *							MagicTarget_Unk_02(void) override;		// 00E80F90 (void) { return magicTargetActor; }
-	virtual bool							MagicTarget_Unk_06(void) override;		// 009B86F0 (void) { return true; }
-	virtual BSSimpleList<ActiveEffect*> *	GetActiveEffects(void) override;		// 00667000 (void) { return &magicTargetEffects; }
+	virtual bool		MagicTarget_Unk_01(void *arg) override;						// 01 00666FD0 { return MagicTarget::MagicTarget_Unk_01(arg) && MagicTarget::Un_00664470(1.0f); }
+	virtual Actor *		GetMagicTargetActor(void) const override;					// 02 00E80F90 (void) { return actor; }
+	virtual bool		MagicTarget_Unk_06(void) override;							// 06 009B86F0 (void) { return true; }
+	virtual BSSimpleList<ActiveEffect*> *	GetActiveEffects(void) override;		// 07 00667000 (void) { return &activeEffects; }
 
 private:
 	// @members
-	Actor 	* magicTargetActor;							// 14
-	BSSimpleList<ActiveEffect*>	magicTargetEffects;		// 18
+	Actor 							* actor;		// 14
+	BSSimpleList<ActiveEffect *>	activeEffects;	// 18
 
 private:
 	NonActorMagicTarget();
