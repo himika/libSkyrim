@@ -8,6 +8,8 @@
 #include "../../FormComponents/BGSKeywordForm.h"
 #include "../../FormComponents/TESMagicTargetForm.h"
 
+class TESWaterForm;
+
 
 /*==============================================================================
 class TESObjectACTI +0000 (_vtbl=010841B4)
@@ -50,17 +52,20 @@ public:
 	virtual void	SaveBuffer(BGSSaveFormBuffer *buf) override;		// 0049FE10
 	virtual void	LoadBuffer(BGSLoadFormBuffer *buf) override;		// 0049FF70
 	virtual void	InitItem(void) override;							// 004A05D0
-	virtual bool	Unk_22(void) override;								// 00494E70
-	virtual bool	Unk_2A(void) override;								// 0049FD00
+	virtual bool	Unk_22(void) override;								// 00494E70 { return (unk68 >> 1) & 1; }
+	virtual bool	Unk_2A(void) override;								// 0049FD00 { return waterType != nullptr; }
 	virtual bool	ActivateReference(TESObjectREFR* targetRef, TESObjectREFR* activatorRef, UInt32 arg2, UInt32 arg3, UInt32 arg4) override;	// 004A0040
 	virtual bool	GetCrosshairText(TESObjectREFR *ref, BSString *dst, bool unk) override;		// 004A0170
 	virtual bool	Unk_4E(void * arg0, UInt8 arg1, UInt32 arg2, float arg3) override;			// 0049FD10 { return true; }
 
 	// @members
-	UInt32	unk5C;		// 5C
-	UInt32	unk60;		// 60
-	UInt32	unk64;		// 64
-	UInt16	unk68;		// 68
-	UInt8	pad6A[2];	// 6A
+	BGSSoundDescriptorForm	* loopingSound;			// 5C - SNAM - looping sound
+	BGSSoundDescriptorForm	* activationSound;		// 60 - VNAM - activation sound
+	TESWaterForm			* waterType;			// 64 - WNAM - water type
+	UInt16					unk68;					// 68 - FNAM - flags
+	UInt8					pad6A[2];				// 6A
+
+private:
+	DEFINE_MEMBER_FN(ctor, TESObjectACTI *, 0x0049FEB0);
 };
 STATIC_ASSERT(sizeof(TESObjectACTI) == 0x6C);

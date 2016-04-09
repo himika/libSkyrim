@@ -115,7 +115,7 @@ public:
 	virtual bool			Unk_22(void) override;									// 004D6420
 	virtual void			SetFlag00000020(bool set) override;						// 004D9820
 	virtual void			SetFlag00000002(bool set) override;						// 004D4A90
-	virtual bool			Unk_2A(void) override;									// 004D5020
+	virtual bool			Unk_2A(void) override;									// 004D5020 { return (baseForm) ? baseForm->Unk_2A() : false; }
 	virtual TESForm *		Unk_2B(void) override;									// 00C707B0 { return this; }
 	virtual TESObjectREFR *	GetReference(void) override;							// 00C707B0 { return this; }
 	virtual bool			Unk_30(void * arg0, UInt32 arg1, UInt32 arg2) override;	// 004D7220
