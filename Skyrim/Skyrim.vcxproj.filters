@@ -896,31 +896,7 @@
     <ClInclude Include="include\Skyrim\FormComponents\BGSSkinForm.h">
       <Filter>Header Files\Skyrim\FormComponents</Filter>
     </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\BGSSoundDescriptor.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
     <ClInclude Include="include\Skyrim\FormComponents\BGSTextureModel.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\BSIMusicTrack.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\BSIMusicType.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\BSIPlaybackCharacteristics.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\BSIReverbType.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\BSISoundCategory.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\BSISoundDescriptor.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\BSISoundOutputModel.h">
       <Filter>Header Files\Skyrim\FormComponents</Filter>
     </ClInclude>
     <ClInclude Include="include\Skyrim\FormComponents\BSMaterialObject.h">
@@ -933,9 +909,6 @@
       <Filter>Header Files\Skyrim\FormComponents</Filter>
     </ClInclude>
     <ClInclude Include="include\Skyrim\FormComponents\MagicTarget.h">
-      <Filter>Header Files\Skyrim\FormComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Skyrim\FormComponents\SoundPlaybackCharacteristics.h">
       <Filter>Header Files\Skyrim\FormComponents</Filter>
     </ClInclude>
     <ClInclude Include="include\Skyrim\FormComponents\TESActorBaseData.h">
@@ -2956,6 +2929,27 @@
     </ClInclude>
     <ClInclude Include="include\Skyrim\AI\TESParameters.h">
       <Filter>Header Files\Skyrim\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSAudio\BSISoundDescriptor.h">
+      <Filter>Header Files\Skyrim\BSAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSAudio\BGSSoundDescriptor.h">
+      <Filter>Header Files\Skyrim\BSAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSAudio\BSIMusicTrack.h">
+      <Filter>Header Files\Skyrim\BSAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSAudio\BSIMusicType.h">
+      <Filter>Header Files\Skyrim\BSAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSAudio\BSISoundCategory.h">
+      <Filter>Header Files\Skyrim\BSAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSAudio\BSISoundOutputModel.h">
+      <Filter>Header Files\Skyrim\BSAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skyrim\BSAudio\BSIReverbType.h">
+      <Filter>Header Files\Skyrim\BSAudio</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

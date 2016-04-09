@@ -2,7 +2,7 @@
 
 #include "../../FormComponents/TESForm.h"
 #include "../../FormComponents/TESFullName.h"
-#include "../../FormComponents/BSISoundCategory.h"
+#include "../../BSAudio/BSISoundCategory.h"
 
 /*==============================================================================
 class BGSSoundCategory +0000 (_vtbl=0108DF3C)

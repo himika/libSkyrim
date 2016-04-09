@@ -57,7 +57,7 @@ public:
 	STATIC_ASSERT(sizeof(Node) == 0x20);
 
 	Condition() : nodes(nullptr) {}
-	~Condition() { dtor(); }
+	~Condition() { Destroy(); }			// 005E96C0
 
 	bool Match(TESObjectREFR *arg1, TESObjectREFR *arg2 = nullptr) const {
 		return Match_Impl(arg1, arg2);
@@ -68,7 +68,9 @@ public:
 
 private:
 	DEFINE_MEMBER_FN(ctor, Condition *, 0x00A88CB0);
-	DEFINE_MEMBER_FN(dtor, void, 0x005E9440);
+	DEFINE_MEMBER_FN(dtor, void, 0x005E96C0);
+
+	DEFINE_MEMBER_FN(Destroy, void, 0x005E9440);
 	DEFINE_MEMBER_FN_const(Match_Impl, bool, 0x005E9800, TESObjectREFR *arg1, TESObjectREFR *arg2);
 };
 STATIC_ASSERT(sizeof(Condition) == 0x4);

@@ -1,11 +1,16 @@
 #pragma once
 
-#include "BaseFormComponent.h"
+#include "../FormComponents/BaseFormComponent.h"
 #include "BSISoundDescriptor.h"
 #include "../NetImmerse/NiPoint3.h"
 
 class NiNode;
 
+/*==============================================================================
+class BGSSoundDescriptor +0000 (_vtbl=????????)
+0000: class BGSSoundDescriptor
+0000: |   class BSISoundDescriptor
+==============================================================================*/
 class BGSSoundDescriptor : public BSISoundDescriptor
 {
 public:
@@ -24,10 +29,7 @@ public:
 	};
 
 
-	virtual void	BSISoundDescriptor_Unk_01(void) override;
-	virtual void	BSISoundDescriptor_Unk_02(void) override;
-
 	DEFINE_MEMBER_FN(SetUp, bool, 0x00B9CB60, SoundData *, BGSSoundDescriptor *, UInt32);
 
-	//	void	** _vtbl;	// 00
+	//void	** _vtbl;	// 00
 };

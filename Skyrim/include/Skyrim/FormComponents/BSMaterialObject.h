@@ -2,6 +2,11 @@
 
 #include "../BSCore/BSTArray.h"
 
+
+/*==============================================================================
+class BSMaterialObject +0000 (_vtbl=0108D268)
+0000: class BSMaterialObject
+==============================================================================*/
 // 40
 class BSMaterialObject
 {
@@ -36,8 +41,9 @@ public:
 
 	virtual void	Unk_01(void);
 
-	//	void	** _vtbl;	// 00
 
-	Data			unk04;	// 04
-	BSTArray<void*>	unk34;	// 34
+	// @members
+	//void				** _vtbl;	// 00
+	Data				unk04;	// 04
+	BSTArray<void *>	unk34;	// 34
 };

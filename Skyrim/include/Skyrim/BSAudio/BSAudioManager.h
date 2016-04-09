@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Skyrim/BSCore/BSTSingleton.h"
-#include "Skyrim/BSCore/BSTEvent.h"
-#include "Skyrim/BSDevices/InputManager.h"
+#include "../BSCore/BSTSingleton.h"
+#include "../BSCore/BSTEvent.h"
+#include "../BSDevices/InputManager.h"
 
 struct BSMusicEvent
 {

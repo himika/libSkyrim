@@ -11,11 +11,11 @@ class BaseFormComponent
 {
 public:
 	BaseFormComponent();
-	virtual ~BaseFormComponent();		// 0044CD10
+	virtual ~BaseFormComponent();							// 00 0044CD10
 
-	virtual void	Init(void);			// pure
-	virtual void	ReleaseRefs(void);	// pure
-	virtual void	CopyFromBase(BaseFormComponent * rhs);	// pure
+	virtual void	Init(void);								// 01 pure
+	virtual void	ReleaseRefs(void);						// 02 pure
+	virtual void	CopyFromBase(BaseFormComponent * rhs);	// 03 pure
 
 	//	void	** _vtbl;	// 00
 };

@@ -15,7 +15,8 @@ class BGSEquipSlot : public TESForm
 public:
 	enum { kTypeID = (UInt32)FormType::EquipSlot };
 
-	BSTArray<BGSEquipSlot*>		parentSlots;
+	// @members
+	BSTArray<BGSEquipSlot *>	parentSlots;
 	UInt32						unk20;
 };
 STATIC_ASSERT(sizeof(BGSEquipSlot) == 0x24);

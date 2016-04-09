@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../FormComponents/TESForm.h"
-#include "../../FormComponents/BSIMusicTrack.h"
+#include "../../BSAudio/BSIMusicTrack.h"
 
 /*==============================================================================
 class BGSMusicTrackFormWrapper +0000 (_vtbl=0108DA54)

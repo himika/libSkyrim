@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../FormComponents/TESForm.h"
-#include "../../FormComponents/BSISoundOutputModel.h"
+#include "../../BSAudio/BSISoundOutputModel.h"
 
 
 /*==============================================================================

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../FormComponents/TESForm.h"
-#include "../../FormComponents/BSIReverbType.h"
+#include "../../BSAudio/BSIReverbType.h"
 
 /*==============================================================================
 class BGSReverbParameters +0000 (_vtbl=0108DD7C)

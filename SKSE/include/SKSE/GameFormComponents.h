@@ -20,7 +20,6 @@
 #include <Skyrim/FormComponents/BGSPreloadable.h>
 #include <Skyrim/FormComponents/BGSSkillPerkTreeNode.h>
 #include <Skyrim/FormComponents/BGSSkinForm.h>
-#include <Skyrim/FormComponents/BGSSoundDescriptor.h>
 #include <Skyrim/FormComponents/TESActorBaseData.h>
 #include <Skyrim/FormComponents/TESAIForm.h>
 #include <Skyrim/FormComponents/TESAttackDamageForm.h>

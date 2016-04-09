@@ -4,6 +4,12 @@
 
 class TESObjectSTAT;
 
+
+/*==============================================================================
+class BGSMenuDisplayObject +0000 (_vtbl=0107C3EC)
+0000: class BGSMenuDisplayObject
+0000: |   class BaseFormComponent
+==============================================================================*/
 // 08
 class BGSMenuDisplayObject : public BaseFormComponent
 {
@@ -13,5 +19,7 @@ public:
 
 	// @members
 	TESObjectSTAT	* worldStatic;	// 04 - copyable
-};
 
+private:
+	DEFINE_MEMBER_FN(ctor, BGSMenuDisplayObject *, 0x0044B660);
+};

@@ -2,6 +2,12 @@
 
 #include "BaseFormComponent.h"
 
+
+/*==============================================================================
+class BGSBipedObjectForm +0000 (_vtbl=0107C2F8)
+0000: class BGSBipedObjectForm
+0000: |   class BaseFormComponent
+==============================================================================*/
 // 10 - 1.6.89 and earlier
 // 0C - 1.7.7 and after
 class BGSBipedObjectForm : public BaseFormComponent
@@ -57,7 +63,6 @@ public:
 		UInt32	weightClass;	// 04 - init'd to 2 (none)
 	};
 
-	Data	bipedObjectData;	// 04
 
 	UInt32	GetSlotMask() const				{ return bipedObjectData.parts; }
 	void	SetSlotMask(UInt32 mask)		{ bipedObjectData.parts = mask; }
@@ -69,4 +74,8 @@ public:
 
 	UInt32	AddSlotToMask(UInt32 mask);
 	UInt32	RemoveSlotFromMask(UInt32 mask);
+
+
+	// @members
+	Data	bipedObjectData;	// 04
 };
